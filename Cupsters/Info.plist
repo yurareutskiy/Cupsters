@@ -22,6 +22,23 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>HelveticaNeueCyr-Black.otf</string>
+		<string>HelveticaNeueCyr-BlackItalic.otf</string>
+		<string>HelveticaNeueCyr-Bold.otf</string>
+		<string>HelveticaNeueCyr-BoldItalic.otf</string>
+		<string>HelveticaNeueCyr-Italic.otf</string>
+		<string>HelveticaNeueCyr-Light.otf</string>
+		<string>HelveticaNeueCyr-LightItalic.otf</string>
+		<string>HelveticaNeueCyr-Medium.otf</string>
+		<string>HelveticaNeueCyr-Roman.otf</string>
+		<string>HelveticaNeueCyr-Thin.otf</string>
+		<string>HelveticaNeueCyr-ThinItalic.otf</string>
+		<string>HelveticaNeueCyr-UltraLight_0.otf</string>
+		<string>HelveticaNeueCyr-UltraLightItalic.otf</string>
+		<string>MyriadPro-Regular.otf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -30,11 +47,11 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleLightContent</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
