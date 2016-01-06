@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="O1r-34-39h">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
@@ -22,139 +22,12 @@
             <string>MyriadPro-Regular</string>
             <string>MyriadPro-Regular</string>
             <string>MyriadPro-Regular</string>
+            <string>MyriadPro-Regular</string>
+            <string>MyriadPro-Regular</string>
+            <string>MyriadPro-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
-        <!--Login View Controller-->
-        <scene sceneID="kOW-HB-p46">
-            <objects>
-                <viewController id="ts8-Xo-eHG" customClass="LoginViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="CVS-Sk-GPM"/>
-                        <viewControllerLayoutGuide type="bottom" id="KN8-fj-esk"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="SEq-HI-PGy">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login_back" translatesAutoresizingMaskIntoConstraints="NO" id="KUU-Sw-ts9">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <animations/>
-                            </imageView>
-                            <view alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CFa-gV-Tun">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <animations/>
-                                <color key="backgroundColor" red="0.16078431369999999" green="0.17254901959999999" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#КОФЕРЯДОМ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMV-KK-06m">
-                                <rect key="frame" x="235" y="190" width="130" height="21"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="6PL-Rk-ttL"/>
-                                    <constraint firstAttribute="width" constant="130" id="IBp-0m-19b"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeueCyr-Bold" family="HelveticaNeueCyr" pointSize="17"/>
-                                <color key="textColor" red="0.80392156859999997" green="0.80392156859999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view alpha="0.69999998807907104" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bsi-0Z-iIp" userLabel="line-email">
-                                <rect key="frame" x="0.0" y="298.5" width="600" height="0.5"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="0.5" id="jW7-xg-J7P"/>
-                                </constraints>
-                            </view>
-                            <view alpha="0.69999998807907104" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q7c-kB-eNS" userLabel="line-pass">
-                                <rect key="frame" x="0.0" y="346.5" width="600" height="0.5"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="0.5" id="sNJ-Mv-HQk"/>
-                                </constraints>
-                            </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="eip-yn-7lp">
-                                <rect key="frame" x="208" y="60" width="184" height="98"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="98" id="Mpn-J5-QpG"/>
-                                    <constraint firstAttribute="width" constant="184" id="ymf-B4-zFh"/>
-                                </constraints>
-                            </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sPf-oc-q0p">
-                                <rect key="frame" x="200" y="272" width="200" height="30"/>
-                                <animations/>
-                                <color key="textColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="editDidBeginAction:" destination="ts8-Xo-eHG" eventType="editingDidBegin" id="jIQ-uX-mwJ"/>
-                                    <action selector="editDidEndAction:" destination="ts8-Xo-eHG" eventType="editingDidEnd" id="Q84-Jc-bo5"/>
-                                </connections>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QQc-cg-480">
-                                <rect key="frame" x="212" y="370" width="176" height="41"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
-                                <state key="normal" title="Войти" backgroundImage="sign_up_bg">
-                                    <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dwt-BW-lZK">
-                                <rect key="frame" x="212" y="426" width="176" height="41"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
-                                <state key="normal" title="Войти через VK" backgroundImage="sign_up_bg_empty">
-                                    <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28P-uC-8ko">
-                                <rect key="frame" x="211" y="481" width="178" height="42"/>
-                                <animations/>
-                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
-                                <state key="normal" title="Войти через FB" backgroundImage="sign_up_bg_empty">
-                                    <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
-                                </state>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6F0-NS-qKI" userLabel="Password">
-                                <rect key="frame" x="200" y="321" width="200" height="30"/>
-                                <animations/>
-                                <color key="textColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="editDidBeginAction:" destination="ts8-Xo-eHG" eventType="editingDidBegin" id="Lwk-ms-gYx"/>
-                                    <action selector="editDidEndOnExitAction:" destination="ts8-Xo-eHG" eventType="editingDidEndOnExit" id="rxc-ZU-1on"/>
-                                </connections>
-                            </textField>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="eip-yn-7lp" firstAttribute="top" secondItem="CVS-Sk-GPM" secondAttribute="bottom" constant="40" id="Gv1-hr-F34"/>
-                            <constraint firstItem="28P-uC-8ko" firstAttribute="centerX" secondItem="SEq-HI-PGy" secondAttribute="centerX" id="JAz-x1-wlQ"/>
-                            <constraint firstItem="CFa-gV-Tun" firstAttribute="top" secondItem="SEq-HI-PGy" secondAttribute="top" id="Jqg-kn-TwJ"/>
-                            <constraint firstItem="CFa-gV-Tun" firstAttribute="leading" secondItem="SEq-HI-PGy" secondAttribute="leading" id="TxX-c4-F7k"/>
-                            <constraint firstItem="PMV-KK-06m" firstAttribute="centerX" secondItem="SEq-HI-PGy" secondAttribute="centerX" id="U5H-bF-ntm"/>
-                            <constraint firstItem="sPf-oc-q0p" firstAttribute="centerX" secondItem="SEq-HI-PGy" secondAttribute="centerX" id="WKG-Aa-NcJ"/>
-                            <constraint firstAttribute="trailing" secondItem="CFa-gV-Tun" secondAttribute="trailing" id="Zyk-rh-rra"/>
-                            <constraint firstItem="PMV-KK-06m" firstAttribute="top" secondItem="eip-yn-7lp" secondAttribute="bottom" constant="32" id="d8J-Vi-QqS"/>
-                            <constraint firstItem="KN8-fj-esk" firstAttribute="top" secondItem="CFa-gV-Tun" secondAttribute="bottom" id="fOe-W7-OSL"/>
-                            <constraint firstItem="QQc-cg-480" firstAttribute="centerX" secondItem="SEq-HI-PGy" secondAttribute="centerX" id="m9v-ou-I9Q"/>
-                            <constraint firstItem="6F0-NS-qKI" firstAttribute="centerX" secondItem="SEq-HI-PGy" secondAttribute="centerX" id="mfY-49-lEj"/>
-                            <constraint firstItem="eip-yn-7lp" firstAttribute="centerX" secondItem="SEq-HI-PGy" secondAttribute="centerX" id="zdL-Q1-bgB"/>
-                            <constraint firstItem="dwt-BW-lZK" firstAttribute="centerX" secondItem="SEq-HI-PGy" secondAttribute="centerX" id="zuC-28-MtF"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="emailTextField" destination="sPf-oc-q0p" id="rcV-Iv-WKI"/>
-                        <outlet property="passTextField" destination="6F0-NS-qKI" id="m6O-nN-kDW"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bzx-UJ-zUA" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="461" y="1140"/>
-        </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -228,7 +101,6 @@
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
                                         <connections>
-                                            <action selector="didEndOnExit:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="pEW-rb-A2B"/>
                                             <action selector="editDidBeginAction:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="KYw-th-zBv"/>
                                             <action selector="editDidEndAction:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="NOn-Ns-PZn"/>
                                         </connections>
@@ -267,8 +139,6 @@
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
                                         <connections>
-                                            <action selector="didEndOnExit:" destination="BYZ-38-t0r" eventType="editingDidEndOnExit" id="NXq-p9-iu3"/>
-                                            <action selector="editDidBeginAction:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="W1R-aq-3G4"/>
                                             <action selector="editDidBeginAction:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="uhL-EB-Xfp"/>
                                             <action selector="editDidEndAction:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="GxT-Wz-MfJ"/>
                                         </connections>
@@ -288,10 +158,8 @@
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                         <connections>
-                                            <action selector="didEndOnExit:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="6tI-62-1pu"/>
                                             <action selector="editDidBeginAction:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="IcP-Oi-LlM"/>
-                                            <action selector="editDidBeginAction:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="Ruj-ey-bJd"/>
-                                            <action selector="editDidEndAction:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="YbJ-oF-uWl"/>
+                                            <action selector="editDidEndAction:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="ho4-0h-A2C"/>
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyl-QN-36X">
@@ -356,16 +224,218 @@
                     </view>
                     <connections>
                         <outlet property="agreeButton" destination="1IY-Ti-wev" id="vRi-b0-liC"/>
-                        <outlet property="scrollView" destination="iUy-pb-CyU" id="hDc-ed-C5N"/>
-                        <outletCollection property="fields" destination="Rsq-jf-YrB" id="uCV-ol-cBg"/>
-                        <outletCollection property="fields" destination="26U-xJ-XGI" id="2uq-IK-TmD"/>
-                        <outletCollection property="fields" destination="LWX-4F-Mv2" id="NTV-OW-ztz"/>
-                        <outletCollection property="fields" destination="HAg-BV-eND" id="P1K-5Q-jvu"/>
+                        <outlet property="scrollViewOutlet" destination="iUy-pb-CyU" id="IFQ-DK-ZVN"/>
+                        <outletCollection property="fieldsOutlet" destination="HAg-BV-eND" id="0zj-v4-la1"/>
+                        <outletCollection property="fieldsOutlet" destination="LWX-4F-Mv2" id="h2w-Rl-Rnc"/>
+                        <outletCollection property="fieldsOutlet" destination="26U-xJ-XGI" id="h1l-0t-6UP"/>
+                        <outletCollection property="fieldsOutlet" destination="Rsq-jf-YrB" id="2cd-FR-JLe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="461" y="474"/>
+            <point key="canvasLocation" x="1461" y="462"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="L1R-d3-NrT">
+            <objects>
+                <viewController id="Nd9-cO-IR4" customClass="LoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Zkh-KK-49V"/>
+                        <viewControllerLayoutGuide type="bottom" id="tMC-Xe-Wbj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yDT-Gv-kXg">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fQW-Hg-aYJ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login_back" translatesAutoresizingMaskIntoConstraints="NO" id="jV1-3U-3eB">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                        <animations/>
+                                    </imageView>
+                                    <view alpha="0.69999998807907104" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="79a-qy-EcO" userLabel="Black back">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.16078431369999999" green="0.17254901959999999" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="TMA-B3-21W">
+                                        <rect key="frame" x="208" y="24" width="184" height="98"/>
+                                        <animations/>
+                                    </imageView>
+                                    <view alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GzL-tE-Zix" userLabel="line-email">
+                                        <rect key="frame" x="0.0" y="207.5" width="600" height="0.5"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="0.5" id="qba-3H-dgn"/>
+                                        </constraints>
+                                    </view>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Имя" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VBn-tn-avg" userLabel="Name">
+                                        <rect key="frame" x="200" y="178" width="200" height="30"/>
+                                        <animations/>
+                                        <color key="textColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
+                                    </textField>
+                                    <view alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I3s-sY-1Ic" userLabel="line-email">
+                                        <rect key="frame" x="0.0" y="249.5" width="600" height="0.5"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="0.5" id="ucP-qj-uOx"/>
+                                        </constraints>
+                                    </view>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Фамилия" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sNm-cJ-laJ">
+                                        <rect key="frame" x="200" y="220" width="200" height="30"/>
+                                        <animations/>
+                                        <color key="textColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="#КОФЕРЯДОМ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yqh-UM-Iut">
+                                        <rect key="frame" x="235" y="139" width="130" height="21"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeueCyr-Bold" family="HelveticaNeueCyr" pointSize="17"/>
+                                        <color key="textColor" red="0.80392156859999997" green="0.80392156859999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view alpha="0.69999998807907104" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fl1-op-RJk" userLabel="line-email">
+                                        <rect key="frame" x="0.0" y="214.5" width="600" height="0.5"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AXV-nJ-6ub">
+                                        <rect key="frame" x="200" y="196" width="200" height="19"/>
+                                        <animations/>
+                                        <color key="textColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
+                                        <connections>
+                                            <action selector="editDidBeginAction:" destination="Nd9-cO-IR4" eventType="editingDidBegin" id="zDK-pM-7MY"/>
+                                            <action selector="editDidEndAction:" destination="Nd9-cO-IR4" eventType="editingDidEnd" id="lf6-Sx-2QY"/>
+                                        </connections>
+                                    </textField>
+                                    <view alpha="0.69999998807907104" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xt6-Tj-WoE" userLabel="line-email">
+                                        <rect key="frame" x="0.0" y="268.5" width="600" height="0.5"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Пароль" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YzY-SX-e6e">
+                                        <rect key="frame" x="200" y="250" width="200" height="19"/>
+                                        <animations/>
+                                        <color key="textColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                        <connections>
+                                            <action selector="editDidBeginAction:" destination="Nd9-cO-IR4" eventType="editingDidEnd" id="KYB-po-OAA"/>
+                                            <action selector="editDidBeginAction:" destination="Nd9-cO-IR4" eventType="editingDidBegin" id="PLL-bk-97z"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4j6-6E-knH">
+                                        <rect key="frame" x="211" y="299" width="178" height="42"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                        <state key="normal" title="Войти" backgroundImage="sign_up_bg">
+                                            <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xja-Kk-tBW">
+                                        <rect key="frame" x="212" y="356" width="176" height="42"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                        <state key="normal" title="Регистрация" backgroundImage="sign_up_bg_empty">
+                                            <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="signUpButtonAction:" destination="Nd9-cO-IR4" eventType="touchUpInside" id="7qV-ZU-Yx7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jbb-tf-iBm">
+                                        <rect key="frame" x="212" y="413" width="176" height="41"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                        <state key="normal" title="Войти через VK" backgroundImage="sign_up_bg_empty">
+                                            <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3lb-pK-iJA">
+                                        <rect key="frame" x="211" y="469" width="178" height="42"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                        <state key="normal" title="Войти через FB" backgroundImage="sign_up_bg_empty">
+                                            <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstItem="YzY-SX-e6e" firstAttribute="centerX" secondItem="fQW-Hg-aYJ" secondAttribute="centerX" id="CZr-mk-5VA"/>
+                                    <constraint firstItem="3lb-pK-iJA" firstAttribute="top" secondItem="jbb-tf-iBm" secondAttribute="bottom" constant="15" id="Dsd-LZ-YcS"/>
+                                    <constraint firstItem="Xja-Kk-tBW" firstAttribute="top" secondItem="4j6-6E-knH" secondAttribute="bottom" constant="15" id="EEP-Pb-73a"/>
+                                    <constraint firstItem="4j6-6E-knH" firstAttribute="top" secondItem="YzY-SX-e6e" secondAttribute="bottom" constant="30" id="EMq-OI-4C3"/>
+                                    <constraint firstItem="jbb-tf-iBm" firstAttribute="centerX" secondItem="fQW-Hg-aYJ" secondAttribute="centerX" id="GpN-yQ-6fB"/>
+                                    <constraint firstItem="AXV-nJ-6ub" firstAttribute="centerX" secondItem="fQW-Hg-aYJ" secondAttribute="centerX" id="Hox-EL-unw"/>
+                                    <constraint firstItem="3lb-pK-iJA" firstAttribute="centerX" secondItem="fQW-Hg-aYJ" secondAttribute="centerX" id="JcX-Le-BKD"/>
+                                    <constraint firstItem="yqh-UM-Iut" firstAttribute="top" secondItem="TMA-B3-21W" secondAttribute="bottom" constant="17" id="LxS-NK-IJS"/>
+                                    <constraint firstItem="yqh-UM-Iut" firstAttribute="centerX" secondItem="fQW-Hg-aYJ" secondAttribute="centerX" id="SFT-pg-Vev"/>
+                                    <constraint firstItem="4j6-6E-knH" firstAttribute="centerX" secondItem="fQW-Hg-aYJ" secondAttribute="centerX" id="Tpm-Hd-0RK"/>
+                                    <constraint firstItem="YzY-SX-e6e" firstAttribute="top" secondItem="AXV-nJ-6ub" secondAttribute="bottom" constant="35" id="Utq-GZ-wNl"/>
+                                    <constraint firstItem="TMA-B3-21W" firstAttribute="centerX" secondItem="fQW-Hg-aYJ" secondAttribute="centerX" id="cnR-az-DKR"/>
+                                    <constraint firstItem="Xja-Kk-tBW" firstAttribute="centerX" secondItem="fQW-Hg-aYJ" secondAttribute="centerX" id="ean-0l-Xso"/>
+                                    <constraint firstItem="TMA-B3-21W" firstAttribute="top" secondItem="fQW-Hg-aYJ" secondAttribute="top" constant="24" id="frb-XW-41Y"/>
+                                    <constraint firstItem="jbb-tf-iBm" firstAttribute="top" secondItem="Xja-Kk-tBW" secondAttribute="bottom" constant="15" id="ith-OQ-t9H"/>
+                                    <constraint firstItem="AXV-nJ-6ub" firstAttribute="top" secondItem="yqh-UM-Iut" secondAttribute="bottom" constant="36" id="oZq-Ec-uKf"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="GzL-tE-Zix"/>
+                                        <exclude reference="VBn-tn-avg"/>
+                                        <exclude reference="I3s-sY-1Ic"/>
+                                        <exclude reference="sNm-cJ-laJ"/>
+                                    </mask>
+                                </variation>
+                            </scrollView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="fQW-Hg-aYJ" secondAttribute="trailing" id="LTK-Yv-t4D"/>
+                            <constraint firstItem="tMC-Xe-Wbj" firstAttribute="top" secondItem="fQW-Hg-aYJ" secondAttribute="bottom" id="btT-iX-crm"/>
+                            <constraint firstItem="fQW-Hg-aYJ" firstAttribute="leading" secondItem="yDT-Gv-kXg" secondAttribute="leading" id="bwA-1i-Lwf"/>
+                            <constraint firstItem="fQW-Hg-aYJ" firstAttribute="top" secondItem="yDT-Gv-kXg" secondAttribute="top" id="yz7-PU-OEM"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="sk7-gb-jav"/>
+                    <connections>
+                        <outlet property="scrollViewOutlet" destination="fQW-Hg-aYJ" id="XQH-3k-qa2"/>
+                        <outletCollection property="fieldsOutlet" destination="YzY-SX-e6e" id="eYS-dg-Wy0"/>
+                        <outletCollection property="fieldsOutlet" destination="AXV-nJ-6ub" id="YJl-he-uLM"/>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="signUp" id="e8u-LW-qEO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gUe-fN-3Ie" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="626" y="450"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="rRP-7W-m94">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="O1r-34-39h" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bzb-7X-ahk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Nd9-cO-IR4" kind="relationship" relationship="rootViewController" id="sU6-PV-Ljr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bUp-dU-81q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-186" y="450"/>
         </scene>
     </scenes>
     <resources>

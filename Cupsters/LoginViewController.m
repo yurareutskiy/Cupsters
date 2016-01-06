@@ -15,8 +15,11 @@
 @implementation LoginViewController
 
 - (void)viewDidLoad {
+    
+    self.fields = self.fieldsOutlet;
+    self.scrollView = self.scrollViewOutlet;
+    
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,22 +27,18 @@
     // Dispose of any resources that can be recreated.
 }
 
--(UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+
+#pragma mark - Text field actions
 
 - (IBAction)editDidBeginAction:(UITextField *)sender {
+    
+    if (sender.tag == 2) {
+        sender.secureTextEntry = true;
+    }
     sender.text = @"";
+    self.activeField = sender;
 }
 
 - (IBAction)editDidEndAction:(UITextField *)sender {
@@ -54,8 +53,12 @@
                 break;
         }
     }
+    self.activeField = nil;
 }
 
-- (IBAction)editDidEndOnExitAction:(UITextField *)sender {
+- (IBAction)signUpButtonAction:(UIButton *)sender {
+    
+    [self performSegueWithIdentifier:@"signUp" sender:self];
 }
+
 @end

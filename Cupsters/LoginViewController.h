@@ -7,15 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LoginModelViewController.h"
 
-@interface LoginViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
-@property (weak, nonatomic) IBOutlet UITextField *passTextField;
+@interface LoginViewController : LoginModelViewController
+
+@property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *fieldsOutlet;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollViewOutlet;
+
 
 - (IBAction)editDidBeginAction:(UITextField *)sender;
 - (IBAction)editDidEndAction:(UITextField *)sender;
-- (IBAction)editDidEndOnExitAction:(UITextField *)sender;
 
+- (IBAction)signUpButtonAction:(UIButton *)sender;
 
 @end

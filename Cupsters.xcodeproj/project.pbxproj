@@ -30,6 +30,7 @@
 		DB67FF0F1C3C103600FC62E2 /* HelveticaNeueCyr-UltraLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FF021C3C103600FC62E2 /* HelveticaNeueCyr-UltraLightItalic.otf */; settings = {ASSET_TAGS = (); }; };
 		DB67FF111C3C19EC00FC62E2 /* MyriadPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FF101C3C19EC00FC62E2 /* MyriadPro-Regular.otf */; settings = {ASSET_TAGS = (); }; };
 		DB67FF141C3C307E00FC62E2 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB67FF131C3C307E00FC62E2 /* SignUpViewController.m */; settings = {ASSET_TAGS = (); }; };
+		DB67FF171C3D591D00FC62E2 /* LoginModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB67FF161C3D591D00FC62E2 /* LoginModelViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,8 @@
 		DB67FF101C3C19EC00FC62E2 /* MyriadPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MyriadPro-Regular.otf"; path = "Сupsters-design/MyraidPro/MyriadPro-Regular.otf"; sourceTree = SOURCE_ROOT; };
 		DB67FF121C3C307E00FC62E2 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		DB67FF131C3C307E00FC62E2 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		DB67FF151C3D591D00FC62E2 /* LoginModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginModelViewController.h; sourceTree = "<group>"; };
+		DB67FF161C3D591D00FC62E2 /* LoginModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModelViewController.m; sourceTree = "<group>"; };
 		DDC96F5213E98AC9D6EAF4A0 /* Pods-Cupsters.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cupsters.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cupsters/Pods-Cupsters.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,6 +145,8 @@
 		DB67FED31C3C0B6500FC62E2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DB67FF151C3D591D00FC62E2 /* LoginModelViewController.h */,
+				DB67FF161C3D591D00FC62E2 /* LoginModelViewController.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -320,6 +325,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB67FF171C3D591D00FC62E2 /* LoginModelViewController.m in Sources */,
 				DB67FED91C3C0BA800FC62E2 /* LoginViewController.m in Sources */,
 				DB67FF141C3C307E00FC62E2 /* SignUpViewController.m in Sources */,
 				DB67FEBE1C3BD8FB00FC62E2 /* AppDelegate.m in Sources */,
