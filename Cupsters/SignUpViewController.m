@@ -89,6 +89,10 @@
     
 }
 
+- (IBAction)signUpDoneButtonAction:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"signUpDone" sender:self];
+}
+
 
 
 @end

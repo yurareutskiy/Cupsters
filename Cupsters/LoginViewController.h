@@ -20,5 +20,6 @@
 - (IBAction)editDidEndAction:(UITextField *)sender;
 
 - (IBAction)signUpButtonAction:(UIButton *)sender;
+- (IBAction)signInButtonAction:(UIButton *)sender;
 
 @end

@@ -21,5 +21,6 @@
 - (IBAction)editDidBeginAction:(UITextField *)sender;
 - (IBAction)editDidEndAction:(UITextField *)sender;
 - (IBAction)agreeButtonAction:(UIButton *)sender;
+- (IBAction)signUpDoneButtonAction:(UIButton *)sender;
 
 @end

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		D29AE48A6D499E64286DB83E /* libPods-Cupsters.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FD21CA9A973FF164B7FBFE4 /* libPods-Cupsters.a */; };
+		DB671F3C1C3DCFA0008C1408 /* ListPlacesImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F3B1C3DCFA0008C1408 /* ListPlacesImagesViewController.m */; settings = {ASSET_TAGS = (); }; };
+		DB671F3F1C3DD39F008C1408 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F3E1C3DD39F008C1408 /* Constants.m */; settings = {ASSET_TAGS = (); }; };
+		DB671F421C3DEA07008C1408 /* UIColor+HEX.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F411C3DEA07008C1408 /* UIColor+HEX.m */; settings = {ASSET_TAGS = (); }; };
 		DB67FEBB1C3BD8FB00FC62E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB67FEBA1C3BD8FB00FC62E2 /* main.m */; };
 		DB67FEBE1C3BD8FB00FC62E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB67FEBD1C3BD8FB00FC62E2 /* AppDelegate.m */; };
 		DB67FEC41C3BD8FB00FC62E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB67FEC21C3BD8FB00FC62E2 /* Main.storyboard */; };
@@ -36,6 +39,12 @@
 /* Begin PBXFileReference section */
 		3FD21CA9A973FF164B7FBFE4 /* libPods-Cupsters.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cupsters.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAB1AEDCFE52DD16B159BD48 /* Pods-Cupsters.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cupsters.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cupsters/Pods-Cupsters.release.xcconfig"; sourceTree = "<group>"; };
+		DB671F3A1C3DCF9F008C1408 /* ListPlacesImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListPlacesImagesViewController.h; sourceTree = "<group>"; };
+		DB671F3B1C3DCFA0008C1408 /* ListPlacesImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListPlacesImagesViewController.m; sourceTree = "<group>"; };
+		DB671F3D1C3DD369008C1408 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		DB671F3E1C3DD39F008C1408 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		DB671F401C3DEA07008C1408 /* UIColor+HEX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HEX.h"; sourceTree = "<group>"; };
+		DB671F411C3DEA07008C1408 /* UIColor+HEX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HEX.m"; sourceTree = "<group>"; };
 		DB67FEB61C3BD8FB00FC62E2 /* Cupsters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cupsters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB67FEBA1C3BD8FB00FC62E2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DB67FEBC1C3BD8FB00FC62E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -138,6 +147,10 @@
 			children = (
 				DB67FEDB1C3C0FCF00FC62E2 /* Fonts */,
 				DB67FEBA1C3BD8FB00FC62E2 /* main.m */,
+				DB671F3D1C3DD369008C1408 /* Constants.h */,
+				DB671F3E1C3DD39F008C1408 /* Constants.m */,
+				DB671F401C3DEA07008C1408 /* UIColor+HEX.h */,
+				DB671F411C3DEA07008C1408 /* UIColor+HEX.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -165,6 +178,8 @@
 				DB67FED81C3C0BA800FC62E2 /* LoginViewController.m */,
 				DB67FF121C3C307E00FC62E2 /* SignUpViewController.h */,
 				DB67FF131C3C307E00FC62E2 /* SignUpViewController.m */,
+				DB671F3A1C3DCF9F008C1408 /* ListPlacesImagesViewController.h */,
+				DB671F3B1C3DCFA0008C1408 /* ListPlacesImagesViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -328,9 +343,12 @@
 				DB67FF171C3D591D00FC62E2 /* LoginModelViewController.m in Sources */,
 				DB67FED91C3C0BA800FC62E2 /* LoginViewController.m in Sources */,
 				DB67FF141C3C307E00FC62E2 /* SignUpViewController.m in Sources */,
+				DB671F3F1C3DD39F008C1408 /* Constants.m in Sources */,
+				DB671F421C3DEA07008C1408 /* UIColor+HEX.m in Sources */,
 				DB67FEBE1C3BD8FB00FC62E2 /* AppDelegate.m in Sources */,
 				DB67FEC71C3BD8FB00FC62E2 /* Cupsters.xcdatamodeld in Sources */,
 				DB67FEBB1C3BD8FB00FC62E2 /* main.m in Sources */,
+				DB671F3C1C3DCFA0008C1408 /* ListPlacesImagesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

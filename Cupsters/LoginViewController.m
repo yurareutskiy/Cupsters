@@ -61,4 +61,9 @@
     [self performSegueWithIdentifier:@"signUp" sender:self];
 }
 
+- (IBAction)signInButtonAction:(UIButton *)sender {
+
+    [self performSegueWithIdentifier:@"signIn" sender:self];
+}
+
 @end

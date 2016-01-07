@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="O1r-34-39h">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="93n-OI-SNo">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
@@ -169,6 +169,9 @@
                                         <state key="normal" title="Регистрация" backgroundImage="sign_up_bg">
                                             <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                         </state>
+                                        <connections>
+                                            <action selector="signUpDoneButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6IB-p2-kVn"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XHh-aP-EVo">
                                         <rect key="frame" x="212" y="444" width="176" height="41"/>
@@ -229,11 +232,33 @@
                         <outletCollection property="fieldsOutlet" destination="LWX-4F-Mv2" id="h2w-Rl-Rnc"/>
                         <outletCollection property="fieldsOutlet" destination="26U-xJ-XGI" id="h1l-0t-6UP"/>
                         <outletCollection property="fieldsOutlet" destination="Rsq-jf-YrB" id="2cd-FR-JLe"/>
+                        <segue destination="93n-OI-SNo" kind="presentation" identifier="signUpDone" id="uns-GM-Ckg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1461" y="462"/>
+            <point key="canvasLocation" x="975" y="-320"/>
+        </scene>
+        <!--List Places Images View Controller-->
+        <scene sceneID="qRs-0i-JoE">
+            <objects>
+                <viewController storyboardIdentifier="StartVC" id="QM0-sn-80h" customClass="ListPlacesImagesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TsT-wt-Ckl"/>
+                        <viewControllerLayoutGuide type="bottom" id="BKX-jN-7pr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="INI-s1-C2F">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="NdA-jn-xVa"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gLq-5O-I4V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2515" y="419"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="L1R-d3-NrT">
@@ -339,6 +364,9 @@
                                         <state key="normal" title="Войти" backgroundImage="sign_up_bg">
                                             <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                         </state>
+                                        <connections>
+                                            <action selector="signInButtonAction:" destination="Nd9-cO-IR4" eventType="touchUpInside" id="caI-2u-MY7"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xja-Kk-tBW">
                                         <rect key="frame" x="212" y="356" width="176" height="42"/>
@@ -407,11 +435,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sk7-gb-jav"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="scrollViewOutlet" destination="fQW-Hg-aYJ" id="XQH-3k-qa2"/>
                         <outletCollection property="fieldsOutlet" destination="YzY-SX-e6e" id="eYS-dg-Wy0"/>
                         <outletCollection property="fieldsOutlet" destination="AXV-nJ-6ub" id="YJl-he-uLM"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="signUp" id="e8u-LW-qEO"/>
+                        <segue destination="93n-OI-SNo" kind="presentation" identifier="signIn" id="uap-dd-UBp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gUe-fN-3Ie" sceneMemberID="firstResponder"/>
@@ -437,6 +467,26 @@
             </objects>
             <point key="canvasLocation" x="-186" y="450"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="b6j-D7-bzE">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="93n-OI-SNo" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DIU-K9-jcn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="QM0-sn-80h" kind="relationship" relationship="rootViewController" id="jbd-c3-8cI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a7u-sr-UzD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1703" y="419"/>
+        </scene>
     </scenes>
     <resources>
         <image name="check" width="19" height="19"/>
@@ -445,4 +495,7 @@
         <image name="sign_up_bg" width="176" height="42"/>
         <image name="sign_up_bg_empty" width="178" height="42"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="uns-GM-Ckg"/>
+    </inferredMetricsTieBreakers>
 </document>
