@@ -2,13 +2,17 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="93n-OI-SNo">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="HelveticaNeueCyr-Bold.otf">
             <string>HelveticaNeueCyr-Bold</string>
             <string>HelveticaNeueCyr-Bold</string>
+            <string>HelveticaNeueCyr-Bold</string>
         </mutableArray>
         <mutableArray key="MyriadPro-Regular.otf">
+            <string>MyriadPro-Regular</string>
+            <string>MyriadPro-Regular</string>
             <string>MyriadPro-Regular</string>
             <string>MyriadPro-Regular</string>
             <string>MyriadPro-Regular</string>
@@ -250,11 +254,110 @@
                     <view key="view" contentMode="scaleToFill" id="INI-s1-C2F">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="180" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="R5q-sg-9cC">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BigPlaces" rowHeight="180" id="aww-Or-IR9" customClass="PlacePhotoTableViewCell">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="180"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aww-Or-IR9" id="Xjp-CN-MbT">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="cafeBack1.png" translatesAutoresizingMaskIntoConstraints="NO" id="9iU-EZ-SFb">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="532"/>
+                                                    <animations/>
+                                                </imageView>
+                                                <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cgt-fY-nBR">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
+                                                    <animations/>
+                                                    <color key="backgroundColor" red="0.16078431372549018" green="0.17254901960784313" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="КОФЕЙНЯ БЕЗ ФОНА" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="srW-Gg-ydp">
+                                                    <rect key="frame" x="208.5" y="82" width="183.5" height="16"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeueCyr-Bold" family="HelveticaNeueCyr" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="м. Парк Победы" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dq6-zL-dr2" userLabel="Undergroud">
+                                                    <rect key="frame" x="16" y="139" width="103" height="15"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DLp-fT-uzk">
+                                                    <rect key="frame" x="0.0" y="178" width="600" height="1"/>
+                                                    <animations/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="NBA-KK-RfR"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 км" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLX-U0-FEI" userLabel="Distance">
+                                                    <rect key="frame" x="16" y="157" width="28" height="15"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="wLX-U0-FEI" firstAttribute="top" secondItem="dq6-zL-dr2" secondAttribute="bottom" constant="3" id="6lp-KX-07m"/>
+                                                <constraint firstAttribute="trailing" secondItem="9iU-EZ-SFb" secondAttribute="trailing" id="7xw-06-EGg"/>
+                                                <constraint firstItem="srW-Gg-ydp" firstAttribute="centerX" secondItem="Xjp-CN-MbT" secondAttribute="centerX" id="83a-qw-EYh"/>
+                                                <constraint firstItem="wLX-U0-FEI" firstAttribute="leading" secondItem="Xjp-CN-MbT" secondAttribute="leadingMargin" constant="8" id="9dP-p3-j1H"/>
+                                                <constraint firstItem="cgt-fY-nBR" firstAttribute="top" secondItem="Xjp-CN-MbT" secondAttribute="top" id="Lah-ud-cmn"/>
+                                                <constraint firstAttribute="bottom" secondItem="cgt-fY-nBR" secondAttribute="bottom" id="Lta-DD-h2U"/>
+                                                <constraint firstAttribute="bottom" secondItem="DLp-fT-uzk" secondAttribute="bottom" constant="1" id="Pne-3u-QK8"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="dq6-zL-dr2" secondAttribute="bottom" constant="13.5" id="TOg-er-JSS"/>
+                                                <constraint firstItem="9iU-EZ-SFb" firstAttribute="leading" secondItem="Xjp-CN-MbT" secondAttribute="leading" id="Why-6G-Bcj"/>
+                                                <constraint firstAttribute="trailing" secondItem="DLp-fT-uzk" secondAttribute="trailing" id="aDG-4M-K5b"/>
+                                                <constraint firstItem="srW-Gg-ydp" firstAttribute="centerY" secondItem="Xjp-CN-MbT" secondAttribute="centerY" id="bfd-3m-WkK"/>
+                                                <constraint firstItem="cgt-fY-nBR" firstAttribute="leading" secondItem="Xjp-CN-MbT" secondAttribute="leading" id="dzR-iK-rHh"/>
+                                                <constraint firstItem="dq6-zL-dr2" firstAttribute="leading" secondItem="Xjp-CN-MbT" secondAttribute="leadingMargin" constant="8" id="hd0-BD-UgY"/>
+                                                <constraint firstItem="DLp-fT-uzk" firstAttribute="leading" secondItem="Xjp-CN-MbT" secondAttribute="leading" id="lVq-RP-H9b"/>
+                                                <constraint firstAttribute="trailing" secondItem="cgt-fY-nBR" secondAttribute="trailing" id="naG-LI-bLe"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="wLX-U0-FEI" secondAttribute="bottom" id="qm2-te-OCK"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="TOg-er-JSS"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                        <connections>
+                                            <outlet property="backPhoto" destination="9iU-EZ-SFb" id="vOT-bG-cdj"/>
+                                            <outlet property="distance" destination="wLX-U0-FEI" id="yhg-91-SdF"/>
+                                            <outlet property="placeName" destination="srW-Gg-ydp" id="tTh-PD-4wT"/>
+                                            <outlet property="underground" destination="dq6-zL-dr2" id="vVi-R2-1to"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="R5q-sg-9cC" secondAttribute="trailing" id="6S1-A2-twH"/>
+                            <constraint firstItem="BKX-jN-7pr" firstAttribute="top" secondItem="R5q-sg-9cC" secondAttribute="bottom" id="Nwx-T5-4sr"/>
+                            <constraint firstItem="R5q-sg-9cC" firstAttribute="leading" secondItem="INI-s1-C2F" secondAttribute="leading" id="cth-6K-PoJ"/>
+                            <constraint firstItem="R5q-sg-9cC" firstAttribute="top" secondItem="INI-s1-C2F" secondAttribute="top" id="ny8-JJ-gtb"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="NdA-jn-xVa"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="table" destination="R5q-sg-9cC" id="Wop-eW-yj2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gLq-5O-I4V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -489,6 +592,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cafeBack1.png" width="799" height="532"/>
         <image name="check" width="19" height="19"/>
         <image name="login_back" width="449" height="674"/>
         <image name="logo" width="200" height="102"/>

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ListPlacesImagesViewController : UIViewController
+@interface ListPlacesImagesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITableView *table;
 
 @end

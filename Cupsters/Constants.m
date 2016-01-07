@@ -16,6 +16,7 @@ NSString* const welcome = @"Hello, world";
 NSString* const cBrown = @"ae895d";
 
 #pragma mark - Cell identifieres
+NSString* const cCellBigPlace = @"BigPlaces";
 
 
 #pragma mark - Numbers

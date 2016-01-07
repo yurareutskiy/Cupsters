@@ -11,6 +11,8 @@
 		DB671F3C1C3DCFA0008C1408 /* ListPlacesImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F3B1C3DCFA0008C1408 /* ListPlacesImagesViewController.m */; settings = {ASSET_TAGS = (); }; };
 		DB671F3F1C3DD39F008C1408 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F3E1C3DD39F008C1408 /* Constants.m */; settings = {ASSET_TAGS = (); }; };
 		DB671F421C3DEA07008C1408 /* UIColor+HEX.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F411C3DEA07008C1408 /* UIColor+HEX.m */; settings = {ASSET_TAGS = (); }; };
+		DB671F451C3EC239008C1408 /* PlacePhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F441C3EC239008C1408 /* PlacePhotoTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		DB671F481C3EC32B008C1408 /* cafeBack1.png in Resources */ = {isa = PBXBuildFile; fileRef = DB671F471C3EC32B008C1408 /* cafeBack1.png */; settings = {ASSET_TAGS = (); }; };
 		DB67FEBB1C3BD8FB00FC62E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB67FEBA1C3BD8FB00FC62E2 /* main.m */; };
 		DB67FEBE1C3BD8FB00FC62E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB67FEBD1C3BD8FB00FC62E2 /* AppDelegate.m */; };
 		DB67FEC41C3BD8FB00FC62E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB67FEC21C3BD8FB00FC62E2 /* Main.storyboard */; };
@@ -45,6 +47,9 @@
 		DB671F3E1C3DD39F008C1408 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		DB671F401C3DEA07008C1408 /* UIColor+HEX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HEX.h"; sourceTree = "<group>"; };
 		DB671F411C3DEA07008C1408 /* UIColor+HEX.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HEX.m"; sourceTree = "<group>"; };
+		DB671F431C3EC239008C1408 /* PlacePhotoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlacePhotoTableViewCell.h; sourceTree = "<group>"; };
+		DB671F441C3EC239008C1408 /* PlacePhotoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacePhotoTableViewCell.m; sourceTree = "<group>"; };
+		DB671F471C3EC32B008C1408 /* cafeBack1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cafeBack1.png; path = "Сupsters-design/MockFiles/cafeBack1.png"; sourceTree = SOURCE_ROOT; };
 		DB67FEB61C3BD8FB00FC62E2 /* Cupsters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cupsters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB67FEBA1C3BD8FB00FC62E2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DB67FEBC1C3BD8FB00FC62E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -106,6 +111,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		DB671F461C3EC30B008C1408 /* Mock files */ = {
+			isa = PBXGroup;
+			children = (
+				DB671F471C3EC32B008C1408 /* cafeBack1.png */,
+			);
+			name = "Mock files";
+			sourceTree = "<group>";
+		};
 		DB67FEAD1C3BD8FB00FC62E2 = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +158,7 @@
 		DB67FEB91C3BD8FB00FC62E2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DB671F461C3EC30B008C1408 /* Mock files */,
 				DB67FEDB1C3C0FCF00FC62E2 /* Fonts */,
 				DB67FEBA1C3BD8FB00FC62E2 /* main.m */,
 				DB671F3D1C3DD369008C1408 /* Constants.h */,
@@ -167,6 +181,8 @@
 		DB67FED51C3C0B8100FC62E2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DB671F431C3EC239008C1408 /* PlacePhotoTableViewCell.h */,
+				DB671F441C3EC239008C1408 /* PlacePhotoTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -239,6 +255,7 @@
 				TargetAttributes = {
 					DB67FEB51C3BD8FB00FC62E2 = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = 9W968RZS7A;
 					};
 				};
 			};
@@ -274,6 +291,7 @@
 				DB67FF041C3C103600FC62E2 /* HelveticaNeueCyr-BlackItalic.otf in Resources */,
 				DB67FF081C3C103600FC62E2 /* HelveticaNeueCyr-Light.otf in Resources */,
 				DB67FF111C3C19EC00FC62E2 /* MyriadPro-Regular.otf in Resources */,
+				DB671F481C3EC32B008C1408 /* cafeBack1.png in Resources */,
 				DB67FEC41C3BD8FB00FC62E2 /* Main.storyboard in Resources */,
 				DB67FF071C3C103600FC62E2 /* HelveticaNeueCyr-Italic.otf in Resources */,
 				DB67FF051C3C103600FC62E2 /* HelveticaNeueCyr-Bold.otf in Resources */,
@@ -344,6 +362,7 @@
 				DB67FED91C3C0BA800FC62E2 /* LoginViewController.m in Sources */,
 				DB67FF141C3C307E00FC62E2 /* SignUpViewController.m in Sources */,
 				DB671F3F1C3DD39F008C1408 /* Constants.m in Sources */,
+				DB671F451C3EC239008C1408 /* PlacePhotoTableViewCell.m in Sources */,
 				DB671F421C3DEA07008C1408 /* UIColor+HEX.m in Sources */,
 				DB67FEBE1C3BD8FB00FC62E2 /* AppDelegate.m in Sources */,
 				DB67FEC71C3BD8FB00FC62E2 /* Cupsters.xcdatamodeld in Sources */,
@@ -461,9 +480,10 @@
 			baseConfigurationReference = DDC96F5213E98AC9D6EAF4A0 /* Pods-Cupsters.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Cupsters/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.reutskiy.Cupsters;
+				PRODUCT_BUNDLE_IDENTIFIER = com.reutskiy.cupsters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -473,9 +493,10 @@
 			baseConfigurationReference = DAB1AEDCFE52DD16B159BD48 /* Pods-Cupsters.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Cupsters/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.reutskiy.Cupsters;
+				PRODUCT_BUNDLE_IDENTIFIER = com.reutskiy.cupsters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

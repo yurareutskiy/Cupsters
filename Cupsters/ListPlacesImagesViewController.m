@@ -9,7 +9,7 @@
 #import "ListPlacesImagesViewController.h"
 #import "Constants.h"
 #import "UIColor+HEX.h"
-
+#import "PlacePhotoTableViewCell.h"
 
 @interface ListPlacesImagesViewController ()
 
@@ -23,6 +23,9 @@
     [self customNavBar];
     
     [self preferredStatusBarStyle];
+    
+    self.table.delegate = self;
+    self.table.dataSource = self;
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
@@ -87,5 +90,40 @@
 -(void)menuButtonAction {
     NSLog(@"Menu button is pressed");
 }
+
+
+#pragma mark - UITableView
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 10;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    PlacePhotoTableViewCell *cell = [[PlacePhotoTableViewCell alloc] init];
+    [self.table dequeueReusableCellWithIdentifier:cCellBigPlace forIndexPath:indexPath];
+    
+    return [self configurePlace:cell At:indexPath.row];
+}
+
+-(PlacePhotoTableViewCell*)configurePlace:(PlacePhotoTableViewCell*)cell At:(NSInteger)row {
+    
+    [cell.backPhoto setImage:[UIImage imageNamed:@"cafeBack1"]];
+    [cell.placeName setText:@"КОФЕЙНЯ"];
+    [cell.underground setText:@"м. Парк Победы"];
+    [cell.distance setText:@"2 км."];
+    
+    return cell;
+}
+
+
+
+
+
+
+
+
+
+
 
 @end

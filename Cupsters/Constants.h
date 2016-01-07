@@ -10,7 +10,7 @@ extern NSString* const welcome;
 extern NSString* const cBrown;
 
 #pragma mark - Cell identifieres
-
+extern NSString* const cCellBigPlace;
 
 #pragma mark - Numbers
 
