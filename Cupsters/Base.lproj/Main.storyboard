@@ -363,6 +363,38 @@
             </objects>
             <point key="canvasLocation" x="2515" y="419"/>
         </scene>
+        <!--Menu Reveal View Controller-->
+        <scene sceneID="iUW-VM-aTV">
+            <objects>
+                <viewController storyboardIdentifier="RevealMenu" id="TBB-YT-AWz" customClass="MenuRevealViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yem-QH-vBs"/>
+                        <viewControllerLayoutGuide type="bottom" id="ukz-7J-zb6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wrn-Vd-Hv1">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view alpha="0.40000000000000002" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wG2-vv-g5P">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wG2-vv-g5P" firstAttribute="top" secondItem="wrn-Vd-Hv1" secondAttribute="top" id="SkX-vK-fud"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="280" height="600"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fr8-ki-4ta" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3262" y="405"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="L1R-d3-NrT">
             <objects>
@@ -575,7 +607,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="93n-OI-SNo" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DIU-K9-jcn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

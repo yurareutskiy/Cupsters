@@ -10,8 +10,11 @@
 #import "Constants.h"
 #import "UIColor+HEX.h"
 #import "PlacePhotoTableViewCell.h"
+#import "MenuRevealViewController.h"
 
 @interface ListPlacesImagesViewController ()
+
+@property (strong, nonatomic) MenuRevealViewController *menu;
 
 @end
 
@@ -27,10 +30,20 @@
     self.table.delegate = self;
     self.table.dataSource = self;
 
+    self.menu = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
+    self.menu.view.frame = CGRectMake(-280, 0, 280, self.view.frame.size.height);
+    [self.navigationController.view addSubview:self.menu.view];
+    
+    NSLog(@"%f", self.navigationController.view.frame.size.height);
+    
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    self.menu.view.frame = CGRectMake(self.menu.view.frame.origin.x, 0.f, 280.f, self.menu.view.frame.size.height + 60.f);
 }
 
 - (void)customNavBar {
@@ -90,6 +103,28 @@
 
 -(void)menuButtonAction {
     NSLog(@"Menu button is pressed");
+    
+
+    
+    [UIView animateWithDuration:0.5
+                          delay:.5
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.menu.view.frame = CGRectMake(0, 0, 280, self.view.frame.size.height + 65);
+                     }
+                     completion:^(BOOL finished){
+                         NSLog(@"Done!");
+                     }];
+    
+    [UIView animateWithDuration:0.5
+                          delay:.5
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.view.frame = CGRectMake(280, 0, self.view.frame.size.width, self.view.frame.size.height);
+                     }
+                     completion:^(BOOL finished){
+                         NSLog(@"Done2!");
+                     }];
 }
 
 

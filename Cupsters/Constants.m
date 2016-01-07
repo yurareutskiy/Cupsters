@@ -22,6 +22,9 @@ NSString* const cCellBigPlace = @"BigPlaces";
 #pragma mark - Numbers
 
 
+#pragma mark - Storyboard ID
+NSString* const cSBMenu = @"RevealMenu";
+
 #pragma mark - Others
 NSString* const cFontMyraid = @"MyriadPro-Regular";
 

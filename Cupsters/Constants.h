@@ -14,6 +14,8 @@ extern NSString* const cCellBigPlace;
 
 #pragma mark - Numbers
 
+#pragma mark - Storyboard ID
+extern NSString* const cSBMenu;
 
 #pragma mark - Others
 extern NSString* const cFontMyraid;
