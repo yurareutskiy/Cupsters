@@ -26,6 +26,7 @@
     
     self.table.delegate = self;
     self.table.dataSource = self;
+
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
@@ -94,6 +95,15 @@
 
 #pragma mark - UITableView
 
+
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.table deselectRowAtIndexPath:indexPath animated:false];
+    [self.table reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    NSLog(@"Select row at index %@", indexPath);
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 10;
 }
@@ -102,6 +112,8 @@
 
     PlacePhotoTableViewCell *cell = [[PlacePhotoTableViewCell alloc] init];
     [self.table dequeueReusableCellWithIdentifier:cCellBigPlace forIndexPath:indexPath];
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return [self configurePlace:cell At:indexPath.row];
 }
