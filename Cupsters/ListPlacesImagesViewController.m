@@ -11,10 +11,13 @@
 #import "UIColor+HEX.h"
 #import "PlacePhotoTableViewCell.h"
 #import "MenuRevealViewController.h"
+#import "SWRevealViewController.h"
 
 @interface ListPlacesImagesViewController ()
 
 @property (strong, nonatomic) MenuRevealViewController *menu;
+@property (strong, nonatomic) UIBarButtonItem *menuButton;
+@property (strong, nonatomic) SWRevealViewController *reveal;
 
 @end
 
@@ -29,12 +32,8 @@
     
     self.table.delegate = self;
     self.table.dataSource = self;
-
-    self.menu = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
-    self.menu.view.frame = CGRectMake(-280, 0, 280, self.view.frame.size.height);
-    [self.navigationController.view addSubview:self.menu.view];
     
-    NSLog(@"%f", self.navigationController.view.frame.size.height);
+    [self configureMenu];
     
 }
 
@@ -53,20 +52,34 @@
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithHEX:cBrown];
     self.navigationController.navigationBar.translucent = NO;
     
-    // Set menu button
-    
-    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu"]
-                                                                   style:UIBarButtonItemStyleDone
-                                                                  target:self
-                                                                  action:@selector(menuButtonAction)];
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.navigationItem.leftBarButtonItem = menuButton;
     
     // Set title view
     
     self.navigationItem.titleView = [self customTitleViewWithImage];
+
+}
+
+- (void)configureMenu {
+    
+    self.reveal = self.revealViewController;
+    
+    if (!self.reveal) {
+        return;
+    }
     
 
+    // Add gesture recognizer
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+
+    
+    // Set menu button
+    self.menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu"]
+                                                       style:UIBarButtonItemStyleDone
+                                                      target:self.revealViewController
+                                                      action:@selector(revealToggle:)];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationItem.leftBarButtonItem = self.menuButton;
+    
 }
 
 
@@ -101,31 +114,7 @@
 
 #pragma mark - Actions
 
--(void)menuButtonAction {
-    NSLog(@"Menu button is pressed");
-    
 
-    
-    [UIView animateWithDuration:0.5
-                          delay:.5
-                        options: UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         self.menu.view.frame = CGRectMake(0, 0, 280, self.view.frame.size.height + 65);
-                     }
-                     completion:^(BOOL finished){
-                         NSLog(@"Done!");
-                     }];
-    
-    [UIView animateWithDuration:0.5
-                          delay:.5
-                        options: UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         self.view.frame = CGRectMake(280, 0, self.view.frame.size.width, self.view.frame.size.height);
-                     }
-                     completion:^(BOOL finished){
-                         NSLog(@"Done2!");
-                     }];
-}
 
 
 #pragma mark - UITableView

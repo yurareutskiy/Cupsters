@@ -37,6 +37,8 @@
 		DB67FF111C3C19EC00FC62E2 /* MyriadPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FF101C3C19EC00FC62E2 /* MyriadPro-Regular.otf */; settings = {ASSET_TAGS = (); }; };
 		DB67FF141C3C307E00FC62E2 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB67FF131C3C307E00FC62E2 /* SignUpViewController.m */; settings = {ASSET_TAGS = (); }; };
 		DB67FF171C3D591D00FC62E2 /* LoginModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB67FF161C3D591D00FC62E2 /* LoginModelViewController.m */; settings = {ASSET_TAGS = (); }; };
+		DBDC1C2B1C400583003A8507 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = DBDC1C2A1C400583003A8507 /* Podfile */; settings = {ASSET_TAGS = (); }; };
+		DBDC1C301C40EB05003A8507 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBDC1C2E1C40EB05003A8507 /* SWRevealViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +84,9 @@
 		DB67FF131C3C307E00FC62E2 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		DB67FF151C3D591D00FC62E2 /* LoginModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginModelViewController.h; sourceTree = "<group>"; };
 		DB67FF161C3D591D00FC62E2 /* LoginModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModelViewController.m; sourceTree = "<group>"; };
+		DBDC1C2A1C400583003A8507 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
+		DBDC1C2E1C40EB05003A8507 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = SWRevealViewController/SWRevealViewController.m; sourceTree = "<group>"; };
+		DBDC1C2F1C40EB05003A8507 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = SWRevealViewController/SWRevealViewController.h; sourceTree = "<group>"; };
 		DDC96F5213E98AC9D6EAF4A0 /* Pods-Cupsters.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cupsters.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cupsters/Pods-Cupsters.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +125,28 @@
 				DB671F471C3EC32B008C1408 /* cafeBack1.png */,
 			);
 			name = "Mock files";
+			sourceTree = "<group>";
+		};
+		DB6733B81C40EF7D00BA7832 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				DBDC1C2F1C40EB05003A8507 /* SWRevealViewController.h */,
+				DBDC1C2E1C40EB05003A8507 /* SWRevealViewController.m */,
+				DB671F491C3EE5F7008C1408 /* MenuRevealViewController.h */,
+				DB671F4A1C3EE5F7008C1408 /* MenuRevealViewController.m */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		DB6733B91C40F01C00BA7832 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				DB67FED71C3C0BA800FC62E2 /* LoginViewController.h */,
+				DB67FED81C3C0BA800FC62E2 /* LoginViewController.m */,
+				DB67FF121C3C307E00FC62E2 /* SignUpViewController.h */,
+				DB67FF131C3C307E00FC62E2 /* SignUpViewController.m */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 		DB67FEAD1C3BD8FB00FC62E2 = {
@@ -161,6 +188,7 @@
 		DB67FEB91C3BD8FB00FC62E2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DBDC1C2A1C400583003A8507 /* Podfile */,
 				DB671F461C3EC30B008C1408 /* Mock files */,
 				DB67FEDB1C3C0FCF00FC62E2 /* Fonts */,
 				DB67FEBA1C3BD8FB00FC62E2 /* main.m */,
@@ -193,14 +221,10 @@
 		DB67FED61C3C0B8800FC62E2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				DB67FED71C3C0BA800FC62E2 /* LoginViewController.h */,
-				DB67FED81C3C0BA800FC62E2 /* LoginViewController.m */,
-				DB67FF121C3C307E00FC62E2 /* SignUpViewController.h */,
-				DB67FF131C3C307E00FC62E2 /* SignUpViewController.m */,
+				DB6733B81C40EF7D00BA7832 /* Menu */,
+				DB6733B91C40F01C00BA7832 /* Login */,
 				DB671F3A1C3DCF9F008C1408 /* ListPlacesImagesViewController.h */,
 				DB671F3B1C3DCFA0008C1408 /* ListPlacesImagesViewController.m */,
-				DB671F491C3EE5F7008C1408 /* MenuRevealViewController.h */,
-				DB671F4A1C3EE5F7008C1408 /* MenuRevealViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -296,6 +320,7 @@
 				DB67FF041C3C103600FC62E2 /* HelveticaNeueCyr-BlackItalic.otf in Resources */,
 				DB67FF081C3C103600FC62E2 /* HelveticaNeueCyr-Light.otf in Resources */,
 				DB67FF111C3C19EC00FC62E2 /* MyriadPro-Regular.otf in Resources */,
+				DBDC1C2B1C400583003A8507 /* Podfile in Resources */,
 				DB671F481C3EC32B008C1408 /* cafeBack1.png in Resources */,
 				DB67FEC41C3BD8FB00FC62E2 /* Main.storyboard in Resources */,
 				DB67FF071C3C103600FC62E2 /* HelveticaNeueCyr-Italic.otf in Resources */,
@@ -374,6 +399,7 @@
 				DB67FEBB1C3BD8FB00FC62E2 /* main.m in Sources */,
 				DB671F3C1C3DCFA0008C1408 /* ListPlacesImagesViewController.m in Sources */,
 				DB671F4B1C3EE5F7008C1408 /* MenuRevealViewController.m in Sources */,
+				DBDC1C301C40EB05003A8507 /* SWRevealViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
