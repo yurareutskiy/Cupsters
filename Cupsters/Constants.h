@@ -8,6 +8,7 @@ extern NSString* const welcome;
 
 #pragma mark - Colors
 extern NSString* const cBrown;
+extern NSString* const cSideMenuBackColor;
 
 #pragma mark - Cell identifieres
 extern NSString* const cCellBigPlace;

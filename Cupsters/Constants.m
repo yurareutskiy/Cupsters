@@ -14,6 +14,7 @@ NSString* const welcome = @"Hello, world";
 
 #pragma mark - Colors
 NSString* const cBrown = @"ae895d";
+NSString* const cSideMenuBackColor = @"666666";
 
 #pragma mark - Cell identifieres
 NSString* const cCellBigPlace = @"BigPlaces";
@@ -23,7 +24,7 @@ NSString* const cCellBigPlace = @"BigPlaces";
 
 
 #pragma mark - Storyboard ID
-NSString* const cSBMenu = @"RevealMenu";
+NSString* const cSBMenu = @"SWRevealViewController";
 
 #pragma mark - Others
 NSString* const cFontMyraid = @"MyriadPro-Regular";

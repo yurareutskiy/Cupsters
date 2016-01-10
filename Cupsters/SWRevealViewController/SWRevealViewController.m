@@ -209,6 +209,7 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
 
     CGRect bounds = self.bounds;
     
+    
     FrontViewPosition position = _c.frontViewPosition;
     CGFloat xLocation = [self frontLocationForPosition:position];
     
@@ -227,6 +228,7 @@ static CGFloat scaledValue( CGFloat v1, CGFloat min2, CGFloat max2, CGFloat min1
     
     UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:shadowBounds];
     _frontView.layer.shadowPath = shadowPath.CGPath;
+    
 }
 
 
@@ -1271,6 +1273,9 @@ const int FrontViewPositionNone = 0xff;
     
     CGFloat xLocation = frontView.frame.origin.x;
     CGFloat velocity = [recognizer velocityInView:_contentView].x;
+    
+    NSLog(@"%f", xLocation);
+    
     //NSLog( @"Velocity:%1.4f", velocity);
     
     // depending on position we compute a simetric replacement of widths and positions

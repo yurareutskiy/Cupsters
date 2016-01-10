@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "Constants.h"
 
 @interface LoginViewController ()
 
@@ -63,7 +64,8 @@
 
 - (IBAction)signInButtonAction:(UIButton *)sender {
 
-    [self performSegueWithIdentifier:@"signIn" sender:self];
+    UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
+    [self presentViewController:vc animated:true completion:nil];
 }
 
 @end

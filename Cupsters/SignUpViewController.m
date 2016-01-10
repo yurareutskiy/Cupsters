@@ -7,6 +7,7 @@
 //
 
 #import "SignUpViewController.h"
+#import "Constants.h"
 
 @interface SignUpViewController ()
 
@@ -90,7 +91,8 @@
 }
 
 - (IBAction)signUpDoneButtonAction:(UIButton *)sender {
-    [self performSegueWithIdentifier:@"signUpDone" sender:self];
+    UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
+    [self presentViewController:vc animated:true completion:nil];
 }
 
 

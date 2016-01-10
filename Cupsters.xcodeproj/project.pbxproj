@@ -14,6 +14,8 @@
 		DB671F451C3EC239008C1408 /* PlacePhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F441C3EC239008C1408 /* PlacePhotoTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		DB671F481C3EC32B008C1408 /* cafeBack1.png in Resources */ = {isa = PBXBuildFile; fileRef = DB671F471C3EC32B008C1408 /* cafeBack1.png */; settings = {ASSET_TAGS = (); }; };
 		DB671F4B1C3EE5F7008C1408 /* MenuRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F4A1C3EE5F7008C1408 /* MenuRevealViewController.m */; settings = {ASSET_TAGS = (); }; };
+		DB6733BC1C4101E400BA7832 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6733BB1C4101E400BA7832 /* User.m */; settings = {ASSET_TAGS = (); }; };
+		DB6733BF1C41022100BA7832 /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6733BE1C41022100BA7832 /* Plan.m */; settings = {ASSET_TAGS = (); }; };
 		DB67FEBB1C3BD8FB00FC62E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB67FEBA1C3BD8FB00FC62E2 /* main.m */; };
 		DB67FEBE1C3BD8FB00FC62E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB67FEBD1C3BD8FB00FC62E2 /* AppDelegate.m */; };
 		DB67FEC41C3BD8FB00FC62E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB67FEC21C3BD8FB00FC62E2 /* Main.storyboard */; };
@@ -55,6 +57,10 @@
 		DB671F471C3EC32B008C1408 /* cafeBack1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cafeBack1.png; path = "Сupsters-design/MockFiles/cafeBack1.png"; sourceTree = SOURCE_ROOT; };
 		DB671F491C3EE5F7008C1408 /* MenuRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuRevealViewController.h; sourceTree = "<group>"; };
 		DB671F4A1C3EE5F7008C1408 /* MenuRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuRevealViewController.m; sourceTree = "<group>"; };
+		DB6733BA1C4101E400BA7832 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		DB6733BB1C4101E400BA7832 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		DB6733BD1C41022100BA7832 /* Plan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plan.h; sourceTree = "<group>"; };
+		DB6733BE1C41022100BA7832 /* Plan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plan.m; sourceTree = "<group>"; };
 		DB67FEB61C3BD8FB00FC62E2 /* Cupsters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cupsters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB67FEBA1C3BD8FB00FC62E2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DB67FEBC1C3BD8FB00FC62E2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -205,6 +211,10 @@
 			children = (
 				DB67FF151C3D591D00FC62E2 /* LoginModelViewController.h */,
 				DB67FF161C3D591D00FC62E2 /* LoginModelViewController.m */,
+				DB6733BA1C4101E400BA7832 /* User.h */,
+				DB6733BB1C4101E400BA7832 /* User.m */,
+				DB6733BD1C41022100BA7832 /* Plan.h */,
+				DB6733BE1C41022100BA7832 /* Plan.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -388,6 +398,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB6733BC1C4101E400BA7832 /* User.m in Sources */,
 				DB67FF171C3D591D00FC62E2 /* LoginModelViewController.m in Sources */,
 				DB67FED91C3C0BA800FC62E2 /* LoginViewController.m in Sources */,
 				DB67FF141C3C307E00FC62E2 /* SignUpViewController.m in Sources */,
@@ -397,6 +408,7 @@
 				DB67FEBE1C3BD8FB00FC62E2 /* AppDelegate.m in Sources */,
 				DB67FEC71C3BD8FB00FC62E2 /* Cupsters.xcdatamodeld in Sources */,
 				DB67FEBB1C3BD8FB00FC62E2 /* main.m in Sources */,
+				DB6733BF1C41022100BA7832 /* Plan.m in Sources */,
 				DB671F3C1C3DCFA0008C1408 /* ListPlacesImagesViewController.m in Sources */,
 				DB671F4B1C3EE5F7008C1408 /* MenuRevealViewController.m in Sources */,
 				DBDC1C301C40EB05003A8507 /* SWRevealViewController.m in Sources */,

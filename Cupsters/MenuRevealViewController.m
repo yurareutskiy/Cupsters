@@ -7,8 +7,13 @@
 //
 
 #import "MenuRevealViewController.h"
+#import "UIColor+HEX.h"
+#import "Constants.h"
+#import "User.h"
 
 @interface MenuRevealViewController ()
+
+@property (strong, nonatomic) User *user;
 
 @end
 
@@ -16,8 +21,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
+    self.revealViewController.delegate = self;
+    
+    self.user = [[User alloc] initUserWithFirstName:@"Юрий" LastName:@"Реутский" UserPlan:nil];
+
+
+//    [self.view addSubview:self.user.image];
+    
+    self.userPhoto.layer.cornerRadius = 30;
+    self.userInitials.text = self.user.initials;
+    
+    self.userPlan.text = self.user.plan.name;
+    self.userName.text = self.user.name;
+    self.userName.adjustsFontSizeToFitWidth = true;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -25,6 +42,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+-(void)revealController:(SWRevealViewController *)revealController panGestureBeganFromLocation:(CGFloat)location progress:(CGFloat)progress overProgress:(CGFloat)overProgress {
+
+    NSLog(@"%f %f %f", location, progress, overProgress);
+}
 
 /*
 #pragma mark - Navigation

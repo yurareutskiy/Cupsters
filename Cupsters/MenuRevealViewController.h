@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SWRevealViewController.h"
 
-@interface MenuRevealViewController : UIViewController
+@interface MenuRevealViewController : UITableViewController <SWRevealViewControllerDelegate>
+
+@property (weak, nonatomic) IBOutlet UIView *userPhoto;
+@property (weak, nonatomic) IBOutlet UILabel *userName;
+@property (weak, nonatomic) IBOutlet UILabel *userPlan;
+@property (weak, nonatomic) IBOutlet UILabel *userInitials;
 
 @end
