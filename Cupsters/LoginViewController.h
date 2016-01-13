@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import "LoginModelViewController.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 
 @interface LoginViewController : LoginModelViewController
@@ -21,5 +24,6 @@
 
 - (IBAction)signUpButtonAction:(UIButton *)sender;
 - (IBAction)signInButtonAction:(UIButton *)sender;
+- (IBAction)withFB:(UIButton *)sender;
 
 @end

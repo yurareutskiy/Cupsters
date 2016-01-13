@@ -66,4 +66,37 @@
     [self performSegueWithIdentifier:@"signIn" sender:self];
 }
 
+- (IBAction)withFB:(UIButton *)sender {
+    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+    [login
+     logInWithReadPermissions: @[@"public_profile", @"email", @"user_friends"]
+     fromViewController:self
+     handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+         if (error) {
+             NSLog(@"Process error");
+         } else if (result.isCancelled) {
+             NSLog(@"Cancelled");
+         } else {
+             NSLog(@"Logged in");
+             if ([FBSDKAccessToken currentAccessToken]) {
+                 FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                               initWithGraphPath:@"/me"
+                                               parameters:@{@"fields": @"id, first_name, last_name, email"}
+                                               HTTPMethod:@"GET"];
+                 [request
+                  startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,
+                                               id result,
+                                               NSError *error) {
+                      if (!error) {
+                          NSLog(@"fetched user:%@", result);
+                      }
+                      else {
+                          NSLog(@"test: %@", error);
+                      }
+                  }];
+             }
+         }
+     }];
+}
+
 @end
