@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8uT-ye-Xsh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="O1r-34-39h">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -11,6 +11,9 @@
             <string>HelveticaNeueCyr-Bold</string>
         </mutableArray>
         <mutableArray key="MyriadPro-Regular.otf">
+            <string>MyriadPro-Regular</string>
+            <string>MyriadPro-Regular</string>
+            <string>MyriadPro-Regular</string>
             <string>MyriadPro-Regular</string>
             <string>MyriadPro-Regular</string>
             <string>MyriadPro-Regular</string>
@@ -53,16 +56,13 @@
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="login_back" translatesAutoresizingMaskIntoConstraints="NO" id="ZF6-8A-gZZ">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                        <animations/>
                                     </imageView>
                                     <view alpha="0.69999999999999996" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LGy-ks-Qvb">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                        <animations/>
                                         <color key="backgroundColor" red="0.16078431372549018" green="0.17254901960784313" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#КОФЕРЯДОМ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yee-vt-9q1">
                                         <rect key="frame" x="235" y="139" width="130" height="21"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="130" id="2pe-aC-o9a"/>
                                             <constraint firstAttribute="height" constant="21" id="dVA-eH-8KT"/>
@@ -73,7 +73,6 @@
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="258-XO-8Bu">
                                         <rect key="frame" x="208" y="24" width="184" height="98"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="184" id="GpU-Vw-iY8"/>
                                             <constraint firstAttribute="height" constant="98" id="asv-4J-cku"/>
@@ -81,7 +80,6 @@
                                     </imageView>
                                     <button opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1IY-Ti-wev">
                                         <rect key="frame" x="119" y="356" width="362" height="17"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="11"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
                                         <state key="normal" title="Я согласен(а) на обработку персональных данных" image="check">
@@ -96,7 +94,6 @@
                                     </button>
                                     <view alpha="0.69999999999999996" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U8F-I0-dLC" userLabel="line-email">
                                         <rect key="frame" x="0.0" y="207.5" width="600" height="0.5"/>
-                                        <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="0.5" id="X8c-0g-93P"/>
@@ -104,7 +101,6 @@
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Имя" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rsq-jf-YrB" userLabel="Name">
                                         <rect key="frame" x="200" y="178" width="200" height="30"/>
-                                        <animations/>
                                         <color key="textColor" red="0.76078431372549016" green="0.76078431372549016" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
@@ -115,7 +111,6 @@
                                     </textField>
                                     <view alpha="0.69999998807907104" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Te4-18-0vM" userLabel="line-email">
                                         <rect key="frame" x="0.0" y="249.5" width="600" height="0.5"/>
-                                        <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="0.5" id="1h0-94-UIJ"/>
@@ -123,7 +118,6 @@
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Фамилия" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="26U-xJ-XGI">
                                         <rect key="frame" x="200" y="220" width="200" height="30"/>
-                                        <animations/>
                                         <color key="textColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
@@ -134,7 +128,6 @@
                                     </textField>
                                     <view alpha="0.69999998807907104" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wUa-nQ-vaw" userLabel="line-email">
                                         <rect key="frame" x="0.0" y="291.5" width="600" height="0.5"/>
-                                        <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="0.5" id="AL5-my-Js8"/>
@@ -142,7 +135,6 @@
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LWX-4F-Mv2">
                                         <rect key="frame" x="200" y="262" width="200" height="30"/>
-                                        <animations/>
                                         <color key="textColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
@@ -153,7 +145,6 @@
                                     </textField>
                                     <view alpha="0.69999998807907104" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G23-3h-8v9" userLabel="line-email">
                                         <rect key="frame" x="0.0" y="333.5" width="600" height="0.5"/>
-                                        <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="0.5" id="qqH-uW-I77"/>
@@ -161,7 +152,6 @@
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Пароль" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HAg-BV-eND">
                                         <rect key="frame" x="200" y="304" width="200" height="30"/>
-                                        <animations/>
                                         <color key="textColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -172,10 +162,9 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gyl-QN-36X">
                                         <rect key="frame" x="212" y="387" width="176" height="42"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
                                         <state key="normal" title="Регистрация" backgroundImage="sign_up_bg">
-                                            <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="signUpDoneButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6IB-p2-kVn"/>
@@ -183,22 +172,19 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XHh-aP-EVo">
                                         <rect key="frame" x="212" y="444" width="176" height="41"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
                                         <state key="normal" title="Войти через VK" backgroundImage="sign_up_bg_empty">
-                                            <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JFi-ZV-i2D">
                                         <rect key="frame" x="211" y="500" width="178" height="42"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
                                         <state key="normal" title="Войти через FB" backgroundImage="sign_up_bg_empty">
-                                            <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
                                 </subviews>
-                                <animations/>
                                 <constraints>
                                     <constraint firstItem="XHh-aP-EVo" firstAttribute="centerX" secondItem="iUy-pb-CyU" secondAttribute="centerX" id="3WW-Dw-St8"/>
                                     <constraint firstItem="ZF6-8A-gZZ" firstAttribute="top" secondItem="iUy-pb-CyU" secondAttribute="top" id="3Xs-2f-PG5"/>
@@ -224,7 +210,6 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="iUy-pb-CyU" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="72N-yz-onn"/>
@@ -244,7 +229,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="727" y="-440"/>
+            <point key="canvasLocation" x="695" y="-428"/>
         </scene>
         <!--List Places Images View Controller-->
         <scene sceneID="qRs-0i-JoE">
@@ -260,7 +245,6 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="180" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="R5q-sg-9cC">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -274,30 +258,25 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="cafeBack1.png" translatesAutoresizingMaskIntoConstraints="NO" id="9iU-EZ-SFb">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="532"/>
-                                                    <animations/>
                                                 </imageView>
                                                 <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cgt-fY-nBR">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
-                                                    <animations/>
                                                     <color key="backgroundColor" red="0.16078431372549018" green="0.17254901960784313" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="КОФЕЙНЯ БЕЗ ФОНА" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="srW-Gg-ydp">
                                                     <rect key="frame" x="208.5" y="82" width="183.5" height="16"/>
-                                                    <animations/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeueCyr-Bold" family="HelveticaNeueCyr" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="м. Парк Победы" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dq6-zL-dr2" userLabel="Undergroud">
                                                     <rect key="frame" x="16" y="139" width="103" height="15"/>
-                                                    <animations/>
                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DLp-fT-uzk">
                                                     <rect key="frame" x="0.0" y="178" width="600" height="1"/>
-                                                    <animations/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="NBA-KK-RfR"/>
@@ -305,13 +284,11 @@
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 км" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLX-U0-FEI" userLabel="Distance">
                                                     <rect key="frame" x="16" y="157" width="28" height="15"/>
-                                                    <animations/>
                                                     <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstItem="wLX-U0-FEI" firstAttribute="top" secondItem="dq6-zL-dr2" secondAttribute="bottom" constant="3" id="6lp-KX-07m"/>
                                                 <constraint firstAttribute="trailing" secondItem="9iU-EZ-SFb" secondAttribute="trailing" id="7xw-06-EGg"/>
@@ -336,7 +313,6 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <connections>
                                             <outlet property="backPhoto" destination="9iU-EZ-SFb" id="vOT-bG-cdj"/>
                                             <outlet property="distance" destination="wLX-U0-FEI" id="yhg-91-SdF"/>
@@ -347,7 +323,6 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="R5q-sg-9cC" secondAttribute="trailing" id="6S1-A2-twH"/>
@@ -373,7 +348,6 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2de-qK-rQz">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" red="0.18823529411764706" green="0.20000000000000001" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection id="MpE-rr-4UF">
@@ -384,75 +358,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7em-8s-uaG" id="fcn-JI-vL1">
                                             <rect key="frame" x="0.0" y="0.0" width="280" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wsj-RL-dx2">
-                                                    <rect key="frame" x="16" y="47" width="60" height="60"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ЙЦ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQy-j1-dZ0">
-                                                            <rect key="frame" x="12.5" y="8" width="35.5" height="44"/>
-                                                            <animations/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="44" id="tTW-EF-hXo"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="27"/>
-                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <animations/>
-                                                    <color key="backgroundColor" red="0.68235294117647061" green="0.53725490196078429" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <constraints>
-                                                        <constraint firstItem="ZQy-j1-dZ0" firstAttribute="centerY" secondItem="Wsj-RL-dx2" secondAttribute="centerY" id="7hs-rJ-ZG2"/>
-                                                        <constraint firstAttribute="width" constant="60" id="Nc1-A5-OXY"/>
-                                                        <constraint firstAttribute="height" constant="60" id="aEi-FY-mP4"/>
-                                                        <constraint firstItem="ZQy-j1-dZ0" firstAttribute="centerX" secondItem="Wsj-RL-dx2" secondAttribute="centerX" id="gN1-KZ-KWT"/>
-                                                    </constraints>
-                                                </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Юрий Реутский" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="oon-tR-Zsc">
-                                                    <rect key="frame" x="97" y="47" width="175" height="21"/>
-                                                    <animations/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="8zG-qQ-mrS"/>
-                                                        <constraint firstAttribute="width" constant="175" id="uHS-Kq-zjk"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="20"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Кофеман - Базовый" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rrV-Wq-N2s">
-                                                    <rect key="frame" x="97" y="69" width="125" height="14"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="12"/>
-                                                    <color key="textColor" red="0.45098039215686275" green="0.45490196078431372" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Мой профиль" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="sUT-R7-w6Q">
-                                                    <rect key="frame" x="97" y="91" width="175" height="16"/>
-                                                    <animations/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="175" id="DlJ-Xd-r7h"/>
-                                                        <constraint firstAttribute="height" constant="16" id="Gy5-Lf-fuH"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="13"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <view alpha="0.29999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uap-rU-yWg">
-                                                    <rect key="frame" x="0.0" y="115" width="280" height="1"/>
-                                                    <animations/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
-                                            </subviews>
-                                            <animations/>
-                                            <constraints>
-                                                <constraint firstItem="Wsj-RL-dx2" firstAttribute="top" secondItem="fcn-JI-vL1" secondAttribute="topMargin" constant="39" id="9yd-YO-H3n"/>
-                                                <constraint firstItem="oon-tR-Zsc" firstAttribute="top" secondItem="fcn-JI-vL1" secondAttribute="topMargin" constant="39" id="TAx-kt-zUD"/>
-                                                <constraint firstItem="oon-tR-Zsc" firstAttribute="leading" secondItem="Wsj-RL-dx2" secondAttribute="trailing" constant="21" id="aMF-UR-TlI"/>
-                                                <constraint firstItem="oon-tR-Zsc" firstAttribute="trailing" secondItem="fcn-JI-vL1" secondAttribute="trailingMargin" id="kM2-60-trN"/>
-                                                <constraint firstItem="Wsj-RL-dx2" firstAttribute="leading" secondItem="fcn-JI-vL1" secondAttribute="leadingMargin" constant="8" id="v0c-Ha-tHY"/>
-                                            </constraints>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <color key="backgroundColor" red="0.18823529411764706" green="0.20000000000000001" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Z0o-rM-cr8">
@@ -461,9 +367,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z0o-rM-cr8" id="ky5-MB-Chd">
                                             <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <animations/>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <color key="backgroundColor" red="0.18823529410000001" green="0.20000000000000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="bMW-Gy-yaq">
@@ -472,9 +376,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bMW-Gy-yaq" id="lPa-AP-ikc">
                                             <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <animations/>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <color key="backgroundColor" red="0.18823529410000001" green="0.20000000000000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="OvJ-DP-T67">
@@ -483,9 +385,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OvJ-DP-T67" id="gpJ-g5-F4e">
                                             <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <animations/>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <color key="backgroundColor" red="0.18823529410000001" green="0.20000000000000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="we8-fQ-yFO">
@@ -494,9 +394,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="we8-fQ-yFO" id="Ut2-xZ-yHe">
                                             <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <animations/>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <color key="backgroundColor" red="0.18823529410000001" green="0.20000000000000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="D9c-5S-F6a">
@@ -505,9 +403,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D9c-5S-F6a" id="dpS-cI-Q1p">
                                             <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <animations/>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <color key="backgroundColor" red="0.18823529410000001" green="0.20000000000000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="V59-vR-aIj">
@@ -516,9 +412,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V59-vR-aIj" id="7c5-ag-NFx">
                                             <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <animations/>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <color key="backgroundColor" red="0.18823529410000001" green="0.20000000000000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="utI-bX-jXo">
@@ -527,9 +421,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="utI-bX-jXo" id="RjI-69-603">
                                             <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <animations/>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <color key="backgroundColor" red="0.18823529410000001" green="0.20000000000000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                 </cells>
@@ -553,10 +445,10 @@
             </objects>
             <point key="canvasLocation" x="1682" y="-306"/>
         </scene>
-        <!--View Controller-->
+        <!--Menu Reveal View Controller-->
         <scene sceneID="iUW-VM-aTV">
             <objects>
-                <viewController storyboardIdentifier="RevealMenu" id="TBB-YT-AWz" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RevealMenu" id="TBB-YT-AWz" customClass="MenuRevealViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="yem-QH-vBs"/>
                         <viewControllerLayoutGuide type="bottom" id="ukz-7J-zb6"/>
@@ -564,16 +456,165 @@
                     <view key="view" contentMode="scaleToFill" id="wrn-Vd-Hv1">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
-                        <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mLi-pC-YWv">
+                                <rect key="frame" x="0.0" y="39" width="280" height="78"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wsj-RL-dx2">
+                                        <rect key="frame" x="23" y="5" width="60" height="60"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="ЙЦ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZQy-j1-dZ0">
+                                                <rect key="frame" x="13" y="13" width="39" height="39"/>
+                                                <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="27"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.68235294117647061" green="0.53725490196078429" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="ZQy-j1-dZ0" firstAttribute="centerX" secondItem="Wsj-RL-dx2" secondAttribute="centerX" id="Cai-eV-sv2"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Юрий Реутский" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="oon-tR-Zsc">
+                                        <rect key="frame" x="91" y="6" width="175" height="21"/>
+                                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Кофеман - Базовый" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rrV-Wq-N2s">
+                                        <rect key="frame" x="91" y="27" width="125" height="14"/>
+                                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="12"/>
+                                        <color key="textColor" red="0.45098039215686275" green="0.45490196078431372" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Мой профиль" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="sUT-R7-w6Q">
+                                        <rect key="frame" x="91" y="49" width="175" height="16"/>
+                                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="13"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view alpha="0.29999999999999999" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uap-rU-yWg">
+                                        <rect key="frame" x="0.0" y="76" width="280" height="1"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="78" id="1Sb-gF-5mJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="uap-rU-yWg" secondAttribute="bottom" constant="1" id="pUf-ug-sk9"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qRU-I0-dyZ" userLabel="Tarifs">
+                                <rect key="frame" x="0.0" y="117" width="280" height="50"/>
+                                <subviews>
+                                    <view alpha="0.30000001192092896" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mo0-qt-tUn">
+                                        <rect key="frame" x="0.0" y="48" width="280" height="1"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DR3-NU-kdP">
+                                        <rect key="frame" x="0.0" y="14" width="137" height="22"/>
+                                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
+                                        <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="titleEdgeInsets" minX="15" minY="3" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Тарифы" image="tariffs">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="mo0-qt-tUn" secondAttribute="bottom" constant="1" id="2of-2T-8es"/>
+                                    <constraint firstAttribute="height" constant="50" id="4Zh-C0-wTQ"/>
+                                    <constraint firstItem="DR3-NU-kdP" firstAttribute="top" secondItem="qRU-I0-dyZ" secondAttribute="top" id="584-Vy-wZ6"/>
+                                    <constraint firstAttribute="bottom" secondItem="DR3-NU-kdP" secondAttribute="bottom" id="hPc-mX-D1G"/>
+                                    <constraint firstAttribute="trailing" secondItem="DR3-NU-kdP" secondAttribute="trailing" id="pmL-g1-mar"/>
+                                    <constraint firstItem="DR3-NU-kdP" firstAttribute="leading" secondItem="qRU-I0-dyZ" secondAttribute="leading" id="ppb-y3-VUa"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yPi-bW-WcB" userLabel="Coupons">
+                                <rect key="frame" x="0.0" y="166" width="280" height="50"/>
+                                <subviews>
+                                    <view alpha="0.30000001192092896" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Rr-iA-3po">
+                                        <rect key="frame" x="0.0" y="48" width="280" height="1"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n8W-t6-LHD">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
+                                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
+                                        <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="titleEdgeInsets" minX="13" minY="3" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="Купоны" image="coupons">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="n8W-t6-LHD" firstAttribute="leading" secondItem="yPi-bW-WcB" secondAttribute="leading" id="1zQ-g9-WdZ"/>
+                                    <constraint firstItem="n8W-t6-LHD" firstAttribute="top" secondItem="yPi-bW-WcB" secondAttribute="top" id="5Mf-NJ-wAQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="n8W-t6-LHD" secondAttribute="trailing" id="Fex-tJ-RkZ"/>
+                                    <constraint firstItem="n8W-t6-LHD" firstAttribute="top" secondItem="yPi-bW-WcB" secondAttribute="top" id="QXs-D1-8dT"/>
+                                    <constraint firstItem="n8W-t6-LHD" firstAttribute="leading" secondItem="yPi-bW-WcB" secondAttribute="leading" id="Us4-Xf-GLN"/>
+                                    <constraint firstAttribute="height" constant="50" id="cT3-hm-fLl"/>
+                                    <constraint firstAttribute="bottom" secondItem="7Rr-iA-3po" secondAttribute="bottom" constant="1" id="ecs-Qg-RV8"/>
+                                    <constraint firstAttribute="bottom" secondItem="n8W-t6-LHD" secondAttribute="bottom" id="jfO-X0-57l"/>
+                                    <constraint firstAttribute="trailing" secondItem="n8W-t6-LHD" secondAttribute="trailing" id="ni8-fY-cnz"/>
+                                    <constraint firstItem="7Rr-iA-3po" firstAttribute="top" secondItem="n8W-t6-LHD" secondAttribute="bottom" constant="-2" id="rKN-Yd-d93"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MTM-zV-bfx" userLabel="History">
+                                <rect key="frame" x="0.0" y="216" width="280" height="50"/>
+                                <subviews>
+                                    <view alpha="0.30000001192092896" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kUS-8b-ZtA">
+                                        <rect key="frame" x="0.0" y="48" width="280" height="1"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qgR-J5-FS3">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
+                                        <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="16"/>
+                                        <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="titleEdgeInsets" minX="13" minY="3" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="История" image="history">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="qgR-J5-FS3" firstAttribute="top" secondItem="MTM-zV-bfx" secondAttribute="top" id="DaJ-PH-c4l"/>
+                                    <constraint firstAttribute="trailing" secondItem="qgR-J5-FS3" secondAttribute="trailing" id="Og7-BK-7nO"/>
+                                    <constraint firstAttribute="bottom" secondItem="qgR-J5-FS3" secondAttribute="bottom" id="WNk-KG-mig"/>
+                                    <constraint firstAttribute="height" constant="50" id="i72-Ei-wlx"/>
+                                    <constraint firstItem="qgR-J5-FS3" firstAttribute="leading" secondItem="MTM-zV-bfx" secondAttribute="leading" id="ylR-HW-5h3"/>
+                                    <constraint firstAttribute="bottom" secondItem="kUS-8b-ZtA" secondAttribute="bottom" constant="1" id="zXG-Or-mH9"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.18823529411764706" green="0.20000000000000001" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="mLi-pC-YWv" secondAttribute="trailing" id="2o7-J7-JPm"/>
+                            <constraint firstItem="mLi-pC-YWv" firstAttribute="top" secondItem="yem-QH-vBs" secondAttribute="bottom" constant="39" id="E8i-1E-Kcw"/>
+                            <constraint firstItem="qRU-I0-dyZ" firstAttribute="leading" secondItem="wrn-Vd-Hv1" secondAttribute="leading" id="OtN-GK-kK4"/>
+                            <constraint firstAttribute="trailing" secondItem="qRU-I0-dyZ" secondAttribute="trailing" id="a0a-vs-zta"/>
+                            <constraint firstItem="yPi-bW-WcB" firstAttribute="top" secondItem="qRU-I0-dyZ" secondAttribute="bottom" id="bHo-tG-gbv"/>
+                            <constraint firstItem="mLi-pC-YWv" firstAttribute="leading" secondItem="wrn-Vd-Hv1" secondAttribute="leading" id="cF5-ua-XTc"/>
+                            <constraint firstItem="MTM-zV-bfx" firstAttribute="top" secondItem="yPi-bW-WcB" secondAttribute="bottom" id="e0m-9X-kgf"/>
+                            <constraint firstItem="qRU-I0-dyZ" firstAttribute="top" secondItem="mLi-pC-YWv" secondAttribute="bottom" id="v7P-T9-eWL"/>
+                        </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="280" height="600"/>
+                    <connections>
+                        <outlet property="userInitials" destination="ZQy-j1-dZ0" id="RmA-RM-Tni"/>
+                        <outlet property="userName" destination="oon-tR-Zsc" id="cbA-UA-ctw"/>
+                        <outlet property="userPhoto" destination="Wsj-RL-dx2" id="45i-3G-QzD"/>
+                        <outlet property="userPlan" destination="rrV-Wq-N2s" id="4Hc-aL-Wfx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fr8-ki-4ta" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2274" y="-41"/>
+            <point key="canvasLocation" x="2013" y="-306"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="L1R-d3-NrT">
@@ -592,20 +633,16 @@
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login_back" translatesAutoresizingMaskIntoConstraints="NO" id="jV1-3U-3eB">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                        <animations/>
                                     </imageView>
                                     <view alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="79a-qy-EcO" userLabel="Black back">
                                         <rect key="frame" x="0.0" y="-50" width="600" height="700"/>
-                                        <animations/>
                                         <color key="backgroundColor" red="0.16078431369999999" green="0.17254901959999999" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="TMA-B3-21W">
                                         <rect key="frame" x="208" y="24" width="184" height="98"/>
-                                        <animations/>
                                     </imageView>
                                     <view alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GzL-tE-Zix" userLabel="line-email">
                                         <rect key="frame" x="0.0" y="207.5" width="600" height="0.5"/>
-                                        <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="0.5" id="qba-3H-dgn"/>
@@ -613,14 +650,12 @@
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Имя" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VBn-tn-avg" userLabel="Name">
                                         <rect key="frame" x="200" y="178" width="200" height="30"/>
-                                        <animations/>
                                         <color key="textColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
                                     </textField>
                                     <view alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I3s-sY-1Ic" userLabel="line-email">
                                         <rect key="frame" x="0.0" y="249.5" width="600" height="0.5"/>
-                                        <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="0.5" id="ucP-qj-uOx"/>
@@ -628,26 +663,22 @@
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Фамилия" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sNm-cJ-laJ">
                                         <rect key="frame" x="200" y="220" width="200" height="30"/>
-                                        <animations/>
                                         <color key="textColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="#КОФЕРЯДОМ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yqh-UM-Iut">
                                         <rect key="frame" x="235" y="139" width="130" height="21"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" name="HelveticaNeueCyr-Bold" family="HelveticaNeueCyr" pointSize="17"/>
                                         <color key="textColor" red="0.80392156859999997" green="0.80392156859999997" blue="0.80392156859999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view alpha="0.69999998807907104" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fl1-op-RJk" userLabel="line-email">
                                         <rect key="frame" x="0.0" y="214.5" width="600" height="0.5"/>
-                                        <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AXV-nJ-6ub">
                                         <rect key="frame" x="200" y="196" width="200" height="19"/>
-                                        <animations/>
                                         <color key="textColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
@@ -658,12 +689,10 @@
                                     </textField>
                                     <view alpha="0.69999998807907104" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xt6-Tj-WoE" userLabel="line-email">
                                         <rect key="frame" x="0.0" y="268.5" width="600" height="0.5"/>
-                                        <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Пароль" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YzY-SX-e6e">
                                         <rect key="frame" x="200" y="250" width="200" height="19"/>
-                                        <animations/>
                                         <color key="textColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -674,10 +703,9 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4j6-6E-knH">
                                         <rect key="frame" x="211" y="299" width="178" height="42"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
                                         <state key="normal" title="Войти" backgroundImage="sign_up_bg">
-                                            <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="signInButtonAction:" destination="Nd9-cO-IR4" eventType="touchUpInside" id="caI-2u-MY7"/>
@@ -685,10 +713,9 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xja-Kk-tBW">
                                         <rect key="frame" x="212" y="356" width="176" height="42"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
                                         <state key="normal" title="Регистрация" backgroundImage="sign_up_bg_empty">
-                                            <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="signUpButtonAction:" destination="Nd9-cO-IR4" eventType="touchUpInside" id="7qV-ZU-Yx7"/>
@@ -696,22 +723,19 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jbb-tf-iBm">
                                         <rect key="frame" x="212" y="413" width="176" height="41"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
                                         <state key="normal" title="Войти через VK" backgroundImage="sign_up_bg_empty">
-                                            <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3lb-pK-iJA">
                                         <rect key="frame" x="211" y="469" width="178" height="42"/>
-                                        <animations/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
                                         <state key="normal" title="Войти через FB" backgroundImage="sign_up_bg_empty">
-                                            <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
                                 </subviews>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="79a-qy-EcO" secondAttribute="trailing" id="1EC-Qb-23x"/>
                                     <constraint firstItem="79a-qy-EcO" firstAttribute="top" secondItem="fQW-Hg-aYJ" secondAttribute="top" constant="-50" id="9jh-b7-JJU"/>
@@ -746,7 +770,6 @@
                                 </variation>
                             </scrollView>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="fQW-Hg-aYJ" secondAttribute="trailing" id="LTK-Yv-t4D"/>
@@ -783,13 +806,12 @@
                     <view key="view" contentMode="scaleToFill" id="W5X-wa-EoN">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <segue destination="93n-OI-SNo" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegueSetController" id="sHZ-dg-8tT"/>
-                        <segue destination="TBB-YT-AWz" kind="custom" identifier="sw_rear2" customClass="SWRevealViewControllerSegueSetController" id="wdC-ee-bJa"/>
-                        <segue destination="x7p-RZ-OyE" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="BIy-xg-lEo"/>
+                        <segue destination="TBB-YT-AWz" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegueSetController" id="wdC-ee-bJa"/>
+                        <segue destination="x7p-RZ-OyE" kind="custom" identifier="sw_rear2" customClass="SWRevealViewControllerSegueSetController" id="BIy-xg-lEo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aLd-PN-kfV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -804,7 +826,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Bzb-7X-ahk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -824,7 +845,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DIU-K9-jcn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -839,9 +859,12 @@
     <resources>
         <image name="cafeBack1.png" width="799" height="532"/>
         <image name="check" width="19" height="19"/>
+        <image name="coupons" width="24" height="24"/>
+        <image name="history" width="25" height="24"/>
         <image name="login_back" width="449" height="674"/>
         <image name="logo" width="200" height="102"/>
         <image name="sign_up_bg" width="176" height="42"/>
         <image name="sign_up_bg_empty" width="178" height="42"/>
+        <image name="tariffs" width="21" height="20"/>
     </resources>
 </document>

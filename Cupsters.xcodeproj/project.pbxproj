@@ -8,39 +8,39 @@
 
 /* Begin PBXBuildFile section */
 		D29AE48A6D499E64286DB83E /* libPods-Cupsters.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FD21CA9A973FF164B7FBFE4 /* libPods-Cupsters.a */; };
-		DB671F3C1C3DCFA0008C1408 /* ListPlacesImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F3B1C3DCFA0008C1408 /* ListPlacesImagesViewController.m */; settings = {ASSET_TAGS = (); }; };
-		DB671F3F1C3DD39F008C1408 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F3E1C3DD39F008C1408 /* Constants.m */; settings = {ASSET_TAGS = (); }; };
-		DB671F421C3DEA07008C1408 /* UIColor+HEX.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F411C3DEA07008C1408 /* UIColor+HEX.m */; settings = {ASSET_TAGS = (); }; };
-		DB671F451C3EC239008C1408 /* PlacePhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F441C3EC239008C1408 /* PlacePhotoTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
-		DB671F481C3EC32B008C1408 /* cafeBack1.png in Resources */ = {isa = PBXBuildFile; fileRef = DB671F471C3EC32B008C1408 /* cafeBack1.png */; settings = {ASSET_TAGS = (); }; };
-		DB671F4B1C3EE5F7008C1408 /* MenuRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F4A1C3EE5F7008C1408 /* MenuRevealViewController.m */; settings = {ASSET_TAGS = (); }; };
-		DB6733BC1C4101E400BA7832 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6733BB1C4101E400BA7832 /* User.m */; settings = {ASSET_TAGS = (); }; };
-		DB6733BF1C41022100BA7832 /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6733BE1C41022100BA7832 /* Plan.m */; settings = {ASSET_TAGS = (); }; };
+		DB671F3C1C3DCFA0008C1408 /* ListPlacesImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F3B1C3DCFA0008C1408 /* ListPlacesImagesViewController.m */; };
+		DB671F3F1C3DD39F008C1408 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F3E1C3DD39F008C1408 /* Constants.m */; };
+		DB671F421C3DEA07008C1408 /* UIColor+HEX.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F411C3DEA07008C1408 /* UIColor+HEX.m */; };
+		DB671F451C3EC239008C1408 /* PlacePhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F441C3EC239008C1408 /* PlacePhotoTableViewCell.m */; };
+		DB671F481C3EC32B008C1408 /* cafeBack1.png in Resources */ = {isa = PBXBuildFile; fileRef = DB671F471C3EC32B008C1408 /* cafeBack1.png */; };
+		DB671F4B1C3EE5F7008C1408 /* MenuRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F4A1C3EE5F7008C1408 /* MenuRevealViewController.m */; };
+		DB6733BC1C4101E400BA7832 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6733BB1C4101E400BA7832 /* User.m */; };
+		DB6733BF1C41022100BA7832 /* Plan.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6733BE1C41022100BA7832 /* Plan.m */; };
 		DB67FEBB1C3BD8FB00FC62E2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB67FEBA1C3BD8FB00FC62E2 /* main.m */; };
 		DB67FEBE1C3BD8FB00FC62E2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DB67FEBD1C3BD8FB00FC62E2 /* AppDelegate.m */; };
 		DB67FEC41C3BD8FB00FC62E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB67FEC21C3BD8FB00FC62E2 /* Main.storyboard */; };
 		DB67FEC71C3BD8FB00FC62E2 /* Cupsters.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DB67FEC51C3BD8FB00FC62E2 /* Cupsters.xcdatamodeld */; };
 		DB67FEC91C3BD8FB00FC62E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB67FEC81C3BD8FB00FC62E2 /* Assets.xcassets */; };
 		DB67FECC1C3BD8FB00FC62E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB67FECA1C3BD8FB00FC62E2 /* LaunchScreen.storyboard */; };
-		DB67FED91C3C0BA800FC62E2 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB67FED81C3C0BA800FC62E2 /* LoginViewController.m */; settings = {ASSET_TAGS = (); }; };
-		DB67FF031C3C103600FC62E2 /* HelveticaNeueCyr-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FEF61C3C103600FC62E2 /* HelveticaNeueCyr-Black.otf */; settings = {ASSET_TAGS = (); }; };
-		DB67FF041C3C103600FC62E2 /* HelveticaNeueCyr-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FEF71C3C103600FC62E2 /* HelveticaNeueCyr-BlackItalic.otf */; settings = {ASSET_TAGS = (); }; };
-		DB67FF051C3C103600FC62E2 /* HelveticaNeueCyr-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FEF81C3C103600FC62E2 /* HelveticaNeueCyr-Bold.otf */; settings = {ASSET_TAGS = (); }; };
-		DB67FF061C3C103600FC62E2 /* HelveticaNeueCyr-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FEF91C3C103600FC62E2 /* HelveticaNeueCyr-BoldItalic.otf */; settings = {ASSET_TAGS = (); }; };
-		DB67FF071C3C103600FC62E2 /* HelveticaNeueCyr-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FEFA1C3C103600FC62E2 /* HelveticaNeueCyr-Italic.otf */; settings = {ASSET_TAGS = (); }; };
-		DB67FF081C3C103600FC62E2 /* HelveticaNeueCyr-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FEFB1C3C103600FC62E2 /* HelveticaNeueCyr-Light.otf */; settings = {ASSET_TAGS = (); }; };
-		DB67FF091C3C103600FC62E2 /* HelveticaNeueCyr-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FEFC1C3C103600FC62E2 /* HelveticaNeueCyr-LightItalic.otf */; settings = {ASSET_TAGS = (); }; };
-		DB67FF0A1C3C103600FC62E2 /* HelveticaNeueCyr-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FEFD1C3C103600FC62E2 /* HelveticaNeueCyr-Medium.otf */; settings = {ASSET_TAGS = (); }; };
-		DB67FF0B1C3C103600FC62E2 /* HelveticaNeueCyr-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FEFE1C3C103600FC62E2 /* HelveticaNeueCyr-Roman.otf */; settings = {ASSET_TAGS = (); }; };
-		DB67FF0C1C3C103600FC62E2 /* HelveticaNeueCyr-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FEFF1C3C103600FC62E2 /* HelveticaNeueCyr-Thin.otf */; settings = {ASSET_TAGS = (); }; };
-		DB67FF0D1C3C103600FC62E2 /* HelveticaNeueCyr-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FF001C3C103600FC62E2 /* HelveticaNeueCyr-ThinItalic.otf */; settings = {ASSET_TAGS = (); }; };
-		DB67FF0E1C3C103600FC62E2 /* HelveticaNeueCyr-UltraLight_0.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FF011C3C103600FC62E2 /* HelveticaNeueCyr-UltraLight_0.otf */; settings = {ASSET_TAGS = (); }; };
-		DB67FF0F1C3C103600FC62E2 /* HelveticaNeueCyr-UltraLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FF021C3C103600FC62E2 /* HelveticaNeueCyr-UltraLightItalic.otf */; settings = {ASSET_TAGS = (); }; };
-		DB67FF111C3C19EC00FC62E2 /* MyriadPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FF101C3C19EC00FC62E2 /* MyriadPro-Regular.otf */; settings = {ASSET_TAGS = (); }; };
-		DB67FF141C3C307E00FC62E2 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB67FF131C3C307E00FC62E2 /* SignUpViewController.m */; settings = {ASSET_TAGS = (); }; };
-		DB67FF171C3D591D00FC62E2 /* LoginModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB67FF161C3D591D00FC62E2 /* LoginModelViewController.m */; settings = {ASSET_TAGS = (); }; };
-		DBDC1C2B1C400583003A8507 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = DBDC1C2A1C400583003A8507 /* Podfile */; settings = {ASSET_TAGS = (); }; };
-		DBDC1C301C40EB05003A8507 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBDC1C2E1C40EB05003A8507 /* SWRevealViewController.m */; settings = {ASSET_TAGS = (); }; };
+		DB67FED91C3C0BA800FC62E2 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB67FED81C3C0BA800FC62E2 /* LoginViewController.m */; };
+		DB67FF031C3C103600FC62E2 /* HelveticaNeueCyr-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FEF61C3C103600FC62E2 /* HelveticaNeueCyr-Black.otf */; };
+		DB67FF041C3C103600FC62E2 /* HelveticaNeueCyr-BlackItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FEF71C3C103600FC62E2 /* HelveticaNeueCyr-BlackItalic.otf */; };
+		DB67FF051C3C103600FC62E2 /* HelveticaNeueCyr-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FEF81C3C103600FC62E2 /* HelveticaNeueCyr-Bold.otf */; };
+		DB67FF061C3C103600FC62E2 /* HelveticaNeueCyr-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FEF91C3C103600FC62E2 /* HelveticaNeueCyr-BoldItalic.otf */; };
+		DB67FF071C3C103600FC62E2 /* HelveticaNeueCyr-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FEFA1C3C103600FC62E2 /* HelveticaNeueCyr-Italic.otf */; };
+		DB67FF081C3C103600FC62E2 /* HelveticaNeueCyr-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FEFB1C3C103600FC62E2 /* HelveticaNeueCyr-Light.otf */; };
+		DB67FF091C3C103600FC62E2 /* HelveticaNeueCyr-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FEFC1C3C103600FC62E2 /* HelveticaNeueCyr-LightItalic.otf */; };
+		DB67FF0A1C3C103600FC62E2 /* HelveticaNeueCyr-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FEFD1C3C103600FC62E2 /* HelveticaNeueCyr-Medium.otf */; };
+		DB67FF0B1C3C103600FC62E2 /* HelveticaNeueCyr-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FEFE1C3C103600FC62E2 /* HelveticaNeueCyr-Roman.otf */; };
+		DB67FF0C1C3C103600FC62E2 /* HelveticaNeueCyr-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FEFF1C3C103600FC62E2 /* HelveticaNeueCyr-Thin.otf */; };
+		DB67FF0D1C3C103600FC62E2 /* HelveticaNeueCyr-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FF001C3C103600FC62E2 /* HelveticaNeueCyr-ThinItalic.otf */; };
+		DB67FF0E1C3C103600FC62E2 /* HelveticaNeueCyr-UltraLight_0.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FF011C3C103600FC62E2 /* HelveticaNeueCyr-UltraLight_0.otf */; };
+		DB67FF0F1C3C103600FC62E2 /* HelveticaNeueCyr-UltraLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FF021C3C103600FC62E2 /* HelveticaNeueCyr-UltraLightItalic.otf */; };
+		DB67FF111C3C19EC00FC62E2 /* MyriadPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FF101C3C19EC00FC62E2 /* MyriadPro-Regular.otf */; };
+		DB67FF141C3C307E00FC62E2 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB67FF131C3C307E00FC62E2 /* SignUpViewController.m */; };
+		DB67FF171C3D591D00FC62E2 /* LoginModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB67FF161C3D591D00FC62E2 /* LoginModelViewController.m */; };
+		DBDC1C2B1C400583003A8507 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = DBDC1C2A1C400583003A8507 /* Podfile */; };
+		DBDC1C301C40EB05003A8507 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBDC1C2E1C40EB05003A8507 /* SWRevealViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -294,7 +294,7 @@
 				TargetAttributes = {
 					DB67FEB51C3BD8FB00FC62E2 = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = 9W968RZS7A;
+						DevelopmentTeam = FY284969S6;
 					};
 				};
 			};
@@ -527,7 +527,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Cupsters/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.reutskiy.cupsters;
+				PRODUCT_BUNDLE_IDENTIFIER = com.reutskiy.Cupsters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -540,7 +540,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Cupsters/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.reutskiy.cupsters;
+				PRODUCT_BUNDLE_IDENTIFIER = com.reutskiy.Cupsters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
