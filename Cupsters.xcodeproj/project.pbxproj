@@ -294,7 +294,7 @@
 				TargetAttributes = {
 					DB67FEB51C3BD8FB00FC62E2 = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = FY284969S6;
+						DevelopmentTeam = 9W968RZS7A;
 					};
 				};
 			};
@@ -527,7 +527,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Cupsters/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.reutskiy.Cupsters;
+				PRODUCT_BUNDLE_IDENTIFIER = com.reutskiy.cupsters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -540,7 +540,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Cupsters/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.reutskiy.Cupsters;
+				PRODUCT_BUNDLE_IDENTIFIER = com.reutskiy.cupsters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
