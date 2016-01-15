@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A44AC9C1C498CAA00F10D2E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44AC991C498CAA00F10D2E /* FBSDKCoreKit.framework */; };
+		3A44AC9D1C498CAA00F10D2E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44AC9A1C498CAA00F10D2E /* FBSDKLoginKit.framework */; };
+		3A44AC9E1C498CAA00F10D2E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44AC9B1C498CAA00F10D2E /* FBSDKShareKit.framework */; };
+		3A44ACA11C49917000F10D2E /* libAFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44AC9F1C49917000F10D2E /* libAFNetworking.a */; };
+		3A44ACA21C49917000F10D2E /* libVK-ios-sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44ACA01C49917000F10D2E /* libVK-ios-sdk.a */; };
 		D29AE48A6D499E64286DB83E /* libPods-Cupsters.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FD21CA9A973FF164B7FBFE4 /* libPods-Cupsters.a */; };
 		DB671F3C1C3DCFA0008C1408 /* ListPlacesImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F3B1C3DCFA0008C1408 /* ListPlacesImagesViewController.m */; };
 		DB671F3F1C3DD39F008C1408 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F3E1C3DD39F008C1408 /* Constants.m */; };
@@ -44,6 +49,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A44AC991C498CAA00F10D2E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		3A44AC9A1C498CAA00F10D2E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		3A44AC9B1C498CAA00F10D2E /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		3A44AC9F1C49917000F10D2E /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "Pods/../build/Debug-iphoneos/libAFNetworking.a"; sourceTree = "<group>"; };
+		3A44ACA01C49917000F10D2E /* libVK-ios-sdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libVK-ios-sdk.a"; path = "Pods/../build/Debug-iphoneos/libVK-ios-sdk.a"; sourceTree = "<group>"; };
 		3FD21CA9A973FF164B7FBFE4 /* libPods-Cupsters.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cupsters.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAB1AEDCFE52DD16B159BD48 /* Pods-Cupsters.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cupsters.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cupsters/Pods-Cupsters.release.xcconfig"; sourceTree = "<group>"; };
 		DB671F3A1C3DCF9F008C1408 /* ListPlacesImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListPlacesImagesViewController.h; sourceTree = "<group>"; };
@@ -101,7 +111,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A44ACA11C49917000F10D2E /* libAFNetworking.a in Frameworks */,
+				3A44ACA21C49917000F10D2E /* libVK-ios-sdk.a in Frameworks */,
+				3A44AC9E1C498CAA00F10D2E /* FBSDKShareKit.framework in Frameworks */,
 				D29AE48A6D499E64286DB83E /* libPods-Cupsters.a in Frameworks */,
+				3A44AC9C1C498CAA00F10D2E /* FBSDKCoreKit.framework in Frameworks */,
+				3A44AC9D1C498CAA00F10D2E /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +126,11 @@
 		01BF79CAEC332CDC20301AC9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3A44AC9F1C49917000F10D2E /* libAFNetworking.a */,
+				3A44ACA01C49917000F10D2E /* libVK-ios-sdk.a */,
+				3A44AC991C498CAA00F10D2E /* FBSDKCoreKit.framework */,
+				3A44AC9A1C498CAA00F10D2E /* FBSDKLoginKit.framework */,
+				3A44AC9B1C498CAA00F10D2E /* FBSDKShareKit.framework */,
 				3FD21CA9A973FF164B7FBFE4 /* libPods-Cupsters.a */,
 			);
 			name = Frameworks;
@@ -525,8 +545,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Cupsters/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.reutskiy.cupsters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -538,8 +566,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Cupsters/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.reutskiy.cupsters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

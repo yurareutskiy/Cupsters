@@ -68,4 +68,64 @@
     [self presentViewController:vc animated:true completion:nil];
 }
 
+#pragma mark Buttons
+
+- (IBAction)withVK:(UIButton *)sender {
+    VKSdk.wakeUpSession(scope) { (state, error) -> Void in
+        if (state == VKAuthorizationState.Authorized) {
+            
+            print("here i am 1")
+            print(self.defaults.objectForKey("token"))
+            print(state)
+            
+            
+        } else if (state == VKAuthorizationState.Initialized) {
+            
+            print("here i am 2")
+            self.firstLog()
+            
+        } else if (error != nil) {
+            
+            print("here i am 3")
+            print(error)
+            
+        }
+    }
+}
+
+- (IBAction)withFB:(UIButton *)sender {
+        FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+        [login
+         logInWithReadPermissions: @[@"public_profile", @"email", @"user_friends"]
+         fromViewController:self
+         handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+             if (error) {
+                 NSLog(@"Process error");
+             } else if (result.isCancelled) {
+                 NSLog(@"Cancelled");
+             } else {
+                 NSLog(@"Logged in");
+                 if ([FBSDKAccessToken currentAccessToken]) {
+                     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
+                                                   initWithGraphPath:@"/me"
+                                                   parameters:@{@"fields": @"id, first_name, last_name, email"}
+                                                   HTTPMethod:@"GET"];
+                     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,
+                                                           NSDictionary *result,
+                                                           NSError *error) {
+                         if (!error) {
+                             NSLog(@"fetched email:%@", result[@"email"]);
+                             NSLog(@"fetched first_name:%@", result[@"first_name"]);
+                             NSLog(@"fetched id:%@", result[@"id"]);
+                             NSLog(@"fetched last_name:%@", result[@"last_name"]);
+                         }
+                         else {
+                             NSLog(@"test: %@", error);
+                         }
+                     }];
+                 }
+             }
+         }];
+    }
+
 @end

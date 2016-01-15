@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="O1r-34-39h">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="O1r-34-39h">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -93,7 +93,7 @@
                                         </connections>
                                     </button>
                                     <view alpha="0.69999999999999996" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U8F-I0-dLC" userLabel="line-email">
-                                        <rect key="frame" x="0.0" y="207.5" width="600" height="0.5"/>
+                                        <rect key="frame" x="0.0" y="208" width="600" height="0.0"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="0.5" id="X8c-0g-93P"/>
@@ -110,7 +110,7 @@
                                         </connections>
                                     </textField>
                                     <view alpha="0.69999998807907104" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Te4-18-0vM" userLabel="line-email">
-                                        <rect key="frame" x="0.0" y="249.5" width="600" height="0.5"/>
+                                        <rect key="frame" x="0.0" y="250" width="600" height="0.0"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="0.5" id="1h0-94-UIJ"/>
@@ -127,7 +127,7 @@
                                         </connections>
                                     </textField>
                                     <view alpha="0.69999998807907104" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wUa-nQ-vaw" userLabel="line-email">
-                                        <rect key="frame" x="0.0" y="291.5" width="600" height="0.5"/>
+                                        <rect key="frame" x="0.0" y="292" width="600" height="0.0"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="0.5" id="AL5-my-Js8"/>
@@ -144,7 +144,7 @@
                                         </connections>
                                     </textField>
                                     <view alpha="0.69999998807907104" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G23-3h-8v9" userLabel="line-email">
-                                        <rect key="frame" x="0.0" y="333.5" width="600" height="0.5"/>
+                                        <rect key="frame" x="0.0" y="334" width="600" height="0.0"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="0.5" id="qqH-uW-I77"/>
@@ -263,8 +263,8 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
                                                     <color key="backgroundColor" red="0.16078431372549018" green="0.17254901960784313" blue="0.18823529411764706" alpha="1" colorSpace="calibratedRGB"/>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="КОФЕЙНЯ БЕЗ ФОНА" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="srW-Gg-ydp">
-                                                    <rect key="frame" x="208.5" y="82" width="183.5" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="КОФЕЙНЯ БЕЗ ФОНА" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="srW-Gg-ydp">
+                                                    <rect key="frame" x="209" y="82" width="183" height="16"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeueCyr-Bold" family="HelveticaNeueCyr" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -674,7 +674,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view alpha="0.69999998807907104" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fl1-op-RJk" userLabel="line-email">
-                                        <rect key="frame" x="0.0" y="214.5" width="600" height="0.5"/>
+                                        <rect key="frame" x="0.0" y="215" width="600" height="0.0"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AXV-nJ-6ub">
@@ -688,7 +688,7 @@
                                         </connections>
                                     </textField>
                                     <view alpha="0.69999998807907104" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xt6-Tj-WoE" userLabel="line-email">
-                                        <rect key="frame" x="0.0" y="268.5" width="600" height="0.5"/>
+                                        <rect key="frame" x="0.0" y="269" width="600" height="0.0"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Пароль" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YzY-SX-e6e">
@@ -727,6 +727,9 @@
                                         <state key="normal" title="Войти через VK" backgroundImage="sign_up_bg_empty">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="withVK:" destination="Nd9-cO-IR4" eventType="touchUpInside" id="Wym-nq-MN2"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3lb-pK-iJA">
                                         <rect key="frame" x="211" y="469" width="178" height="42"/>
@@ -734,6 +737,9 @@
                                         <state key="normal" title="Войти через FB" backgroundImage="sign_up_bg_empty">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="withFB:" destination="Nd9-cO-IR4" eventType="touchUpInside" id="01d-hx-Xm4"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
