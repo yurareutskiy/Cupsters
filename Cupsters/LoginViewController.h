@@ -13,7 +13,7 @@
 #import <FBSDKShareKit/FBSDKShareKit.h>
 #import <VKSdk.h>
 
-@interface LoginViewController : LoginModelViewController
+@interface LoginViewController : LoginModelViewController<VKSdkDelegate>
 
 @property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *fieldsOutlet;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollViewOutlet;
@@ -27,5 +27,7 @@
 
 - (IBAction)withVK:(UIButton *)sender;
 - (IBAction)withFB:(UIButton *)sender;
+
+- (void)firstVK;
 
 @end

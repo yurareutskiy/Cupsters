@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A0024E21C4A8FFF00C248D2 /* VKSdk+CustomAuthorizationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A0024E11C4A8FFF00C248D2 /* VKSdk+CustomAuthorizationDelegate.m */; };
 		3A44AC9C1C498CAA00F10D2E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44AC991C498CAA00F10D2E /* FBSDKCoreKit.framework */; };
 		3A44AC9D1C498CAA00F10D2E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44AC9A1C498CAA00F10D2E /* FBSDKLoginKit.framework */; };
 		3A44AC9E1C498CAA00F10D2E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44AC9B1C498CAA00F10D2E /* FBSDKShareKit.framework */; };
@@ -49,6 +50,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A0024E01C4A8FFF00C248D2 /* VKSdk+CustomAuthorizationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "VKSdk+CustomAuthorizationDelegate.h"; sourceTree = "<group>"; };
+		3A0024E11C4A8FFF00C248D2 /* VKSdk+CustomAuthorizationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "VKSdk+CustomAuthorizationDelegate.m"; sourceTree = "<group>"; };
 		3A44AC991C498CAA00F10D2E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		3A44AC9A1C498CAA00F10D2E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		3A44AC9B1C498CAA00F10D2E /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -222,6 +225,8 @@
 				DB671F3E1C3DD39F008C1408 /* Constants.m */,
 				DB671F401C3DEA07008C1408 /* UIColor+HEX.h */,
 				DB671F411C3DEA07008C1408 /* UIColor+HEX.m */,
+				3A0024E01C4A8FFF00C248D2 /* VKSdk+CustomAuthorizationDelegate.h */,
+				3A0024E11C4A8FFF00C248D2 /* VKSdk+CustomAuthorizationDelegate.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -428,6 +433,7 @@
 				DB67FEBE1C3BD8FB00FC62E2 /* AppDelegate.m in Sources */,
 				DB67FEC71C3BD8FB00FC62E2 /* Cupsters.xcdatamodeld in Sources */,
 				DB67FEBB1C3BD8FB00FC62E2 /* main.m in Sources */,
+				3A0024E21C4A8FFF00C248D2 /* VKSdk+CustomAuthorizationDelegate.m in Sources */,
 				DB6733BF1C41022100BA7832 /* Plan.m in Sources */,
 				DB671F3C1C3DCFA0008C1408 /* ListPlacesImagesViewController.m in Sources */,
 				DB671F4B1C3EE5F7008C1408 /* MenuRevealViewController.m in Sources */,

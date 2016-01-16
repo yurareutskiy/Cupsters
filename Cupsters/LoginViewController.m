@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "Constants.h"
+#import "VKSdk+CustomAuthorizationDelegate.h"
 
 @interface LoginViewController ()
 
@@ -21,6 +22,8 @@
     self.scrollView = self.scrollViewOutlet;
     
     [super viewDidLoad];
+    
+    [VKSdk initializeWithAppId:@"5229696"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -28,8 +31,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)vkSdkAccessAuthorizationFinishedWithResult:(VKAuthorizationResult*)result {
+    
+}
 
+- (void)vkSdkUserAuthorizationFailed {
+    
+}
 
+#pragma mark - Voids
+
+- (void)firstVK {
+    [VKSdk authorize:@[@"audio"]];
+}
 
 #pragma mark - Text field actions
 
@@ -68,16 +82,16 @@
     [self presentViewController:vc animated:true completion:nil];
 }
 
-#pragma mark Buttons
+#pragma mark - Buttons
 
 - (IBAction)withVK:(UIButton *)sender {
     [VKSdk wakeUpSession:@[@"audio"] completeBlock:^(VKAuthorizationState state, NSError *error) {
         if (error) {
             NSLog(@"fetched error:%@", error);
         } else if (state == VKAuthorizationAuthorized) {
-            
+            NSLog(@"I'm here");
         } else if (state == VKAuthorizationInitialized) {
-            
+            self.firstVK;
         }
     }];
 }
