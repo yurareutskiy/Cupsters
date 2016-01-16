@@ -51,9 +51,11 @@
 		<string>fb-messenger-api</string>
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
-        <string>vkauthorize</string>
-        <string>vk</string>
-        <string>vk-share</string>
+		<string>vkauthorize</string>
+		<string>vk</string>
+		<string>vk-share</string>
+		<string>googlechromes</string>
+		<string>comgooglemaps</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
@@ -84,6 +86,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Location is required</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location is required</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>HelveticaNeueCyr-Black.otf</string>

@@ -30,4 +30,12 @@
 
 - (void)firstVK;
 
+- (void)vkSdkAccessAuthorizationFinishedWithResult:(VKAuthorizationResult*)result;
+- (void)vkSdkUserAuthorizationFailed:(NSError*)error;
+- (void)vkSdkShouldPresentViewController:(UIViewController*)controller;
+- (void)vkSdkNeedCaptchaEnter:(VKError*)captchaError;
+- (void)vkSdkTokenHasExpired:(VKAccessToken*)expiredToken;
+- (void)vkSdkUserDeniedAccess:(VKError*)authorizationError;
+- (void)vkSdkReceivedNewToken:(VKAccessToken*)newToken;
+
 @end

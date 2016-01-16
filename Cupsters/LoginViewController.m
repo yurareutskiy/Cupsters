@@ -32,6 +32,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - VKSDK Delegate
+
 - (void)vkSdkAccessAuthorizationFinishedWithResult:(VKAuthorizationResult*)result {
     NSLog(@"vkSdkAccessAuthorizationFinishedWithResult");
     NSLog(@"%@", result.user.first_name);
