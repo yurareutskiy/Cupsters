@@ -23,7 +23,8 @@
     
     [super viewDidLoad];
     
-    [VKSdk initializeWithAppId:@"5229696"];
+    [[VKSdk initializeWithAppId:@"5229696"] registerDelegate:self];
+    [[VKSdk instance] setUiDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -32,17 +33,40 @@
 }
 
 - (void)vkSdkAccessAuthorizationFinishedWithResult:(VKAuthorizationResult*)result {
-    
+    NSLog(@"vkSdkAccessAuthorizationFinishedWithResult");
+    NSLog(@"%@", result.user.first_name);
+    NSLog(@"%@", result.user.last_name);
+    NSLog(@"%@", result.token.userId);
+    NSLog(@"%@", result.token.email);
 }
 
-- (void)vkSdkUserAuthorizationFailed {
-    
+- (void)vkSdkUserAuthorizationFailed:(NSError*)error {
+    NSLog(@"vkSdkUserAuthorizationFailed - %@", error);
+}
+
+- (void)vkSdkShouldPresentViewController:(UIViewController*)controller {
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+- (void)vkSdkNeedCaptchaEnter:(VKError*)captchaError {
+    NSLog(@"vkSdkNeedCaptchaEnter - %@", captchaError);
+}
+- (void)vkSdkTokenHasExpired:(VKAccessToken*)expiredToken {
+    NSLog(@"vkSdkTokenHasExpired - %@", expiredToken);
+}
+- (void)vkSdkUserDeniedAccess:(VKError*)authorizationError {
+    NSLog(@"vkSdkUserDeniedAccess - %@", authorizationError);
+}
+- (void)vkSdkReceivedNewToken:(VKAccessToken*)newToken {
+    NSLog(@"vkSdkReceivedNewToken - %@", newToken);
+//    defaults.setObject(newToken, forKey: "token")
+//    server.checkTokenOnServer(newToken.accessToken, user: defaults.objectForKey("user") as! String, deviceNum: deviceInfo)
 }
 
 #pragma mark - Voids
 
 - (void)firstVK {
-    [VKSdk authorize:@[@"audio"]];
+    [VKSdk authorize:@[@"audio", @"photos", @"pages", @"messages", @"stats", @"wall", @"questions", @"email"]];
 }
 
 #pragma mark - Text field actions
@@ -89,9 +113,9 @@
         if (error) {
             NSLog(@"fetched error:%@", error);
         } else if (state == VKAuthorizationAuthorized) {
-            NSLog(@"I'm here");
-        } else if (state == VKAuthorizationInitialized) {
             self.firstVK;
+        } else if (state == VKAuthorizationInitialized) {
+            NSLog(@"I'm here");
         }
     }];
 }
