@@ -71,26 +71,15 @@
 #pragma mark Buttons
 
 - (IBAction)withVK:(UIButton *)sender {
-    VKSdk.wakeUpSession(scope) { (state, error) -> Void in
-        if (state == VKAuthorizationState.Authorized) {
+    [VKSdk wakeUpSession:@[@"audio"] completeBlock:^(VKAuthorizationState state, NSError *error) {
+        if (error) {
+            NSLog(@"fetched error:%@", error);
+        } else if (state == VKAuthorizationAuthorized) {
             
-            print("here i am 1")
-            print(self.defaults.objectForKey("token"))
-            print(state)
-            
-            
-        } else if (state == VKAuthorizationState.Initialized) {
-            
-            print("here i am 2")
-            self.firstLog()
-            
-        } else if (error != nil) {
-            
-            print("here i am 3")
-            print(error)
+        } else if (state == VKAuthorizationInitialized) {
             
         }
-    }
+    }];
 }
 
 - (IBAction)withFB:(UIButton *)sender {
@@ -120,7 +109,7 @@
                              NSLog(@"fetched last_name:%@", result[@"last_name"]);
                          }
                          else {
-                             NSLog(@"test: %@", error);
+                             NSLog(@"fetched error:%@", error);
                          }
                      }];
                  }
