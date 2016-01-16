@@ -242,8 +242,24 @@
                     <view key="view" contentMode="scaleToFill" id="CU6-4i-LAQ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eem-nD-C7i" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Eem-nD-C7i" firstAttribute="leading" secondItem="CU6-4i-LAQ" secondAttribute="leading" id="RvZ-ay-fhF"/>
+                            <constraint firstItem="Eem-nD-C7i" firstAttribute="top" secondItem="WAS-R9-Q09" secondAttribute="bottom" id="Zqd-3D-cku"/>
+                            <constraint firstItem="Eem-nD-C7i" firstAttribute="bottom" secondItem="xvh-w1-kdj" secondAttribute="top" id="kMY-i0-0Nf"/>
+                            <constraint firstAttribute="trailing" secondItem="Eem-nD-C7i" secondAttribute="trailing" id="zS5-Ek-hSb"/>
+                        </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="mapView_" destination="Eem-nD-C7i" id="HEN-Rx-oUr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZcD-hp-hdC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -353,6 +369,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="table" destination="R5q-sg-9cC" id="Wop-eW-yj2"/>
+                        <segue destination="p1N-Ai-hvW" kind="show" id="Oua-zc-tnb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gLq-5O-I4V" userLabel="First Responder" sceneMemberID="firstResponder"/>
