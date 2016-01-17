@@ -15,11 +15,13 @@ PODS:
   - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
   - GoogleMaps (1.10.3)
+  - HMSegmentedControl (1.5.2)
   - VK-ios-sdk (1.3.6)
 
 DEPENDENCIES:
   - AFNetworking (from `https://github.com/AFNetworking/AFNetworking`, tag `3.0.4`)
   - GoogleMaps
+  - HMSegmentedControl
   - VK-ios-sdk (from `https://github.com/VKCOM/vk-ios-sdk.git`, tag `1.3.6`)
 
 EXTERNAL SOURCES:
@@ -41,6 +43,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   GoogleMaps: 945e4ac3b74bcca3ddada51df256eb7beddb474d
+  HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
   VK-ios-sdk: c40f2ab5045f6bf97f57cc2dfb2d5e0c0b920fe6
 
 COCOAPODS: 0.39.0
