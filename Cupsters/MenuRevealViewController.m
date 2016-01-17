@@ -13,6 +13,7 @@
 
 @interface MenuRevealViewController ()
 
+@property (strong, nonatomic) UITapGestureRecognizer *tapRecognizer;
 @property (strong, nonatomic) User *user;
 
 @end
@@ -21,6 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
     
     self.revealViewController.delegate = self;
     
@@ -35,6 +38,16 @@
     self.userPlan.text = self.user.plan.name;
     self.userName.text = self.user.name;
     self.userName.adjustsFontSizeToFitWidth = true;
+    
+    _tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ClickTheImage:)];
+    [self.profileView addGestureRecognizer:_tapRecognizer];
+    _tapRecognizer.delegate = self;
+    
+}
+
+-(void)ClickTheImage:(id)sender
+{
+    [self performSegueWithIdentifier:@"goToProfile" sender:self];
 }
 
 - (void)didReceiveMemoryWarning {

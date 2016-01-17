@@ -11,6 +11,7 @@
 		3A08A36B1C4BCAC60094AB63 /* MapTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A08A36A1C4BCAC60094AB63 /* MapTableViewCell.m */; };
 		3A08A3711C4BDE720094AB63 /* CafeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A08A3701C4BDE720094AB63 /* CafeViewController.m */; };
 		3A08A3741C4BE51A0094AB63 /* CafeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A08A3731C4BE51A0094AB63 /* CafeTableViewCell.m */; };
+		3A08A3771C4BE9C20094AB63 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A08A3761C4BE9C20094AB63 /* ProfileViewController.m */; };
 		3A44AC9C1C498CAA00F10D2E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44AC991C498CAA00F10D2E /* FBSDKCoreKit.framework */; };
 		3A44AC9D1C498CAA00F10D2E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44AC9A1C498CAA00F10D2E /* FBSDKLoginKit.framework */; };
 		3A44AC9E1C498CAA00F10D2E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44AC9B1C498CAA00F10D2E /* FBSDKShareKit.framework */; };
@@ -63,6 +64,8 @@
 		3A08A3701C4BDE720094AB63 /* CafeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CafeViewController.m; sourceTree = "<group>"; };
 		3A08A3721C4BE51A0094AB63 /* CafeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CafeTableViewCell.h; sourceTree = "<group>"; };
 		3A08A3731C4BE51A0094AB63 /* CafeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CafeTableViewCell.m; sourceTree = "<group>"; };
+		3A08A3751C4BE9C20094AB63 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		3A08A3761C4BE9C20094AB63 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		3A44AC991C498CAA00F10D2E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		3A44AC9A1C498CAA00F10D2E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		3A44AC9B1C498CAA00F10D2E /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -284,6 +287,8 @@
 				3AFD2D451C4AB471004F8E72 /* MapViewController.m */,
 				3A08A36F1C4BDE720094AB63 /* CafeViewController.h */,
 				3A08A3701C4BDE720094AB63 /* CafeViewController.m */,
+				3A08A3751C4BE9C20094AB63 /* ProfileViewController.h */,
+				3A08A3761C4BE9C20094AB63 /* ProfileViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -461,6 +466,7 @@
 				DB67FEBB1C3BD8FB00FC62E2 /* main.m in Sources */,
 				3A0024E21C4A8FFF00C248D2 /* VKSdk+CustomAuthorizationDelegate.m in Sources */,
 				3AFD2D461C4AB471004F8E72 /* MapViewController.m in Sources */,
+				3A08A3771C4BE9C20094AB63 /* ProfileViewController.m in Sources */,
 				3A08A3711C4BDE720094AB63 /* CafeViewController.m in Sources */,
 				DB6733BF1C41022100BA7832 /* Plan.m in Sources */,
 				DB671F3C1C3DCFA0008C1408 /* ListPlacesImagesViewController.m in Sources */,

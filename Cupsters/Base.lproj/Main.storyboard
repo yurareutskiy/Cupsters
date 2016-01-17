@@ -445,6 +445,7 @@
                                             <outlet property="distance" destination="wLX-U0-FEI" id="yhg-91-SdF"/>
                                             <outlet property="placeName" destination="srW-Gg-ydp" id="tTh-PD-4wT"/>
                                             <outlet property="underground" destination="dq6-zL-dr2" id="vVi-R2-1to"/>
+                                            <segue destination="mWi-Nq-4Z9" kind="show" id="1zq-Ju-dnO"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -857,15 +858,65 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="280" height="600"/>
                     <connections>
+                        <outlet property="profileView" destination="mLi-pC-YWv" id="T0v-ee-kZh"/>
                         <outlet property="userInitials" destination="ZQy-j1-dZ0" id="RmA-RM-Tni"/>
                         <outlet property="userName" destination="oon-tR-Zsc" id="cbA-UA-ctw"/>
                         <outlet property="userPhoto" destination="Wsj-RL-dx2" id="45i-3G-QzD"/>
                         <outlet property="userPlan" destination="rrV-Wq-N2s" id="4Hc-aL-Wfx"/>
+                        <segue destination="mWi-Nq-4Z9" kind="presentation" identifier="goToProfile" id="2yf-KQ-YUB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fr8-ki-4ta" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2013" y="-306"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="Gle-ws-bJP">
+            <objects>
+                <viewController id="mWi-Nq-4Z9" customClass="ProfileViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="J2w-Js-Ytd"/>
+                        <viewControllerLayoutGuide type="bottom" id="Frl-Ng-jQq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FFY-Mn-1BE">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UUw-dQ-9F4">
+                                <rect key="frame" x="0.0" y="44" width="600" height="166"/>
+                                <color key="backgroundColor" red="0.29557850800000002" green="0.55602081969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IK1-0V-pSl">
+                                <rect key="frame" x="0.0" y="210" width="600" height="200"/>
+                                <color key="backgroundColor" red="0.3068490136" green="0.95686274510000002" blue="0.2648456743" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="Ad3-za-yhp"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jHO-Kf-7iH">
+                                <rect key="frame" x="0.0" y="410" width="600" height="190"/>
+                                <color key="backgroundColor" red="0.95686274510000002" green="0.45779427589999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="IK1-0V-pSl" firstAttribute="top" secondItem="UUw-dQ-9F4" secondAttribute="bottom" id="7ug-a9-DLr"/>
+                            <constraint firstItem="IK1-0V-pSl" firstAttribute="leading" secondItem="FFY-Mn-1BE" secondAttribute="leadingMargin" constant="-20" id="B4W-fS-bRp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jHO-Kf-7iH" secondAttribute="trailing" constant="-20" id="GVj-Do-LsQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="IK1-0V-pSl" secondAttribute="trailing" constant="-20" id="L0c-kj-Hp8"/>
+                            <constraint firstItem="IK1-0V-pSl" firstAttribute="top" secondItem="FFY-Mn-1BE" secondAttribute="top" constant="210" id="LU6-Aj-ccS"/>
+                            <constraint firstItem="IK1-0V-pSl" firstAttribute="trailing" secondItem="UUw-dQ-9F4" secondAttribute="trailing" id="U0F-SR-IoO"/>
+                            <constraint firstItem="jHO-Kf-7iH" firstAttribute="top" secondItem="IK1-0V-pSl" secondAttribute="bottom" id="ZNZ-sI-BIy"/>
+                            <constraint firstItem="UUw-dQ-9F4" firstAttribute="top" secondItem="J2w-Js-Ytd" secondAttribute="bottom" constant="44" id="eM6-bn-bda"/>
+                            <constraint firstItem="jHO-Kf-7iH" firstAttribute="leading" secondItem="FFY-Mn-1BE" secondAttribute="leadingMargin" constant="-20" id="mHf-d1-9Mv"/>
+                            <constraint firstItem="Frl-Ng-jQq" firstAttribute="top" secondItem="jHO-Kf-7iH" secondAttribute="bottom" id="o6g-hY-cSf"/>
+                            <constraint firstItem="IK1-0V-pSl" firstAttribute="leading" secondItem="UUw-dQ-9F4" secondAttribute="leading" id="uge-YB-Aub"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nd3-Ch-4NB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2845" y="-290"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="L1R-d3-NrT">
@@ -1124,4 +1175,7 @@
         <image name="sign_up_bg_empty" width="178" height="42"/>
         <image name="tariffs" width="21" height="20"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="1zq-Ju-dnO"/>
+    </inferredMetricsTieBreakers>
 </document>

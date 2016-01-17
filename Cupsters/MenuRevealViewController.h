@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "SWRevealViewController.h"
 
-@interface MenuRevealViewController : UIViewController <SWRevealViewControllerDelegate>
+@interface MenuRevealViewController : UIViewController <SWRevealViewControllerDelegate, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *userPhoto;
 @property (weak, nonatomic) IBOutlet UILabel *userName;
 @property (weak, nonatomic) IBOutlet UILabel *userPlan;
 @property (weak, nonatomic) IBOutlet UILabel *userInitials;
+@property (strong, nonatomic) IBOutlet UIView *profileView;
 
 @end
