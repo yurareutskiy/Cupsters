@@ -13,6 +13,7 @@
 		3A08A3741C4BE51A0094AB63 /* CafeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A08A3731C4BE51A0094AB63 /* CafeTableViewCell.m */; };
 		3A08A3771C4BE9C20094AB63 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A08A3761C4BE9C20094AB63 /* ProfileViewController.m */; };
 		3A08A3791C4C07BF0094AB63 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A08A3781C4C07BF0094AB63 /* QuartzCore.framework */; };
+		3A08A37C1C4C0DA70094AB63 /* TariffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A08A37B1C4C0DA70094AB63 /* TariffViewController.m */; };
 		3A44AC9C1C498CAA00F10D2E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44AC991C498CAA00F10D2E /* FBSDKCoreKit.framework */; };
 		3A44AC9D1C498CAA00F10D2E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44AC9A1C498CAA00F10D2E /* FBSDKLoginKit.framework */; };
 		3A44AC9E1C498CAA00F10D2E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44AC9B1C498CAA00F10D2E /* FBSDKShareKit.framework */; };
@@ -68,6 +69,8 @@
 		3A08A3751C4BE9C20094AB63 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		3A08A3761C4BE9C20094AB63 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		3A08A3781C4C07BF0094AB63 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		3A08A37A1C4C0DA70094AB63 /* TariffViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TariffViewController.h; sourceTree = "<group>"; };
+		3A08A37B1C4C0DA70094AB63 /* TariffViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TariffViewController.m; sourceTree = "<group>"; };
 		3A44AC991C498CAA00F10D2E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		3A44AC9A1C498CAA00F10D2E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		3A44AC9B1C498CAA00F10D2E /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -293,6 +296,8 @@
 				3A08A3701C4BDE720094AB63 /* CafeViewController.m */,
 				3A08A3751C4BE9C20094AB63 /* ProfileViewController.h */,
 				3A08A3761C4BE9C20094AB63 /* ProfileViewController.m */,
+				3A08A37A1C4C0DA70094AB63 /* TariffViewController.h */,
+				3A08A37B1C4C0DA70094AB63 /* TariffViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -460,6 +465,7 @@
 				DB67FF171C3D591D00FC62E2 /* LoginModelViewController.m in Sources */,
 				DB67FED91C3C0BA800FC62E2 /* LoginViewController.m in Sources */,
 				DB67FF141C3C307E00FC62E2 /* SignUpViewController.m in Sources */,
+				3A08A37C1C4C0DA70094AB63 /* TariffViewController.m in Sources */,
 				DB671F3F1C3DD39F008C1408 /* Constants.m in Sources */,
 				DB671F451C3EC239008C1408 /* PlacePhotoTableViewCell.m in Sources */,
 				3A08A36B1C4BCAC60094AB63 /* MapTableViewCell.m in Sources */,
