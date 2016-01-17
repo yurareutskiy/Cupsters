@@ -558,16 +558,48 @@
                                     <constraint firstAttribute="bottom" secondItem="z6r-dS-FXS" secondAttribute="bottom" constant="8" id="gz4-UP-dBB"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eob-qP-HQO">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="40" sectionFooterHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="eob-qP-HQO">
                                 <rect key="frame" x="0.0" y="244" width="600" height="356"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cafeCell" id="PXM-YY-0Gm" customClass="CafeTableViewCell">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="40" width="600" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PXM-YY-0Gm" id="Os5-mc-50u">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cafeBack1.png" translatesAutoresizingMaskIntoConstraints="NO" id="TYE-rZ-azz">
+                                                    <rect key="frame" x="8" y="8" width="73" height="73"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="73" id="0XS-i5-c1c"/>
+                                                        <constraint firstAttribute="width" constant="73" id="6Xm-EH-goJ"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uNT-8b-zrx">
+                                                    <rect key="frame" x="492" y="25" width="100" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="w6M-lQ-GAC"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Капучино" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rcq-WZ-Njh">
+                                                    <rect key="frame" x="261" y="34" width="78" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="uNT-8b-zrx" secondAttribute="bottom" constant="16" id="Bt3-2h-Aih"/>
+                                                <constraint firstItem="Rcq-WZ-Njh" firstAttribute="centerX" secondItem="Os5-mc-50u" secondAttribute="centerX" id="IC2-n9-CUk"/>
+                                                <constraint firstItem="TYE-rZ-azz" firstAttribute="bottom" secondItem="Os5-mc-50u" secondAttribute="bottomMargin" id="LmH-7W-cU1"/>
+                                                <constraint firstItem="Rcq-WZ-Njh" firstAttribute="centerY" secondItem="Os5-mc-50u" secondAttribute="centerY" id="QWz-yp-z0W"/>
+                                                <constraint firstItem="TYE-rZ-azz" firstAttribute="leading" secondItem="Os5-mc-50u" secondAttribute="leadingMargin" id="biG-Rk-1Db"/>
+                                                <constraint firstItem="TYE-rZ-azz" firstAttribute="top" secondItem="Os5-mc-50u" secondAttribute="topMargin" id="fdN-VK-Y3w"/>
+                                                <constraint firstItem="uNT-8b-zrx" firstAttribute="top" secondItem="Os5-mc-50u" secondAttribute="topMargin" constant="17" id="uxv-ix-Zol"/>
+                                                <constraint firstItem="uNT-8b-zrx" firstAttribute="trailing" secondItem="Os5-mc-50u" secondAttribute="trailingMargin" id="xgH-fy-wxx"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <accessibility key="accessibilityConfiguration" identifier="cafeCell"/>
                                     </tableViewCell>

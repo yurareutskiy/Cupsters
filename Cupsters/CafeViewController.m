@@ -122,7 +122,7 @@
         UIView *viewHeader = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40.0)];
         [viewHeader setBackgroundColor:[UIColor clearColor]];
         
-        _segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(0, 0, viewHeader.frame.size.width, 40.0)];
+        _segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(-0.5, -0.5, viewHeader.frame.size.width + 1.0, 40.0 + 0.5)];
         _segmentedControl.sectionTitles = @[@"Кофе", @"Чай",@"Другое"];
         _segmentedControl.selectedSegmentIndex = 1;
         _segmentedControl.backgroundColor = [UIColor whiteColor];
@@ -132,6 +132,8 @@
         _segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
         _segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationUp;
         _segmentedControl.tag = 3;
+        _segmentedControl.layer.borderColor = [UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0].CGColor;
+        _segmentedControl.layer.borderWidth = 0.5f;
         
         [viewHeader addSubview:_segmentedControl];
         

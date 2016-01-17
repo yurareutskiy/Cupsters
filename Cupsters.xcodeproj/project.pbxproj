@@ -12,6 +12,7 @@
 		3A08A3711C4BDE720094AB63 /* CafeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A08A3701C4BDE720094AB63 /* CafeViewController.m */; };
 		3A08A3741C4BE51A0094AB63 /* CafeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A08A3731C4BE51A0094AB63 /* CafeTableViewCell.m */; };
 		3A08A3771C4BE9C20094AB63 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A08A3761C4BE9C20094AB63 /* ProfileViewController.m */; };
+		3A08A3791C4C07BF0094AB63 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A08A3781C4C07BF0094AB63 /* QuartzCore.framework */; };
 		3A44AC9C1C498CAA00F10D2E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44AC991C498CAA00F10D2E /* FBSDKCoreKit.framework */; };
 		3A44AC9D1C498CAA00F10D2E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44AC9A1C498CAA00F10D2E /* FBSDKLoginKit.framework */; };
 		3A44AC9E1C498CAA00F10D2E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44AC9B1C498CAA00F10D2E /* FBSDKShareKit.framework */; };
@@ -66,6 +67,7 @@
 		3A08A3731C4BE51A0094AB63 /* CafeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CafeTableViewCell.m; sourceTree = "<group>"; };
 		3A08A3751C4BE9C20094AB63 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		3A08A3761C4BE9C20094AB63 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		3A08A3781C4C07BF0094AB63 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3A44AC991C498CAA00F10D2E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		3A44AC9A1C498CAA00F10D2E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		3A44AC9B1C498CAA00F10D2E /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A08A3791C4C07BF0094AB63 /* QuartzCore.framework in Frameworks */,
 				3AFD2D481C4ABBB8004F8E72 /* CoreLocation.framework in Frameworks */,
 				3A44ACA11C49917000F10D2E /* libAFNetworking.a in Frameworks */,
 				3A44ACA21C49917000F10D2E /* libVK-ios-sdk.a in Frameworks */,
@@ -147,6 +150,7 @@
 		01BF79CAEC332CDC20301AC9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3A08A3781C4C07BF0094AB63 /* QuartzCore.framework */,
 				3AFD2D471C4ABBB8004F8E72 /* CoreLocation.framework */,
 				3A44AC9F1C49917000F10D2E /* libAFNetworking.a */,
 				3A44ACA01C49917000F10D2E /* libVK-ios-sdk.a */,
