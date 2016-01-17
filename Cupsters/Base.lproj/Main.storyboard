@@ -559,7 +559,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eob-qP-HQO">
-                                <rect key="frame" x="0.0" y="252" width="600" height="348"/>
+                                <rect key="frame" x="0.0" y="244" width="600" height="356"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cafeCell" id="PXM-YY-0Gm" customClass="CafeTableViewCell">
@@ -578,7 +578,7 @@
                         <constraints>
                             <constraint firstItem="eob-qP-HQO" firstAttribute="leading" secondItem="mmb-T4-C3Z" secondAttribute="leadingMargin" constant="-20" id="8rB-h3-EFJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="eob-qP-HQO" secondAttribute="trailing" constant="-20" id="9pX-We-pOK"/>
-                            <constraint firstItem="eob-qP-HQO" firstAttribute="top" secondItem="5UX-8h-iwY" secondAttribute="bottom" constant="8" id="DNu-DQ-AWl"/>
+                            <constraint firstItem="eob-qP-HQO" firstAttribute="top" secondItem="5UX-8h-iwY" secondAttribute="bottom" id="DNu-DQ-AWl"/>
                             <constraint firstItem="5UX-8h-iwY" firstAttribute="leading" secondItem="mmb-T4-C3Z" secondAttribute="leadingMargin" constant="-20" id="H1a-sb-NKr"/>
                             <constraint firstItem="eob-qP-HQO" firstAttribute="bottom" secondItem="mmb-T4-C3Z" secondAttribute="bottomMargin" id="T0H-86-rbE"/>
                             <constraint firstItem="5UX-8h-iwY" firstAttribute="top" secondItem="7WH-nw-EBr" secondAttribute="bottom" id="Y0P-ji-AfB"/>

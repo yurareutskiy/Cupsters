@@ -19,6 +19,9 @@
 @property (strong, nonatomic) UIBarButtonItem *menuButton;
 @property (strong, nonatomic) SWRevealViewController *reveal;
 
+@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) HMSegmentedControl *segmentedControl;
+
 @end
 
 @implementation CafeViewController
@@ -116,18 +119,60 @@
     
     if(section == 0) {
         
-        UIView *viewHeader = [[UIView alloc]initWithFrame:CGRectMake(10, 0, self.view.bounds.size.width-10, 28.0)]; //self.view.bounds.size.height)];
+        UIView *viewHeader = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40.0)];
         [viewHeader setBackgroundColor:[UIColor clearColor]];
         
-        UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Кофе", @"Чай",@"Другое"]];
-        segmentedControl.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.95];
-        [segmentedControl setFrame:CGRectMake(10, 0, viewHeader.frame.size.width, 28.0)]; //viewHeader.frame.size.height)];
-        [viewHeader addSubview:segmentedControl];
+        _segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(0, 0, viewHeader.frame.size.width, 40.0)];
+        _segmentedControl.sectionTitles = @[@"Кофе", @"Чай",@"Другое"];
+        _segmentedControl.selectedSegmentIndex = 1;
+        _segmentedControl.backgroundColor = [UIColor whiteColor];
+        _segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor grayColor]};
+        _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1]};
+        _segmentedControl.selectionIndicatorColor = [UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0];
+        _segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
+        _segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationUp;
+        _segmentedControl.tag = 3;
+        
+        [viewHeader addSubview:_segmentedControl];
         
         return viewHeader;
     }
     return nil;
 }
+
+// Tying up the segmented control to a scroll view
+
+
+
+//__weak typeof(self) weakSelf = self;
+//[self._segmentedControl4 setIndexChangeBlock:^(NSInteger index) {
+//    [weakSelf.scrollView scrollRectToVisible:CGRectMake(viewWidth * index, 0, viewWidth, 200) animated:YES];
+//}];
+
+//self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 310, viewWidth, 210)];
+//self.scrollView.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
+//self.scrollView.pagingEnabled = YES;
+//self.scrollView.showsHorizontalScrollIndicator = NO;
+//self.scrollView.contentSize = CGSizeMake(viewWidth * 3, 200);
+//self.scrollView.delegate = self;
+//[self.scrollView scrollRectToVisible:CGRectMake(viewWidth, 0, viewWidth, 200) animated:NO];
+//[self.view addSubview:self.scrollView];
+
+//UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, viewWidth, 210)];
+//[self setApperanceForLabel:label1];
+//label1.text = @"Worldwide";
+//[self.scrollView addSubview:label1];
+//
+//UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(viewWidth, 0, viewWidth, 210)];
+//[self setApperanceForLabel:label2];
+//label2.text = @"Local";
+//[self.scrollView addSubview:label2];
+//
+//UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(viewWidth * 2, 0, viewWidth, 210)];
+//[self setApperanceForLabel:label3];
+//label3.text = @"Headlines";
+//[self.scrollView addSubview:label3];
+
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 10;
