@@ -156,4 +156,7 @@
 }
 
 
+- (IBAction)goToMap:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"goToMap" sender:self];
+}
 @end

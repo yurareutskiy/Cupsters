@@ -11,5 +11,6 @@
 @interface ListPlacesImagesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *table;
+- (IBAction)goToMap:(UIButton *)sender;
 
 @end

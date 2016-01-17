@@ -7,24 +7,24 @@
 //
 
 #import "MapViewController.h"
-@import GoogleMaps;
 #import "Constants.h"
 #import "UIColor+HEX.h"
 #import "PlacePhotoTableViewCell.h"
 #import "MenuRevealViewController.h"
 #import "SWRevealViewController.h"
+#import "MapTableViewCell.h"
 
 @interface MapViewController ()
 
 @property (strong, nonatomic) MenuRevealViewController *menu;
 @property (strong, nonatomic) UIBarButtonItem *menuButton;
 @property (strong, nonatomic) SWRevealViewController *reveal;
-@property (strong, nonatomic) IBOutlet GMSMapView *mapView_;
 
 @end
 
 @implementation MapViewController {
     CLLocationManager *locationManager;
+    GMSMapView *mapView;
 }
 
 - (void)viewDidLoad {
@@ -43,22 +43,27 @@
                                  longitude:locationManager.location.coordinate.longitude
                                  zoom:15];
     
-    _mapView_ = [GMSMapView mapWithFrame:CGRectMake(_mapView_.frame.origin.x, _mapView_.frame.origin.y, _mapView_.frame.size.width, _mapView_.frame.size.height) camera:camera];
-    _mapView_.myLocationEnabled = YES;
-    self.view = _mapView_;
+    mapView = [GMSMapView mapWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height - _tableView.frame.size.height) camera:camera];
+    mapView.myLocationEnabled = YES;
+
+    [self.view addSubview:mapView];
     
     // Creates a marker in the center of the map.
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.position = CLLocationCoordinate2DMake(-33.86, 151.20);
     marker.title = @"Sydney";
     marker.snippet = @"Australia";
-    marker.map = _mapView_;
-    _mapView_.settings.myLocationButton = YES;
+    marker.map = mapView;
+    mapView.settings.myLocationButton = YES;
+    
     
     [self setNeedsStatusBarAppearanceUpdate];
     [self customNavBar];
     [self preferredStatusBarStyle];
     [self configureMenu];
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     
     // Do any additional setup after loading the view.
 }
@@ -136,6 +141,39 @@
     UIAlertView *errorAlert = [[UIAlertView alloc]
                                initWithTitle:@"Error" message:@"Failed to Get Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [errorAlert show];
+}
+
+#pragma mark - Table View
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:false];
+    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    NSLog(@"Select row at index %@", indexPath);
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 10;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    MapTableViewCell *cell = [[MapTableViewCell alloc] init];
+    [self.tableView dequeueReusableCellWithIdentifier:@"mapCell" forIndexPath:indexPath];
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    return [self configurePlace:cell At:indexPath.row];
+}
+
+-(MapTableViewCell*)configurePlace:(MapTableViewCell*)cell At:(NSInteger)row {
+    
+    [cell.backPhoto setImage:[UIImage imageNamed:@"cafeBack1"]];
+    [cell.name setText:@"КОФЕЙНЯ"];
+    [cell.underground setText:@"м. Парк Победы"];
+    [cell.distance setText:@"2 км."];
+    [cell.logo setImage:[UIImage imageNamed:@"cafeBack1"]];
+    
+    return cell;
 }
 
 /*
