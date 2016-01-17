@@ -155,7 +155,7 @@
     return 10;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+-(MapTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     MapTableViewCell *cell = [[MapTableViewCell alloc] init];
     [self.tableView dequeueReusableCellWithIdentifier:@"mapCell" forIndexPath:indexPath];

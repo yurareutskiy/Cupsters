@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CafeViewController : UITableViewController
+@interface CafeViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

@@ -128,6 +128,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.table deselectRowAtIndexPath:indexPath animated:false];
     [self.table reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [self performSegueWithIdentifier:@"goToCafe" sender:self];
     NSLog(@"Select row at index %@", indexPath);
 }
 
