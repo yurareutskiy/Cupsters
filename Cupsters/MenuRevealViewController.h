@@ -16,5 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *userPlan;
 @property (weak, nonatomic) IBOutlet UILabel *userInitials;
 @property (strong, nonatomic) IBOutlet UIView *profileView;
+@property (strong, nonatomic) IBOutlet UIView *tarifsView;
+@property (strong, nonatomic) IBOutlet UIView *couponsView;
+@property (strong, nonatomic) IBOutlet UIView *historyView;
 
 @end

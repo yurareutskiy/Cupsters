@@ -1,18 +1,18 @@
 //
-//  TariffViewController.m
+//  CouponViewController.m
 //  Cupsters
 //
-//  Created by Anton Scherbakov on 17/01/16.
+//  Created by Anton Scherbakov on 18/01/16.
 //  Copyright © 2016 Styleru. All rights reserved.
 //
 
-#import "TariffViewController.h"
+#import "CouponViewController.h"
 #import "Constants.h"
 #import "UIColor+HEX.h"
 #import "MenuRevealViewController.h"
 #import "SWRevealViewController.h"
 
-@interface TariffViewController ()
+@interface CouponViewController ()
 
 @property (strong, nonatomic) MenuRevealViewController *menu;
 @property (strong, nonatomic) UIBarButtonItem *menuButton;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation TariffViewController
+@implementation CouponViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,11 +30,6 @@
     [self preferredStatusBarStyle];
     [self configureMenu];
     // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -97,6 +92,12 @@
     navigationBarLabel.textAlignment = NSTextAlignmentCenter;
     
     return navigationBarLabel;
+}
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 /*
