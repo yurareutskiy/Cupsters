@@ -14,9 +14,6 @@
 @interface MenuRevealViewController ()
 
 @property (strong, nonatomic) UITapGestureRecognizer *tapRecognizerProfile;
-@property (strong, nonatomic) UITapGestureRecognizer *tapRecognizerTarifs;
-@property (strong, nonatomic) UITapGestureRecognizer *tapRecognizerCoupons;
-@property (strong, nonatomic) UITapGestureRecognizer *tapRecognizerHistory;
 @property (strong, nonatomic) User *user;
 
 @end
@@ -46,38 +43,11 @@
     [self.profileView addGestureRecognizer:_tapRecognizerProfile];
     _tapRecognizerProfile.delegate = self;
     
-    _tapRecognizerTarifs = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ClickTheTarifs:)];
-    [self.tarifsView addGestureRecognizer:_tapRecognizerTarifs];
-    _tapRecognizerTarifs.delegate = self;
-    
-    _tapRecognizerCoupons = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ClickTheCoupons:)];
-    [self.couponsView addGestureRecognizer:_tapRecognizerCoupons];
-    _tapRecognizerCoupons.delegate = self;
-    
-    _tapRecognizerHistory = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ClickTheHistory:)];
-    [self.historyView addGestureRecognizer:_tapRecognizerHistory];
-    _tapRecognizerHistory.delegate = self;
-    
 }
 
 -(void)ClickTheProfile:(id)sender
 {
     [self performSegueWithIdentifier:@"goToProfile" sender:self];
-}
-
--(void)ClickTheTarifs:(id)sender
-{
-    [self performSegueWithIdentifier:@"goToTarifs" sender:self];
-}
-
--(void)ClickTheCoupons:(id)sender
-{
-    [self performSegueWithIdentifier:@"goToCoupons" sender:self];
-}
-
--(void)ClickTheHistory:(id)sender
-{
-    [self performSegueWithIdentifier:@"goToHistory" sender:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -101,4 +71,15 @@
 }
 */
 
+- (IBAction)goToTarifs:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"goToTarifs" sender:self];
+}
+
+- (IBAction)goToCoupons:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"goToCoupons" sender:self];
+}
+
+- (IBAction)goToHistory:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"goToHistory" sender:self];
+}
 @end

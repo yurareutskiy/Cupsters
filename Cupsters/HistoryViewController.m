@@ -18,6 +18,7 @@
 @property (strong, nonatomic) MenuRevealViewController *menu;
 @property (strong, nonatomic) UIBarButtonItem *menuButton;
 @property (strong, nonatomic) SWRevealViewController *reveal;
+@property (strong, nonatomic) UIViewController *vc;
 
 @end
 
@@ -25,6 +26,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -72,12 +75,18 @@
     
     
     // Set menu button
-    self.menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu"]
+    self.menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"arrow"]
                                                        style:UIBarButtonItemStyleDone
-                                                      target:self.revealViewController
-                                                      action:@selector(revealToggle:)];
+                                                      target:self
+                                                      action:@selector(toList:)];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationItem.leftBarButtonItem = self.menuButton;
+    
+}
+
+- (void)toList:(id)sender {
+    
+    [self presentViewController:self.vc animated:true completion:nil];
     
 }
 
