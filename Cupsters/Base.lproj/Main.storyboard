@@ -788,6 +788,80 @@
             </objects>
             <point key="canvasLocation" x="5226" y="-283"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="0pO-ko-aEj">
+            <objects>
+                <viewController id="BHz-R8-rhb" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WeU-I9-PRB"/>
+                        <viewControllerLayoutGuide type="bottom" id="ckl-ZT-fdZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DjB-hV-9VM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_back" translatesAutoresizingMaskIntoConstraints="NO" id="iAO-lU-sJk">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <view clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zq7-3g-IBG">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" red="0.16078431369999999" green="0.17254901959999999" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Dx-Ta-b1e" customClass="CustomButtonSettings">
+                                <rect key="frame" x="220" y="500" width="160" height="50"/>
+                                <color key="backgroundColor" red="0.68627450980000004" green="0.54117647059999996" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="wVH-pp-Qdl"/>
+                                    <constraint firstAttribute="width" constant="160" id="xok-ZS-ewc"/>
+                                </constraints>
+                                <state key="normal" title="Готово">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rLN-vR-PNP">
+                                <rect key="frame" x="250" y="285" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="2Cq-1L-xzb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите код купона" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N4l-cf-bZf">
+                                <rect key="frame" x="220" y="125" width="160" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="rLN-vR-PNP" firstAttribute="centerX" secondItem="DjB-hV-9VM" secondAttribute="centerX" id="2IR-QR-1re"/>
+                            <constraint firstItem="Zq7-3g-IBG" firstAttribute="leading" secondItem="DjB-hV-9VM" secondAttribute="leadingMargin" constant="-20" id="67o-Mh-Aep"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="iAO-lU-sJk" secondAttribute="trailing" constant="-20" id="Flg-Hg-3lJ"/>
+                            <constraint firstItem="iAO-lU-sJk" firstAttribute="top" secondItem="DjB-hV-9VM" secondAttribute="topMargin" id="GOL-NI-djq"/>
+                            <constraint firstItem="N4l-cf-bZf" firstAttribute="centerX" secondItem="DjB-hV-9VM" secondAttribute="centerX" id="PzA-e7-hpW"/>
+                            <constraint firstItem="Zq7-3g-IBG" firstAttribute="bottom" secondItem="DjB-hV-9VM" secondAttribute="bottomMargin" id="QCS-8C-XFO"/>
+                            <constraint firstItem="ckl-ZT-fdZ" firstAttribute="top" secondItem="iAO-lU-sJk" secondAttribute="bottom" id="RvJ-SG-cUp"/>
+                            <constraint firstItem="iAO-lU-sJk" firstAttribute="leading" secondItem="DjB-hV-9VM" secondAttribute="leadingMargin" constant="-20" id="eAP-n3-9mq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Zq7-3g-IBG" secondAttribute="trailing" constant="-20" id="id0-Hp-9xB"/>
+                            <constraint firstItem="N4l-cf-bZf" firstAttribute="top" secondItem="WeU-I9-PRB" secondAttribute="bottom" constant="105" id="kyZ-QU-bpX"/>
+                            <constraint firstItem="rLN-vR-PNP" firstAttribute="centerY" secondItem="DjB-hV-9VM" secondAttribute="centerY" id="paV-lT-e89"/>
+                            <constraint firstItem="Zq7-3g-IBG" firstAttribute="top" secondItem="DjB-hV-9VM" secondAttribute="topMargin" id="tT3-4Y-XnV"/>
+                            <constraint firstItem="8Dx-Ta-b1e" firstAttribute="centerX" secondItem="DjB-hV-9VM" secondAttribute="centerX" id="tTK-ZX-gE3"/>
+                            <constraint firstItem="ckl-ZT-fdZ" firstAttribute="top" secondItem="8Dx-Ta-b1e" secondAttribute="bottom" constant="50" id="zcX-CJ-6zC"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7Dp-G3-hQK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5226" y="380"/>
+        </scene>
         <!--Cafe View Controller-->
         <scene sceneID="BMf-td-fMw">
             <objects>
