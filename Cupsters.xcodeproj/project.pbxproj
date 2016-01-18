@@ -21,6 +21,8 @@
 		3A44ACA11C49917000F10D2E /* libAFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44AC9F1C49917000F10D2E /* libAFNetworking.a */; };
 		3A44ACA21C49917000F10D2E /* libVK-ios-sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44ACA01C49917000F10D2E /* libVK-ios-sdk.a */; };
 		3AE55FA31C4D22E600025AB8 /* SingleTariffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE55FA21C4D22E600025AB8 /* SingleTariffViewController.m */; };
+		3AE55FA61C4D3DB100025AB8 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE55FA51C4D3DB100025AB8 /* HistoryViewController.m */; };
+		3AE55FA91C4D3E2100025AB8 /* HistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE55FA81C4D3E2100025AB8 /* HistoryTableViewCell.m */; };
 		3AFD2D461C4AB471004F8E72 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFD2D451C4AB471004F8E72 /* MapViewController.m */; };
 		3AFD2D481C4ABBB8004F8E72 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFD2D471C4ABBB8004F8E72 /* CoreLocation.framework */; };
 		D29AE48A6D499E64286DB83E /* libPods-Cupsters.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FD21CA9A973FF164B7FBFE4 /* libPods-Cupsters.a */; };
@@ -82,6 +84,10 @@
 		3A44ACA01C49917000F10D2E /* libVK-ios-sdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libVK-ios-sdk.a"; path = "Pods/../build/Debug-iphoneos/libVK-ios-sdk.a"; sourceTree = "<group>"; };
 		3AE55FA11C4D22E600025AB8 /* SingleTariffViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleTariffViewController.h; sourceTree = "<group>"; };
 		3AE55FA21C4D22E600025AB8 /* SingleTariffViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleTariffViewController.m; sourceTree = "<group>"; };
+		3AE55FA41C4D3DB100025AB8 /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
+		3AE55FA51C4D3DB100025AB8 /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
+		3AE55FA71C4D3E2100025AB8 /* HistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryTableViewCell.h; sourceTree = "<group>"; };
+		3AE55FA81C4D3E2100025AB8 /* HistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryTableViewCell.m; sourceTree = "<group>"; };
 		3AFD2D441C4AB471004F8E72 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		3AFD2D451C4AB471004F8E72 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		3AFD2D471C4ABBB8004F8E72 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -285,6 +291,8 @@
 				3A08A36A1C4BCAC60094AB63 /* MapTableViewCell.m */,
 				3A08A3721C4BE51A0094AB63 /* CafeTableViewCell.h */,
 				3A08A3731C4BE51A0094AB63 /* CafeTableViewCell.m */,
+				3AE55FA71C4D3E2100025AB8 /* HistoryTableViewCell.h */,
+				3AE55FA81C4D3E2100025AB8 /* HistoryTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -308,6 +316,8 @@
 				3A08A37E1C4C1B970094AB63 /* CustomButtonSettings.m */,
 				3AE55FA11C4D22E600025AB8 /* SingleTariffViewController.h */,
 				3AE55FA21C4D22E600025AB8 /* SingleTariffViewController.m */,
+				3AE55FA41C4D3DB100025AB8 /* HistoryViewController.h */,
+				3AE55FA51C4D3DB100025AB8 /* HistoryViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -476,12 +486,14 @@
 				DB67FF171C3D591D00FC62E2 /* LoginModelViewController.m in Sources */,
 				DB67FED91C3C0BA800FC62E2 /* LoginViewController.m in Sources */,
 				DB67FF141C3C307E00FC62E2 /* SignUpViewController.m in Sources */,
+				3AE55FA91C4D3E2100025AB8 /* HistoryTableViewCell.m in Sources */,
 				3A08A37C1C4C0DA70094AB63 /* TariffViewController.m in Sources */,
 				DB671F3F1C3DD39F008C1408 /* Constants.m in Sources */,
 				DB671F451C3EC239008C1408 /* PlacePhotoTableViewCell.m in Sources */,
 				3A08A36B1C4BCAC60094AB63 /* MapTableViewCell.m in Sources */,
 				DB671F421C3DEA07008C1408 /* UIColor+HEX.m in Sources */,
 				3A08A3741C4BE51A0094AB63 /* CafeTableViewCell.m in Sources */,
+				3AE55FA61C4D3DB100025AB8 /* HistoryViewController.m in Sources */,
 				DB67FEBE1C3BD8FB00FC62E2 /* AppDelegate.m in Sources */,
 				DB67FEC71C3BD8FB00FC62E2 /* Cupsters.xcdatamodeld in Sources */,
 				DB67FEBB1C3BD8FB00FC62E2 /* main.m in Sources */,

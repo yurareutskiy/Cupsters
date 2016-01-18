@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TlD-RE-heB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6Xc-D9-a6V">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -12,6 +12,9 @@
             <string>HelveticaNeueCyr-Bold</string>
         </mutableArray>
         <mutableArray key="MyriadPro-Regular.otf">
+            <string>MyriadPro-Regular</string>
+            <string>MyriadPro-Regular</string>
+            <string>MyriadPro-Regular</string>
             <string>MyriadPro-Regular</string>
             <string>MyriadPro-Regular</string>
             <string>MyriadPro-Regular</string>
@@ -364,7 +367,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZcD-hp-hdC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3657" y="-283"/>
+            <point key="canvasLocation" x="3473" y="-1083"/>
         </scene>
         <!--List Places Images View Controller-->
         <scene sceneID="qRs-0i-JoE">
@@ -490,7 +493,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gLq-5O-I4V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3657" y="449"/>
+            <point key="canvasLocation" x="3473" y="-306"/>
         </scene>
         <!--Tariff View Controller-->
         <scene sceneID="dNO-uP-GYP">
@@ -643,7 +646,110 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zLH-Le-v2f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4438" y="-283"/>
+            <point key="canvasLocation" x="1848" y="1217"/>
+        </scene>
+        <!--History View Controller-->
+        <scene sceneID="oli-5h-Wmc">
+            <objects>
+                <viewController id="ag3-EX-9S0" customClass="HistoryViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="51y-bD-MPT"/>
+                        <viewControllerLayoutGuide type="bottom" id="m63-BH-RaT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="elC-62-r8h">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5eV-uh-VoU">
+                                <rect key="frame" x="0.0" y="30" width="600" height="570"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.68627450980000004" green="0.54117647059999996" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="histCell" id="rpB-Vu-ZqP" customClass="HistoryTableViewCell">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rpB-Vu-ZqP" id="E5W-PL-pYa">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="99"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cappucino" translatesAutoresizingMaskIntoConstraints="NO" id="z4J-PF-ASe">
+                                                    <rect key="frame" x="18" y="10" width="80" height="80"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="80" id="I4b-00-yMP"/>
+                                                        <constraint firstAttribute="width" constant="80" id="doI-Bv-ID8"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Кофе Хауз" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RnS-no-dVw">
+                                                    <rect key="frame" x="148" y="7" width="88" height="20"/>
+                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="20"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Каппучино" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D71-CY-OiB">
+                                                    <rect key="frame" x="148" y="42" width="72" height="15"/>
+                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25 ДЕК 2015" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1G-Yx-SAs">
+                                                    <rect key="frame" x="482" y="39" width="100" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="200 мл" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ewx-jk-v40">
+                                                    <rect key="frame" x="148" y="58" width="44" height="15"/>
+                                                    <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="B1G-Yx-SAs" secondAttribute="trailing" constant="10" id="6Ds-1W-5S8"/>
+                                                <constraint firstItem="D71-CY-OiB" firstAttribute="top" secondItem="RnS-no-dVw" secondAttribute="bottom" constant="15" id="AYt-7S-YNM"/>
+                                                <constraint firstItem="ewx-jk-v40" firstAttribute="leading" secondItem="RnS-no-dVw" secondAttribute="leading" id="Bo9-wi-CSZ"/>
+                                                <constraint firstItem="D71-CY-OiB" firstAttribute="leading" secondItem="z4J-PF-ASe" secondAttribute="trailing" constant="50" id="FoY-sK-Wh1"/>
+                                                <constraint firstItem="D71-CY-OiB" firstAttribute="centerY" secondItem="E5W-PL-pYa" secondAttribute="centerY" id="SEM-hB-ARJ"/>
+                                                <constraint firstItem="B1G-Yx-SAs" firstAttribute="centerY" secondItem="E5W-PL-pYa" secondAttribute="centerY" id="Vkf-Vg-gG2"/>
+                                                <constraint firstItem="z4J-PF-ASe" firstAttribute="centerY" secondItem="E5W-PL-pYa" secondAttribute="centerY" id="iRk-Wg-llV"/>
+                                                <constraint firstItem="D71-CY-OiB" firstAttribute="leading" secondItem="RnS-no-dVw" secondAttribute="leading" id="jJu-dF-5Vn"/>
+                                                <constraint firstItem="z4J-PF-ASe" firstAttribute="leading" secondItem="E5W-PL-pYa" secondAttribute="leadingMargin" constant="10" id="pI8-vY-7A3"/>
+                                                <constraint firstItem="B1G-Yx-SAs" firstAttribute="trailing" secondItem="E5W-PL-pYa" secondAttribute="trailingMargin" constant="10" id="qvx-dN-at0"/>
+                                                <constraint firstItem="ewx-jk-v40" firstAttribute="top" secondItem="D71-CY-OiB" secondAttribute="bottom" constant="1" id="tr3-G0-n5a"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="qvx-dN-at0"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cafeName" destination="RnS-no-dVw" id="Hf0-Md-fbH"/>
+                                            <outlet property="coffeeName" destination="D71-CY-OiB" id="cjf-7j-W7B"/>
+                                            <outlet property="coffeePic" destination="z4J-PF-ASe" id="52f-As-Aeo"/>
+                                            <outlet property="coffeeVol" destination="ewx-jk-v40" id="TN3-yg-13E"/>
+                                            <outlet property="date" destination="B1G-Yx-SAs" id="i4W-Ve-kua"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5eV-uh-VoU" firstAttribute="leading" secondItem="elC-62-r8h" secondAttribute="leadingMargin" constant="-20" id="eW7-B8-7he"/>
+                            <constraint firstItem="5eV-uh-VoU" firstAttribute="top" secondItem="elC-62-r8h" secondAttribute="topMargin" constant="30" id="lIM-sM-1uX"/>
+                            <constraint firstItem="5eV-uh-VoU" firstAttribute="bottom" secondItem="elC-62-r8h" secondAttribute="bottomMargin" id="nWK-IN-Hi4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5eV-uh-VoU" secondAttribute="trailing" constant="-20" id="udN-lM-CRW"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ggm-fb-xAY"/>
+                    <connections>
+                        <outlet property="tableView" destination="5eV-uh-VoU" id="SfC-AD-iTE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cZH-e8-BiS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1848" y="1972"/>
         </scene>
         <!--Single Tariff View Controller-->
         <scene sceneID="WT4-3D-sZy">
@@ -786,7 +892,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vwd-LL-ulY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5226" y="-283"/>
+            <point key="canvasLocation" x="2633" y="1217"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="0pO-ko-aEj">
@@ -1000,7 +1106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="laB-Xe-uDd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4438" y="449"/>
+            <point key="canvasLocation" x="4358" y="-306"/>
         </scene>
         <!--Menu Reveal View Controller-->
         <scene sceneID="Lw8-z3-k9w">
@@ -1277,7 +1383,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fr8-ki-4ta" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2013" y="-306"/>
+            <point key="canvasLocation" x="2008" y="-306"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="Gle-ws-bJP">
@@ -1325,7 +1431,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nd3-Ch-4NB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2845" y="-290"/>
+            <point key="canvasLocation" x="1848" y="449"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="L1R-d3-NrT">
@@ -1534,7 +1640,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aLd-PN-kfV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1432" y="525"/>
+            <point key="canvasLocation" x="1848" y="-1083"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rRP-7W-m94">
@@ -1571,11 +1677,30 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a7u-sr-UzD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2653" y="461"/>
+            <point key="canvasLocation" x="2633" y="-306"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xZN-wp-vXJ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6Xc-D9-a6V" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="25x-Zs-zQL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ag3-EX-9S0" kind="relationship" relationship="rootViewController" id="uWK-Tg-HW3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nj0-sb-3oF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1036" y="1972"/>
         </scene>
     </scenes>
     <resources>
         <image name="cafeBack1.png" width="799" height="532"/>
+        <image name="cappucino" width="150" height="101"/>
         <image name="check" width="19" height="19"/>
         <image name="coupons" width="24" height="24"/>
         <image name="history" width="25" height="24"/>
