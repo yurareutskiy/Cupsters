@@ -496,25 +496,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_back" translatesAutoresizingMaskIntoConstraints="NO" id="R9D-AY-a28">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login_back" translatesAutoresizingMaskIntoConstraints="NO" id="R9D-AY-a28">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oMW-fK-ceO">
+                            <view alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oMW-fK-ceO">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" red="0.16078431369999999" green="0.17254901959999999" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Какие напитки вы предпочитаете?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UkK-bI-L4s">
-                                <rect key="frame" x="159" y="111" width="283" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Какие напитки вы предпочитаете?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UkK-bI-L4s">
+                                <rect key="frame" x="161" y="110" width="278" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CGB-82-BMf" customClass="CustomButtonSettings">
-                                <rect key="frame" x="98" y="166" width="100" height="100"/>
+                                <rect key="frame" x="170" y="170" width="100" height="100"/>
                                 <color key="backgroundColor" red="0.68627450980392157" green="0.54117647058823526" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="4rW-we-xlh"/>
-                                    <constraint firstAttribute="height" constant="100" id="BBj-nG-qIk"/>
+                                    <constraint firstAttribute="height" constant="100" id="Abb-Ll-rN0"/>
+                                    <constraint firstAttribute="width" constant="100" id="DNo-c1-jSH"/>
                                 </constraints>
                                 <state key="normal" image="normCup"/>
                                 <userDefinedRuntimeAttributes>
@@ -545,20 +545,51 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Стандартные" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJa-C6-7S2">
-                                <rect key="frame" x="93" y="327" width="111" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Стандартные" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJa-C6-7S2">
+                                <rect key="frame" x="167" y="278" width="107" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Расширенные" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N3b-f6-d1b">
-                                <rect key="frame" x="410" y="327" width="116" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Расширенные" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N3b-f6-d1b">
+                                <rect key="frame" x="324" y="278" width="113" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="U76-kp-sPF">
-                                <rect key="frame" x="101" y="356" width="95" height="96"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Pcc-AT-YVO">
+                                <rect key="frame" x="295" y="307" width="170" height="69"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="170" id="1fd-k7-cWF"/>
+                                    <constraint firstAttribute="height" constant="69" id="cc0-tF-Sph"/>
+                                </constraints>
+                                <string key="text">Стандартные и 
+любые другие напитки любого объема</string>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oLE-pP-ufK" customClass="CustomButtonSettings">
+                                <rect key="frame" x="330" y="170" width="100" height="100"/>
+                                <color key="backgroundColor" red="0.68627450980000004" green="0.54117647059999996" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="2HJ-1f-eTl"/>
+                                    <constraint firstAttribute="width" constant="100" id="hmb-eg-euG"/>
+                                </constraints>
+                                <state key="normal" image="longCup"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="U76-kp-sPF">
+                                <rect key="frame" x="173" y="307" width="95" height="96"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="96" id="IJJ-Er-cEz"/>
+                                    <constraint firstAttribute="width" constant="95" id="azK-zq-hLm"/>
+                                </constraints>
                                 <string key="text">Кофе
 Каппучино
 Эспрессо
@@ -569,39 +600,30 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" calendarEvent="YES"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Pcc-AT-YVO">
-                                <rect key="frame" x="383" y="356" width="170" height="69"/>
-                                <string key="text">Стандартные и 
-любые другие напитки любого объема</string>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oLE-pP-ufK" customClass="CustomButtonSettings">
-                                <rect key="frame" x="418" y="166" width="100" height="100"/>
-                                <color key="backgroundColor" red="0.68627450980000004" green="0.54117647059999996" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" image="longCup"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="50"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="oMW-fK-ceO" secondAttribute="trailing" constant="-20" id="0zM-kv-pIO"/>
-                            <constraint firstItem="oMW-fK-ceO" firstAttribute="leading" secondItem="Ow2-Ql-R2T" secondAttribute="leadingMargin" constant="-20" id="2m2-QZ-yNM"/>
-                            <constraint firstItem="R9D-AY-a28" firstAttribute="leading" secondItem="Ow2-Ql-R2T" secondAttribute="leading" id="CWn-bI-usr"/>
-                            <constraint firstItem="oMW-fK-ceO" firstAttribute="bottom" secondItem="Ow2-Ql-R2T" secondAttribute="bottomMargin" id="GiG-Lw-Bfc"/>
-                            <constraint firstItem="CGB-82-BMf" firstAttribute="centerX" secondItem="Ow2-Ql-R2T" secondAttribute="centerX" constant="-152" id="Q8l-mc-qoQ"/>
-                            <constraint firstItem="CGB-82-BMf" firstAttribute="centerY" secondItem="Ow2-Ql-R2T" secondAttribute="centerY" constant="-84" id="YR8-2T-sLv"/>
-                            <constraint firstItem="R9D-AY-a28" firstAttribute="top" secondItem="Ow2-Ql-R2T" secondAttribute="top" id="gNn-wj-KvA"/>
-                            <constraint firstItem="oMW-fK-ceO" firstAttribute="top" secondItem="Ow2-Ql-R2T" secondAttribute="topMargin" id="hEZ-oL-If4"/>
-                            <constraint firstAttribute="trailing" secondItem="R9D-AY-a28" secondAttribute="trailing" id="oVj-06-AeS"/>
-                            <constraint firstItem="R9D-AY-a28" firstAttribute="bottom" secondItem="1Mt-Wd-T7f" secondAttribute="top" id="yI5-ax-b2a"/>
+                            <constraint firstItem="oLE-pP-ufK" firstAttribute="centerY" secondItem="Ow2-Ql-R2T" secondAttribute="centerY" constant="-80" id="2yn-UO-lBU"/>
+                            <constraint firstItem="1Mt-Wd-T7f" firstAttribute="top" secondItem="Pcc-AT-YVO" secondAttribute="bottom" constant="224" id="4CK-Cc-bvR"/>
+                            <constraint firstItem="N3b-f6-d1b" firstAttribute="centerX" secondItem="oLE-pP-ufK" secondAttribute="centerX" id="7PN-bk-tDd"/>
+                            <constraint firstItem="UkK-bI-L4s" firstAttribute="centerX" secondItem="Ow2-Ql-R2T" secondAttribute="centerX" id="7R5-3N-NIe"/>
+                            <constraint firstItem="N3b-f6-d1b" firstAttribute="centerX" secondItem="Pcc-AT-YVO" secondAttribute="centerX" id="Bx9-J3-Xgr"/>
+                            <constraint firstItem="CGB-82-BMf" firstAttribute="centerX" secondItem="Ow2-Ql-R2T" secondAttribute="centerX" constant="-80" id="Fft-f9-3U4"/>
+                            <constraint firstItem="oLE-pP-ufK" firstAttribute="centerX" secondItem="Ow2-Ql-R2T" secondAttribute="centerX" constant="80" id="FkQ-MM-YrC"/>
+                            <constraint firstItem="N3b-f6-d1b" firstAttribute="top" secondItem="oLE-pP-ufK" secondAttribute="bottom" constant="8" id="L32-5r-wkf"/>
+                            <constraint firstItem="UkK-bI-L4s" firstAttribute="centerY" secondItem="Ow2-Ql-R2T" secondAttribute="centerY" constant="-180" id="LN4-9X-AZ0"/>
+                            <constraint firstItem="U76-kp-sPF" firstAttribute="top" secondItem="mJa-C6-7S2" secondAttribute="bottom" constant="8" id="Udh-MF-ioR"/>
+                            <constraint firstItem="mJa-C6-7S2" firstAttribute="top" secondItem="CGB-82-BMf" secondAttribute="bottom" constant="8" id="WMd-CM-U84"/>
+                            <constraint firstItem="mJa-C6-7S2" firstAttribute="centerX" secondItem="CGB-82-BMf" secondAttribute="centerX" id="lCq-bG-kC2"/>
+                            <constraint firstItem="U76-kp-sPF" firstAttribute="centerX" secondItem="mJa-C6-7S2" secondAttribute="centerX" id="pL6-Ki-drW"/>
+                            <constraint firstItem="Pcc-AT-YVO" firstAttribute="top" secondItem="N3b-f6-d1b" secondAttribute="bottom" constant="8" id="xrg-tr-fRr"/>
+                            <constraint firstItem="CGB-82-BMf" firstAttribute="centerY" secondItem="Ow2-Ql-R2T" secondAttribute="centerY" constant="-80" id="ymX-dd-N4Y"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="4CK-Cc-bvR"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <segue destination="MaS-Gm-tGh" kind="show" id="0Jj-Iy-P2W"/>
