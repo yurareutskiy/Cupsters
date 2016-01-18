@@ -77,12 +77,12 @@
     
     
     // Set menu button
-    self.menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu"]
-                                                       style:UIBarButtonItemStyleDone
-                                                      target:self.revealViewController
-                                                      action:@selector(revealToggle:)];
+//    self.menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu"]
+//                                                       style:UIBarButtonItemStyleDone
+//                                                      target:self.revealViewController
+//                                                      action:@selector(revealToggle:)];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.navigationItem.leftBarButtonItem = self.menuButton;
+//    self.navigationItem.leftBarButtonItem = self.menuButton;
     
 }
 

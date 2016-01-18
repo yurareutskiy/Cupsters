@@ -118,4 +118,11 @@
 }
 */
 
+- (IBAction)toStandart:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"standart" sender:self];
+}
+
+- (IBAction)toExpanded:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"expanded" sender:self];
+}
 @end

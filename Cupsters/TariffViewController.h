@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface TariffViewController : UIViewController
+- (IBAction)toStandart:(UIButton *)sender;
+- (IBAction)toExpanded:(UIButton *)sender;
 
 @end

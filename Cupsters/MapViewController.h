@@ -12,5 +12,6 @@
 
 @interface MapViewController : UIViewController<CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+- (IBAction)goToList:(UIButton *)sender;
 
 @end

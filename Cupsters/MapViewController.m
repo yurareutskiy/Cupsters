@@ -186,4 +186,7 @@
 }
 */
 
+- (IBAction)goToList:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"goToList" sender:self];
+}
 @end
