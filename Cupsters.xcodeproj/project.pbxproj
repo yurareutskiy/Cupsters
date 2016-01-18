@@ -20,6 +20,7 @@
 		3A44AC9E1C498CAA00F10D2E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44AC9B1C498CAA00F10D2E /* FBSDKShareKit.framework */; };
 		3A44ACA11C49917000F10D2E /* libAFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44AC9F1C49917000F10D2E /* libAFNetworking.a */; };
 		3A44ACA21C49917000F10D2E /* libVK-ios-sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44ACA01C49917000F10D2E /* libVK-ios-sdk.a */; };
+		3AE55FA31C4D22E600025AB8 /* SingleTariffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE55FA21C4D22E600025AB8 /* SingleTariffViewController.m */; };
 		3AFD2D461C4AB471004F8E72 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFD2D451C4AB471004F8E72 /* MapViewController.m */; };
 		3AFD2D481C4ABBB8004F8E72 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFD2D471C4ABBB8004F8E72 /* CoreLocation.framework */; };
 		D29AE48A6D499E64286DB83E /* libPods-Cupsters.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FD21CA9A973FF164B7FBFE4 /* libPods-Cupsters.a */; };
@@ -79,6 +80,8 @@
 		3A44AC9B1C498CAA00F10D2E /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		3A44AC9F1C49917000F10D2E /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "Pods/../build/Debug-iphoneos/libAFNetworking.a"; sourceTree = "<group>"; };
 		3A44ACA01C49917000F10D2E /* libVK-ios-sdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libVK-ios-sdk.a"; path = "Pods/../build/Debug-iphoneos/libVK-ios-sdk.a"; sourceTree = "<group>"; };
+		3AE55FA11C4D22E600025AB8 /* SingleTariffViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleTariffViewController.h; sourceTree = "<group>"; };
+		3AE55FA21C4D22E600025AB8 /* SingleTariffViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleTariffViewController.m; sourceTree = "<group>"; };
 		3AFD2D441C4AB471004F8E72 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		3AFD2D451C4AB471004F8E72 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		3AFD2D471C4ABBB8004F8E72 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -303,6 +306,8 @@
 				3A08A37B1C4C0DA70094AB63 /* TariffViewController.m */,
 				3A08A37D1C4C1B970094AB63 /* CustomButtonSettings.h */,
 				3A08A37E1C4C1B970094AB63 /* CustomButtonSettings.m */,
+				3AE55FA11C4D22E600025AB8 /* SingleTariffViewController.h */,
+				3AE55FA21C4D22E600025AB8 /* SingleTariffViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -467,6 +472,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB6733BC1C4101E400BA7832 /* User.m in Sources */,
+				3AE55FA31C4D22E600025AB8 /* SingleTariffViewController.m in Sources */,
 				DB67FF171C3D591D00FC62E2 /* LoginModelViewController.m in Sources */,
 				DB67FED91C3C0BA800FC62E2 /* LoginViewController.m in Sources */,
 				DB67FF141C3C307E00FC62E2 /* SignUpViewController.m in Sources */,
