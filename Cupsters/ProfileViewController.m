@@ -60,15 +60,15 @@
 
 - (void)configureMenu {
     
-    self.reveal = self.revealViewController;
-    
-    if (!self.reveal) {
-        return;
-    }
+//    self.reveal = self.revealViewController;
+//    
+//    if (!self.reveal) {
+//        return;
+//    }
     
     
     // Add gesture recognizer
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+//    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     
     // Set menu button
@@ -104,8 +104,8 @@
 }
 
 - (void)toList:(id)sender {
-    
-    [self presentViewController:self.vc animated:true completion:nil];
+    [self dismissViewControllerAnimated:true completion:nil];
+//    [self presentViewController:self.vc animated:true completion:nil];
     
 }
 
