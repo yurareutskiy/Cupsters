@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15B42" minimumToolsVersion="Automatic">
+    <entity name="Cafes" syncable="YES">
+        <attribute name="close" optional="YES" syncable="YES"/>
+        <attribute name="id" optional="YES" syncable="YES"/>
+        <attribute name="image" optional="YES" syncable="YES"/>
+        <attribute name="lattitude" optional="YES" syncable="YES"/>
+        <attribute name="logo" optional="YES" syncable="YES"/>
+        <attribute name="longitude" optional="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" syncable="YES"/>
+        <attribute name="open" optional="YES" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Cafes" positionX="-63" positionY="2205" width="128" height="163"/>
+    </elements>
 </model>
