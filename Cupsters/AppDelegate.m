@@ -26,7 +26,9 @@
     
     ServerRequest *request = [ServerRequest initRequest:ServerRequestTypeGET With:nil To:CafeURLStrring];
     Server *server = [[Server alloc] init];
-    [server sentToServer:request OnSuccess:nil OrFailure:nil];
+    [server sentToServer:request OnSuccess:^(NSDictionary *result) {
+        NSLog(@"Contain %lu objects", (unsigned long)[result count]);
+    } OrFailure:nil];
     
     return YES;
 }

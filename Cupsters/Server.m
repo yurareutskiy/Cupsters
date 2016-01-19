@@ -11,7 +11,7 @@
 
 @implementation Server
 
-- (void)sentToServer:(ServerRequest*)request OnSuccess:(void(^)(NSDictionary*))success OrFailure:(void(^)(NSError*))failure {
+- (void)sentToServer:(ServerRequest*)request OnSuccess:(void(^)(NSDictionary* result))success OrFailure:(void(^)(NSError*))failure {
 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
@@ -24,13 +24,19 @@
                 NSLog(@"JSON: %@", responseObject);
                 ServerResponse *response = [ServerResponse parseResponse:responseObject];
                 if (response.type == ServerResponseTypeSuccess) {
-                    success(response.body);
+                    if (success) {
+                        success(response.body);
+                    }
                 } else {
-                    failure(response.error);
+                    if (failure) {
+                        failure(response.error);
+                    }
                 }
             } failure:^(NSURLSessionTask *operation, NSError *error) {
                 NSLog(@"Error: %@", error);
-                failure(error);
+                if (failure) {
+                    failure(error);
+                }
             }];
         }
             break;

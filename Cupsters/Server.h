@@ -14,6 +14,6 @@
 
 @interface Server : NSObject
 
-- (void)sentToServer:(ServerRequest*)request OnSuccess:(void(^)(NSDictionary*))success OrFailure:(void(^)(NSError*))failure;
+- (void)sentToServer:(ServerRequest*)request OnSuccess:(void(^)(NSDictionary* result))success OrFailure:(void(^)(NSError*))failure;
 
 @end
