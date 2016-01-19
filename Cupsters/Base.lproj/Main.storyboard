@@ -379,6 +379,7 @@
                     <connections>
                         <outlet property="tableView" destination="KLX-7a-xSQ" id="Ofr-r9-uJj"/>
                         <segue destination="QM0-sn-80h" kind="show" identifier="goToList" id="x5o-Te-fyr"/>
+                        <segue destination="FJ9-ua-d1z" kind="show" identifier="goToCafe" id="7UB-0y-82p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZcD-hp-hdC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -992,6 +993,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Dp-G3-hQK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1848" y="1860"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Mqn-G8-ea2">
+            <objects>
+                <viewController id="of0-vx-hf9" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jdw-Wx-Son"/>
+                        <viewControllerLayoutGuide type="bottom" id="vZV-WB-B4v"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZiC-I7-eZO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NTR-ux-5LQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5036" y="-306"/>
         </scene>
         <!--Cafe View Controller-->
         <scene sceneID="BMf-td-fMw">
@@ -1865,6 +1884,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="5cM-jH-TcB"/>
+        <segue reference="7UB-0y-82p"/>
         <segue reference="x5o-Te-fyr"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -70,8 +70,14 @@
 //                                                      target:self
 //                                                      action:@selector(toList:)];
     
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"arrow"] style:UIBarButtonItemStyleDone target:self action:@selector(backAction:)];
     
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    self.navigationItem.leftBarButtonItem = self.menuButton;
+}
+
+- (void)backAction:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (UILabel*)customTitleViewWithImage {
