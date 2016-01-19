@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Constants.h"
+#import "Server.h"
 @import GoogleMaps;
 
 @interface AppDelegate ()
@@ -22,6 +23,11 @@
                              didFinishLaunchingWithOptions:launchOptions];
     [GMSServices provideAPIKey:@"AIzaSyC7-l9lWhURQqNkJKjqaPHTrIm9lTyvdS8"];
     // Override point for customization after application launch.
+    
+    ServerRequest *request = [ServerRequest initRequest:ServerRequestTypeGET With:nil To:CafeURLStrring];
+    Server *server = [[Server alloc] init];
+    [server sentToServer:request OnSuccess:nil OrFailure:nil];
+    
     return YES;
 }
 

@@ -29,3 +29,17 @@ NSString* const cSBMenu = @"SWRevealViewController";
 #pragma mark - Others
 NSString* const cFontMyraid = @"MyriadPro-Regular";
 
+#pragma mark - URLs
+
+NSString * const BaseURLString = @"http://api.cupsters.ru/";
+
+NSString * const LoginURLStrring = @"login";
+NSString * const SugnupURLStrring = @"signup";
+NSString * const ActivityURLStrring = @"useractivity";
+NSString * const CafeURLStrring = @"cafe";
+NSString * const TariffURLStrring = @"tariiff";
+NSString * const MenuURLStrring = @"menu";
+NSString * const OrderURLStrring = @"order";
+NSString * const SetTariffURLStrring = @"tariffToUser";
+
+

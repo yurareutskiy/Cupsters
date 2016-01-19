@@ -1,0 +1,66 @@
+//
+//  Server.m
+//  Cupsters
+//
+//  Created by Reutskiy Jury on 1/19/16.
+//  Copyright © 2016 Styleru. All rights reserved.
+//
+
+#import "Server.h"
+#import "Constants.h"
+
+@implementation Server
+
+- (void)sentToServer:(ServerRequest*)request OnSuccess:(void(^)(NSDictionary*))success OrFailure:(void(^)(NSError*))failure {
+
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@", BaseURLString, request.objectRequest];
+    
+    switch (request.type) {
+        case ServerRequestTypeGET: {
+            [manager GET:url parameters:request.parameters progress:nil success:^(NSURLSessionTask *task, NSDictionary *responseObject) {
+                NSLog(@"JSON: %@", responseObject);
+                ServerResponse *response = [ServerResponse parseResponse:responseObject];
+                if (response.type == ServerResponseTypeSuccess) {
+                    success(response.body);
+                } else {
+                    failure(response.error);
+                }
+            } failure:^(NSURLSessionTask *operation, NSError *error) {
+                NSLog(@"Error: %@", error);
+                failure(error);
+            }];
+        }
+            break;
+        case ServerRequestTypePOST: {
+            [manager POST:url parameters:request.parameters progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+                NSLog(@"JSON: %@", responseObject);
+            } failure:^(NSURLSessionTask *operation, NSError *error) {
+                NSLog(@"Error: %@", error);
+            }];
+        }
+            break;
+        case ServerRequestTypePUT: {
+            [manager PUT:url parameters:request.parameters success:^(NSURLSessionTask *task, id responseObject) {
+                NSLog(@"JSON: %@", responseObject);
+            } failure:^(NSURLSessionTask *operation, NSError *error) {
+                NSLog(@"Error: %@", error);
+            }];
+        }
+            break;
+        case ServerRequestTypeDELETE: {
+            [manager DELETE:url parameters:request.parameters success:^(NSURLSessionTask *task, id responseObject) {
+                NSLog(@"JSON: %@", responseObject);
+            } failure:^(NSURLSessionTask *operation, NSError *error) {
+                NSLog(@"Error: %@", error);
+            }];
+        }
+            break;
+        default:
+            return;
+    }
+}
+
+@end
