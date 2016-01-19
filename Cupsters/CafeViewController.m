@@ -145,6 +145,10 @@
     return nil;
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
 // Tying up the segmented control to a scroll view
 
 
@@ -185,21 +189,19 @@
 
 -(CafeTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    CafeTableViewCell *cell = [[CafeTableViewCell alloc] init];
-    [self.tableView dequeueReusableCellWithIdentifier:@"cafeCell" forIndexPath:indexPath];
+    CafeTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cafeCell" forIndexPath:indexPath];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [cell.makeButton addTarget:self action:@selector(makeOrder:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.coffeeName setText:@"lol"];
+    NSLog(@"i'm here");
     
-    return [self configurePlace:cell At:indexPath.row];
+    return cell; //[self configurePlace:cell At:indexPath.row];
 }
 
 -(CafeTableViewCell*)configurePlace:(CafeTableViewCell*)cell At:(NSInteger)row {
     
-//    [cell.backPhoto setImage:[UIImage imageNamed:@"cafeBack1"]];
-//    [cell.name setText:@"КОФЕЙНЯ"];
-//    [cell.underground setText:@"м. Парк Победы"];
-//    [cell.distance setText:@"2 км."];
-//    [cell.logo setImage:[UIImage imageNamed:@"cafeBack1"]];
+
     
     return cell;
 }
@@ -211,6 +213,9 @@
     }
 }
 
+- (void)makeOrder:(UIButton*)sender{
+    [self performSegueWithIdentifier:@"makeOrder" sender:self];
+}
 
 /*
 #pragma mark - Navigation
@@ -222,4 +227,7 @@
 }
 */
 
+//- (IBAction)makeAnOrder:(UIButton *)sender {
+//    [self performSegueWithIdentifier:@"makeOrder" sender:self];
+//}
 @end

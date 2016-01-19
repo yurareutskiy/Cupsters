@@ -994,10 +994,10 @@
             </objects>
             <point key="canvasLocation" x="1848" y="1860"/>
         </scene>
-        <!--View Controller-->
+        <!--Order View Controller-->
         <scene sceneID="Mqn-G8-ea2">
             <objects>
-                <viewController id="of0-vx-hf9" sceneMemberID="viewController">
+                <viewController id="of0-vx-hf9" customClass="OrderViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jdw-Wx-Son"/>
                         <viewControllerLayoutGuide type="bottom" id="vZV-WB-B4v"/>
@@ -1010,7 +1010,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NTR-ux-5LQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5036" y="-306"/>
+            <point key="canvasLocation" x="5100" y="-306"/>
         </scene>
         <!--Cafe View Controller-->
         <scene sceneID="BMf-td-fMw">
@@ -1103,6 +1103,12 @@
                                                         <constraint firstAttribute="width" constant="73" id="6Xm-EH-goJ"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Капучино" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rcq-WZ-Njh">
+                                                    <rect key="frame" x="261" y="34" width="78" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uNT-8b-zrx">
                                                     <rect key="frame" x="492" y="25" width="100" height="40"/>
                                                     <constraints>
@@ -1110,12 +1116,6 @@
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Капучино" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rcq-WZ-Njh">
-                                                    <rect key="frame" x="261" y="34" width="78" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="uNT-8b-zrx" secondAttribute="bottom" constant="16" id="Bt3-2h-Aih"/>
@@ -1129,6 +1129,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <accessibility key="accessibilityConfiguration" identifier="cafeCell"/>
+                                        <connections>
+                                            <outlet property="coffeeName" destination="Rcq-WZ-Njh" id="9hK-tl-bfP"/>
+                                            <outlet property="coffeePic" destination="TYE-rZ-azz" id="d3R-Sm-kPS"/>
+                                            <outlet property="makeButton" destination="uNT-8b-zrx" id="K8t-rz-mWy"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -1146,11 +1151,12 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="eob-qP-HQO" id="ggC-x1-X6i"/>
+                        <segue destination="of0-vx-hf9" kind="show" identifier="makeOrder" id="IMf-SZ-TaL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="laB-Xe-uDd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4358" y="-306"/>
+            <point key="canvasLocation" x="4384" y="-306"/>
         </scene>
         <!--Menu Reveal View Controller-->
         <scene sceneID="Lw8-z3-k9w">
