@@ -192,6 +192,45 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3AA5165E1C4E2A410039F6AB /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				3A08A3751C4BE9C20094AB63 /* ProfileViewController.h */,
+				3A08A3761C4BE9C20094AB63 /* ProfileViewController.m */,
+				3A08A37A1C4C0DA70094AB63 /* TariffViewController.h */,
+				3A08A37B1C4C0DA70094AB63 /* TariffViewController.m */,
+				3AE55FA11C4D22E600025AB8 /* SingleTariffViewController.h */,
+				3AE55FA21C4D22E600025AB8 /* SingleTariffViewController.m */,
+				3AE55FA41C4D3DB100025AB8 /* HistoryViewController.h */,
+				3AE55FA51C4D3DB100025AB8 /* HistoryViewController.m */,
+				3AE55FAA1C4D482300025AB8 /* CouponViewController.h */,
+				3AE55FAB1C4D482300025AB8 /* CouponViewController.m */,
+			);
+			name = SideMenu;
+			sourceTree = "<group>";
+		};
+		3AA5165F1C4E2A590039F6AB /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				DB671F3A1C3DCF9F008C1408 /* ListPlacesImagesViewController.h */,
+				DB671F3B1C3DCFA0008C1408 /* ListPlacesImagesViewController.m */,
+				3AFD2D441C4AB471004F8E72 /* MapViewController.h */,
+				3AFD2D451C4AB471004F8E72 /* MapViewController.m */,
+				3A08A36F1C4BDE720094AB63 /* CafeViewController.h */,
+				3A08A3701C4BDE720094AB63 /* CafeViewController.m */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		3AA516601C4E2A860039F6AB /* IBDesignable */ = {
+			isa = PBXGroup;
+			children = (
+				3A08A37D1C4C1B970094AB63 /* CustomButtonSettings.h */,
+				3A08A37E1C4C1B970094AB63 /* CustomButtonSettings.m */,
+			);
+			name = IBDesignable;
+			sourceTree = "<group>";
+		};
 		A6E0F1BBD2E2AA8B6A4B5D29 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,7 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				DB67FED31C3C0B6500FC62E2 /* Models */,
-				DB67FED51C3C0B8100FC62E2 /* Views */,
+				DB67FED51C3C0B8100FC62E2 /* Cells */,
 				DB67FED61C3C0B8800FC62E2 /* Controllers */,
 				DB67FEBC1C3BD8FB00FC62E2 /* AppDelegate.h */,
 				DB67FEBD1C3BD8FB00FC62E2 /* AppDelegate.m */,
@@ -271,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				DBDC1C2A1C400583003A8507 /* Podfile */,
+				3AA516601C4E2A860039F6AB /* IBDesignable */,
 				DB671F461C3EC30B008C1408 /* Mock files */,
 				DB67FEDB1C3C0FCF00FC62E2 /* Fonts */,
 				DB67FEBA1C3BD8FB00FC62E2 /* main.m */,
@@ -298,7 +338,7 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		DB67FED51C3C0B8100FC62E2 /* Views */ = {
+		DB67FED51C3C0B8100FC62E2 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				DB671F431C3EC239008C1408 /* PlacePhotoTableViewCell.h */,
@@ -310,32 +350,16 @@
 				3AE55FA71C4D3E2100025AB8 /* HistoryTableViewCell.h */,
 				3AE55FA81C4D3E2100025AB8 /* HistoryTableViewCell.m */,
 			);
-			name = Views;
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		DB67FED61C3C0B8800FC62E2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3AA5165E1C4E2A410039F6AB /* SideMenu */,
 				DB6733B81C40EF7D00BA7832 /* Menu */,
 				DB6733B91C40F01C00BA7832 /* Login */,
-				DB671F3A1C3DCF9F008C1408 /* ListPlacesImagesViewController.h */,
-				DB671F3B1C3DCFA0008C1408 /* ListPlacesImagesViewController.m */,
-				3AFD2D441C4AB471004F8E72 /* MapViewController.h */,
-				3AFD2D451C4AB471004F8E72 /* MapViewController.m */,
-				3A08A36F1C4BDE720094AB63 /* CafeViewController.h */,
-				3A08A3701C4BDE720094AB63 /* CafeViewController.m */,
-				3A08A3751C4BE9C20094AB63 /* ProfileViewController.h */,
-				3A08A3761C4BE9C20094AB63 /* ProfileViewController.m */,
-				3A08A37A1C4C0DA70094AB63 /* TariffViewController.h */,
-				3A08A37B1C4C0DA70094AB63 /* TariffViewController.m */,
-				3A08A37D1C4C1B970094AB63 /* CustomButtonSettings.h */,
-				3A08A37E1C4C1B970094AB63 /* CustomButtonSettings.m */,
-				3AE55FA11C4D22E600025AB8 /* SingleTariffViewController.h */,
-				3AE55FA21C4D22E600025AB8 /* SingleTariffViewController.m */,
-				3AE55FA41C4D3DB100025AB8 /* HistoryViewController.h */,
-				3AE55FA51C4D3DB100025AB8 /* HistoryViewController.m */,
-				3AE55FAA1C4D482300025AB8 /* CouponViewController.h */,
-				3AE55FAB1C4D482300025AB8 /* CouponViewController.m */,
+				3AA5165F1C4E2A590039F6AB /* Main */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
