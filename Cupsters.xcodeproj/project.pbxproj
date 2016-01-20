@@ -63,6 +63,7 @@
 		DBA9C4AD1C4DBC74002A5E0D /* ServerResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA9C4AC1C4DBC74002A5E0D /* ServerResponse.m */; };
 		DBA9C4B01C4DBC84002A5E0D /* ServerError.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA9C4AF1C4DBC84002A5E0D /* ServerError.m */; };
 		DBA9C4B31C4DBC93002A5E0D /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA9C4B21C4DBC93002A5E0D /* Server.m */; };
+		DBA9C4CA1C4F0D0F002A5E0D /* Token.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA9C4C91C4F0D0F002A5E0D /* Token.m */; };
 		DBDC1C2B1C400583003A8507 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = DBDC1C2A1C400583003A8507 /* Podfile */; };
 		DBDC1C301C40EB05003A8507 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBDC1C2E1C40EB05003A8507 /* SWRevealViewController.m */; };
 /* End PBXBuildFile section */
@@ -155,6 +156,8 @@
 		DBA9C4AF1C4DBC84002A5E0D /* ServerError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerError.m; sourceTree = "<group>"; };
 		DBA9C4B11C4DBC93002A5E0D /* Server.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Server.h; sourceTree = "<group>"; };
 		DBA9C4B21C4DBC93002A5E0D /* Server.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Server.m; sourceTree = "<group>"; };
+		DBA9C4C81C4F0D0F002A5E0D /* Token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Token.h; sourceTree = "<group>"; };
+		DBA9C4C91C4F0D0F002A5E0D /* Token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Token.m; sourceTree = "<group>"; };
 		DBDC1C2A1C400583003A8507 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		DBDC1C2E1C40EB05003A8507 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = SWRevealViewController/SWRevealViewController.m; sourceTree = "<group>"; };
 		DBDC1C2F1C40EB05003A8507 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = SWRevealViewController/SWRevealViewController.h; sourceTree = "<group>"; };
@@ -338,6 +341,7 @@
 				DB6733BB1C4101E400BA7832 /* User.m */,
 				DB6733BD1C41022100BA7832 /* Plan.h */,
 				DB6733BE1C41022100BA7832 /* Plan.m */,
+				DBA9C4B81C4F0854002A5E0D /* Core Data */,
 				DBA9C4B41C4DBC9E002A5E0D /* Server */,
 			);
 			name = Models;
@@ -401,8 +405,17 @@
 				DBA9C4AC1C4DBC74002A5E0D /* ServerResponse.m */,
 				DBA9C4AE1C4DBC84002A5E0D /* ServerError.h */,
 				DBA9C4AF1C4DBC84002A5E0D /* ServerError.m */,
+				DBA9C4C81C4F0D0F002A5E0D /* Token.h */,
+				DBA9C4C91C4F0D0F002A5E0D /* Token.m */,
 			);
 			name = Server;
+			sourceTree = "<group>";
+		};
+		DBA9C4B81C4F0854002A5E0D /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Core Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -546,6 +559,7 @@
 				DB6733BC1C4101E400BA7832 /* User.m in Sources */,
 				3AE55FA31C4D22E600025AB8 /* SingleTariffViewController.m in Sources */,
 				DB67FF171C3D591D00FC62E2 /* LoginModelViewController.m in Sources */,
+				DBA9C4CA1C4F0D0F002A5E0D /* Token.m in Sources */,
 				DB67FED91C3C0BA800FC62E2 /* LoginViewController.m in Sources */,
 				DBA9C4B31C4DBC93002A5E0D /* Server.m in Sources */,
 				DB67FF141C3C307E00FC62E2 /* SignUpViewController.m in Sources */,

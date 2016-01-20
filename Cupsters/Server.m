@@ -11,7 +11,7 @@
 
 @implementation Server
 
-- (void)sentToServer:(ServerRequest*)request OnSuccess:(void(^)(NSDictionary* result))success OrFailure:(void(^)(NSError*))failure {
+- (void)sentToServer:(ServerRequest*)request OnSuccess:(void(^)(NSDictionary* result))success OrFailure:(void(^)(NSError* error))failure {
 
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
@@ -41,26 +41,65 @@
         }
             break;
         case ServerRequestTypePOST: {
-            [manager POST:url parameters:request.parameters progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+            [manager POST:url parameters:request.parameters progress:nil success:^(NSURLSessionTask *task, NSDictionary *responseObject) {
                 NSLog(@"JSON: %@", responseObject);
+                ServerResponse *response = [ServerResponse parseResponse:responseObject];
+                if (response.type == ServerResponseTypeSuccess) {
+                    if (success) {
+                        success(response.body);
+                    }
+                } else {
+                    if (failure) {
+                        failure(response.error);
+                    }
+                }
             } failure:^(NSURLSessionTask *operation, NSError *error) {
                 NSLog(@"Error: %@", error);
+                if (failure) {
+                    failure(error);
+                }
             }];
         }
             break;
         case ServerRequestTypePUT: {
-            [manager PUT:url parameters:request.parameters success:^(NSURLSessionTask *task, id responseObject) {
+            [manager PUT:url parameters:request.parameters success:^(NSURLSessionTask *task, NSDictionary *responseObject) {
                 NSLog(@"JSON: %@", responseObject);
+                ServerResponse *response = [ServerResponse parseResponse:responseObject];
+                if (response.type == ServerResponseTypeSuccess) {
+                    if (success) {
+                        success(response.body);
+                    }
+                } else {
+                    if (failure) {
+                        failure(response.error);
+                    }
+                }
             } failure:^(NSURLSessionTask *operation, NSError *error) {
                 NSLog(@"Error: %@", error);
+                if (failure) {
+                    failure(error);
+                }
             }];
         }
             break;
         case ServerRequestTypeDELETE: {
-            [manager DELETE:url parameters:request.parameters success:^(NSURLSessionTask *task, id responseObject) {
+            [manager DELETE:url parameters:request.parameters success:^(NSURLSessionTask *task, NSDictionary *responseObject) {
                 NSLog(@"JSON: %@", responseObject);
+                ServerResponse *response = [ServerResponse parseResponse:responseObject];
+                if (response.type == ServerResponseTypeSuccess) {
+                    if (success) {
+                        success(response.body);
+                    }
+                } else {
+                    if (failure) {
+                        failure(response.error);
+                    }
+                }
             } failure:^(NSURLSessionTask *operation, NSError *error) {
                 NSLog(@"Error: %@", error);
+                if (failure) {
+                    failure(error);
+                }
             }];
         }
             break;

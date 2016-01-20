@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15B42" minimumToolsVersion="Automatic">
-    <entity name="Cafes" syncable="YES">
-        <attribute name="close" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="Cafes" representedClassName="Cafe" syncable="YES">
+        <attribute name="cafeclose" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cafeopen" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lattitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="logo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="open" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="relationship" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Menus" syncable="YES"/>
+    </entity>
+    <entity name="Coffees" representedClassName="Coffee" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="volume" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="relationship" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Menus" syncable="YES"/>
+    </entity>
+    <entity name="Menus" representedClassName="Menu" syncable="YES">
+        <attribute name="id_cafe" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="id_coffee" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Cafes" positionX="-936" positionY="63" width="128" height="163"/>
+        <element name="Cafes" positionX="-936" positionY="63" width="128" height="178"/>
+        <element name="Coffees" positionX="-560" positionY="99" width="128" height="103"/>
+        <element name="Menus" positionX="-767" positionY="95" width="128" height="73"/>
     </elements>
 </model>

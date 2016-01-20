@@ -24,29 +24,54 @@
     [GMSServices provideAPIKey:@"AIzaSyC7-l9lWhURQqNkJKjqaPHTrIm9lTyvdS8"];
     // Override point for customization after application launch.
     
-    ServerRequest *request = [ServerRequest initRequest:ServerRequestTypeGET With:nil To:CafeURLStrring];
+    ServerRequest *request = [ServerRequest initRequest:ServerRequestTypeGET With:nil To:MenuURLStrring];
     Server *server = [[Server alloc] init];
     [server sentToServer:request OnSuccess:^(NSDictionary *result) {
-        [self saveData:result];
+//        [self saveCafeData:result];
+        NSLog(@"%@", result);
     } OrFailure:nil];
     
     return YES;
 }
 
-- (void)saveData:(NSDictionary*)dict {
+- (void)checkToken {
+
+}
+
+- (void)saveCafeData:(NSDictionary*)dict {
     NSEntityDescription *cafeEntity = [NSEntityDescription entityForName:@"Cafes" inManagedObjectContext:self.managedObjectContext];
     
     for (int i = 0; i < [dict count]; i++) {
         NSDictionary *data = [(NSArray*)dict objectAtIndex:i];
         NSManagedObject *cafe = [[NSManagedObject alloc] initWithEntity:cafeEntity insertIntoManagedObjectContext:self.managedObjectContext];
-        [cafe setValue:[NSNumber numberWithInt:[data[@"id"] intValue]] forKey:@"id"];
-        [cafe setValue:data[@"name"] forKey:@"name"];
-        [cafe setValue:data[@"image"] forKey:@"image"];
-        [cafe setValue:data[@"logo"] forKey:@"logo"];
-        [cafe setValue:data[@"lattitude"] forKey:@"lattitude"];
-        [cafe setValue:data[@"longitude"] forKey:@"longitude"];
-        [cafe setValue:data[@"opencafe"] forKey:@"open"];
-        [cafe setValue:data[@"closecafe"] forKey:@"close"];
+        for (NSString *key in [data allKeys]) {
+            if ([key isEqualToString:@"id"]) {
+                [cafe setValue:[NSNumber numberWithInt:[data[key] intValue]] forKey:key];
+            } else {
+                [cafe setValue:data[key] forKey:key];
+            }
+        }
+        NSError *error = nil;
+        [self.managedObjectContext save:&error];
+        if (error) {
+            NSLog(@"%@", [error debugDescription]);
+        }
+    }
+}
+
+- (void)saveMenuData:(NSDictionary*)dict {
+    NSEntityDescription *cafeEntity = [NSEntityDescription entityForName:@"Cafes" inManagedObjectContext:self.managedObjectContext];
+    
+    for (int i = 0; i < [dict count]; i++) {
+        NSDictionary *data = [(NSArray*)dict objectAtIndex:i];
+        NSManagedObject *cafe = [[NSManagedObject alloc] initWithEntity:cafeEntity insertIntoManagedObjectContext:self.managedObjectContext];
+        for (NSString *key in [data allKeys]) {
+            if ([key isEqualToString:@"id"]) {
+                [cafe setValue:[NSNumber numberWithInt:[data[key] intValue]] forKey:key];
+            } else {
+                [cafe setValue:data[key] forKey:key];
+            }
+        }
         NSError *error = nil;
         [self.managedObjectContext save:&error];
         if (error) {
