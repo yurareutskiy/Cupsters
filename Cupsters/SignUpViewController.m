@@ -8,6 +8,8 @@
 
 #import "SignUpViewController.h"
 #import "Constants.h"
+#import "Server.h"
+#import <NSHash/NSString+NSHash.h>
 
 @interface SignUpViewController ()
 
@@ -91,8 +93,22 @@
 }
 
 - (IBAction)signUpDoneButtonAction:(UIButton *)sender {
-    UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
-    [self presentViewController:vc animated:true completion:nil];
+    
+    NSString *password = [((UITextField*)self.fieldsOutlet[0]).text MD5];
+    
+    Server *server = [[Server alloc] init];
+    NSDictionary *parameters = @{@"email":((UITextField*)self.fieldsOutlet[1]).text, @"password":password, @"first_name":((UITextField*)self.fieldsOutlet[3]).text, @"last_name":((UITextField*)self.fieldsOutlet[2]).text};
+    ServerRequest *requset = [ServerRequest initRequest:ServerRequestTypePOST With:parameters To:SignupURLStrring];
+    [server sentToServer:requset OnSuccess:^(NSDictionary *result) {
+        NSLog(@"%@", result);
+        UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
+        [self presentViewController:vc animated:true completion:nil];
+    } OrFailure:^(NSError *error) {
+        NSLog(@"%@", [error debugDescription]);
+        UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
+        [self presentViewController:vc animated:true completion:nil];
+    }];
+
 }
 
 

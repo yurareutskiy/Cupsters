@@ -25,7 +25,7 @@ extern NSString* const cFontMyraid;
 
 extern NSString * const BaseURLString;
 extern NSString * const LoginURLStrring;
-extern NSString * const SugnupURLStrring;
+extern NSString * const SignupURLStrring;
 extern NSString * const ActivityURLStrring;
 extern NSString * const CafeURLStrring;
 extern NSString * const TariffURLStrring;

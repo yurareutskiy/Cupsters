@@ -8,5 +8,6 @@ target 'Cupsters' do
     pod 'AFNetworking', :git => "https://github.com/AFNetworking/AFNetworking", :tag => "3.0.4"
     pod 'GoogleMaps'
     pod 'HMSegmentedControl'
+    pod 'NSHash', '~> 1.1.0'
 end
 

@@ -10,6 +10,7 @@
 #import "Constants.h"
 #import "VKSdk+CustomAuthorizationDelegate.h"
 #import "Server.h"
+#import <NSHash/NSString+NSHash.h>
 
 @interface LoginViewController ()
 
@@ -122,7 +123,9 @@
 
 - (IBAction)signInButtonAction:(UIButton *)sender {
     // email - 1, pass - 0
-    NSDictionary *parameters = @{@"email":((UITextField*)self.fieldsOutlet[1]).text, @"password":((UITextField*)self.fieldsOutlet[0]).text, @"sn":@"self", @"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"]};
+    NSString *password = [((UITextField*)self.fieldsOutlet[0]).text MD5];
+
+    NSDictionary *parameters = @{@"email":((UITextField*)self.fieldsOutlet[1]).text, @"password":password, @"sn":@"self", @"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"]};
     ServerRequest *request = [ServerRequest initRequest:ServerRequestTypePOST With:parameters To:LoginURLStrring];
     Server *server = [[Server alloc] init];
     [server sentToServer:request OnSuccess:^(NSDictionary *result) {

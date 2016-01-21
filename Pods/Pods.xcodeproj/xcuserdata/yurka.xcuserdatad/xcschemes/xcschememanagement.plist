@@ -9,7 +9,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>HMSegmentedControl.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>NSHash.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Cupsters.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>VK-ios-sdk.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -22,7 +37,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>319AA27F4D9F10DEB069AFB0EF533275</key>
+		<key>7880189788A66CB7DB65A3E0FEED2F26</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -32,12 +47,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9A98BF783A362347CF98ED51B87C64B8</key>
+		<key>A78BB8C8F41ABF423A1F65AD91CFDEA4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F826B0D3274E6417B02F2288A86581DA</key>
+		<key>F2BC111EC583416702CA6E3C70220A1A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
