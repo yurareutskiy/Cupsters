@@ -17,23 +17,46 @@
 
 NSUserDefaults *userDefaults;
 Server *server;
+NSString *token;
+NSString *serverToken;
 
 @implementation Token
 
-- (BOOL)checkToken {
+-(instancetype)init {
+    server = [[Server alloc] init];
     userDefaults = [NSUserDefaults standardUserDefaults];
-    if (![userDefaults objectForKey:@"token"]) {
-        [self createFirstToken];
-    }
+    return [super init];
+}
+
+- (BOOL)checkToken {
+    token = [userDefaults objectForKey:@"token"];
+    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+    // dispatch_semaphore_signal(sema);
     
-    return YES;
+    ServerRequest *request = [ServerRequest initRequest:ServerRequestTypePOST
+                                                   With:@{@"token":[userDefaults objectForKey:@"token"],
+                                                        @"user_id":[userDefaults objectForKey:@"id"]}
+                                                     To:ActivityURLStrring];
+    [server sentToServer:request OnSuccess:^(NSDictionary *result) {
+        serverToken = result[@"token"];
+        dispatch_semaphore_signal(sema);
+    } OrFailure:^(NSError *error) {
+        NSLog(@"%@", [error debugDescription]);
+        dispatch_semaphore_signal(sema);
+    }];
+    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+    sema = NULL;
+    if ([serverToken isEqualToString:token]) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 - (void)createFirstToken {
-    server = [[Server alloc] init];
     ServerRequest *request = [ServerRequest initRequest:ServerRequestTypePOST
                                                    With:@{@"first":@"yes",
-                                                             @"id":[userDefaults objectForKey:@"id"]}
+                                                             @"user_id":[userDefaults objectForKey:@"id"]}
                                                      To:ActivityURLStrring];
     [server sentToServer:request OnSuccess:^(NSDictionary *result) {
         NSLog(@"%@", result[@"token"]);
