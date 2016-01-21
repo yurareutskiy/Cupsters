@@ -123,9 +123,9 @@
 
 - (IBAction)signInButtonAction:(UIButton *)sender {
     // email - 1, pass - 0
-    NSString *password = [((UITextField*)self.fieldsOutlet[0]).text MD5];
-
-    NSDictionary *parameters = @{@"email":((UITextField*)self.fieldsOutlet[1]).text, @"password":password, @"sn":@"self", @"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"]};
+    NSString *password = [((UITextField*)self.fields[0]).text MD5];
+    NSString *email = ((UITextField*)self.fieldsOutlet[1]).text;
+    NSDictionary *parameters = @{@"email": email, @"password":password, @"sn":@"self", @"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"]};
     ServerRequest *request = [ServerRequest initRequest:ServerRequestTypePOST With:parameters To:LoginURLStrring];
     Server *server = [[Server alloc] init];
     [server sentToServer:request OnSuccess:^(NSDictionary *result) {

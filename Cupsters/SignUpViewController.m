@@ -97,10 +97,12 @@
     NSString *password = [((UITextField*)self.fieldsOutlet[0]).text MD5];
     
     Server *server = [[Server alloc] init];
-    NSDictionary *parameters = @{@"email":((UITextField*)self.fieldsOutlet[1]).text, @"password":password, @"first_name":((UITextField*)self.fieldsOutlet[3]).text, @"last_name":((UITextField*)self.fieldsOutlet[2]).text};
+    NSDictionary *parameters = @{@"type":@"self", @"email":((UITextField*)self.fieldsOutlet[1]).text, @"password":password, @"first_name":((UITextField*)self.fieldsOutlet[3]).text, @"last_name":((UITextField*)self.fieldsOutlet[2]).text};
     ServerRequest *requset = [ServerRequest initRequest:ServerRequestTypePOST With:parameters To:SignupURLStrring];
     [server sentToServer:requset OnSuccess:^(NSDictionary *result) {
         NSLog(@"%@", result);
+        [[NSUserDefaults standardUserDefaults] setObject:[result objectForKey:@"token"] forKey:@"token"];
+        [[NSUserDefaults standardUserDefaults] setObject:[result objectForKey:@"return_id"] forKey:@"id"];
         UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
         [self presentViewController:vc animated:true completion:nil];
     } OrFailure:^(NSError *error) {
