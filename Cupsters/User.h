@@ -10,15 +10,15 @@
 #import <UIKit/UIKit.h>
 #import "Plan.h"
 
-@interface User : NSObject
+@interface User : NSObject <NSCoding>
 
 @property (strong, nonatomic) NSString *firstName;
 @property (strong, nonatomic) NSString *lastName;
 @property (readonly, strong, nonatomic) NSString *name;
-@property (strong, nonatomic) Plan *plan;
+@property (strong, nonatomic) NSDictionary *plan;
 @property (strong, nonatomic) NSString *initials;
 @property (strong, nonatomic) NSNumber *id;
 
-+ (instancetype)initUserWithFirstName:(NSString*)firstName LastName:(NSString*)lastName userID:(NSString*)id UserPlan:(Plan*)plan;
++ (instancetype)initUserWithFirstName:(NSString*)firstName LastName:(NSString*)lastName userID:(NSString*)id UserPlan:(NSDictionary*)plan;
 
 @end

@@ -19,6 +19,16 @@
 
 @implementation LoginViewController
 
+-(void)viewWillAppear:(BOOL)animated {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([userDefaults objectForKey:@"isLogin"]) {
+        UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
+        [self presentViewController:vc animated:true completion:nil];
+    }
+
+}
+
 - (void)viewDidLoad {
     
     self.fields = self.fieldsOutlet;

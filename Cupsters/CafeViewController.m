@@ -12,6 +12,7 @@
 #import "MenuRevealViewController.h"
 #import "SWRevealViewController.h"
 #import "CafeTableViewCell.h"
+@import GoogleMaps;
 
 @interface CafeViewController ()
 
@@ -24,15 +25,46 @@
 
 @end
 
-@implementation CafeViewController
+@implementation CafeViewController {
+    CLLocationManager *locationManager;
+    GMSMapView *mapView;
+    BOOL openMap;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    openMap = false;
+    
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [locationManager requestWhenInUseAuthorization];
+    [locationManager startUpdatingLocation];
     
     [self setNeedsStatusBarAppearanceUpdate];
     [self customNavBar];
     [self preferredStatusBarStyle];
     [self configureMenu];
+    
+    GMSCameraPosition *camera = [GMSCameraPosition
+                                 cameraWithLatitude:locationManager.location.coordinate.latitude
+                                 longitude:locationManager.location.coordinate.longitude
+                                 zoom:15];
+    
+    mapView = [GMSMapView mapWithFrame:CGRectMake(self.view.frame.origin.x, self.cafeView.frame.origin.y + self.cafeView.frame.size.height - 20.0, self.view.frame.size.width, 200.0) camera:camera];
+    mapView.myLocationEnabled = YES;
+    
+    [self.view addSubview:mapView];
+    mapView.hidden = true;
+    
+    // Creates a marker in the center of the map.
+    GMSMarker *marker = [[GMSMarker alloc] init];
+    marker.position = CLLocationCoordinate2DMake(-33.86, 151.20);
+    marker.title = @"Sydney";
+    marker.snippet = @"Australia";
+    marker.map = mapView;
+    mapView.settings.myLocationButton = YES;
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -157,7 +189,7 @@
 //[self._segmentedControl4 setIndexChangeBlock:^(NSInteger index) {
 //    [weakSelf.scrollView scrollRectToVisible:CGRectMake(viewWidth * index, 0, viewWidth, 200) animated:YES];
 //}];
-
+//
 //self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 310, viewWidth, 210)];
 //self.scrollView.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
 //self.scrollView.pagingEnabled = YES;
@@ -166,7 +198,7 @@
 //self.scrollView.delegate = self;
 //[self.scrollView scrollRectToVisible:CGRectMake(viewWidth, 0, viewWidth, 200) animated:NO];
 //[self.view addSubview:self.scrollView];
-
+//
 //UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, viewWidth, 210)];
 //[self setApperanceForLabel:label1];
 //label1.text = @"Worldwide";
@@ -230,4 +262,17 @@
 //- (IBAction)makeAnOrder:(UIButton *)sender {
 //    [self performSegueWithIdentifier:@"makeOrder" sender:self];
 //}
+- (IBAction)openMap:(UIButton *)sender {
+    
+    if (!openMap) {
+        openMap = true;
+        mapView.hidden = false;
+        self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y + mapView.frame.size.height, self.tableView.frame.size.width, self.tableView.frame.size.height);
+    }
+    else {
+        openMap = false;
+        mapView.hidden = true;
+        self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y - mapView.frame.size.height, self.tableView.frame.size.width, self.tableView.frame.size.height);
+    }
+}
 @end

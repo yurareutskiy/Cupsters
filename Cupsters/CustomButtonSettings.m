@@ -11,11 +11,6 @@
 @implementation CustomButtonSettings
 
 - (void)drawRect:(CGRect)rect {
-//    CGContextRef context = UIGraphicsGetCurrentContext();
-//    CGRect myFrame = self.bounds;
-//    CGContextSetLineWidth(context, _borderWidth);
-//    CGRectInset(myFrame, 5, 5);
-//    UIRectFrame(myFrame);
     
     self.layer.cornerRadius = _cornerRadius;
     self.layer.masksToBounds = _masksToBounds;
