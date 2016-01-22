@@ -12,8 +12,8 @@ static NSString const * kHybridType = @"Hybrid";
 static NSString const * kTerrainType = @"Terrain";
 
 @implementation MapTypesViewController {
-  UISegmentedControl *_switcher;
-  GMSMapView *_mapView;
+  UISegmentedControl *switcher_;
+  GMSMapView *mapView_;
 }
 
 - (void)viewDidLoad {
@@ -23,37 +23,37 @@ static NSString const * kTerrainType = @"Terrain";
                                                           longitude:151.2086
                                                                zoom:12];
 
-  _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-  self.view = _mapView;
+  mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+  self.view = mapView_;
 
   // The possible different types to show.
   NSArray *types = @[kNormalType, kSatelliteType, kHybridType, kTerrainType];
 
   // Create a UISegmentedControl that is the navigationItem's titleView.
-  _switcher = [[UISegmentedControl alloc] initWithItems:types];
-  _switcher.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin |
+  switcher_ = [[UISegmentedControl alloc] initWithItems:types];
+  switcher_.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin |
                                UIViewAutoresizingFlexibleWidth |
                                UIViewAutoresizingFlexibleBottomMargin;
-  _switcher.selectedSegmentIndex = 0;
-  self.navigationItem.titleView = _switcher;
+  switcher_.selectedSegmentIndex = 0;
+  self.navigationItem.titleView = switcher_;
 
   // Listen to touch events on the UISegmentedControl.
-  [_switcher addTarget:self action:@selector(didChangeSwitcher)
+  [switcher_ addTarget:self action:@selector(didChangeSwitcher)
       forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)didChangeSwitcher {
   // Switch to the type clicked on.
   NSString *title =
-      [_switcher titleForSegmentAtIndex:_switcher.selectedSegmentIndex];
+      [switcher_ titleForSegmentAtIndex:switcher_.selectedSegmentIndex];
   if ([kNormalType isEqualToString:title]) {
-    _mapView.mapType = kGMSTypeNormal;
+    mapView_.mapType = kGMSTypeNormal;
   } else if ([kSatelliteType isEqualToString:title]) {
-    _mapView.mapType = kGMSTypeSatellite;
+    mapView_.mapType = kGMSTypeSatellite;
   } else if ([kHybridType isEqualToString:title]) {
-    _mapView.mapType = kGMSTypeHybrid;
+    mapView_.mapType = kGMSTypeHybrid;
   } else if ([kTerrainType isEqualToString:title]) {
-    _mapView.mapType = kGMSTypeTerrain;
+    mapView_.mapType = kGMSTypeTerrain;
   }
 }
 
