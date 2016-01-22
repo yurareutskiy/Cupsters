@@ -189,7 +189,7 @@
 //[self._segmentedControl4 setIndexChangeBlock:^(NSInteger index) {
 //    [weakSelf.scrollView scrollRectToVisible:CGRectMake(viewWidth * index, 0, viewWidth, 200) animated:YES];
 //}];
-
+//
 //self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 310, viewWidth, 210)];
 //self.scrollView.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
 //self.scrollView.pagingEnabled = YES;
@@ -198,7 +198,7 @@
 //self.scrollView.delegate = self;
 //[self.scrollView scrollRectToVisible:CGRectMake(viewWidth, 0, viewWidth, 200) animated:NO];
 //[self.view addSubview:self.scrollView];
-
+//
 //UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, viewWidth, 210)];
 //[self setApperanceForLabel:label1];
 //label1.text = @"Worldwide";

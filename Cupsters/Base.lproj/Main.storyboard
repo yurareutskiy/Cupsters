@@ -1160,58 +1160,74 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
                                         <color key="backgroundColor" red="0.16078431369999999" green="0.17254901959999999" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="z6r-dS-FXS">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 км" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LyO-vR-H0y">
+                                        <rect key="frame" x="56" y="132" width="25" height="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location" translatesAutoresizingMaskIntoConstraints="NO" id="z6r-dS-FXS">
                                         <rect key="frame" x="8" y="132" width="40" height="40"/>
-                                        <color key="backgroundColor" red="0.29557850800000002" green="0.55602081969999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="65X-tW-esV"/>
                                             <constraint firstAttribute="width" constant="40" id="Ci3-Ha-jUl"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LyO-vR-H0y">
-                                        <rect key="frame" x="56" y="141" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="КОФЕЙНЯ БЕЗ ФОНА" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wrC-ps-Hhc">
                                         <rect key="frame" x="208" y="82" width="184" height="16"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeueCyr-Bold" family="HelveticaNeueCyr" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtI-Pe-39T">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dtI-Pe-39T">
                                         <rect key="frame" x="552" y="132" width="40" height="40"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="FuH-Bq-rBu"/>
                                             <constraint firstAttribute="width" constant="40" id="g7H-P3-HyB"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" image="arrowDown"/>
                                         <connections>
                                             <action selector="openMap:" destination="FJ9-ua-d1z" eventType="touchUpInside" id="Ajk-lO-WTK"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Кутузовский проспект 37с2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ky0-Nu-aPv">
+                                        <rect key="frame" x="56" y="162" width="177" height="16"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="м. Парк Победы" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qit-EC-FVy">
+                                        <rect key="frame" x="56" y="147" width="88" height="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="dtI-Pe-39T" secondAttribute="bottom" constant="8" id="0AS-1A-FCU"/>
                                     <constraint firstItem="Fr9-Pb-Dan" firstAttribute="top" secondItem="5UX-8h-iwY" secondAttribute="top" id="0Tc-2O-PCX"/>
+                                    <constraint firstItem="LyO-vR-H0y" firstAttribute="leading" secondItem="z6r-dS-FXS" secondAttribute="trailing" constant="8" id="0dZ-uA-OFo"/>
                                     <constraint firstAttribute="trailing" secondItem="lzh-x6-iPI" secondAttribute="trailing" id="9VJ-t6-QHa"/>
                                     <constraint firstAttribute="height" constant="180" id="ENj-tS-Ra1"/>
                                     <constraint firstAttribute="bottom" secondItem="lzh-x6-iPI" secondAttribute="bottom" id="M2n-pH-SUG"/>
-                                    <constraint firstItem="LyO-vR-H0y" firstAttribute="leading" secondItem="z6r-dS-FXS" secondAttribute="trailing" constant="8" id="Nxg-Ft-zuU"/>
+                                    <constraint firstItem="qit-EC-FVy" firstAttribute="top" secondItem="LyO-vR-H0y" secondAttribute="bottom" constant="1" id="P8T-XF-PLO"/>
+                                    <constraint firstItem="Ky0-Nu-aPv" firstAttribute="leading" secondItem="LyO-vR-H0y" secondAttribute="leading" id="P9V-bf-zcI"/>
                                     <constraint firstItem="lzh-x6-iPI" firstAttribute="leading" secondItem="5UX-8h-iwY" secondAttribute="leading" id="Rtz-hr-J4z"/>
                                     <constraint firstAttribute="trailing" secondItem="dtI-Pe-39T" secondAttribute="trailing" constant="8" id="S90-V7-5ax"/>
                                     <constraint firstItem="wrC-ps-Hhc" firstAttribute="centerX" secondItem="5UX-8h-iwY" secondAttribute="centerX" id="SPb-LI-VfZ"/>
                                     <constraint firstItem="lzh-x6-iPI" firstAttribute="top" secondItem="5UX-8h-iwY" secondAttribute="top" id="SbC-Wv-TvK"/>
                                     <constraint firstAttribute="trailing" secondItem="Fr9-Pb-Dan" secondAttribute="trailing" id="Xcw-2D-B8y"/>
                                     <constraint firstItem="Fr9-Pb-Dan" firstAttribute="leading" secondItem="5UX-8h-iwY" secondAttribute="leading" id="b4z-83-hV8"/>
-                                    <constraint firstItem="LyO-vR-H0y" firstAttribute="centerY" secondItem="z6r-dS-FXS" secondAttribute="centerY" id="d0G-3k-G5u"/>
+                                    <constraint firstItem="qit-EC-FVy" firstAttribute="leading" secondItem="LyO-vR-H0y" secondAttribute="leading" id="bao-uQ-Mjc"/>
                                     <constraint firstItem="wrC-ps-Hhc" firstAttribute="centerY" secondItem="5UX-8h-iwY" secondAttribute="centerY" id="d5a-Ah-8zy"/>
                                     <constraint firstItem="z6r-dS-FXS" firstAttribute="leading" secondItem="5UX-8h-iwY" secondAttribute="leading" constant="8" id="daV-lL-znb"/>
                                     <constraint firstAttribute="bottom" secondItem="Fr9-Pb-Dan" secondAttribute="bottom" id="fZj-Is-CzK"/>
+                                    <constraint firstItem="qit-EC-FVy" firstAttribute="leading" secondItem="z6r-dS-FXS" secondAttribute="trailing" constant="8" id="g0L-3D-YJi"/>
                                     <constraint firstAttribute="bottom" secondItem="z6r-dS-FXS" secondAttribute="bottom" constant="8" id="gz4-UP-dBB"/>
+                                    <constraint firstItem="Ky0-Nu-aPv" firstAttribute="top" secondItem="qit-EC-FVy" secondAttribute="bottom" constant="1" id="hfl-NO-6eX"/>
+                                    <constraint firstItem="LyO-vR-H0y" firstAttribute="top" secondItem="z6r-dS-FXS" secondAttribute="top" id="kDS-G2-bVp"/>
+                                    <constraint firstItem="Ky0-Nu-aPv" firstAttribute="leading" secondItem="z6r-dS-FXS" secondAttribute="trailing" constant="8" id="yxH-xd-6tF"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="40" sectionFooterHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="eob-qP-HQO">
@@ -2167,6 +2183,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrowDown" width="21" height="12"/>
         <image name="cafeBack1.png" width="799" height="532"/>
         <image name="cappucino" width="150" height="101"/>
         <image name="check" width="19" height="19"/>
@@ -2174,6 +2191,7 @@
         <image name="geoloc" width="30" height="30"/>
         <image name="history" width="25" height="24"/>
         <image name="listMap" width="30" height="22"/>
+        <image name="location" width="21" height="28"/>
         <image name="login_back" width="449" height="674"/>
         <image name="logo" width="200" height="102"/>
         <image name="longCup" width="29" height="47"/>
