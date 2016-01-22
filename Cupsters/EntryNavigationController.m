@@ -18,10 +18,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"isLogin"]) {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([userDefaults objectForKey:@"isLogin"]) {
         UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
         [self presentViewController:vc animated:true completion:nil];
     }
+    
+    NSLog(@"%@", [userDefaults objectForKey:@"isLogin"]);
+    NSLog(@"%@", [userDefaults objectForKey:@"user"]);
+    NSLog(@"%@", [userDefaults objectForKey:@"plan"]);
 }
 
 - (void)didReceiveMemoryWarning {

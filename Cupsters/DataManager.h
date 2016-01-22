@@ -10,4 +10,13 @@
 
 @interface DataManager : NSFetchedResultsController
 
+- (void)saveDataWithLogin:(NSDictionary*)result;
+- (void)saveDataWithLoginInSN:(NSString*)sn WithResult:(NSDictionary *)result;
+- (void)saveDataWithSignUp:(NSDictionary *)result;
+- (void)saveDataWithSignUpInSN:(NSString*)sn WithResult:(NSDictionary *)result;
+
+- (void)loadDataWithStart;
+
++ (instancetype)sharedManager;
+
 @end

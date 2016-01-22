@@ -16,6 +16,6 @@
 
 - (void)sentToServer:(ServerRequest*)request OnSuccess:(void(^)(NSDictionary* result))success OrFailure:(void(^)(NSError* error))failure;
 
-- (void)saveDataWithLogin:(NSDictionary*)result;
+
 
 @end

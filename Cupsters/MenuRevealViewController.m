@@ -27,7 +27,7 @@
     
     self.revealViewController.delegate = self;
     
-    self.user = [[User alloc] initUserWithFirstName:@"Юрий" LastName:@"Реутский" UserPlan:nil];
+    self.user = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
 
 
 //    [self.view addSubview:self.user.image];
