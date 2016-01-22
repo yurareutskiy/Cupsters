@@ -26,6 +26,8 @@
     [GMSServices provideAPIKey:@"AIzaSyC7-l9lWhURQqNkJKjqaPHTrIm9lTyvdS8"];
     // Override point for customization after application launch.
     
+    NSLog(@"token - %@",  [[NSUserDefaults standardUserDefaults] objectForKey:@"token"]);
+    
     ServerRequest *request = [ServerRequest initRequest:ServerRequestTypeGET With:nil To:MenuURLStrring];
     Server *server = [[Server alloc] init];
     [server sentToServer:request OnSuccess:^(NSDictionary *result) {

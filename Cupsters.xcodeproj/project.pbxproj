@@ -65,6 +65,7 @@
 		DBA9C4B31C4DBC93002A5E0D /* Server.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA9C4B21C4DBC93002A5E0D /* Server.m */; };
 		DBA9C4CA1C4F0D0F002A5E0D /* Token.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA9C4C91C4F0D0F002A5E0D /* Token.m */; };
 		DBAA546C1C51CB44004F7C6D /* EntryNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAA546B1C51CB44004F7C6D /* EntryNavigationController.m */; };
+		DBAA549B1C527732004F7C6D /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAA549A1C527732004F7C6D /* DataManager.m */; };
 		DBDC1C2B1C400583003A8507 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = DBDC1C2A1C400583003A8507 /* Podfile */; };
 		DBDC1C301C40EB05003A8507 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBDC1C2E1C40EB05003A8507 /* SWRevealViewController.m */; };
 /* End PBXBuildFile section */
@@ -161,6 +162,8 @@
 		DBA9C4C91C4F0D0F002A5E0D /* Token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Token.m; sourceTree = "<group>"; };
 		DBAA546A1C51CB44004F7C6D /* EntryNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryNavigationController.h; sourceTree = "<group>"; };
 		DBAA546B1C51CB44004F7C6D /* EntryNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryNavigationController.m; sourceTree = "<group>"; };
+		DBAA54991C527732004F7C6D /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		DBAA549A1C527732004F7C6D /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		DBDC1C2A1C400583003A8507 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		DBDC1C2E1C40EB05003A8507 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = SWRevealViewController/SWRevealViewController.m; sourceTree = "<group>"; };
 		DBDC1C2F1C40EB05003A8507 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = SWRevealViewController/SWRevealViewController.h; sourceTree = "<group>"; };
@@ -412,6 +415,8 @@
 				DBA9C4AF1C4DBC84002A5E0D /* ServerError.m */,
 				DBA9C4C81C4F0D0F002A5E0D /* Token.h */,
 				DBA9C4C91C4F0D0F002A5E0D /* Token.m */,
+				DBAA54991C527732004F7C6D /* DataManager.h */,
+				DBAA549A1C527732004F7C6D /* DataManager.m */,
 			);
 			name = Server;
 			sourceTree = "<group>";
@@ -582,6 +587,7 @@
 				DB67FEBE1C3BD8FB00FC62E2 /* AppDelegate.m in Sources */,
 				DB67FEC71C3BD8FB00FC62E2 /* Cupsters.xcdatamodeld in Sources */,
 				DB67FEBB1C3BD8FB00FC62E2 /* main.m in Sources */,
+				DBAA549B1C527732004F7C6D /* DataManager.m in Sources */,
 				3A0024E21C4A8FFF00C248D2 /* VKSdk+CustomAuthorizationDelegate.m in Sources */,
 				3AFD2D461C4AB471004F8E72 /* MapViewController.m in Sources */,
 				3A08A3771C4BE9C20094AB63 /* ProfileViewController.m in Sources */,

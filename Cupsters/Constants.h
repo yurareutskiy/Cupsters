@@ -24,7 +24,7 @@ extern NSString* const cFontMyraid;
 #pragma mark - URLs
 
 extern NSString * const BaseURLString;
-extern NSString * const LoginURLStrring;
+extern NSString * const SigninURLStrring;
 extern NSString * const SignupURLStrring;
 extern NSString * const ActivityURLStrring;
 extern NSString * const CafeURLStrring;
