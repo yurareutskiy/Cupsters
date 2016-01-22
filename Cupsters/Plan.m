@@ -10,4 +10,13 @@
 
 @implementation Plan
 
++ (instancetype)initWithParams:(NSDictionary*)params {
+    Plan *plan = [[Plan alloc] init];
+    plan.name = params[@"tariff"];
+    plan.count = params[@"count"];
+    plan.type = params[@"type"];
+    plan.begin = params[@"create_date"];
+    return plan;
+}
+
 @end

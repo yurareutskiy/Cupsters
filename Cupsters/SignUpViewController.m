@@ -101,6 +101,7 @@
     ServerRequest *requset = [ServerRequest initRequest:ServerRequestTypePOST With:parameters To:SignupURLStrring];
     [server sentToServer:requset OnSuccess:^(NSDictionary *result) {
         NSLog(@"%@", result);
+        [[NSUserDefaults standardUserDefaults] setObject:@"true" forKey:@"isLogin"];
         [[NSUserDefaults standardUserDefaults] setObject:[result objectForKey:@"token"] forKey:@"token"];
         [[NSUserDefaults standardUserDefaults] setObject:[result objectForKey:@"return_id"] forKey:@"id"];
         UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];

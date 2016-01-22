@@ -17,7 +17,8 @@
 @property (readonly, strong, nonatomic) NSString *name;
 @property (strong, nonatomic) Plan *plan;
 @property (strong, nonatomic) NSString *initials;
+@property (strong, nonatomic) NSNumber *id;
 
-- (User*)initUserWithFirstName:(NSString*)firstName LastName:(NSString*)lastName UserPlan:(Plan*)plan;
++ (instancetype)initUserWithFirstName:(NSString*)firstName LastName:(NSString*)lastName userID:(NSString*)id UserPlan:(Plan*)plan;
 
 @end

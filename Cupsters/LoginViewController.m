@@ -24,6 +24,7 @@
     self.scrollView = self.scrollViewOutlet;
     
     [super viewDidLoad];
+
     
     [[VKSdk initializeWithAppId:@"5229696"] registerDelegate:self];
     [[VKSdk instance] setUiDelegate:self];
@@ -130,6 +131,7 @@
     Server *server = [[Server alloc] init];
     [server sentToServer:request OnSuccess:^(NSDictionary *result) {
         NSLog(@"%@", result);
+        [server saveDataWithLogin:result];
         UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
         [self presentViewController:vc animated:true completion:nil];
     } OrFailure:^(NSError *error) {
@@ -149,10 +151,10 @@
         if (error) {
             NSLog(@"fetched error:%@", error);
         } else if (state == VKAuthorizationAuthorized) {
+            [[NSUserDefaults standardUserDefaults] setObject:@"true" forKey:@"isLogin"];
             NSLog(@"I'm here");
-//            self.firstVK;
         } else if (state == VKAuthorizationInitialized) {
-            self.firstVK;
+            [self firstVK];
         }
     }];
 }
@@ -184,6 +186,7 @@
                              Server *server = [[Server alloc] init];
                              [server sentToServer:request OnSuccess:^(NSDictionary *result) {
                                  NSLog(@"%@", result);
+                                 [[NSUserDefaults standardUserDefaults] setObject:@"true" forKey:@"isLogin"];
                                  UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
                                  [self presentViewController:vc animated:true completion:nil];
                              } OrFailure:^(NSError *error) {
