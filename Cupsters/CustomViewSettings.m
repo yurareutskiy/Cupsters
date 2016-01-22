@@ -1,14 +1,14 @@
 //
-//  CustomButtonSettings.m
+//  CustomViewSettings.m
 //  Cupsters
 //
-//  Created by Anton Scherbakov on 17/01/16.
+//  Created by Anton Scherbakov on 22/01/16.
 //  Copyright © 2016 Styleru. All rights reserved.
 //
 
-#import "CustomButtonSettings.h"
+#import "CustomViewSettings.h"
 
-@implementation CustomButtonSettings
+@implementation CustomViewSettings
 
 - (void)drawRect:(CGRect)rect {
     
@@ -19,7 +19,7 @@
     self.layer.shadowOpacity = _shadowOpacity;
     self.layer.shadowRadius = _shadowRadius;
     self.layer.shadowOffset = CGSizeMake(_widthOffset, _heightOffset);
-
+    
 }
 
 @end
