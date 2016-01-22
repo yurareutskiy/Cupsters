@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "LoginModelViewController.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKShareKit/FBSDKShareKit.h>
+#import <VKSdk.h>
 
 
 @interface SignUpViewController: LoginModelViewController
@@ -22,5 +26,8 @@
 - (IBAction)editDidEndAction:(UITextField *)sender;
 - (IBAction)agreeButtonAction:(UIButton *)sender;
 - (IBAction)signUpDoneButtonAction:(UIButton *)sender;
+
+- (IBAction)regWithVk:(UIButton *)sender;
+- (IBAction)regWithFb:(UIButton *)sender;
 
 @end
