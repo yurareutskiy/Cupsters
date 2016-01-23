@@ -24,7 +24,7 @@
     
     if ([userDefaults objectForKey:@"isLogin"]) {
         UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
-        [self presentViewController:vc animated:true completion:nil];
+        [self presentViewController:vc animated:false completion:nil];
     }
 
 }
