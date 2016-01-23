@@ -43,10 +43,16 @@
                                  longitude:locationManager.location.coordinate.longitude
                                  zoom:15];
     
-    mapView = [GMSMapView mapWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height - _tableView.frame.size.height) camera:camera];
+    mapView = [GMSMapView mapWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height - _tableView.frame.size.height - 64.0) camera:camera];
     mapView.myLocationEnabled = YES;
-
+    
     [self.view addSubview:mapView];
+    
+    mapView.layer.shadowColor = [[UIColor grayColor] CGColor];
+    mapView.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    mapView.layer.shadowRadius = 1.0f;
+    mapView.layer.shadowOpacity = 1.0f;
+    [mapView.layer setMasksToBounds:NO];
     
     // Creates a marker in the center of the map.
     GMSMarker *marker = [[GMSMarker alloc] init];
@@ -105,6 +111,12 @@
                                                       target:self.revealViewController
                                                       action:@selector(revealToggle:)];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    self.navigationController.navigationBar.layer.shadowColor = [[UIColor grayColor] CGColor];
+    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    self.navigationController.navigationBar.layer.shadowRadius = 1.0f;
+    self.navigationController.navigationBar.layer.shadowOpacity = 1.0f;
+    
     self.navigationItem.leftBarButtonItem = self.menuButton;
     
 }
@@ -116,7 +128,7 @@
     
     // Create text attachment, which will contain and set text and image
     NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
-    attachment.image = [UIImage imageNamed:@"cup"];
+    attachment.image = [UIImage imageNamed:@"smallCup"];
     NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:attachment];
     NSMutableAttributedString *myString= [[NSMutableAttributedString alloc] initWithString:@"1 ЧАШКА  "];
     [myString appendAttributedString:attachmentString];
@@ -161,9 +173,14 @@
     MapTableViewCell *cell = [[MapTableViewCell alloc] init];
     [self.tableView dequeueReusableCellWithIdentifier:@"mapCell" forIndexPath:indexPath];
     
+    UILabel *numberRow = [[UILabel alloc] initWithFrame:cell.number.frame];
+    numberRow.text = [NSString stringWithFormat:@"%ld", indexPath.row + 1];
+    [cell.number addSubview:numberRow];
+    
+    [cell.name setText:@"lol"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    return [self configurePlace:cell At:indexPath.row];
+    return cell; //[self configurePlace:cell At:indexPath.row];
 }
 
 -(MapTableViewCell*)configurePlace:(MapTableViewCell*)cell At:(NSInteger)row {
@@ -175,6 +192,28 @@
     [cell.logo setImage:[UIImage imageNamed:@"cafeBack1"]];
     
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+
+-(void)viewDidLayoutSubviews
+{
+    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self.tableView setLayoutMargins:UIEdgeInsetsZero];
+    }
 }
 
 /*
