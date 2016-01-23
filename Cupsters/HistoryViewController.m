@@ -79,6 +79,12 @@
                                                        style:UIBarButtonItemStyleDone
                                                       target:self
                                                       action:@selector(toList:)];
+    
+    self.navigationController.navigationBar.layer.shadowColor = [[UIColor grayColor] CGColor];
+    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    self.navigationController.navigationBar.layer.shadowRadius = 1.0f;
+    self.navigationController.navigationBar.layer.shadowOpacity = 1.0f;
+    
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationItem.leftBarButtonItem = self.menuButton;
     
@@ -90,6 +96,28 @@
     
 }
 
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+
+-(void)viewDidLayoutSubviews
+{
+    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self.tableView setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+
 - (UILabel*)customTitleViewWithImage {
     
     // Create
@@ -97,7 +125,7 @@
     
     // Create text attachment, which will contain and set text and image
     NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
-    attachment.image = [UIImage imageNamed:@"cup"];
+    attachment.image = [UIImage imageNamed:@"smallCup"];
     NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:attachment];
     NSMutableAttributedString *myString= [[NSMutableAttributedString alloc] initWithString:@"1 ЧАШКА  "];
     [myString appendAttributedString:attachmentString];
@@ -133,10 +161,18 @@
     [cell.coffeeName setText:@"Каппучино"];
     [cell.coffeeVol setText:@"200 мл"];
     [cell.date setText:@"25 ДЕК 2015"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+        [self.tableView deselectRowAtIndexPath:indexPath animated:false];
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        [self performSegueWithIdentifier:@"fromHistory" sender:self];
+        NSLog(@"Select row at index %@", indexPath);
+}
 
 /*
 // Override to support conditional editing of the table view.
