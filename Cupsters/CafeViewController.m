@@ -29,10 +29,13 @@
     GMSMapView *mapView;
     BOOL openMap;
     CGFloat viewWidth;
+    UIView *viewHeader;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     
     openMap = false;
     
@@ -47,13 +50,17 @@
     [self preferredStatusBarStyle];
     [self configureMenu];
     
+    viewHeader = [[UIView alloc]initWithFrame:CGRectMake(0, self.cafeView.frame.size.height, self.view.frame.size.width, 40.0)];
+    [viewHeader setBackgroundColor:[UIColor whiteColor]];
+    
     GMSCameraPosition *camera = [GMSCameraPosition
                                  cameraWithLatitude:locationManager.location.coordinate.latitude
                                  longitude:locationManager.location.coordinate.longitude
                                  zoom:15];
     
-    mapView = [GMSMapView mapWithFrame:CGRectMake(self.view.frame.origin.x, self.cafeView.frame.origin.y + self.cafeView.frame.size.height - 20.0, self.view.frame.size.width, 200.0) camera:camera];
+    mapView = [GMSMapView mapWithFrame:CGRectMake(self.view.frame.origin.x, self.cafeView.frame.size.height, self.view.frame.size.width, 200.0) camera:camera];
     mapView.myLocationEnabled = YES;
+    [mapView setBackgroundColor:[UIColor whiteColor]];
     
     [self.view addSubview:mapView];
     mapView.hidden = true;
@@ -68,11 +75,14 @@
     
     self.tableView1.delegate = self;
     self.tableView1.dataSource = self;
+    self.tableView2.delegate = self;
+    self.tableView2.dataSource = self;
+    self.tableView3.delegate = self;
+    self.tableView3.dataSource = self;
     
     viewWidth = self.view.frame.size.width;
     
-    UIView *viewHeader = [[UIView alloc]initWithFrame:CGRectMake(0, self.cafeView.frame.size.height, self.view.frame.size.width, 40.0)];
-    [viewHeader setBackgroundColor:[UIColor clearColor]];
+    
     
     _segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(-0.5, -0.5, viewHeader.frame.size.width + 1.0, 40.0 + 0.5)];
     _segmentedControl.sectionTitles = @[@"Кофе", @"Чай",@"Другое"];
@@ -90,10 +100,11 @@
     [viewHeader addSubview:_segmentedControl];
     
     self.scrollView.frame = CGRectMake(self.scrollView.frame.origin.x, self.scrollView.frame.origin.y, self.view.frame.size.width * 3, self.scrollView.frame.size.height);
+    [self.scrollView setBackgroundColor:[UIColor whiteColor]];
     
-    self.tableView1.frame = CGRectMake(0, 0, viewWidth, self.tableView1.frame.size.height);
-    self.tableView2.frame = CGRectMake(viewWidth, 0, viewWidth, self.tableView2.frame.size.height);
-    self.tableView3.frame = CGRectMake(viewWidth * 2, 0, viewWidth, self.tableView3.frame.size.height);
+    self.tableView1.frame = CGRectMake(0, 0, viewWidth, self.scrollView.frame.size.height);
+    self.tableView2.frame = CGRectMake(viewWidth, 0, viewWidth, self.scrollView.frame.size.height);
+    self.tableView3.frame = CGRectMake(viewWidth * 2, 0, viewWidth, self.scrollView.frame.size.height);
     
     [self.scrollView addSubview:self.tableView1];
     [self.scrollView addSubview:self.tableView2];
@@ -190,18 +201,19 @@
 #pragma mark - Table View
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    [self.tableView1 deselectRowAtIndexPath:indexPath animated:false];
-    [self.tableView1 reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    NSLog(@"Select row at index %@", indexPath);
-    
-    [self.tableView2 deselectRowAtIndexPath:indexPath animated:false];
-    [self.tableView2 reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    NSLog(@"Select row at index %@", indexPath);
-    
-    [self.tableView3 deselectRowAtIndexPath:indexPath animated:false];
-    [self.tableView3 reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    NSLog(@"Select row at index %@", indexPath);
+    if (tableView.tag == 1) {
+//    [self.tableView1 deselectRowAtIndexPath:indexPath animated:false];
+//    [self.tableView1 reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    NSLog(@"Select row at index %@ in table %ld", indexPath, (long)tableView.tag);
+    } else if (tableView.tag == 2) {
+//    [self.tableView2 deselectRowAtIndexPath:indexPath animated:false];
+//    [self.tableView2 reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    NSLog(@"Select row at index %@ in table %ld", indexPath, (long)tableView.tag);
+    } else {
+//    [self.tableView3 deselectRowAtIndexPath:indexPath animated:false];
+//    [self.tableView3 reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    NSLog(@"Select row at index %@ in table %ld", indexPath, (long)tableView.tag);
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -285,6 +297,7 @@
     //[self configurePlace:cell At:indexPath.row];
 }
 
+
 -(CafeTableViewCell*)configurePlace:(CafeTableViewCell*)cell At:(NSInteger)row {
     
 
@@ -305,8 +318,8 @@
         else if (scrollView.contentOffset.x >= 616) {
             [self.segmentedControl setSelectedSegmentIndex:2 animated:YES];
         }
-
 }
+
 
 - (void)makeOrder:(UIButton*)sender{
     [self performSegueWithIdentifier:@"makeOrder" sender:self];
@@ -325,17 +338,38 @@
 //- (IBAction)makeAnOrder:(UIButton *)sender {
 //    [self performSegueWithIdentifier:@"makeOrder" sender:self];
 //}
+
+
 - (IBAction)openMap:(UIButton *)sender {
+
     
     if (!openMap) {
         openMap = true;
+        [mapView setAlpha:0.0];
         mapView.hidden = false;
+        [UIView animateWithDuration:0.5 animations:^{
+            [mapView setAlpha:1.0];
+        }];
+        [UIView animateWithDuration:0.25 animations:^{
         self.tableView1.frame = CGRectMake(self.tableView1.frame.origin.x, self.tableView1.frame.origin.y + mapView.frame.size.height, self.tableView1.frame.size.width, self.tableView1.frame.size.height);
+        self.tableView2.frame = CGRectMake(self.tableView2.frame.origin.x, self.tableView2.frame.origin.y + mapView.frame.size.height, self.tableView2.frame.size.width, self.tableView2.frame.size.height);
+        self.tableView3.frame = CGRectMake(self.tableView3.frame.origin.x, self.tableView3.frame.origin.y + mapView.frame.size.height, self.tableView3.frame.size.width, self.tableView3.frame.size.height);
+        viewHeader.frame = CGRectMake(viewHeader.frame.origin.x, viewHeader.frame.origin.y + mapView.frame.size.height, viewHeader.frame.size.width, viewHeader.frame.size.height);
+        }];
     }
     else {
         openMap = false;
-        mapView.hidden = true;
+        [UIView animateWithDuration:0.25 animations:^{
+            [mapView setAlpha:0.0];
+        } completion:^ (BOOL finished) {
+            mapView.hidden = true;
+        }];
+        [UIView animateWithDuration:0.5 animations:^{
         self.tableView1.frame = CGRectMake(self.tableView1.frame.origin.x, self.tableView1.frame.origin.y - mapView.frame.size.height, self.tableView1.frame.size.width, self.tableView1.frame.size.height);
+        self.tableView2.frame = CGRectMake(self.tableView2.frame.origin.x, self.tableView2.frame.origin.y - mapView.frame.size.height, self.tableView2.frame.size.width, self.tableView2.frame.size.height);
+        self.tableView3.frame = CGRectMake(self.tableView3.frame.origin.x, self.tableView3.frame.origin.y - mapView.frame.size.height, self.tableView3.frame.size.width, self.tableView3.frame.size.height);
+        viewHeader.frame = CGRectMake(viewHeader.frame.origin.x, viewHeader.frame.origin.y - mapView.frame.size.height, viewHeader.frame.size.width, viewHeader.frame.size.height);
+        }];
     }
 }
 @end
