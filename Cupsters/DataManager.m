@@ -51,26 +51,59 @@
     NSData *userData = [NSKeyedArchiver archivedDataWithRootObject:user];
     [ud setObject:userData forKey:@"user"];
     
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
     
-    if ([result[@"orders"] isKindOfClass:[NSDictionary class]]) {
+    if (![result[@"orders"] isKindOfClass:[NSString class]]) {
 //        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 //        NSManagedObjectContext *context = appDelegate.managedObjectContext;
-        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Orders" inManagedObjectContext:self.managedObjectContext];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Orders" inManagedObjectContext:context];
         for (int i = 0; i < [((NSArray*)result[@"orders"]) count]; i++) {
             NSDictionary *tempDict = result[@"orders"][i];
-            NSManagedObject *order = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+            NSManagedObject *order = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:context];
             [order setValue:tempDict[@"cafe"] forKey:@"cafe"];
             [order setValue:tempDict[@"coffee"] forKey:@"coffee"];
             [order setValue:tempDict[@"volume"] forKey:@"volume"];
             [order setValue:tempDict[@"date_accept"] forKey:@"date"];
             [order setValue:[NSNumber numberWithInt:((NSString*)tempDict[@"id"]).intValue] forKey:@"id"];
             NSError *error = nil;
-            [self.managedObjectContext save:&error];
+            [context save:&error];
             if (error) {
                 NSLog(@"%@", [error debugDescription]);
             }
         }
+//        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+////        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Orders" inManagedObjectContext:context];
+//        [fetchRequest setEntity:entity];
+//        NSError *error = nil;
+//        NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+//        NSLog(@"%@", fetchedObjects);
     }
 }
 
+
+- (NSArray*)getData {
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"Orders" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSError *error = nil;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+//    for (NSManagedObject *object in fetchedObjects) {
+//        NSLog(@"%@", [object valueForKey:@"cafe"]);
+//    }
+    return fetchedObjects;
+}
+
+
 @end
+
+
+
+
+
+
+
+

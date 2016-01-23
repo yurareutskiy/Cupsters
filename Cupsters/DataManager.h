@@ -16,6 +16,9 @@
 - (void)saveDataWithSignUpInSN:(NSString*)sn WithResult:(NSDictionary *)result;
 
 - (void)loadDataWithStart;
+- (NSArray*)getData;
+
+//- (NSArray*)dataFr
 
 + (instancetype)sharedManager;
 
