@@ -20,8 +20,7 @@
 @property (strong, nonatomic) UIBarButtonItem *menuButton;
 @property (strong, nonatomic) SWRevealViewController *reveal;
 
-@property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, strong) HMSegmentedControl *segmentedControl;
+@property (strong, nonatomic) IBOutlet HMSegmentedControl *segmentedControl;
 
 @end
 
@@ -29,6 +28,7 @@
     CLLocationManager *locationManager;
     GMSMapView *mapView;
     BOOL openMap;
+    CGFloat viewWidth;
 }
 
 - (void)viewDidLoad {
@@ -66,11 +66,55 @@
     marker.map = mapView;
     mapView.settings.myLocationButton = YES;
     
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
+    self.tableView1.delegate = self;
+    self.tableView1.dataSource = self;
+    
+    viewWidth = self.view.frame.size.width;
+    
+    UIView *viewHeader = [[UIView alloc]initWithFrame:CGRectMake(0, self.cafeView.frame.size.height, self.view.frame.size.width, 40.0)];
+    [viewHeader setBackgroundColor:[UIColor clearColor]];
+    
+    _segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(-0.5, -0.5, viewHeader.frame.size.width + 1.0, 40.0 + 0.5)];
+    _segmentedControl.sectionTitles = @[@"Кофе", @"Чай",@"Другое"];
+    _segmentedControl.selectedSegmentIndex = 0;
+    _segmentedControl.backgroundColor = [UIColor whiteColor];
+    _segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor grayColor]};
+    _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1]};
+    _segmentedControl.selectionIndicatorColor = [UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0];
+    _segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
+    _segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationUp;
+    _segmentedControl.tag = 3;
+    _segmentedControl.layer.borderColor = [UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0].CGColor;
+    _segmentedControl.layer.borderWidth = 0.5f;
+    [self.view addSubview:viewHeader];
+    [viewHeader addSubview:_segmentedControl];
+    
+    self.scrollView.frame = CGRectMake(self.scrollView.frame.origin.x, self.scrollView.frame.origin.y, self.view.frame.size.width * 3, self.scrollView.frame.size.height);
+    
+    self.tableView1.frame = CGRectMake(0, 0, viewWidth, self.tableView1.frame.size.height);
+    self.tableView2.frame = CGRectMake(viewWidth, 0, viewWidth, self.tableView2.frame.size.height);
+    self.tableView3.frame = CGRectMake(viewWidth * 2, 0, viewWidth, self.tableView3.frame.size.height);
+    
+    [self.scrollView addSubview:self.tableView1];
+    [self.scrollView addSubview:self.tableView2];
+    [self.scrollView addSubview:self.tableView3];
+    
+    self.scrollView.delegate = self;
+    self.scrollView.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
+    self.scrollView.pagingEnabled = YES;
+    self.scrollView.showsHorizontalScrollIndicator = YES;
+    self.scrollView.contentSize = CGSizeMake(viewWidth * 3, self.scrollView.frame.size.height);
+    //[self.scrollView scrollRectToVisible:CGRectMake(viewWidth, 0, viewWidth, 200) animated:NO];
+    
+    __weak typeof(self) weakSelf = self;
+    [self.segmentedControl setIndexChangeBlock:^(NSInteger index) {
+        [weakSelf.scrollView scrollRectToVisible:CGRectMake(viewWidth * index, 0, viewWidth, 200) animated:YES];
+    }];
     
     // Do any additional setup after loading the view.
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -142,93 +186,103 @@
     return navigationBarLabel;
 }
 
+
 #pragma mark - Table View
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:false];
-    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    
+    [self.tableView1 deselectRowAtIndexPath:indexPath animated:false];
+    [self.tableView1 reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    NSLog(@"Select row at index %@", indexPath);
+    
+    [self.tableView2 deselectRowAtIndexPath:indexPath animated:false];
+    [self.tableView2 reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    NSLog(@"Select row at index %@", indexPath);
+    
+    [self.tableView3 deselectRowAtIndexPath:indexPath animated:false];
+    [self.tableView3 reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     NSLog(@"Select row at index %@", indexPath);
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
-    if(section == 0) {
-        
-        UIView *viewHeader = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40.0)];
-        [viewHeader setBackgroundColor:[UIColor clearColor]];
-        
-        _segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(-0.5, -0.5, viewHeader.frame.size.width + 1.0, 40.0 + 0.5)];
-        _segmentedControl.sectionTitles = @[@"Кофе", @"Чай",@"Другое"];
-        _segmentedControl.selectedSegmentIndex = 1;
-        _segmentedControl.backgroundColor = [UIColor whiteColor];
-        _segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor grayColor]};
-        _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1]};
-        _segmentedControl.selectionIndicatorColor = [UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0];
-        _segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
-        _segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationUp;
-        _segmentedControl.tag = 3;
-        _segmentedControl.layer.borderColor = [UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0].CGColor;
-        _segmentedControl.layer.borderWidth = 0.5f;
-        
-        [viewHeader addSubview:_segmentedControl];
-        
-        return viewHeader;
-    }
-    return nil;
-}
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    if (tableView.tag == 1) {
+        return 1;
+    }
+    else if (tableView.tag == 2) {
+        return 1;
+    }
+    else if (tableView.tag == 3) {
+        return 1;
+    }
+    else {
+        return 1;
+    }
 }
 
 // Tying up the segmented control to a scroll view
 
 
 
-//__weak typeof(self) weakSelf = self;
-//[self._segmentedControl4 setIndexChangeBlock:^(NSInteger index) {
-//    [weakSelf.scrollView scrollRectToVisible:CGRectMake(viewWidth * index, 0, viewWidth, 200) animated:YES];
-//}];
-//
-//self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 310, viewWidth, 210)];
-//self.scrollView.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
-//self.scrollView.pagingEnabled = YES;
-//self.scrollView.showsHorizontalScrollIndicator = NO;
-//self.scrollView.contentSize = CGSizeMake(viewWidth * 3, 200);
-//self.scrollView.delegate = self;
-//[self.scrollView scrollRectToVisible:CGRectMake(viewWidth, 0, viewWidth, 200) animated:NO];
-//[self.view addSubview:self.scrollView];
-//
-//UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, viewWidth, 210)];
-//[self setApperanceForLabel:label1];
-//label1.text = @"Worldwide";
-//[self.scrollView addSubview:label1];
-//
-//UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectMake(viewWidth, 0, viewWidth, 210)];
-//[self setApperanceForLabel:label2];
-//label2.text = @"Local";
-//[self.scrollView addSubview:label2];
-//
-//UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(viewWidth * 2, 0, viewWidth, 210)];
-//[self setApperanceForLabel:label3];
-//label3.text = @"Headlines";
-//[self.scrollView addSubview:label3];
-
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    if (tableView.tag == 1) {
+        return 10;
+    }
+    else if (tableView.tag == 2) {
+        return 10;
+    }
+    else if (tableView.tag == 3) {
+        return 10;
+    }
+    else {
+        return 10;
+    }
 }
 
 -(CafeTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    CafeTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cafeCell" forIndexPath:indexPath];
+    if (tableView.tag == 1) {
+        CafeTableViewCell *cell = [self.tableView1 dequeueReusableCellWithIdentifier:@"cafeCell" forIndexPath:indexPath];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell.makeButton addTarget:self action:@selector(makeOrder:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.coffeeName setText:@"lol"];
+        NSLog(@"i'm here");
+        
+        return cell;
+    }
+    else if (tableView.tag == 2) {
+        CafeTableViewCell *cell = [self.tableView2 dequeueReusableCellWithIdentifier:@"cafeCell" forIndexPath:indexPath];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell.makeButton addTarget:self action:@selector(makeOrder:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.coffeeName setText:@"lol"];
+        NSLog(@"i'm here");
+        
+        return cell;
+    }
+    else if (tableView.tag == 3) {
+        CafeTableViewCell *cell = [self.tableView3 dequeueReusableCellWithIdentifier:@"cafeCell" forIndexPath:indexPath];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell.makeButton addTarget:self action:@selector(makeOrder:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.coffeeName setText:@"lol"];
+        NSLog(@"i'm here");
+        
+        return cell;
+    }
+    else {
+        CafeTableViewCell *cell = [self.tableView1 dequeueReusableCellWithIdentifier:@"cafeCell" forIndexPath:indexPath];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        [cell.makeButton addTarget:self action:@selector(makeOrder:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.coffeeName setText:@"lol"];
+        NSLog(@"i'm here");
+        
+        return cell;
+    }
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    [cell.makeButton addTarget:self action:@selector(makeOrder:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.coffeeName setText:@"lol"];
-    NSLog(@"i'm here");
     
-    return cell; //[self configurePlace:cell At:indexPath.row];
+    //[self configurePlace:cell At:indexPath.row];
 }
 
 -(CafeTableViewCell*)configurePlace:(CafeTableViewCell*)cell At:(NSInteger)row {
@@ -238,11 +292,20 @@
     return cell;
 }
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    if (scrollView.contentOffset.y<=0) {
-        scrollView.contentOffset = CGPointZero;
-    }
+- (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    NSLog(@"yeap");
+    NSLog(@"%f", scrollView.contentOffset.x);
+    
+        if (scrollView.contentOffset.x >= 0 && scrollView.contentOffset.x <= 106) {
+            [self.segmentedControl setSelectedSegmentIndex:0 animated:YES];
+        }
+        else if (scrollView.contentOffset.x >= 212 && scrollView.contentOffset.x <= 520) {
+            [self.segmentedControl setSelectedSegmentIndex:1 animated:YES];
+        }
+        else if (scrollView.contentOffset.x >= 616) {
+            [self.segmentedControl setSelectedSegmentIndex:2 animated:YES];
+        }
+
 }
 
 - (void)makeOrder:(UIButton*)sender{
@@ -267,12 +330,12 @@
     if (!openMap) {
         openMap = true;
         mapView.hidden = false;
-        self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y + mapView.frame.size.height, self.tableView.frame.size.width, self.tableView.frame.size.height);
+        self.tableView1.frame = CGRectMake(self.tableView1.frame.origin.x, self.tableView1.frame.origin.y + mapView.frame.size.height, self.tableView1.frame.size.width, self.tableView1.frame.size.height);
     }
     else {
         openMap = false;
         mapView.hidden = true;
-        self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y - mapView.frame.size.height, self.tableView.frame.size.width, self.tableView.frame.size.height);
+        self.tableView1.frame = CGRectMake(self.tableView1.frame.origin.x, self.tableView1.frame.origin.y - mapView.frame.size.height, self.tableView1.frame.size.width, self.tableView1.frame.size.height);
     }
 }
 @end

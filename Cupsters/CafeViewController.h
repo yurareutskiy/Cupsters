@@ -11,9 +11,12 @@
 #import "HMSegmentedControl.h"
 
 @interface CafeViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, CLLocationManagerDelegate>
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UITableView *tableView1;
 @property (strong, nonatomic) IBOutlet UIView *cafeView;
 - (IBAction)openMap:(UIButton *)sender;
+@property (strong, nonatomic) IBOutlet UITableView *tableView2;
+@property (strong, nonatomic) IBOutlet UITableView *tableView3;
 
 
 @end
