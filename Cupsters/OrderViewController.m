@@ -30,6 +30,9 @@
     [self preferredStatusBarStyle];
     [self configureMenu];
     
+    self.code.delegate = self;
+    self.notCode.delegate = self;
+    
     // Do any additional setup after loading the view.
 }
 
@@ -74,6 +77,16 @@
     
 }
 
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex == 0) {
+        NSLog(@"Заказ сделан");
+    }
+    else if (buttonIndex == 1) {
+        NSLog(@"Заказ отменен");
+    }
+}
+
 - (void)backAction:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -97,6 +110,141 @@
     
     return navigationBarLabel;
 }
+
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    
+    _code.textAlignment = NSTextAlignmentLeft;
+    return YES;
+}
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Заказ #1234" message:@"Подтвердите заказ #1234" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Подтвердить" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        NSLog(@"Заказ подтвержден");
+    }]];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Отменить" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        NSLog(@"Заказ отменен");
+    }]];
+    
+    dispatch_async(dispatch_get_main_queue(), ^ {
+        [self presentViewController:alertController animated:YES completion:nil];
+    });
+}
+
+-(void)closeAlertview
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+
+
+- (void)keyboardDidShow:(NSNotification *)notification
+{
+    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect f = self.view.frame;
+        f.origin.y = -keyboardSize.height;
+        self.view.frame = f;
+    }];
+}
+
+-(void)keyboardDidHide:(NSNotification *)notification
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect f = self.view.frame;
+        f.origin.y = 0.0f;
+        self.view.frame = f;
+    }];
+}
+
+- (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    NSString *code = [self formatCode:_code.text];
+    int length2 = [self getLength:code];
+    
+    NSString *space = @"_";
+    
+    if(length2 == 1)
+    {
+        NSString *code = [self formatCode:_code.text];
+        const char *c = [code UTF8String];
+        _code.text = [NSString stringWithFormat:@"%c ",c[0]];
+        //_notCode.text = [NSString stringWithFormat:@"  %@ %@ %@ %@ %@", space, space, space, space, space];
+        
+        
+        if(range.length > 0)
+            _code.text = [NSString stringWithFormat:@"%c",c[0]];
+    }
+    if(length2 == 2)
+    {
+        NSString *code = [self formatCode:_code.text];
+        const char *c = [code UTF8String];
+        
+        _code.text = [NSString stringWithFormat:@"%c %c ",c[0],c[1]];
+        //_notCode.text = [NSString stringWithFormat:@"    %@ %@ %@ %@", space, space, space, space];
+        if(range.length > 0)
+            _code.text = [NSString stringWithFormat:@"%c %c",c[0],c[1]];
+    }
+    if(length2 == 3)
+    {
+        NSString *code = [self formatCode:_code.text];
+        const char *c = [code UTF8String];
+        
+        _code.text = [NSString stringWithFormat:@"%c %c %c ",c[0],c[1],c[2]];
+        //_notCode.text = [NSString stringWithFormat:@"      %@ %@ %@", space, space, space];
+        
+        if(range.length > 0)
+            _code.text = [NSString stringWithFormat:@"%c %c %c",c[0],c[1],c[2]];
+        
+    }
+    
+    if(length2 == 4)
+    {
+        NSString *code = [self formatCode:_code.text];
+        const char *c = [code UTF8String];
+        
+        _code.text = [NSString stringWithFormat:@"%c %c %c %c",c[0],c[1],c[2],c[3]];
+        //_notCode.text = [NSString stringWithFormat:@"           "];
+        
+        if(range.length == 0)
+            return NO;
+        
+    }
+    
+    return YES;
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    [self.code resignFirstResponder];
+}
+
+-(NSString *)formatCode:(NSString *)code{
+    code = [code stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    return code;
+}
+
+-(int)getLength:(NSString*)code
+{
+    code = [code stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    int length = [code length];
+    
+    return length;
+}
+
 
 
 - (void)didReceiveMemoryWarning {

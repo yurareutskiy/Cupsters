@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OrderViewController : UIViewController
+@interface OrderViewController : UIViewController<UITextFieldDelegate, UIAlertViewDelegate>
+@property (strong, nonatomic) IBOutlet UITextField *code;
+@property (strong, nonatomic) IBOutlet UITextField *notCode;
 
 @end

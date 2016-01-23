@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface ProfileViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (strong, nonatomic) IBOutlet UIView *profileView;
+
+@property (strong, nonatomic) IBOutlet UIView *upView;
+@property (strong, nonatomic) IBOutlet UIView *middleView;
+@property (strong, nonatomic) IBOutlet UIView *bottomView;
 
 @end
