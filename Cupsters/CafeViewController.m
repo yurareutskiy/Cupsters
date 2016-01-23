@@ -35,6 +35,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+    
     openMap = false;
     
     locationManager = [[CLLocationManager alloc] init];
@@ -49,7 +51,7 @@
     [self configureMenu];
     
     viewHeader = [[UIView alloc]initWithFrame:CGRectMake(0, self.cafeView.frame.size.height, self.view.frame.size.width, 40.0)];
-    [viewHeader setBackgroundColor:[UIColor clearColor]];
+    [viewHeader setBackgroundColor:[UIColor whiteColor]];
     
     GMSCameraPosition *camera = [GMSCameraPosition
                                  cameraWithLatitude:locationManager.location.coordinate.latitude
@@ -58,6 +60,7 @@
     
     mapView = [GMSMapView mapWithFrame:CGRectMake(self.view.frame.origin.x, self.cafeView.frame.size.height, self.view.frame.size.width, 200.0) camera:camera];
     mapView.myLocationEnabled = YES;
+    [mapView setBackgroundColor:[UIColor whiteColor]];
     
     [self.view addSubview:mapView];
     mapView.hidden = true;
@@ -97,6 +100,7 @@
     [viewHeader addSubview:_segmentedControl];
     
     self.scrollView.frame = CGRectMake(self.scrollView.frame.origin.x, self.scrollView.frame.origin.y, self.view.frame.size.width * 3, self.scrollView.frame.size.height);
+    [self.scrollView setBackgroundColor:[UIColor whiteColor]];
     
     self.tableView1.frame = CGRectMake(0, 0, viewWidth, self.scrollView.frame.size.height);
     self.tableView2.frame = CGRectMake(viewWidth, 0, viewWidth, self.scrollView.frame.size.height);
@@ -341,19 +345,31 @@
     
     if (!openMap) {
         openMap = true;
+        [mapView setAlpha:0.0];
         mapView.hidden = false;
+        [UIView animateWithDuration:0.5 animations:^{
+            [mapView setAlpha:1.0];
+        }];
+        [UIView animateWithDuration:0.25 animations:^{
         self.tableView1.frame = CGRectMake(self.tableView1.frame.origin.x, self.tableView1.frame.origin.y + mapView.frame.size.height, self.tableView1.frame.size.width, self.tableView1.frame.size.height);
         self.tableView2.frame = CGRectMake(self.tableView2.frame.origin.x, self.tableView2.frame.origin.y + mapView.frame.size.height, self.tableView2.frame.size.width, self.tableView2.frame.size.height);
         self.tableView3.frame = CGRectMake(self.tableView3.frame.origin.x, self.tableView3.frame.origin.y + mapView.frame.size.height, self.tableView3.frame.size.width, self.tableView3.frame.size.height);
         viewHeader.frame = CGRectMake(viewHeader.frame.origin.x, viewHeader.frame.origin.y + mapView.frame.size.height, viewHeader.frame.size.width, viewHeader.frame.size.height);
+        }];
     }
     else {
         openMap = false;
-        mapView.hidden = true;
+        [UIView animateWithDuration:0.25 animations:^{
+            [mapView setAlpha:0.0];
+        } completion:^ (BOOL finished) {
+            mapView.hidden = true;
+        }];
+        [UIView animateWithDuration:0.5 animations:^{
         self.tableView1.frame = CGRectMake(self.tableView1.frame.origin.x, self.tableView1.frame.origin.y - mapView.frame.size.height, self.tableView1.frame.size.width, self.tableView1.frame.size.height);
         self.tableView2.frame = CGRectMake(self.tableView2.frame.origin.x, self.tableView2.frame.origin.y - mapView.frame.size.height, self.tableView2.frame.size.width, self.tableView2.frame.size.height);
         self.tableView3.frame = CGRectMake(self.tableView3.frame.origin.x, self.tableView3.frame.origin.y - mapView.frame.size.height, self.tableView3.frame.size.width, self.tableView3.frame.size.height);
         viewHeader.frame = CGRectMake(viewHeader.frame.origin.x, viewHeader.frame.origin.y - mapView.frame.size.height, viewHeader.frame.size.width, viewHeader.frame.size.height);
+        }];
     }
 }
 @end
