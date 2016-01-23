@@ -17,6 +17,8 @@
     plan.type = params[@"type"];
     plan.begin = params[@"create_date"];
     return plan;
+    
+//    NSDateFormatter
 }
 
 @end

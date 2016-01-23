@@ -27,7 +27,7 @@
     
     self.revealViewController.delegate = self;
     
-    self.user = [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
+    self.user = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
 
 
 //    [self.view addSubview:self.user.image];
@@ -35,7 +35,7 @@
     self.userPhoto.layer.cornerRadius = 30;
     self.userInitials.text = self.user.initials;
     
-    self.userPlan.text = self.user.plan.name;
+    self.userPlan.text = self.user.plan[@"name"];
     self.userName.text = self.user.name;
     self.userName.adjustsFontSizeToFitWidth = true;
     

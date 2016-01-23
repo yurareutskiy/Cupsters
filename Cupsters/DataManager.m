@@ -41,12 +41,15 @@
     
     [ud setObject:result[@"token"] forKey:@"token"];
     
-    Plan *plan = nil;
+//    Plan *plan = nil;
+    NSDictionary *plan = nil;
     if (![result[@"plan"] isKindOfClass:[NSString class]]) {
-        plan = [Plan initWithParams:result[@"plan"]];
+//        plan = [Plan initWithParams:result[@"plan"]];
+        plan = result[@"plan"];
     }
     User *user = [User initUserWithFirstName:result[@"user"][@"first_name"] LastName:result[@"user"][@"last_name"] userID:result[@"user"][@"id"] UserPlan:plan];
-    [ud setObject:user forKey:@"user"];
+    NSData *userData = [NSKeyedArchiver archivedDataWithRootObject:user];
+    [ud setObject:userData forKey:@"user"];
     
     
     if ([result[@"orders"] isKindOfClass:[NSDictionary class]]) {

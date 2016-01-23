@@ -1558,7 +1558,6 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="280" height="600"/>
                     <connections>
-                        <outlet property="userInitials" destination="ZQy-j1-dZ0" id="Vrp-4p-SjH"/>
                         <outlet property="userName" destination="oon-tR-Zsc" id="maz-A9-o6D"/>
                         <outlet property="userPhoto" destination="Wsj-RL-dx2" id="a7d-Ec-orj"/>
                         <outlet property="userPlan" destination="rrV-Wq-N2s" id="Nvc-xp-6jU"/>
@@ -1831,7 +1830,7 @@
                         <outlet property="historyView" destination="MTM-zV-bfx" id="1KE-Ck-bYv"/>
                         <outlet property="profileView" destination="mLi-pC-YWv" id="T0v-ee-kZh"/>
                         <outlet property="tarifsView" destination="qRU-I0-dyZ" id="S6P-o0-Ye8"/>
-                        <outlet property="userInitials" destination="ZQy-j1-dZ0" id="RmA-RM-Tni"/>
+                        <outlet property="userInitials" destination="ZQy-j1-dZ0" id="5jm-NG-hox"/>
                         <outlet property="userName" destination="oon-tR-Zsc" id="cbA-UA-ctw"/>
                         <outlet property="userPhoto" destination="Wsj-RL-dx2" id="45i-3G-QzD"/>
                         <outlet property="userPlan" destination="rrV-Wq-N2s" id="4Hc-aL-Wfx"/>

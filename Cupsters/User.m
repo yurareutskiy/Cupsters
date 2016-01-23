@@ -19,7 +19,7 @@
 @implementation User
 
 
-+ (User*)initUserWithFirstName:(NSString*)firstName LastName:(NSString*)lastName userID:(NSString*)id UserPlan:(Plan*)plan {
++ (User*)initUserWithFirstName:(NSString*)firstName LastName:(NSString*)lastName userID:(NSString*)id UserPlan:(NSDictionary*)plan {
     
     User *user = [[User alloc] init];
     
@@ -40,5 +40,25 @@
     return user;
 }
 
+-(void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.name forKey:@"name"];
+    [aCoder encodeObject:self.firstName forKey:@"firstName"];
+    [aCoder encodeObject:self.lastName forKey:@"lastName"];
+    [aCoder encodeObject:self.initials forKey:@"initials"];
+    [aCoder encodeObject:self.plan forKey:@"plan"];
+    [aCoder encodeObject:self.id forKey:@"id"];
+}
+
+-(instancetype)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super init]) {
+        self.name = [aDecoder decodeObjectForKey:@"name"];
+        self.firstName = [aDecoder decodeObjectForKey:@"firstName"];
+        self.lastName = [aDecoder decodeObjectForKey:@"lastName"];
+        self.initials = [aDecoder decodeObjectForKey:@"initials"];
+        self.id = [aDecoder decodeObjectForKey:@"id"];
+        self.plan = [aDecoder decodeObjectForKey:@"plan"];
+    }
+    return self;
+}
 
 @end
