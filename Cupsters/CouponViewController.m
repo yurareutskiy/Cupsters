@@ -32,6 +32,9 @@
     [self customNavBar];
     [self preferredStatusBarStyle];
     [self configureMenu];
+    
+    self.code.delegate = self;
+    self.notCode.delegate = self;
     // Do any additional setup after loading the view.
 }
 
@@ -107,6 +110,112 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) textFieldDidBeginEditing:(UITextField *)textField {
+    _code.textAlignment = NSTextAlignmentLeft;
+}
+
+- (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    NSString *code = [self formatCode:_code.text];
+    int length2 = [self getLength:code];
+    
+    NSString *space = @"_";
+    
+    if(length2 == 1)
+    {
+        NSString *code = [self formatCode:_code.text];
+        const char *c = [code UTF8String];
+        _code.text = [NSString stringWithFormat:@"%c ",c[0]];
+        //_notCode.text = [NSString stringWithFormat:@"  %@ %@ %@ %@ %@", space, space, space, space, space];
+        
+        
+        if(range.length > 0)
+            _code.text = [NSString stringWithFormat:@"%c",c[0]];
+    }
+    if(length2 == 2)
+    {
+        NSString *code = [self formatCode:_code.text];
+        const char *c = [code UTF8String];
+        
+        _code.text = [NSString stringWithFormat:@"%c %c ",c[0],c[1]];
+        //_notCode.text = [NSString stringWithFormat:@"    %@ %@ %@ %@", space, space, space, space];
+        if(range.length > 0)
+            _code.text = [NSString stringWithFormat:@"%c %c",c[0],c[1]];
+    }
+    if(length2 == 3)
+    {
+        NSString *code = [self formatCode:_code.text];
+        const char *c = [code UTF8String];
+        
+        _code.text = [NSString stringWithFormat:@"%c %c %c ",c[0],c[1],c[2]];
+        //_notCode.text = [NSString stringWithFormat:@"      %@ %@ %@", space, space, space];
+        
+        if(range.length > 0)
+            _code.text = [NSString stringWithFormat:@"%c %c %c",c[0],c[1],c[2]];
+        
+    }
+    
+    if(length2 == 4)
+    {
+        NSString *code = [self formatCode:_code.text];
+        const char *c = [code UTF8String];
+        
+        _code.text = [NSString stringWithFormat:@"%c %c %c %c ",c[0],c[1],c[2],c[3]];
+        //_notCode.text = [NSString stringWithFormat:@"        %@ %@", space, space];
+        
+        if(range.length > 0)
+            _code.text = [NSString stringWithFormat:@"%c %c %c %c",c[0],c[1],c[2],c[3]];
+        
+    }
+
+    if(length2 == 5)
+    {
+        NSString *code = [self formatCode:_code.text];
+        const char *c = [code UTF8String];
+        
+        _code.text = [NSString stringWithFormat:@"%c %c %c %c %c ",c[0],c[1],c[2],c[3],c[4]];
+        //_notCode.text = [NSString stringWithFormat:@"          %@", space];
+        
+        if(range.length > 0)
+            _code.text = [NSString stringWithFormat:@"%c %c %c %c %c",c[0],c[1],c[2],c[3],c[4]];
+        
+    }
+
+    if (length2 == 6)
+    {
+        NSString *code = [self formatCode:_code.text];
+        const char *c = [code UTF8String];
+        
+        _code.text = [NSString stringWithFormat:@"%c %c %c %c %c %c",c[0],c[1],c[2],c[3],c[4],c[5]];
+        //_notCode.text = [NSString stringWithFormat:@"           "];
+        
+        if(range.length == 0)
+            return NO;
+    }
+
+    return YES;
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    
+    [self.code resignFirstResponder];
+}
+
+-(NSString *)formatCode:(NSString *)code{
+    code = [code stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    return code;
+}
+
+-(int)getLength:(NSString*)code
+{
+    code = [code stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    int length = [code length];
+    
+    return length;
 }
 
 /*

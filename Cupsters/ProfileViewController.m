@@ -60,15 +60,15 @@
 
 - (void)configureMenu {
     
-//    self.reveal = self.revealViewController;
-//    
-//    if (!self.reveal) {
-//        return;
-//    }
+    self.reveal = self.revealViewController;
+    
+    if (!self.reveal) {
+        return;
+    }
     
     
     // Add gesture recognizer
-//    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     
     // Set menu button
@@ -76,12 +76,16 @@
                                                        style:UIBarButtonItemStyleDone
                                                       target:self
                                                       action:@selector(toList:)];
-    
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationItem.leftBarButtonItem = self.menuButton;
     
 }
 
+- (void)toList:(id)sender {
+    
+    [self presentViewController:self.vc animated:true completion:nil];
+    
+}
 - (UILabel*)customTitleViewWithImage {
     
     // Create
@@ -101,12 +105,6 @@
     navigationBarLabel.textAlignment = NSTextAlignmentCenter;
     
     return navigationBarLabel;
-}
-
-- (void)toList:(id)sender {
-    [self dismissViewControllerAnimated:true completion:nil];
-//    [self presentViewController:self.vc animated:true completion:nil];
-    
 }
 
 /*

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CouponViewController : UIViewController
+@interface CouponViewController : UIViewController<UITextFieldDelegate>
+@property (strong, nonatomic) IBOutlet UITextField *code;
+@property (strong, nonatomic) IBOutlet UITextField *notCode;
 
 @end
