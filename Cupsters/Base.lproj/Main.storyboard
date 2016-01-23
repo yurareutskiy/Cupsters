@@ -275,13 +275,8 @@
                                 </constraints>
                                 <color key="separatorColor" red="0.68627450980000004" green="0.54117647059999996" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-<<<<<<< HEAD
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mapCell" rowHeight="100" id="xBN-IE-chF" customClass="MapTableViewCell">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="100"/>
-=======
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mapCell" id="xBN-IE-chF" customClass="MapTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="600" height="90"/>
->>>>>>> ui-branch
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xBN-IE-chF" id="GXH-g4-HPO">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="89"/>
@@ -717,11 +712,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5eV-uh-VoU">
-<<<<<<< HEAD
-                                <rect key="frame" x="0.0" y="30" width="600" height="570"/>
-=======
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
->>>>>>> ui-branch
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.68627450980000004" green="0.54117647059999996" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -1085,28 +1076,12 @@
                                         <rect key="frame" x="-20" y="0.0" width="640" height="220"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Попросите официанта ввести код:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EO2-5m-gMK">
-<<<<<<< HEAD
-                                        <rect key="frame" x="162" y="239" width="277" height="21"/>
-=======
                                         <rect key="frame" x="162" y="241" width="277" height="21"/>
->>>>>>> ui-branch
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-<<<<<<< HEAD
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P0g-7H-Fdg">
-                                        <rect key="frame" x="250" y="310" width="100" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="6YJ-cx-llo"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ВАШ ЗАКАЗ:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iTZ-6e-5yM">
-=======
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ВАШ ЗАКАЗ:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iTZ-6e-5yM">
->>>>>>> ui-branch
                                         <rect key="frame" x="250" y="32" width="101" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1904,13 +1879,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" red="0.16078431369999999" green="0.17254901959999999" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-<<<<<<< HEAD
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UUw-dQ-9F4">
-                                <rect key="frame" x="0.0" y="44" width="600" height="185"/>
-=======
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UUw-dQ-9F4" customClass="CustomViewSettings">
                                 <rect key="frame" x="0.0" y="44" width="600" height="186"/>
->>>>>>> ui-branch
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ИФ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fa5-zA-7O1">
                                         <rect key="frame" x="260" y="10" width="80" height="80"/>
@@ -2013,13 +1983,8 @@
                                     </mask>
                                 </variation>
                             </view>
-<<<<<<< HEAD
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jHO-Kf-7iH">
-                                <rect key="frame" x="0.0" y="415" width="600" height="185"/>
-=======
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jHO-Kf-7iH" customClass="CustomViewSettings">
                                 <rect key="frame" x="-1" y="415" width="602" height="186"/>
->>>>>>> ui-branch
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Карта:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E7u-Yy-QJh">
                                         <rect key="frame" x="276" y="15" width="52" height="21"/>
@@ -2033,21 +1998,12 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-<<<<<<< HEAD
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MdF-Qw-Ofv">
-                                        <rect key="frame" x="276" y="94" width="51" height="31"/>
-                                        <color key="onTintColor" red="0.68627450980000004" green="0.54117647059999996" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    </switch>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="imr-F0-zFD">
-                                        <rect key="frame" x="229" y="140" width="142" height="30"/>
-=======
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MdF-Qw-Ofv">
                                         <rect key="frame" x="277" y="94" width="51" height="31"/>
                                         <color key="onTintColor" red="0.68627450980000004" green="0.54117647059999996" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </switch>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="imr-F0-zFD">
                                         <rect key="frame" x="231" y="140" width="142" height="30"/>
->>>>>>> ui-branch
                                         <state key="normal" title="ДОБАВИТЬ НОВУЮ">
                                             <color key="titleColor" red="0.68627450980000004" green="0.54117647059999996" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>

@@ -166,7 +166,6 @@
     
     NSManagedObject *order = self.source[indexPath.row];
     [cell.coffeePic setImage:[UIImage imageNamed:@"cappucino"]];
-<<<<<<< HEAD
     [cell.cafeName setText:[order valueForKey:@"cafe"]];
     [cell.coffeeName setText:[order valueForKey:@"coffee"]];
     [cell.coffeeVol setText:[NSString stringWithFormat:@"%@ мл", [order valueForKey:@"volume"]]];
@@ -177,13 +176,6 @@
     NSString *lastDate = [[formatter stringFromDate:date] uppercaseString];
     lastDate = [lastDate stringByReplacingOccurrencesOfString:@"." withString:@""];
     [cell.date setText:lastDate];
-=======
-    [cell.cafeName setText:@"Кофе Хауз"];
-    [cell.coffeeName setText:@"Каппучино"];
-    [cell.coffeeVol setText:@"200 мл"];
-    [cell.date setText:@"25 ДЕК 2015"];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
->>>>>>> ui-branch
     
     return cell;
 }
