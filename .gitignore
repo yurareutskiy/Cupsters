@@ -15,14 +15,16 @@ DerivedData
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-xcuserdata/
-
+Cupsters.xcworkspace/xcuserdata/
+Cupsters.xcworkspace/xcuserdata/yurka.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
+Cupsters.xcodeproj/xcuserdata/yurka.xcuserdatad/xcschemes/xcschememanagement.plist
 ## Other
 *.xccheckout
 *.moved-aside
 *.xcuserstate
 *.xcscmblueprint
-
+*.xcworkspace
+!default.xcworkspace
 ## Obj-C/Swift specific
 *.hmap
 *.ipa

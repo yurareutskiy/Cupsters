@@ -13,6 +13,7 @@
 #import "MenuRevealViewController.h"
 #import "SWRevealViewController.h"
 #import "MapTableViewCell.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 @interface MapViewController ()
 
@@ -169,14 +170,21 @@
 }
 
 -(MapTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *identifier = @"mapCell";
     
-    MapTableViewCell *cell = [[MapTableViewCell alloc] init];
-    [self.tableView dequeueReusableCellWithIdentifier:@"mapCell" forIndexPath:indexPath];
+    MapTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil) {
+        cell = [[MapTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+    
+
+//    MapTableViewCell *cell = [[MapTableViewCell alloc] init];
+//    [self.tableView dequeueReusableCellWithIdentifier:@"" forIndexPath:indexPath];
     
     UILabel *numberRow = [[UILabel alloc] initWithFrame:cell.number.frame];
-    numberRow.text = [NSString stringWithFormat:@"%ld", indexPath.row + 1];
-    [cell.number addSubview:numberRow];
-    
+    numberRow.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
+//    [cell.number addSubview:numberRow];
+    [cell.logo setImageWithURL:[NSURL URLWithString:@"http://cupsters.ru/img/logo_red.png"]];
     [cell.name setText:@"lol"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -189,7 +197,8 @@
     [cell.name setText:@"КОФЕЙНЯ"];
     [cell.underground setText:@"м. Парк Победы"];
     [cell.distance setText:@"2 км."];
-    [cell.logo setImage:[UIImage imageNamed:@"cafeBack1"]];
+//    [cell.logo setImage:[UIImage imageNamed:@"cafeBack1"]];
+    [cell.logo setImageWithURL:[NSURL URLWithString:@"http://cupsters.ru/img/logo_red.png"]];
     
     return cell;
 }
