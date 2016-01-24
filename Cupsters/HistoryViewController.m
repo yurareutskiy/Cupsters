@@ -42,7 +42,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     
-    self.source = [[DataManager sharedManager] getData];
+    self.source = [[DataManager sharedManager] getDataFromEntity:@"Orders"];
 
 }
 

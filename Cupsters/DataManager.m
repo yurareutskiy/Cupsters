@@ -81,21 +81,67 @@
     }
 }
 
+- (void)loadDataWithStart:(NSArray*)data From:(NSString*)object {
+    
+    if (data) {
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+        NSManagedObjectContext *context = [appDelegate managedObjectContext];
+        
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:object inManagedObjectContext:context];
+        request.entity = entity;
+        NSError *error = nil;
+        NSArray *fetchResult = [context executeFetchRequest:request error:&error];
+        if (error) {
+            NSLog(@"%@", [error debugDescription]);
+            return;
+        }
+        for (NSManagedObject *object in fetchResult) {
+            [context deleteObject:object];
+        }
+        [context save:&error];
+        if (error) {
+            NSLog(@"%@", [error debugDescription]);
+            return;
+        }
+        for (NSMutableDictionary *item in data) {
+            NSManagedObject *managedObject = [[NSManagedObject alloc] init];
+            if ([item objectForKey:@"cafeclose"]) {
+                [item setObject:[NSString stringWithFormat:@"%@\n%@", [item objectForKey:@"cafeclose"], [item objectForKey:@"cafeopen"]] forKey:@"time"];
+                [item removeObjectsForKeys:@[@"cafeclose", @"cafeopen"]];
+            }
+            
+            for (NSString *key in [item allKeys]) {
+                if ([key isEqualToString:@"id"]) {
+                    [managedObject setValue:[NSNumber numberWithInt:[item[key] intValue]] forKey:key];
+                } else if ([key isEqualToString:@"lattitude"] || [key isEqualToString:@"longitude"]) {
+                    [managedObject setValue:[NSNumber numberWithDouble:[item[key] doubleValue]] forKey:key];
+                } else {
+                    [managedObject setValue:item[key] forKey:key];
+                }
+            }
+            [context save:&error];
+        }
+        
+    }
 
-- (NSArray*)getData {
+}
+
+
+- (NSArray*)getDataFromEntity:(NSString*)entityName {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:@"Orders" inManagedObjectContext:context];
+                                   entityForName:entityName inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     NSError *error = nil;
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-//    for (NSManagedObject *object in fetchedObjects) {
-//        NSLog(@"%@", [object valueForKey:@"cafe"]);
-//    }
+
     return fetchedObjects;
 }
+
+
 
 
 @end

@@ -15,8 +15,8 @@
 - (void)saveDataWithSignUp:(NSDictionary *)result;
 - (void)saveDataWithSignUpInSN:(NSString*)sn WithResult:(NSDictionary *)result;
 
-- (void)loadDataWithStart;
-- (NSArray*)getData;
+- (void)saveDataWithStart:(NSArray*)data From:(NSString*)object;
+- (NSArray*)getDataFromEntity:(NSString*)entityName;
 
 //- (NSArray*)dataFr
 
