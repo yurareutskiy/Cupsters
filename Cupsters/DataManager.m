@@ -104,11 +104,13 @@
             NSLog(@"%@", [error debugDescription]);
             return;
         }
-        for (NSMutableDictionary *item in data) {
+        for (NSDictionary __strong *item in data) {
             NSManagedObject *managedObject = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:context];
             if ([item objectForKey:@"cafeclose"]) {
-                [item setObject:[NSString stringWithFormat:@"%@\n%@", [item objectForKey:@"cafeclose"], [item objectForKey:@"cafeopen"]] forKey:@"time"];
-                [item removeObjectsForKeys:@[@"cafeclose", @"cafeopen"]];
+                NSMutableDictionary *mutableDict = [[NSMutableDictionary alloc] initWithDictionary:item];
+                [mutableDict setObject:[NSString stringWithFormat:@"%@\n%@", [item objectForKey:@"cafeclose"], [item objectForKey:@"cafeopen"]] forKey:@"time"];
+                [mutableDict removeObjectsForKeys:@[@"cafeclose", @"cafeopen"]];
+                item = mutableDict;
             }
             
             for (NSString *key in [item allKeys]) {
