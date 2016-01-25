@@ -105,14 +105,14 @@
             return;
         }
         for (NSMutableDictionary *item in data) {
-            NSManagedObject *managedObject = [[NSManagedObject alloc] init];
+            NSManagedObject *managedObject = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:context];
             if ([item objectForKey:@"cafeclose"]) {
                 [item setObject:[NSString stringWithFormat:@"%@\n%@", [item objectForKey:@"cafeclose"], [item objectForKey:@"cafeopen"]] forKey:@"time"];
                 [item removeObjectsForKeys:@[@"cafeclose", @"cafeopen"]];
             }
             
             for (NSString *key in [item allKeys]) {
-                if ([key isEqualToString:@"id"]) {
+                if ([key isEqualToString:@"id"] | [key isEqualToString:@"volume"]) {
                     [managedObject setValue:[NSNumber numberWithInt:[item[key] intValue]] forKey:key];
                 } else if ([key isEqualToString:@"lattitude"] || [key isEqualToString:@"longitude"]) {
                     [managedObject setValue:[NSNumber numberWithDouble:[item[key] doubleValue]] forKey:key];
