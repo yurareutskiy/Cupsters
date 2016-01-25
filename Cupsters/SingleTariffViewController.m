@@ -116,4 +116,24 @@
 }
 */
 
+- (IBAction)sliderValue:(UISlider *)sender {
+    NSLog(@"%f", sender.value);
+    if (sender.value <= 1){
+        [self.price setText:@"799 Р"];
+        [self.amount setText:@"5"];
+        [self.avgPrice setText:@"160"];
+        [self.time setText:@"Действует 3 месяца"];
+    } else if (sender.value > 2){
+        [self.price setText:@"3 599 Р"];
+        [self.amount setText:@"Безлимитно"];
+        [self.avgPrice setText:@"120"];
+        [self.time setText:@"Действует 1 месяц"];
+        [self.cups setText:@""];
+    } else {
+        [self.price setText:@"2 299 Р"];
+        [self.amount setText:@"15"];
+        [self.avgPrice setText:@"150"];
+        [self.time setText:@"Действует 3 месяца"];
+    }
+}
 @end

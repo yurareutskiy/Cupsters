@@ -9,5 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface SingleTariffViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UISlider *slider;
+@property (strong, nonatomic) IBOutlet UILabel *price;
+@property (strong, nonatomic) IBOutlet UILabel *amount;
+@property (strong, nonatomic) IBOutlet UILabel *avgPrice;
+@property (strong, nonatomic) IBOutlet UILabel *time;
+@property (strong, nonatomic) IBOutlet UILabel *cups;
+- (IBAction)sliderValue:(UISlider *)sender;
 
 @end
