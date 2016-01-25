@@ -114,10 +114,15 @@
             }
             
             for (NSString *key in [item allKeys]) {
-                if ([key isEqualToString:@"id"] | [key isEqualToString:@"volume"]) {
+                if ([key isEqualToString:@"id"] || [key isEqualToString:@"volume"] || [key isEqualToString:@"price"] || [key isEqualToString:@"count"]) {
                     [managedObject setValue:[NSNumber numberWithInt:[item[key] intValue]] forKey:key];
                 } else if ([key isEqualToString:@"lattitude"] || [key isEqualToString:@"longitude"]) {
                     [managedObject setValue:[NSNumber numberWithDouble:[item[key] doubleValue]] forKey:key];
+                } else if ([key isEqualToString:@"date"]) {
+                    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                    formatter.dateFormat = @"y-M-d H:m:s";
+                    NSDate *date = [formatter dateFromString:item[key]];
+                    [managedObject setValue:date forKey:key];
                 } else {
                     [managedObject setValue:item[key] forKey:key];
                 }
