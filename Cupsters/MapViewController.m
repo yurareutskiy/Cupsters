@@ -82,7 +82,7 @@ static NSString *baseURL = @"http://cupsters.ru";
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    self.source = [[DataManager sharedManager] getDataFromEntity:@"Cafe"];
+    self.source = [[DataManager sharedManager] getDataFromEntity:@"Cafes"];
 }
 
 -(void)viewDidAppear:(BOOL)animated {

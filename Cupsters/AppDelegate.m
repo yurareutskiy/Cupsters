@@ -40,6 +40,13 @@
 //        [[DataManager sharedManager] loadDataWithStart:result From:@"Coffees"];
         NSLog(@"%@", [result class]);
     } OrFailure:nil];
+    request.objectRequest = TariffURLStrring;
+    [server sentToServer:request OnSuccess:^(id result) {
+        NSLog(@"%@", result);
+        [[DataManager sharedManager] loadDataWithStart:result From:@"Tariffs"];
+    } OrFailure:^(NSError *error) {
+        
+    }];
     
     return YES;
 }
