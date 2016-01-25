@@ -15,5 +15,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *distance;
 @property (strong, nonatomic) IBOutlet UIImageView *logo;
 @property (strong, nonatomic) IBOutlet UIImageView *backPhoto;
+@property (strong, nonatomic) IBOutlet UILabel *numberRow;
 
 @end

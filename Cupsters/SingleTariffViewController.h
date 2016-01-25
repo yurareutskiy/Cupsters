@@ -16,5 +16,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *time;
 @property (strong, nonatomic) IBOutlet UILabel *cups;
 - (IBAction)sliderValue:(UISlider *)sender;
+@property (strong, nonatomic) IBOutlet UIView *upView;
+
 
 @end

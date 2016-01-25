@@ -84,7 +84,7 @@
     
     
     
-    _segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(-0.5, -0.5, viewHeader.frame.size.width + 1.0, 40.0 + 0.5)];
+    _segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(-0.5, self.cafeView.frame.size.height - 0.5, self.view.frame.size.width + 1.0, 40.0 + 0.5)];
     _segmentedControl.sectionTitles = @[@"Кофе", @"Чай",@"Другое"];
     _segmentedControl.selectedSegmentIndex = 0;
     _segmentedControl.backgroundColor = [UIColor whiteColor];
@@ -96,8 +96,8 @@
     _segmentedControl.tag = 3;
     _segmentedControl.layer.borderColor = [UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0].CGColor;
     _segmentedControl.layer.borderWidth = 0.5f;
-    [self.view addSubview:viewHeader];
-    [viewHeader addSubview:_segmentedControl];
+    [self.view addSubview:_segmentedControl];
+    //[viewHeader addSubview:_segmentedControl];
     
     self.scrollView.frame = CGRectMake(self.scrollView.frame.origin.x, self.scrollView.frame.origin.y, self.view.frame.size.width * 3, self.scrollView.frame.size.height);
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
@@ -111,7 +111,7 @@
     [self.scrollView addSubview:self.tableView3];
     
     self.scrollView.delegate = self;
-    self.scrollView.backgroundColor = [UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1];
+    self.scrollView.backgroundColor = [UIColor whiteColor];
     self.scrollView.pagingEnabled = YES;
     self.scrollView.showsHorizontalScrollIndicator = YES;
     self.scrollView.contentSize = CGSizeMake(viewWidth * 3, self.scrollView.frame.size.height);
@@ -169,6 +169,12 @@
                                                       target:self
                                                       action:@selector(backAction:)];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    self.navigationController.navigationBar.layer.shadowColor = [[UIColor grayColor] CGColor];
+    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
+    self.navigationController.navigationBar.layer.shadowRadius = 1.0f;
+    self.navigationController.navigationBar.layer.shadowOpacity = 0.5f;
+    
     self.navigationItem.leftBarButtonItem = self.menuButton;
     
 }
@@ -183,7 +189,7 @@
     
     // Create text attachment, which will contain and set text and image
     NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
-    attachment.image = [UIImage imageNamed:@"cup"];
+    attachment.image = [UIImage imageNamed:@"smallCup"];
     NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:attachment];
     NSMutableAttributedString *myString= [[NSMutableAttributedString alloc] initWithString:@"1 ЧАШКА  "];
     [myString appendAttributedString:attachmentString];
@@ -297,6 +303,13 @@
     //[self configurePlace:cell At:indexPath.row];
 }
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView.contentOffset.y<=0) {
+        scrollView.contentOffset = CGPointZero;
+    }
+}
+
 
 -(CafeTableViewCell*)configurePlace:(CafeTableViewCell*)cell At:(NSInteger)row {
     
@@ -354,7 +367,7 @@
         self.tableView1.frame = CGRectMake(self.tableView1.frame.origin.x, self.tableView1.frame.origin.y + mapView.frame.size.height, self.tableView1.frame.size.width, self.tableView1.frame.size.height);
         self.tableView2.frame = CGRectMake(self.tableView2.frame.origin.x, self.tableView2.frame.origin.y + mapView.frame.size.height, self.tableView2.frame.size.width, self.tableView2.frame.size.height);
         self.tableView3.frame = CGRectMake(self.tableView3.frame.origin.x, self.tableView3.frame.origin.y + mapView.frame.size.height, self.tableView3.frame.size.width, self.tableView3.frame.size.height);
-        viewHeader.frame = CGRectMake(viewHeader.frame.origin.x, viewHeader.frame.origin.y + mapView.frame.size.height, viewHeader.frame.size.width, viewHeader.frame.size.height);
+        _segmentedControl.frame = CGRectMake(_segmentedControl.frame.origin.x, _segmentedControl.frame.origin.y + mapView.frame.size.height, _segmentedControl.frame.size.width, _segmentedControl.frame.size.height);
         }];
     }
     else {
@@ -368,7 +381,7 @@
         self.tableView1.frame = CGRectMake(self.tableView1.frame.origin.x, self.tableView1.frame.origin.y - mapView.frame.size.height, self.tableView1.frame.size.width, self.tableView1.frame.size.height);
         self.tableView2.frame = CGRectMake(self.tableView2.frame.origin.x, self.tableView2.frame.origin.y - mapView.frame.size.height, self.tableView2.frame.size.width, self.tableView2.frame.size.height);
         self.tableView3.frame = CGRectMake(self.tableView3.frame.origin.x, self.tableView3.frame.origin.y - mapView.frame.size.height, self.tableView3.frame.size.width, self.tableView3.frame.size.height);
-        viewHeader.frame = CGRectMake(viewHeader.frame.origin.x, viewHeader.frame.origin.y - mapView.frame.size.height, viewHeader.frame.size.width, viewHeader.frame.size.height);
+        _segmentedControl.frame = CGRectMake(_segmentedControl.frame.origin.x, _segmentedControl.frame.origin.y - mapView.frame.size.height, _segmentedControl.frame.size.width, _segmentedControl.frame.size.height);
         }];
     }
 }

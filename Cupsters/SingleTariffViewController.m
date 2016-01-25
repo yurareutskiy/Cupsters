@@ -30,6 +30,12 @@
     [self preferredStatusBarStyle];
     [self configureMenu];
     
+    self.upView.layer.shadowColor = [[UIColor grayColor] CGColor];
+    self.upView.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
+    self.upView.layer.shadowRadius = 1.0f;
+    self.upView.layer.shadowOpacity = 0.5f;
+    [self.upView.layer setMasksToBounds:NO];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -73,6 +79,12 @@
     self.menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"arrow"] style:UIBarButtonItemStyleDone target:self action:@selector(backAction:)];
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    self.navigationController.navigationBar.layer.shadowColor = [[UIColor grayColor] CGColor];
+    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
+    self.navigationController.navigationBar.layer.shadowRadius = 1.0f;
+    self.navigationController.navigationBar.layer.shadowOpacity = 0.5f;
+    
     self.navigationItem.leftBarButtonItem = self.menuButton;
 }
 
@@ -87,7 +99,7 @@
     
     // Create text attachment, which will contain and set text and image
     NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
-    attachment.image = [UIImage imageNamed:@"cup"];
+    attachment.image = [UIImage imageNamed:@"smallCup"];
     NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:attachment];
     NSMutableAttributedString *myString= [[NSMutableAttributedString alloc] initWithString:@"1 ЧАШКА  "];
     [myString appendAttributedString:attachmentString];
@@ -123,6 +135,7 @@
         [self.amount setText:@"5"];
         [self.avgPrice setText:@"160"];
         [self.time setText:@"Действует 3 месяца"];
+        [self.cups setText:@"чашек"];
     } else if (sender.value > 2){
         [self.price setText:@"3 599 Р"];
         [self.amount setText:@"Безлимитно"];
@@ -134,6 +147,7 @@
         [self.amount setText:@"15"];
         [self.avgPrice setText:@"150"];
         [self.time setText:@"Действует 3 месяца"];
+        [self.cups setText:@"чашек"];
     }
 }
 @end

@@ -56,9 +56,9 @@ static NSString *baseURL = @"http://cupsters.ru";
     [self.view addSubview:mapView];
     
     mapView.layer.shadowColor = [[UIColor grayColor] CGColor];
-    mapView.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    mapView.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
     mapView.layer.shadowRadius = 1.0f;
-    mapView.layer.shadowOpacity = 1.0f;
+    mapView.layer.shadowOpacity = 0.5f;
     [mapView.layer setMasksToBounds:NO];
     
     // Creates a marker in the center of the map.
@@ -124,9 +124,9 @@ static NSString *baseURL = @"http://cupsters.ru";
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
     self.navigationController.navigationBar.layer.shadowColor = [[UIColor grayColor] CGColor];
-    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
     self.navigationController.navigationBar.layer.shadowRadius = 1.0f;
-    self.navigationController.navigationBar.layer.shadowOpacity = 1.0f;
+    self.navigationController.navigationBar.layer.shadowOpacity = 0.5f;
     
     self.navigationItem.leftBarButtonItem = self.menuButton;
     
@@ -192,9 +192,7 @@ static NSString *baseURL = @"http://cupsters.ru";
 
 -(MapTableViewCell*)configurePlace:(MapTableViewCell*)cell At:(NSInteger)row {
     
-//    UILabel *numberRow = [[UILabel alloc] initWithFrame:cell.number.frame];
-//    numberRow.text = [NSString stringWithFormat:@"%d", row + 1];
-    //    [cell.number addSubview:numberRow];
+    [cell.numberRow setText:[NSString stringWithFormat:@"%d", row + 1]];
     [cell.logo setImageWithURL:[NSURL URLWithString:@"http://cupsters.ru/img/logo_red.png"]];
     [cell.name setText:@"lol"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
