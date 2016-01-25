@@ -37,7 +37,6 @@
 - (void)saveDataWithLogin:(NSDictionary*)result {
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     
-    [ud setObject:@"true" forKey:@"isLogin"];
     
     [ud setObject:result[@"token"] forKey:@"token"];
     
@@ -53,8 +52,8 @@
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    
-    if (![result[@"orders"] isKindOfClass:[NSString class]]) {
+    NSLog(@"%@", [result[@"orders"] objectAtIndex:0]);
+    if (![[result[@"orders"] objectAtIndex:0] isKindOfClass:[NSString class]]) {
 //        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 //        NSManagedObjectContext *context = appDelegate.managedObjectContext;
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Orders" inManagedObjectContext:context];
@@ -79,6 +78,7 @@
 //        NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
 //        NSLog(@"%@", fetchedObjects);
     }
+    [ud setObject:@"true" forKey:@"isLogin"];
 }
 
 - (void)loadDataWithStart:(NSArray*)data From:(NSString*)object {
@@ -118,9 +118,13 @@
                     [managedObject setValue:[NSNumber numberWithInt:[item[key] intValue]] forKey:key];
                 } else if ([key isEqualToString:@"lattitude"] || [key isEqualToString:@"longitude"]) {
                     [managedObject setValue:[NSNumber numberWithDouble:[item[key] doubleValue]] forKey:key];
-                } else if ([key isEqualToString:@"date"]) {
+                } else if ([@[@"date", @"open", @"close", @"open_weekend", @"close_weekend"] containsObject:key]) {
                     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-                    formatter.dateFormat = @"y-M-d H:m:s";
+                    if ([key isEqualToString:@"date"]) {
+                        formatter.dateFormat = @"y-M-d H:m:s";
+                    } else {
+                        formatter.dateFormat = @"H:m:s";
+                    }
                     NSDate *date = [formatter dateFromString:item[key]];
                     [managedObject setValue:date forKey:key];
                 } else {
