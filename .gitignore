@@ -54,3 +54,5 @@ Carthage/Build
 fastlane/report.xml
 fastlane/screenshots
 Cupsters.xcworkspace/xcuserdata/Anton.xcuserdatad/UserInterfaceState.xcuserstate
+
+*.xcuserstate
