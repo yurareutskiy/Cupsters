@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "Constants.h"
 #import "Server.h"
+#import "DataManager.h"
 @import GoogleMaps;
 
 @interface AppDelegate ()
@@ -28,11 +29,16 @@
     
     NSLog(@"token - %@",  [[NSUserDefaults standardUserDefaults] objectForKey:@"token"]);
     
-    ServerRequest *request = [ServerRequest initRequest:ServerRequestTypeGET With:nil To:MenuURLStrring];
+    ServerRequest *request = [ServerRequest initRequest:ServerRequestTypeGET With:nil To:CafeURLStrring];
     Server *server = [[Server alloc] init];
-    [server sentToServer:request OnSuccess:^(NSDictionary *result) {
-//        [self saveCafeData:result];
-        NSLog(@"%@", result);
+    [server sentToServer:request OnSuccess:^(id result) {
+        [[DataManager sharedManager] loadDataWithStart:result From:@"Cafes"];
+        NSLog(@"%@", [result class]);
+    } OrFailure:nil];
+    request.objectRequest = CoffeeURLStrring;
+    [server sentToServer:request OnSuccess:^(id result) {
+        [[DataManager sharedManager] loadDataWithStart:result From:@"Coffees"];
+        NSLog(@"%@", [result class]);
     } OrFailure:nil];
     
     return YES;

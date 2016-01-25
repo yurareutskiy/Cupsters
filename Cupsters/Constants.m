@@ -41,5 +41,6 @@ NSString * const TariffURLStrring = @"tariiff";
 NSString * const MenuURLStrring = @"menu";
 NSString * const OrderURLStrring = @"order";
 NSString * const SetTariffURLStrring = @"tariffToUser";
+NSString * const CoffeeURLStrring = @"coffee";
 
 

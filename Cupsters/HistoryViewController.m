@@ -12,6 +12,7 @@
 #import "UIColor+HEX.h"
 #import "MenuRevealViewController.h"
 #import "SWRevealViewController.h"
+#import "DataManager.h"
 
 @interface HistoryViewController ()
 
@@ -19,6 +20,7 @@
 @property (strong, nonatomic) UIBarButtonItem *menuButton;
 @property (strong, nonatomic) SWRevealViewController *reveal;
 @property (strong, nonatomic) UIViewController *vc;
+@property (strong, nonatomic) NSArray *source;
 
 @end
 
@@ -36,6 +38,12 @@
     [self customNavBar];
     [self preferredStatusBarStyle];
     [self configureMenu];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    
+    self.source = [[DataManager sharedManager] getDataFromEntity:@"Orders"];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -149,19 +157,25 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 10;
+    return [self.source count];
 }
 
 
 - (HistoryTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HistoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"histCell" forIndexPath:indexPath];
     
+    NSManagedObject *order = self.source[indexPath.row];
     [cell.coffeePic setImage:[UIImage imageNamed:@"cappucino"]];
-    [cell.cafeName setText:@"Кофе Хауз"];
-    [cell.coffeeName setText:@"Каппучино"];
-    [cell.coffeeVol setText:@"200 мл"];
-    [cell.date setText:@"25 ДЕК 2015"];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [cell.cafeName setText:[order valueForKey:@"cafe"]];
+    [cell.coffeeName setText:[order valueForKey:@"coffee"]];
+    [cell.coffeeVol setText:[NSString stringWithFormat:@"%@ мл", [order valueForKey:@"volume"]]];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"y-M-d H:m:s";
+    NSDate *date = [formatter dateFromString:[order valueForKey:@"date"]];
+    formatter.dateFormat = @"d MMM yy";
+    NSString *lastDate = [[formatter stringFromDate:date] uppercaseString];
+    lastDate = [lastDate stringByReplacingOccurrencesOfString:@"." withString:@""];
+    [cell.date setText:lastDate];
     
     return cell;
 }

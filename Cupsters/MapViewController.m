@@ -13,19 +13,26 @@
 #import "MenuRevealViewController.h"
 #import "SWRevealViewController.h"
 #import "MapTableViewCell.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
+#import "DataManager.h"
 
 @interface MapViewController ()
 
 @property (strong, nonatomic) MenuRevealViewController *menu;
 @property (strong, nonatomic) UIBarButtonItem *menuButton;
 @property (strong, nonatomic) SWRevealViewController *reveal;
+@property (strong, nonatomic) NSArray *source;
 
 @end
+
+static NSString *baseURL = @"http://cupsters.ru";
 
 @implementation MapViewController {
     CLLocationManager *locationManager;
     GMSMapView *mapView;
 }
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -72,6 +79,10 @@
     self.tableView.dataSource = self;
     
     // Do any additional setup after loading the view.
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    self.source = [[DataManager sharedManager] getDataFromEntity:@"Cafe"];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -169,27 +180,31 @@
 }
 
 -(MapTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *identifier = @"mapCell";
     
-    MapTableViewCell *cell = [[MapTableViewCell alloc] init];
-    [self.tableView dequeueReusableCellWithIdentifier:@"mapCell" forIndexPath:indexPath];
+    MapTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil) {
+        cell = [[MapTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
     
-    UILabel *numberRow = [[UILabel alloc] initWithFrame:cell.number.frame];
-    numberRow.text = [NSString stringWithFormat:@"%ld", indexPath.row + 1];
-    [cell.number addSubview:numberRow];
-    
-    [cell.name setText:@"lol"];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    return cell; //[self configurePlace:cell At:indexPath.row];
+    return [self configurePlace:cell At:indexPath.row]; //[self configurePlace:cell At:indexPath.row];
 }
 
 -(MapTableViewCell*)configurePlace:(MapTableViewCell*)cell At:(NSInteger)row {
     
-    [cell.backPhoto setImage:[UIImage imageNamed:@"cafeBack1"]];
-    [cell.name setText:@"КОФЕЙНЯ"];
-    [cell.underground setText:@"м. Парк Победы"];
-    [cell.distance setText:@"2 км."];
-    [cell.logo setImage:[UIImage imageNamed:@"cafeBack1"]];
+//    UILabel *numberRow = [[UILabel alloc] initWithFrame:cell.number.frame];
+//    numberRow.text = [NSString stringWithFormat:@"%d", row + 1];
+    //    [cell.number addSubview:numberRow];
+    [cell.logo setImageWithURL:[NSURL URLWithString:@"http://cupsters.ru/img/logo_red.png"]];
+    [cell.name setText:@"lol"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+//    [cell.backPhoto setImage:[UIImage imageNamed:@"cafeBack1"]];
+//    [cell.name setText:@"КОФЕЙНЯ"];
+//    [cell.underground setText:@"м. Парк Победы"];
+//    [cell.distance setText:@"2 км."];
+////    [cell.logo setImage:[UIImage imageNamed:@"cafeBack1"]];
+//    [cell.logo setImageWithURL:[NSURL URLWithString:@"http://cupsters.ru/img/logo_red.png"]];
     
     return cell;
 }

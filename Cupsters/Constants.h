@@ -32,4 +32,4 @@ extern NSString * const TariffURLStrring;
 extern NSString * const MenuURLStrring;
 extern NSString * const OrderURLStrring;
 extern NSString * const SetTariffURLStrring;
-
+extern NSString * const CoffeeURLStrring;
