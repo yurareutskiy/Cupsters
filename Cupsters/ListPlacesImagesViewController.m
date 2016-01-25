@@ -81,6 +81,12 @@
                                                       target:self.revealViewController
                                                       action:@selector(revealToggle:)];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    self.navigationController.navigationBar.layer.shadowColor = [[UIColor grayColor] CGColor];
+    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
+    self.navigationController.navigationBar.layer.shadowRadius = 1.0f;
+    self.navigationController.navigationBar.layer.shadowOpacity = 0.5f;
+    
     self.navigationItem.leftBarButtonItem = self.menuButton;
     
 }
@@ -94,7 +100,7 @@
     
     // Create text attachment, which will contain and set text and image
     NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
-    attachment.image = [UIImage imageNamed:@"cup"];
+    attachment.image = [UIImage imageNamed:@"smallCup"];
     NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:attachment];
     NSMutableAttributedString *myString= [[NSMutableAttributedString alloc] initWithString:@"1 ЧАШКА  "];
     [myString appendAttributedString:attachmentString];

@@ -33,6 +33,12 @@
     self.code.delegate = self;
     self.notCode.delegate = self;
     
+    self.upView.layer.shadowColor = [[UIColor grayColor] CGColor];
+    self.upView.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
+    self.upView.layer.shadowRadius = 1.0f;
+    self.upView.layer.shadowOpacity = 0.5f;
+    [self.upView.layer setMasksToBounds:NO];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -73,6 +79,12 @@
                                                       target:self
                                                       action:@selector(backAction:)];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    self.navigationController.navigationBar.layer.shadowColor = [[UIColor grayColor] CGColor];
+    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
+    self.navigationController.navigationBar.layer.shadowRadius = 1.0f;
+    self.navigationController.navigationBar.layer.shadowOpacity = 0.5f;
+    
     self.navigationItem.leftBarButtonItem = self.menuButton;
     
 }
@@ -97,7 +109,7 @@
     
     // Create text attachment, which will contain and set text and image
     NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
-    attachment.image = [UIImage imageNamed:@"cup"];
+    attachment.image = [UIImage imageNamed:@"smallCup"];
     NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:attachment];
     NSMutableAttributedString *myString= [[NSMutableAttributedString alloc] initWithString:@"1 ЧАШКА  "];
     [myString appendAttributedString:attachmentString];
@@ -114,13 +126,14 @@
 -(BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     
     _code.textAlignment = NSTextAlignmentLeft;
+    
     return YES;
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Заказ #1234" message:@"Подтвердите заказ #1234" preferredStyle:UIAlertControllerStyleAlert];
     
@@ -148,24 +161,47 @@
 }
 
 
-- (void)keyboardDidShow:(NSNotification *)notification
+- (void)keyboardWillShow:(NSNotification *)notification
 {
     CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
     
-    [UIView animateWithDuration:0.3 animations:^{
-        CGRect f = self.view.frame;
-        f.origin.y = -keyboardSize.height;
-        self.view.frame = f;
+    NSLog(@"%f", self.code.frame.origin.y);
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        [self.bg setBackgroundColor:[UIColor blackColor]];
+        [self.bg setAlpha:0.8];
+        
+        self.bgBottom.constant += keyboardSize.height;
+        [self.bg layoutIfNeeded];
+        
+        [self.code setTextColor:[UIColor whiteColor]];
+        [self.notCode setTextColor:[UIColor whiteColor]];
+        [self.labelCode setTextColor:[UIColor whiteColor]];
+
     }];
+    
+    NSLog(@"%f", self.code.frame.origin.y);
 }
 
--(void)keyboardDidHide:(NSNotification *)notification
+-(void)keyboardWillHide:(NSNotification *)notification
 {
-    [UIView animateWithDuration:0.3 animations:^{
-        CGRect f = self.view.frame;
-        f.origin.y = 0.0f;
-        self.view.frame = f;
+    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    NSLog(@"%f", self.code.frame.origin.y);
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        [self.bg setBackgroundColor:[UIColor clearColor]];
+        [self.bg setAlpha:1.0];
+        
+        self.bgBottom.constant -= keyboardSize.height;
+        
+        [self.code setTextColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0]];
+        [self.notCode setTextColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0]];
+        [self.labelCode setTextColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0]];
+        
     }];
+    
+    NSLog(@"%f", self.code.frame.origin.y);
 }
 
 - (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
@@ -226,7 +262,6 @@
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    
     [self.code resignFirstResponder];
 }
 

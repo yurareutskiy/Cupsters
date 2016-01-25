@@ -16,6 +16,7 @@ IB_DESIGNABLE
 @property (nonatomic) IBInspectable CGFloat heightOffset;
 @property (nonatomic) IBInspectable UIColor *shadowColor;
 @property (nonatomic) IBInspectable BOOL masksToBounds;
+@property (nonatomic) IBInspectable BOOL clipsToBounds;
 @property (nonatomic) IBInspectable float shadowOpacity;
 
 @end
