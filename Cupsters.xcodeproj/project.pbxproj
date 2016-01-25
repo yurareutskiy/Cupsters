@@ -420,8 +420,6 @@
 				DBA9C4AF1C4DBC84002A5E0D /* ServerError.m */,
 				DBA9C4C81C4F0D0F002A5E0D /* Token.h */,
 				DBA9C4C91C4F0D0F002A5E0D /* Token.m */,
-				DBAA54991C527732004F7C6D /* DataManager.h */,
-				DBAA549A1C527732004F7C6D /* DataManager.m */,
 			);
 			name = Server;
 			sourceTree = "<group>";
@@ -429,6 +427,8 @@
 		DBA9C4B81C4F0854002A5E0D /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				DBAA54991C527732004F7C6D /* DataManager.h */,
+				DBAA549A1C527732004F7C6D /* DataManager.m */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
