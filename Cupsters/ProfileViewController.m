@@ -153,4 +153,7 @@
 - (IBAction)changePlan:(UIButton *)sender {
     
 }
+
+- (IBAction)changeCond:(UIButton *)sender {
+}
 @end

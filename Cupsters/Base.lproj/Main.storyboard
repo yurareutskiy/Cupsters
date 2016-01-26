@@ -558,7 +558,7 @@
         <!--Tariff View Controller-->
         <scene sceneID="dNO-uP-GYP">
             <objects>
-                <viewController id="TlD-RE-heB" customClass="TariffViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="tariffs" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TlD-RE-heB" customClass="TariffViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ERt-Lw-s4H"/>
                         <viewControllerLayoutGuide type="bottom" id="1Mt-Wd-T7f"/>
@@ -891,6 +891,9 @@
                                                 <real key="value" value="25"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="connect:" destination="MaS-Gm-tGh" eventType="touchUpInside" id="O6m-P9-ulX"/>
+                                        </connections>
                                     </button>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="RwC-IG-GYX">
                                         <rect key="frame" x="198" y="168" width="204" height="31"/>
@@ -2321,6 +2324,7 @@
                                             <color key="titleColor" red="0.68627450980000004" green="0.54117647059999996" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="changeCond:" destination="mWi-Nq-4Z9" eventType="touchUpInside" id="0Mu-iu-HTF"/>
                                             <action selector="changePlan:" destination="mWi-Nq-4Z9" eventType="touchUpInside" id="052-mT-Kiz"/>
                                         </connections>
                                     </button>
