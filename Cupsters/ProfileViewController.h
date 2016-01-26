@@ -20,5 +20,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *price;
 @property (strong, nonatomic) IBOutlet UILabel *timeLimitLabel;
 - (IBAction)changePlan:(UIButton *)sender;
+- (IBAction)changeCond:(UIButton *)sender;
 
 @end

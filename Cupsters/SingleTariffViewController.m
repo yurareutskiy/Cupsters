@@ -269,4 +269,6 @@
 //    return resultString + " ₽"
 //}
 
+- (IBAction)connect:(UIButton *)sender {
+}
 @end

@@ -21,6 +21,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *tariffName;
 
 @property (strong, nonatomic) NSString *type;
+- (IBAction)connect:(UIButton *)sender;
+
 
 
 @end
