@@ -32,13 +32,13 @@
     ServerRequest *request = [ServerRequest initRequest:ServerRequestTypeGET With:nil To:CafeURLStrring];
     Server *server = [[Server alloc] init];
     [server sentToServer:request OnSuccess:^(id result) {
-//        [[DataManager sharedManager] loadDataWithStart:result From:@"Cafes"];
-        NSLog(@"%@", [result class]);
+        [[DataManager sharedManager] loadDataWithStart:result From:@"Cafes"];
+        NSLog(@"%@", result);
     } OrFailure:nil];
     request.objectRequest = CoffeeURLStrring;
     [server sentToServer:request OnSuccess:^(id result) {
-//        [[DataManager sharedManager] loadDataWithStart:result From:@"Coffees"];
-        NSLog(@"%@", [result class]);
+        [[DataManager sharedManager] loadDataWithStart:result From:@"Coffees"];
+        NSLog(@"%@", result);
     } OrFailure:nil];
     request.objectRequest = TariffURLStrring;
     [server sentToServer:request OnSuccess:^(id result) {

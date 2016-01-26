@@ -134,6 +134,10 @@
             [context save:&error];
         }
         
+        NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
+        NSLog(@"%@", fetchedObjects);
+
+        
     }
 
 }
