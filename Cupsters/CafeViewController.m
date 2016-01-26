@@ -274,8 +274,10 @@
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell.makeButton addTarget:self action:@selector(makeOrder:) forControlEvents:UIControlEventTouchUpInside];
+        
 //        [cell.plus addTarget:self action:@selector(plusBtn:index:for:plus:minus:) with forControlEvents:UIControlEventTouchUpInside];
 //        [cell.minus addTarget:self action:@selector(minusBtn:index:for:plus:minus:) forControlEvents:UIControlEventTouchUpInside];
+        
         [cell.coffeeName setText:@"lol"];
         
         return cell;

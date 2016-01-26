@@ -9,5 +9,7 @@ target 'Cupsters' do
     pod 'GoogleMaps'
     pod 'HMSegmentedControl'
     pod 'NSHash', :git => "https://github.com/jerolimov/NSHash", :tag => "1.1.0"
+    pod 'RKDropdownAlert'
+    pod 'SCLAlertView', :git => "https://github.com/dogo/SCLAlertView", :tag => "0.8.2"
 end
 

@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *minus;
 @property (strong, nonatomic) IBOutlet UILabel *volume;
 
+- (instancetype)initWith:(NSInteger)tableFrom row:(NSInteger)rowFrom;
 - (IBAction)plusBtn:(UIButton *)sender;
 - (IBAction)minusBtn:(UIButton *)sender;
 

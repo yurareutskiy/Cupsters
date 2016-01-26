@@ -19,6 +19,7 @@
     index = 0;
     volumeNum = @[@150, @200, @250, @300, @350, @400, @450];
     [userDefaults setObject:[NSString stringWithFormat:@"%@", volumeNum[index]] forKey:@"volume"];
+    
     // Initialization code
 }
 
