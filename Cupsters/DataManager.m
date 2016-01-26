@@ -114,7 +114,7 @@
             }
             
             for (NSString *key in [item allKeys]) {
-                if ([key isEqualToString:@"id"] || [key isEqualToString:@"volume"] || [key isEqualToString:@"price"] || [key isEqualToString:@"count"]) {
+                if ([key isEqualToString:@"id"] || [key isEqualToString:@"volume"] || [key isEqualToString:@"price"] || [key isEqualToString:@"count"] || [key isEqualToString:@"id_cafe"]) {
                     [managedObject setValue:[NSNumber numberWithInt:[item[key] intValue]] forKey:key];
                 } else if ([key isEqualToString:@"lattitude"] || [key isEqualToString:@"longitude"]) {
                     [managedObject setValue:[NSNumber numberWithDouble:[item[key] doubleValue]] forKey:key];
