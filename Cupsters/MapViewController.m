@@ -113,6 +113,17 @@ static NSString *baseURL = @"http://cupsters.ru";
 
 -(void) makeCafeMarker:(double)lat longi:(double)longi name:(NSString*)name on:(GMSMapView*)map row:(NSInteger*)row {
     
+    GMSMarker *marker = [[GMSMarker alloc] init];
+    marker.position = CLLocationCoordinate2DMake(lat, longi);
+    marker.title = name;
+    marker.snippet = name;
+    marker.map = map;
+    marker.icon = [self makePin:row];
+    NSLog(@"im here");
+    
+}
+
+- (UIImage*)makePin:(NSInteger*)row {
     
     UIImage *image = [UIImage imageNamed:@"brownPin"];
     UILabel *number = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height / 2)];
@@ -121,20 +132,11 @@ static NSString *baseURL = @"http://cupsters.ru";
     [number setTextColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0]];
     UIGraphicsBeginImageContext(image.size);
     [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
-    [number drawTextInRect:CGRectMake(0, 5, image.size.width, image.size.height / 2)];
-    
+    [number drawTextInRect:CGRectMake(0, 3, image.size.width, image.size.height / 2)];
     UIImage *resultImage  = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake(lat, longi);
-    marker.title = name;
-    marker.snippet = name;
-    marker.map = map;
-    marker.icon = resultImage;
-    NSLog(@"im here");
-    
+    return resultImage;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -259,13 +261,6 @@ static NSString *baseURL = @"http://cupsters.ru";
     
     [self makeCafeMarker:lattitude.doubleValue longi:longitude.doubleValue name:name on:mapView row:(row + 1)];
     
-//    [cell.backPhoto setImage:[UIImage imageNamed:@"cafeBack1"]];
-//    [cell.name setText:@"КОФЕЙНЯ"];
-//    [cell.underground setText:@"м. Парк Победы"];
-//    [cell.distance setText:@"2 км."];
-////    [cell.logo setImage:[UIImage imageNamed:@"cafeBack1"]];
-//    [cell.logo setImageWithURL:[NSURL URLWithString:@"http://cupsters.ru/img/logo_red.png"]];
-    
     return cell;
 }
 
@@ -306,8 +301,11 @@ static NSString *baseURL = @"http://cupsters.ru";
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    CafeViewController *vc = (CafeViewController*)segue.destinationViewController;
-    vc.cafe = [self.source objectAtIndex:((NSIndexPath*)sender).row];
+    
+    if ([segue.identifier isEqualToString:@"goToCafe"]) {
+        CafeViewController *vc = (CafeViewController*)segue.destinationViewController;
+        vc.cafe = [self.source objectAtIndex:((NSIndexPath*)sender).row];
+    }
 }
 
 @end

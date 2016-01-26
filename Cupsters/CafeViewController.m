@@ -30,12 +30,16 @@
     BOOL openMap;
     CGFloat viewWidth;
     UIView *viewHeader;
+    NSArray *volumeNum;
+    NSUserDefaults *userDefaults;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    
+    userDefaults = [NSUserDefaults standardUserDefaults];
     
     openMap = false;
     
@@ -49,6 +53,8 @@
     [self customNavBar];
     [self preferredStatusBarStyle];
     [self configureMenu];
+    
+    volumeNum = @[@150, @300, @450];
     
     viewHeader = [[UIView alloc]initWithFrame:CGRectMake(0, self.cafeView.frame.size.height, self.view.frame.size.width, 40.0)];
     [viewHeader setBackgroundColor:[UIColor whiteColor]];
@@ -210,18 +216,21 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView.tag == 1) {
-//    [self.tableView1 deselectRowAtIndexPath:indexPath animated:false];
-//    [self.tableView1 reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    NSLog(@"Select row at index %@ in table %ld", indexPath, (long)tableView.tag);
+        
+        NSLog(@"Select row at index %@ in table %ld, volume is %@", indexPath, (long)tableView.tag, [userDefaults objectForKey:@"volume"]);
+        
     } else if (tableView.tag == 2) {
-//    [self.tableView2 deselectRowAtIndexPath:indexPath animated:false];
-//    [self.tableView2 reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    NSLog(@"Select row at index %@ in table %ld", indexPath, (long)tableView.tag);
+        
+        NSLog(@"Select row at index %@ in table %ld, volume is %@", indexPath, (long)tableView.tag, [userDefaults objectForKey:@"volume"]);
+        
     } else {
-//    [self.tableView3 deselectRowAtIndexPath:indexPath animated:false];
-//    [self.tableView3 reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    NSLog(@"Select row at index %@ in table %ld", indexPath, (long)tableView.tag);
+        
+        NSLog(@"Select row at index %@ in table %ld, volume is %@", indexPath, (long)tableView.tag, [userDefaults objectForKey:@"volume"]);
+        
     }
+    
+    //    [self.tableView1 deselectRowAtIndexPath:indexPath animated:false];
+    //    [self.tableView1 reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -265,6 +274,8 @@
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell.makeButton addTarget:self action:@selector(makeOrder:) forControlEvents:UIControlEventTouchUpInside];
+//        [cell.plus addTarget:self action:@selector(plusBtn:index:for:plus:minus:) with forControlEvents:UIControlEventTouchUpInside];
+//        [cell.minus addTarget:self action:@selector(minusBtn:index:for:plus:minus:) forControlEvents:UIControlEventTouchUpInside];
         [cell.coffeeName setText:@"lol"];
         
         return cell;
@@ -377,4 +388,23 @@
         }];
     }
 }
+//- (IBAction)plusBtn:(UIButton *)sender index:(NSInteger)index for:(UILabel*)volume plus:(UIButton*)plus minus:(UIButton*)minus {
+//    if (index + 2 == volumeNum.count) {
+//        [volume setText:[NSString stringWithFormat:@"%@ мл", volumeNum[index + 1]]];
+//        [plus setImage:[UIImage imageNamed:@"plusGrey"] forState:UIControlStateNormal];
+//    } else if (index + 2 < volumeNum.count) {
+//        [volume setText:[NSString stringWithFormat:@"%@ мл", volumeNum[index + 1]]];
+//        [minus setImage:[UIImage imageNamed:@"minusBrown"] forState:UIControlStateNormal];
+//    }
+//}
+//
+//- (IBAction)minusBtn:(UIButton *)sender index:(NSInteger)index for:(UILabel*)volume plus:(UIButton*)plus minus:(UIButton*)minus {
+//    if (index + 1 == 2) {
+//        [volume setText:[NSString stringWithFormat:@"%@ мл", volumeNum[index - 1]]];
+//        [minus setImage:[UIImage imageNamed:@"minusGrey"] forState:UIControlStateNormal];
+//    } else if (index + 1 > 2) {
+//        [volume setText:[NSString stringWithFormat:@"%@ мл", volumeNum[index - 1]]];
+//        [plus setImage:[UIImage imageNamed:@"plusBrown"] forState:UIControlStateNormal];
+//    }
+//}
 @end

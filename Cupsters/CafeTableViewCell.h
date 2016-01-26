@@ -12,5 +12,11 @@
 @property (strong, nonatomic) IBOutlet UIImageView *coffeePic;
 @property (strong, nonatomic) IBOutlet UIButton *makeButton;
 @property (strong, nonatomic) IBOutlet UILabel *coffeeName;
+@property (strong, nonatomic) IBOutlet UIButton *plus;
+@property (strong, nonatomic) IBOutlet UIButton *minus;
+@property (strong, nonatomic) IBOutlet UILabel *volume;
+
+- (IBAction)plusBtn:(UIButton *)sender;
+- (IBAction)minusBtn:(UIButton *)sender;
 
 @end
