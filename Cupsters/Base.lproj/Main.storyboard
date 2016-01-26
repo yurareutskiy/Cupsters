@@ -1349,10 +1349,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-<<<<<<< HEAD
-                            <view opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5tO-Gj-cTa">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-=======
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5UX-8h-iwY">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
                                 <subviews>
@@ -1406,7 +1402,6 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
->>>>>>> ui-branch
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="dtI-Pe-39T" secondAttribute="bottom" constant="8" id="0AS-1A-FCU"/>
@@ -2118,11 +2113,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-<<<<<<< HEAD
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IK1-0V-pSl">
-=======
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IK1-0V-pSl" customClass="CustomViewSettings">
->>>>>>> ui-branch
                                 <rect key="frame" x="-1" y="230" width="602" height="185"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9gA-Ft-CjN">
