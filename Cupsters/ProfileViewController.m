@@ -83,12 +83,10 @@
                                                       target:self
                                                       action:@selector(toList:)];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    
     self.navigationController.navigationBar.layer.shadowColor = [[UIColor grayColor] CGColor];
     self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
     self.navigationController.navigationBar.layer.shadowRadius = 1.0f;
     self.navigationController.navigationBar.layer.shadowOpacity = 0.5f;
-    
     self.navigationItem.leftBarButtonItem = self.menuButton;
     
 }
