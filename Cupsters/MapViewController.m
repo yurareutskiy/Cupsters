@@ -16,6 +16,7 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "DataManager.h"
 #import "CafeViewController.h"
+#import "AppDelegate.h"
 
 @interface MapViewController ()
 
@@ -62,12 +63,44 @@ static NSString *baseURL = @"http://cupsters.ru";
     mapView.layer.shadowOpacity = 0.5f;
     [mapView.layer setMasksToBounds:NO];
     
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Cafes" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    // Specify criteria for filtering which objects to fetch
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
+//    [fetchRequest setPredicate:predicate];
+    // Specify how the fetched objects should be sorted
+//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
+//                                                                   ascending:YES];
+//    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    if (fetchedObjects == nil) {
+        NSLog(@"error with cafes");
+    }
+    
+    for (NSManagedObject* cafe in fetchedObjects) {
+        NSNumber *longitude = [cafe valueForKey:@"longitude"];
+        NSLog(@"%@", longitude);
+        
+        NSNumber *lattitude = [cafe valueForKey:@"lattitude"];
+        NSLog(@"%@", lattitude);
+        
+        NSString *name = [cafe valueForKey:@"name"];
+        NSLog(@"%@", name);
+        [self makeCafeMarker:lattitude.doubleValue longi:longitude.doubleValue name:name on:mapView];
+    }
+    
     // Creates a marker in the center of the map.
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.position = CLLocationCoordinate2DMake(-33.86, 151.20);
     marker.title = @"Sydney";
     marker.snippet = @"Australia";
     marker.map = mapView;
+    
     mapView.settings.myLocationButton = YES;
     
     
@@ -80,6 +113,21 @@ static NSString *baseURL = @"http://cupsters.ru";
     self.tableView.dataSource = self;
     
     // Do any additional setup after loading the view.
+}
+
+-(void) makeCafeMarker:(double)lat longi:(double)longi name:(NSString*)name on:(GMSMapView*)map{
+    GMSMarker *marker = [[GMSMarker alloc] init];
+    marker.position = CLLocationCoordinate2DMake(lat, longi);
+    marker.title = name;
+    marker.snippet = name;
+    marker.map = map;
+    NSLog(@"im here");
+    
+//    GMSMarker *marker = [[GMSMarker alloc] init];
+//    marker.position = CLLocationCoordinate2DMake(-10.86, 130.20);
+//    marker.title = @"Sydney";
+//    marker.snippet = @"Australia";
+//    marker.map = mapView;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
