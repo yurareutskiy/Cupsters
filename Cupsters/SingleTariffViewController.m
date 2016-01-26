@@ -13,6 +13,8 @@
 #import "SWRevealViewController.h"
 #import <CoreData/CoreData.h>
 #import "AppDelegate.h"
+#import "User.h"
+#import "Server.h"
 
 @interface SingleTariffViewController ()
 
@@ -26,6 +28,7 @@
 @implementation SingleTariffViewController {
 
     int currentValue;
+    NSManagedObject *tariff;
 
 }
 
@@ -43,7 +46,10 @@
     self.upView.layer.shadowRadius = 1.0f;
     self.upView.layer.shadowOpacity = 0.5f;
     [self.upView.layer setMasksToBounds:NO];
-        
+    
+    self.amount.font = [UIFont fontWithName:@"MyriadPro-Regular" size:42];
+
+    
     // Do any additional setup after loading the view.
 }
 
@@ -69,6 +75,7 @@
     }
     self.source = fetchedObjects;
     [self.slider setMaximumValue:[self.source count]];
+    self.slider.value = self.slider.maximumValue / 2;
     [self sliderValue:self.slider];
     currentValue = (int)self.slider.value;
     [self configureData];
@@ -167,9 +174,13 @@
     
     NSLog(@"sender max %f", sender.value);
     
-    if (((int)sender.value) != currentValue) {
+    if (((int)sender.value) != currentValue && sender.value != sender.maximumValue) {
         currentValue = ((int)sender.value);
         [self configureData];
+    }
+    
+    if (sender.value == sender.maximumValue) {
+        [self setTariffForUser];
     }
     
 //    if (sender.value <= 1){
@@ -194,19 +205,68 @@
 }
 
 - (void)configureData {
-    NSManagedObject *tariff = self.source[currentValue];
+    tariff = self.source[currentValue];
     NSNumber *count = [tariff valueForKey:@"count"];
     NSNumber *price = [tariff valueForKey:@"price"];
-    [self.price setText:[NSString stringWithFormat:@"%@ ₽", price]];
-    [self.amount setText:[NSString stringWithFormat:@"%@ чашек", [count stringValue]]];
+    [self.price setText:[self formattedStringWithPrice:price.stringValue]];
+    [self.amount setText:[NSString stringWithFormat:@"%@", [count stringValue]]];
     int avr = [price intValue] / [count intValue];
     [self.avgPrice setText:[NSString stringWithFormat:@"%d", avr]];
-    if (count < 0) {
-        [self.amount setText:@"Безлимитно"];
+    if (count.intValue < 0) {
+        [self.time setText:@"Действует 1 месяц"];
+        [self.amount setText:@"∞"];
+        self.avgPrice.text = @"0";
     } else {
         [self.time setText:@"Действует 3 месяца"];
     }
     [self.cups setText:@"чашек"];
 }
+
+- (NSString*)formattedStringWithPrice:(NSString*)price {
+
+    NSInteger lenghtString = [price length];
+    NSMutableString *resultString = [NSMutableString stringWithString:@""];
+    NSInteger counter = lenghtString;
+    for (int i = 0; i < lenghtString; i++) {
+        char ch = [price characterAtIndex:i];
+        if (counter % 3 == 0 && lenghtString != counter) {
+            [resultString appendString:@" "];
+        }
+        [resultString appendString:[NSString stringWithFormat:@"%c", ch]];
+        counter--;
+    }
+    [resultString appendString:@" ₽"];
+    return resultString;
+}
+
+- (void)setTariffForUser {
+
+    NSNumber *tariffID = [tariff valueForKey:@"id"];
+    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
+    NSNumber *userID = user.id;
+    NSDictionary *body = @{@"user_id":userID, @"tariff_id":tariffID};
+    
+    Server *server = [[Server alloc] init];
+    ServerRequest *request = [ServerRequest initRequest:ServerRequestTypePOST With:body To:SetTariffURLStrring];
+    [server sentToServer:request OnSuccess:^(NSDictionary *result) {
+        NSLog(@"%@", result);
+        NSLog(@"%@", user.plan);
+    } OrFailure:^(NSError *error) {
+        NSLog(@"%@", [error debugDescription]);
+    }];
+}
+
+//func formattedStringWithPrice(price: String) -> String {
+//    var lenghtString = price.characters.count
+//    var resultString: String = ""
+//    for char in price.characters {
+//        if (lenghtString % 3 == 0) && (price.characters.count != lenghtString) {
+//            resultString += " "
+//        }
+//        resultString += String(char)
+//        lenghtString -= 1
+//    }
+//    return resultString + " ₽"
+//}
 
 @end
