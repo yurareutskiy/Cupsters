@@ -13,5 +13,12 @@
 @property (strong, nonatomic) IBOutlet UIView *upView;
 @property (strong, nonatomic) IBOutlet UIView *middleView;
 @property (strong, nonatomic) IBOutlet UIView *bottomView;
+@property (strong, nonatomic) IBOutlet UILabel *initals;
+@property (strong, nonatomic) IBOutlet UILabel *userName;
+@property (strong, nonatomic) IBOutlet UILabel *locationLabel;
+@property (strong, nonatomic) IBOutlet UILabel *tariff;
+@property (strong, nonatomic) IBOutlet UILabel *price;
+@property (strong, nonatomic) IBOutlet UILabel *timeLimitLabel;
+- (IBAction)changePlan:(UIButton *)sender;
 
 @end

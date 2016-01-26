@@ -114,12 +114,14 @@
     self.scrollView.backgroundColor = [UIColor whiteColor];
     self.scrollView.pagingEnabled = YES;
     self.scrollView.showsHorizontalScrollIndicator = YES;
+    self.scrollView.scrollsToTop = NO;
     self.scrollView.contentSize = CGSizeMake(viewWidth * 3, self.scrollView.frame.size.height);
-    //[self.scrollView scrollRectToVisible:CGRectMake(viewWidth, 0, viewWidth, 200) animated:NO];
+    
+    //[self.scrollView scrollRectToVisible:CGRectMake(viewWidth, 0, viewWidth, self.scrollView.frame.size.height) animated:NO];
     
     __weak typeof(self) weakSelf = self;
     [self.segmentedControl setIndexChangeBlock:^(NSInteger index) {
-        [weakSelf.scrollView scrollRectToVisible:CGRectMake(viewWidth * index, 0, viewWidth, 200) animated:YES];
+        [weakSelf.scrollView scrollRectToVisible:CGRectMake(viewWidth * index, 0, viewWidth, self.scrollView.frame.size.height) animated:YES];
     }];
     
     // Do any additional setup after loading the view.
@@ -264,7 +266,6 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell.makeButton addTarget:self action:@selector(makeOrder:) forControlEvents:UIControlEventTouchUpInside];
         [cell.coffeeName setText:@"lol"];
-        NSLog(@"i'm here");
         
         return cell;
     }
@@ -274,7 +275,6 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell.makeButton addTarget:self action:@selector(makeOrder:) forControlEvents:UIControlEventTouchUpInside];
         [cell.coffeeName setText:@"lol"];
-        NSLog(@"i'm here");
         
         return cell;
     }
@@ -284,7 +284,6 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell.makeButton addTarget:self action:@selector(makeOrder:) forControlEvents:UIControlEventTouchUpInside];
         [cell.coffeeName setText:@"lol"];
-        NSLog(@"i'm here");
         
         return cell;
     }
@@ -294,20 +293,12 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell.makeButton addTarget:self action:@selector(makeOrder:) forControlEvents:UIControlEventTouchUpInside];
         [cell.coffeeName setText:@"lol"];
-        NSLog(@"i'm here");
-        
+
         return cell;
     }
     
     
     //[self configurePlace:cell At:indexPath.row];
-}
-
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    if (scrollView.contentOffset.y<=0) {
-        scrollView.contentOffset = CGPointZero;
-    }
 }
 
 
@@ -321,18 +312,19 @@
 - (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     NSLog(@"yeap");
     NSLog(@"%f", scrollView.contentOffset.x);
+    NSLog(@"%f", scrollView.contentOffset.y);
     
-        if (scrollView.contentOffset.x >= 0 && scrollView.contentOffset.x <= 106) {
-            [self.segmentedControl setSelectedSegmentIndex:0 animated:YES];
-        }
-        else if (scrollView.contentOffset.x >= 212 && scrollView.contentOffset.x <= 520) {
-            [self.segmentedControl setSelectedSegmentIndex:1 animated:YES];
-        }
-        else if (scrollView.contentOffset.x >= 616) {
-            [self.segmentedControl setSelectedSegmentIndex:2 animated:YES];
-        }
+    if (self.scrollView.contentOffset.x >= 0 && self.scrollView.contentOffset.x <= 106) {
+        [self.segmentedControl setSelectedSegmentIndex:0 animated:YES];
+    }
+    else if (self.scrollView.contentOffset.x >= 212 && self.scrollView.contentOffset.x <= 520) {
+        [self.segmentedControl setSelectedSegmentIndex:1 animated:YES];
+    }
+    else if (self.
+             scrollView.contentOffset.x >= 616) {
+        [self.segmentedControl setSelectedSegmentIndex:2 animated:YES];
+    }
 }
-
 
 - (void)makeOrder:(UIButton*)sender{
     [self performSegueWithIdentifier:@"makeOrder" sender:self];
