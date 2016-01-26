@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cupsters/DataManager.m"
-            timestampString = "475448158.288945"
+            timestampString = "475461935.603113"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
             landmarkName = "-getDataFromEntity:"
             landmarkType = "5">
          </BreakpointContent>
@@ -38,15 +38,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cupsters/DataManager.m"
-            timestampString = "475448192.717475"
+            timestampString = "475461970.966514"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "-loadDataWithStart:From:"
             landmarkType = "5">
          </BreakpointContent>
@@ -57,13 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Cupsters/DataManager.m"
-            timestampString = "475448389.736943"
+            filePath = "Cupsters/AppDelegate.m"
+            timestampString = "475462135.164687"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "-saveDataWithLogin:"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "-application:didFinishLaunchingWithOptions:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,13 +73,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Cupsters/DataManager.m"
-            timestampString = "475448625.768996"
+            filePath = "Cupsters/Server.m"
+            timestampString = "475462635.089822"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "-saveDataWithLogin:"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "-sentToServer:OnSuccess:OrFailure:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,13 +89,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Cupsters/DataManager.m"
-            timestampString = "475449532.906578"
+            filePath = "Cupsters/Server.m"
+            timestampString = "475462638.056226"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "-saveDataWithLogin:"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "-sentToServer:OnSuccess:OrFailure:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -105,13 +105,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Cupsters/DataManager.m"
-            timestampString = "475449899.691303"
+            filePath = "Cupsters/ListPlacesImagesViewController.m"
+            timestampString = "475463787.259124"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "-saveDataWithLogin:"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
+            landmarkName = "-configurePlace:At:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
