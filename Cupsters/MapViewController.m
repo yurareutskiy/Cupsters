@@ -63,26 +63,19 @@ static NSString *baseURL = @"http://cupsters.ru";
     mapView.layer.shadowOpacity = 0.5f;
     [mapView.layer setMasksToBounds:NO];
     
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Cafes" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    // Specify criteria for filtering which objects to fetch
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"<#format string#>", <#arguments#>];
-//    [fetchRequest setPredicate:predicate];
-    // Specify how the fetched objects should be sorted
-//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"<#key#>"
-//                                                                   ascending:YES];
-//    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+//    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+//    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Cafes" inManagedObjectContext:context];
+//    [fetchRequest setEntity:entity];
+//    
+//    NSError *error = nil;
+//    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+//    if (fetchedObjects == nil) {
+//        NSLog(@"error with cafes");
+//    }
     
-    NSError *error = nil;
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    if (fetchedObjects == nil) {
-        NSLog(@"error with cafes");
-    }
-    
-    for (NSManagedObject* cafe in fetchedObjects) {
+    for (NSManagedObject* cafe in self.source) {
         NSNumber *longitude = [cafe valueForKey:@"longitude"];
         NSLog(@"%@", longitude);
         
@@ -116,18 +109,17 @@ static NSString *baseURL = @"http://cupsters.ru";
 }
 
 -(void) makeCafeMarker:(double)lat longi:(double)longi name:(NSString*)name on:(GMSMapView*)map{
+    
+    
+    
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.position = CLLocationCoordinate2DMake(lat, longi);
     marker.title = name;
     marker.snippet = name;
     marker.map = map;
+    marker.icon = [UIImage imageNamed:@"brownPin"];
     NSLog(@"im here");
     
-//    GMSMarker *marker = [[GMSMarker alloc] init];
-//    marker.position = CLLocationCoordinate2DMake(-10.86, 130.20);
-//    marker.title = @"Sydney";
-//    marker.snippet = @"Australia";
-//    marker.map = mapView;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -225,7 +217,7 @@ static NSString *baseURL = @"http://cupsters.ru";
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.source.count;
 }
 
 -(MapTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -241,10 +233,16 @@ static NSString *baseURL = @"http://cupsters.ru";
 
 -(MapTableViewCell*)configurePlace:(MapTableViewCell*)cell At:(NSInteger)row {
     
-    [cell.numberRow setText:[NSString stringWithFormat:@"%d", row + 1]];
+    NSNumber *longitude = [self.source[row] valueForKey:@"longitude"];
+    NSNumber *lattitude = [self.source[row] valueForKey:@"lattitude"];
+    NSString *name = [self.source[row] valueForKey:@"name"];
+    
+    [cell.numberRow setText:[NSString stringWithFormat:@"%ld", row + 1]];
     [cell.logo setImageWithURL:[NSURL URLWithString:@"http://cupsters.ru/img/logo_red.png"]];
-    [cell.name setText:@"lol"];
+    [cell.name setText:name];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    [self makeCafeMarker:lattitude.doubleValue longi:longitude.doubleValue name:name on:mapView];
     
 //    [cell.backPhoto setImage:[UIImage imageNamed:@"cafeBack1"]];
 //    [cell.name setText:@"КОФЕЙНЯ"];

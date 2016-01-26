@@ -192,7 +192,10 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    CafeViewController *vc = (CafeViewController*)segue.destinationViewController;
-    vc.cafe = [self.source objectAtIndex:((NSIndexPath*)sender).row];
+    if ([segue.identifier isEqualToString:@"goToCafe"]) {
+        CafeViewController *vc = (CafeViewController*)segue.destinationViewController;
+        vc.cafe = [self.source objectAtIndex:((NSIndexPath*)sender).row];
+    }
+
 }
 @end
