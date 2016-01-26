@@ -17,6 +17,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *cups;
 - (IBAction)sliderValue:(UISlider *)sender;
 @property (strong, nonatomic) IBOutlet UIView *upView;
+@property (strong, nonatomic) IBOutlet UILabel *tariffType;
+@property (strong, nonatomic) IBOutlet UILabel *tariffName;
 
 @property (strong, nonatomic) NSString *type;
 
