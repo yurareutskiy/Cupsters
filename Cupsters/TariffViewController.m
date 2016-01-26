@@ -11,6 +11,7 @@
 #import "UIColor+HEX.h"
 #import "MenuRevealViewController.h"
 #import "SWRevealViewController.h"
+#import "SingleTariffViewController.h"
 
 @interface TariffViewController ()
 
@@ -114,15 +115,15 @@
     return navigationBarLabel;
 }
 
-/*
-#pragma mark - Navigation
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    SingleTariffViewController *vc = (SingleTariffViewController*)segue.destinationViewController;
+    if ([segue.identifier isEqualToString:@"standart"]) {
+        vc.type = @"standart";
+    } else if ([segue.identifier isEqualToString:@"expanded"]) {
+        vc.type = @"advanced";
+    }
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
-*/
 
 - (IBAction)toStandart:(UIButton *)sender {
     [self performSegueWithIdentifier:@"standart" sender:self];

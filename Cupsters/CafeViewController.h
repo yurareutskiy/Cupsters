@@ -18,5 +18,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView2;
 @property (strong, nonatomic) IBOutlet UITableView *tableView3;
 
+@property (strong, nonatomic) NSManagedObjectModel *cafe;
 
 @end

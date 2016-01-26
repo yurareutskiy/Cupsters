@@ -20,5 +20,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *tariffType;
 @property (strong, nonatomic) IBOutlet UILabel *tariffName;
 
+@property (strong, nonatomic) NSString *type;
+
 
 @end

@@ -11,16 +11,24 @@
 #import "UIColor+HEX.h"
 #import "MenuRevealViewController.h"
 #import "SWRevealViewController.h"
+#import <CoreData/CoreData.h>
+#import "AppDelegate.h"
 
 @interface SingleTariffViewController ()
 
 @property (strong, nonatomic) MenuRevealViewController *menu;
 @property (strong, nonatomic) UIBarButtonItem *menuButton;
 @property (strong, nonatomic) SWRevealViewController *reveal;
+@property (strong, nonatomic) NSArray *source;
 
 @end
 
-@implementation SingleTariffViewController
+@implementation SingleTariffViewController {
+
+    int currentValue;
+
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,8 +43,35 @@
     self.upView.layer.shadowRadius = 1.0f;
     self.upView.layer.shadowOpacity = 0.5f;
     [self.upView.layer setMasksToBounds:NO];
-    
+        
     // Do any additional setup after loading the view.
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Tariffs" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    // Specify criteria for filtering which objects to fetch
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"type = %@", self.type];
+    [fetchRequest setPredicate:predicate];
+    // Specify how the fetched objects should be sorted
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"price"
+                                                                   ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    if (fetchedObjects == nil) {
+        NSLog(@"%@", [error debugDescription]);
+    }
+    self.source = fetchedObjects;
+    [self.slider setMaximumValue:[self.source count]];
+    [self sliderValue:self.slider];
+    currentValue = (int)self.slider.value;
+    [self configureData];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -129,25 +164,49 @@
 */
 
 - (IBAction)sliderValue:(UISlider *)sender {
-    NSLog(@"%f", sender.value);
-    if (sender.value <= 1){
-        [self.price setText:@"799 Р"];
-        [self.amount setText:@"5"];
-        [self.avgPrice setText:@"160"];
-        [self.time setText:@"Действует 3 месяца"];
-        [self.cups setText:@"чашек"];
-    } else if (sender.value > 2){
-        [self.price setText:@"3 599 Р"];
-        [self.amount setText:@"Безлимитно"];
-        [self.avgPrice setText:@"120"];
-        [self.time setText:@"Действует 1 месяц"];
-        [self.cups setText:@""];
-    } else {
-        [self.price setText:@"2 299 Р"];
-        [self.amount setText:@"15"];
-        [self.avgPrice setText:@"150"];
-        [self.time setText:@"Действует 3 месяца"];
-        [self.cups setText:@"чашек"];
+    
+    NSLog(@"sender max %f", sender.value);
+    
+    if (((int)sender.value) != currentValue) {
+        currentValue = ((int)sender.value);
+        [self configureData];
     }
+    
+//    if (sender.value <= 1){
+//        [self.price setText:@"799 Р"];
+//        [self.amount setText:@"5"];
+//        [self.avgPrice setText:@"160"];
+//        [self.time setText:@"Действует 3 месяца"];
+//        [self.cups setText:@"чашек"];
+//    } else if (sender.value > 2){
+//        [self.price setText:@"3 599 Р"];
+//        [self.amount setText:@"Безлимитно"];
+//        [self.avgPrice setText:@"120"];
+//        [self.time setText:@"Действует 1 месяц"];
+//        [self.cups setText:@""];
+//    } else {
+//        [self.price setText:@"2 299 Р"];
+//        [self.amount setText:@"15"];
+//        [self.avgPrice setText:@"150"];
+//        [self.time setText:@"Действует 3 месяца"];
+//        [self.cups setText:@"чашек"];
+//    }
 }
+
+- (void)configureData {
+    NSManagedObject *tariff = self.source[currentValue];
+    NSNumber *count = [tariff valueForKey:@"count"];
+    NSNumber *price = [tariff valueForKey:@"price"];
+    [self.price setText:[NSString stringWithFormat:@"%@ ₽", price]];
+    [self.amount setText:[NSString stringWithFormat:@"%@ чашек", [count stringValue]]];
+    int avr = [price intValue] / [count intValue];
+    [self.avgPrice setText:[NSString stringWithFormat:@"%d", avr]];
+    if (count < 0) {
+        [self.amount setText:@"Безлимитно"];
+    } else {
+        [self.time setText:@"Действует 3 месяца"];
+    }
+    [self.cups setText:@"чашек"];
+}
+
 @end

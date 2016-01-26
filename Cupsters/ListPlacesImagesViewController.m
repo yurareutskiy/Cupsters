@@ -12,12 +12,16 @@
 #import "PlacePhotoTableViewCell.h"
 #import "MenuRevealViewController.h"
 #import "SWRevealViewController.h"
+#import "DataManager.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
+#import "CafeViewController.h"
 
 @interface ListPlacesImagesViewController ()
 
 @property (strong, nonatomic) MenuRevealViewController *menu;
 @property (strong, nonatomic) UIBarButtonItem *menuButton;
 @property (strong, nonatomic) SWRevealViewController *reveal;
+@property (strong, nonatomic) NSArray *source;
 
 @end
 
@@ -37,6 +41,10 @@
     
     [self configureMenu];
     
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    self.source = [[DataManager sharedManager] getDataFromEntity:@"Cafes"];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
@@ -134,18 +142,20 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.table deselectRowAtIndexPath:indexPath animated:false];
     [self.table reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    [self performSegueWithIdentifier:@"goToCafe" sender:self];
+    [self performSegueWithIdentifier:@"goToCafe" sender:indexPath];
     NSLog(@"Select row at index %@", indexPath);
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return [self.source count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    PlacePhotoTableViewCell *cell = [[PlacePhotoTableViewCell alloc] init];
-    [self.table dequeueReusableCellWithIdentifier:cCellBigPlace forIndexPath:indexPath];
+    PlacePhotoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cCellBigPlace forIndexPath:indexPath];
+    if (!cell) {
+        cell = [[PlacePhotoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cCellBigPlace];
+    }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -154,9 +164,23 @@
 
 -(PlacePhotoTableViewCell*)configurePlace:(PlacePhotoTableViewCell*)cell At:(NSInteger)row {
     
-    [cell.backPhoto setImage:[UIImage imageNamed:@"cafeBack1"]];
-    [cell.placeName setText:@"КОФЕЙНЯ"];
-    [cell.underground setText:@"м. Парк Победы"];
+    NSManagedObject *object = [self.source objectAtIndex:row];
+    
+    NSURL *imageURL = nil;
+//    if ([[object valueForKey:@"image"] isEqualToString:@""]) {
+//        // default image
+//        imageURL = [NSURL URLWithString:@"http://lk.cupsters.ru/img/cafe/maxresdefault.jpg"];
+//    } else {
+//        imageURL = [NSURL URLWithString:[object valueForKey:@"image"]];
+//    }
+    
+//    imageURL = [NSURL URLWithString:@"http://lk.cupsters.ru/img/cafe/KatesCafe.jpg"];
+    
+//    imageURL = [NSURL URLWithString:@"http://lk.cupsters.ru/img/cafe/maxresdefault.jpg"];
+
+    [cell.backPhoto setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"cafeBack1"]];
+    [cell.placeName setText:[object valueForKey:@"name"]];
+    [cell.underground setText:[object valueForKey:@"address"]];
     [cell.distance setText:@"2 км."];
     
     return cell;
@@ -165,5 +189,10 @@
 
 - (IBAction)goToMap:(UIButton *)sender {
     [self performSegueWithIdentifier:@"goToMap" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    CafeViewController *vc = (CafeViewController*)segue.destinationViewController;
+    vc.cafe = [self.source objectAtIndex:((NSIndexPath*)sender).row];
 }
 @end
