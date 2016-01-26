@@ -57,6 +57,8 @@ static NSString *baseURL = @"http://cupsters.ru";
     
     [self.view addSubview:mapView];
     
+    
+    
     mapView.layer.shadowColor = [[UIColor grayColor] CGColor];
     mapView.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
     mapView.layer.shadowRadius = 1.0f;
@@ -84,7 +86,8 @@ static NSString *baseURL = @"http://cupsters.ru";
         
         NSString *name = [cafe valueForKey:@"name"];
         NSLog(@"%@", name);
-        [self makeCafeMarker:lattitude.doubleValue longi:longitude.doubleValue name:name on:mapView];
+        //
+        //[self makeCafeMarker:lattitude.doubleValue longi:longitude.doubleValue name:name on:mapView ];
     }
     
     // Creates a marker in the center of the map.
@@ -108,18 +111,32 @@ static NSString *baseURL = @"http://cupsters.ru";
     // Do any additional setup after loading the view.
 }
 
--(void) makeCafeMarker:(double)lat longi:(double)longi name:(NSString*)name on:(GMSMapView*)map{
-    
-    
+-(void) makeCafeMarker:(double)lat longi:(double)longi name:(NSString*)name on:(GMSMapView*)map row:(NSInteger*)row {
     
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.position = CLLocationCoordinate2DMake(lat, longi);
     marker.title = name;
     marker.snippet = name;
     marker.map = map;
-    marker.icon = [UIImage imageNamed:@"brownPin"];
+    marker.icon = [self makePin:row];
     NSLog(@"im here");
     
+}
+
+- (UIImage*)makePin:(NSInteger*)row {
+    
+    UIImage *image = [UIImage imageNamed:@"brownPin"];
+    UILabel *number = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height / 2)];
+    [number setText:[NSString stringWithFormat:@"%d", row]];
+    [number setTextAlignment:NSTextAlignmentCenter];
+    [number setTextColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0]];
+    UIGraphicsBeginImageContext(image.size);
+    [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
+    [number drawTextInRect:CGRectMake(0, 3, image.size.width, image.size.height / 2)];
+    UIImage *resultImage  = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return resultImage;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -242,14 +259,7 @@ static NSString *baseURL = @"http://cupsters.ru";
     [cell.name setText:name];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    [self makeCafeMarker:lattitude.doubleValue longi:longitude.doubleValue name:name on:mapView];
-    
-//    [cell.backPhoto setImage:[UIImage imageNamed:@"cafeBack1"]];
-//    [cell.name setText:@"КОФЕЙНЯ"];
-//    [cell.underground setText:@"м. Парк Победы"];
-//    [cell.distance setText:@"2 км."];
-////    [cell.logo setImage:[UIImage imageNamed:@"cafeBack1"]];
-//    [cell.logo setImageWithURL:[NSURL URLWithString:@"http://cupsters.ru/img/logo_red.png"]];
+    [self makeCafeMarker:lattitude.doubleValue longi:longitude.doubleValue name:name on:mapView row:(row + 1)];
     
     return cell;
 }
@@ -291,8 +301,11 @@ static NSString *baseURL = @"http://cupsters.ru";
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    CafeViewController *vc = (CafeViewController*)segue.destinationViewController;
-    vc.cafe = [self.source objectAtIndex:((NSIndexPath*)sender).row];
+    
+    if ([segue.identifier isEqualToString:@"goToCafe"]) {
+        CafeViewController *vc = (CafeViewController*)segue.destinationViewController;
+        vc.cafe = [self.source objectAtIndex:((NSIndexPath*)sender).row];
+    }
 }
 
 @end
