@@ -18,5 +18,7 @@
 - (IBAction)sliderValue:(UISlider *)sender;
 @property (strong, nonatomic) IBOutlet UIView *upView;
 
+@property (strong, nonatomic) NSString *type;
+
 
 @end
