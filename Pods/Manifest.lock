@@ -17,6 +17,8 @@ PODS:
   - GoogleMaps (1.10.3)
   - HMSegmentedControl (1.5.2)
   - NSHash (1.1.0)
+  - RKDropdownAlert (0.3.0)
+  - SCLAlertView-Objective-C (0.7.7)
   - VK-ios-sdk (1.3.6)
 
 DEPENDENCIES:
@@ -24,6 +26,8 @@ DEPENDENCIES:
   - GoogleMaps
   - HMSegmentedControl
   - NSHash (from `https://github.com/jerolimov/NSHash`, tag `1.1.0`)
+  - RKDropdownAlert
+  - SCLAlertView-Objective-C
   - VK-ios-sdk (from `https://github.com/VKCOM/vk-ios-sdk.git`, tag `1.3.6`)
 
 EXTERNAL SOURCES:
@@ -53,6 +57,8 @@ SPEC CHECKSUMS:
   GoogleMaps: 945e4ac3b74bcca3ddada51df256eb7beddb474d
   HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
   NSHash: 61d598c6d48957c5557f1eef0aeafd6ef5ec5fb7
+  RKDropdownAlert: f4b3364c251829ad439dc666836a1f2dad26f4c7
+  SCLAlertView-Objective-C: 062808b4664add2d38d44b7867267985a02267ad
   VK-ios-sdk: c40f2ab5045f6bf97f57cc2dfb2d5e0c0b920fe6
 
 COCOAPODS: 0.39.0

@@ -24,6 +24,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>RKDropdownAlert.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SCLAlertView-Objective-C.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>VK-ios-sdk.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -33,6 +43,21 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>2AB49797D14D57FA43A345254AFB9F18</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2F13173905C2910379B89AA1BCABE4C6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>377D34BC54C85209ED9A0E1503FDD110</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>48B5D392696216DF32CE61B3C99DF2A9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -47,12 +72,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A78BB8C8F41ABF423A1F65AD91CFDEA4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F2BC111EC583416702CA6E3C70220A1A</key>
+		<key>B07EA05A3EA19461D73D1CA69ABECDFD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

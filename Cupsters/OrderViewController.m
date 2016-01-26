@@ -11,6 +11,7 @@
 #import "UIColor+HEX.h"
 #import "MenuRevealViewController.h"
 #import "SWRevealViewController.h"
+#import <SCLAlertView.h>
 
 @interface OrderViewController ()
 
@@ -89,16 +90,6 @@
     
 }
 
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    
-    if (buttonIndex == 0) {
-        NSLog(@"Заказ сделан");
-    }
-    else if (buttonIndex == 1) {
-        NSLog(@"Заказ отменен");
-    }
-}
-
 - (void)backAction:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -135,20 +126,79 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Заказ #1234" message:@"Подтвердите заказ #1234" preferredStyle:UIAlertControllerStyleAlert];
+    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
     
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Подтвердить" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        NSLog(@"Заказ подтвержден");
-    }]];
+    UIColor *color = [UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0];
     
-    [alertController addAction:[UIAlertAction actionWithTitle:@"Отменить" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self.navigationController popViewControllerAnimated:YES];
-        NSLog(@"Заказ отменен");
-    }]];
+    SCLButton *firstButton = [alert addButton:@"Да" target:self selector:@selector(agreeButton)];
     
-    dispatch_async(dispatch_get_main_queue(), ^ {
-        [self presentViewController:alertController animated:YES completion:nil];
-    });
+    firstButton.buttonFormatBlock = ^NSDictionary* (void)
+    {
+        NSMutableDictionary *buttonConfig = [[NSMutableDictionary alloc] init];
+        
+        buttonConfig[@"backgroundColor"] = [UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0];
+        buttonConfig[@"textColor"] = [UIColor whiteColor];
+        
+        //buttonConfig[@"borderWidth"] = @2.0f;
+        //buttonConfig[@"borderColor"] = [UIColor greenColor];
+        
+        return buttonConfig;
+    };
+    
+    SCLButton *secondButton = [alert addButton:@"Нет" target:self selector:@selector(declineButton)];
+    
+    secondButton.buttonFormatBlock = ^NSDictionary* (void)
+    {
+        NSMutableDictionary *buttonConfig = [[NSMutableDictionary alloc] init];
+        
+        buttonConfig[@"backgroundColor"] = [UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0];
+        buttonConfig[@"textColor"] = [UIColor whiteColor];
+        
+        //buttonConfig[@"borderWidth"] = @2.0f;
+        //buttonConfig[@"borderColor"] = [UIColor greenColor];
+        
+        return buttonConfig;
+    };
+    NSLog(@"HELLO");
+    UIImage *pic = [UIImage imageNamed:@"cup"];
+    NSLog(@"%f", pic.size.height);
+    NSLog(@"%f", pic.size.width);
+    pic = [self scaleImage:pic toSize:CGSizeMake(40.0, 40.0)];
+    NSLog(@"%f", pic.size.height);
+    NSLog(@"%f", pic.size.width);
+    
+    [alert showCustom:self image:[UIImage imageNamed:@"cup"] color:color title:@"Подтверждение" subTitle:@"Вы заказали капучино, объем 300 мл" closeButtonTitle:nil duration:0.0f];
+
+}
+
+- (UIImage*) scaleImage:(UIImage*)image toSize:(CGSize)newSize {
+    CGSize scaledSize = newSize;
+    float scaleFactor = 1.0;
+    if( image.size.width > image.size.height ) {
+        scaleFactor = image.size.width / image.size.height;
+        scaledSize.width = newSize.width;
+        scaledSize.height = newSize.height / scaleFactor;
+    }
+    else {
+        scaleFactor = image.size.height / image.size.width;
+        scaledSize.height = newSize.height;
+        scaledSize.width = newSize.width / scaleFactor;
+    }
+    
+    UIGraphicsBeginImageContextWithOptions( scaledSize, NO, 0.0 );
+    CGRect scaledImageRect = CGRectMake( 0.0, 0.0, scaledSize.width, scaledSize.height );
+    [image drawInRect:scaledImageRect];
+    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return scaledImage;
+}
+
+- (void) agreeButton {
+    NSLog(@"Подтверждено");
+}
+- (void) declineButton {
+    NSLog(@"Отклонено");
 }
 
 -(void)closeAlertview
