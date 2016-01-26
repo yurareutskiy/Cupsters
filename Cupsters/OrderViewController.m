@@ -142,6 +142,7 @@
     }]];
     
     [alertController addAction:[UIAlertAction actionWithTitle:@"Отменить" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self.navigationController popViewControllerAnimated:YES];
         NSLog(@"Заказ отменен");
     }]];
     
@@ -152,7 +153,8 @@
 
 -(void)closeAlertview
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
+//    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -169,7 +171,7 @@
     
     [UIView animateWithDuration:0.5 animations:^{
         [self.bg setBackgroundColor:[UIColor blackColor]];
-        [self.bg setAlpha:0.8];
+        [self.bg setAlpha:0.85];
         
         self.bgBottom.constant += keyboardSize.height;
         [self.bg layoutIfNeeded];
@@ -287,14 +289,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

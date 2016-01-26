@@ -14,6 +14,7 @@
 #import "SWRevealViewController.h"
 #import "DataManager.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import "CafeViewController.h"
 
 @interface ListPlacesImagesViewController ()
 
@@ -141,7 +142,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.table deselectRowAtIndexPath:indexPath animated:false];
     [self.table reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    [self performSegueWithIdentifier:@"goToCafe" sender:self];
+    [self performSegueWithIdentifier:@"goToCafe" sender:indexPath];
     NSLog(@"Select row at index %@", indexPath);
 }
 
@@ -188,5 +189,10 @@
 
 - (IBAction)goToMap:(UIButton *)sender {
     [self performSegueWithIdentifier:@"goToMap" sender:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    CafeViewController *vc = (CafeViewController*)segue.destinationViewController;
+    vc.cafe = [self.source objectAtIndex:((NSIndexPath*)sender).row];
 }
 @end

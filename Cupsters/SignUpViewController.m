@@ -145,6 +145,10 @@
 
 - (IBAction)signUpDoneButtonAction:(UIButton *)sender {
     
+    if (self.agreeButton.selected == NO) {
+        return;
+    }
+    
     NSString *password = [((UITextField*)self.fieldsOutlet[0]).text MD5];
     
     Server *server = [[Server alloc] init];

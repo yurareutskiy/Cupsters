@@ -15,6 +15,7 @@
 #import "MapTableViewCell.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "DataManager.h"
+#import "CafeViewController.h"
 
 @interface MapViewController ()
 
@@ -171,7 +172,7 @@ static NSString *baseURL = @"http://cupsters.ru";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:false];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    [self performSegueWithIdentifier:@"goToCafe" sender:self];
+    [self performSegueWithIdentifier:@"goToCafe" sender:indexPath];
     NSLog(@"Select row at index %@", indexPath);
 }
 
@@ -242,4 +243,10 @@ static NSString *baseURL = @"http://cupsters.ru";
 - (IBAction)goToList:(UIButton *)sender {
     [self performSegueWithIdentifier:@"goToList" sender:self];
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    CafeViewController *vc = (CafeViewController*)segue.destinationViewController;
+    vc.cafe = [self.source objectAtIndex:((NSIndexPath*)sender).row];
+}
+
 @end
