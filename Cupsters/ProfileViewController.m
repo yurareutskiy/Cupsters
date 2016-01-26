@@ -11,6 +11,8 @@
 #import "UIColor+HEX.h"
 #import "MenuRevealViewController.h"
 #import "SWRevealViewController.h"
+#import "User.h"
+#import "TariffViewController.h"
 
 @interface ProfileViewController ()
 
@@ -39,7 +41,28 @@
     self.upView.layer.shadowOpacity = 0.5f;
     [self.upView.layer setMasksToBounds:NO];
     
-    // Do any additional setup after loading the view.
+    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
+    self.initals.text = user.initials;
+    self.initals.font = [UIFont fontWithName:@"MyriadPro-Regular" size:42];
+    self.initals.layer.masksToBounds = YES;
+    self.initals.layer.cornerRadius = self.initals.frame.size.height / 2;
+    self.userName.text = user.name;
+    self.locationLabel.alpha = 0.6;
+    self.locationLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+
+    NSLog(@"%@", user.plan);
+    self.tariff.text = [NSString stringWithFormat:@"Тариф - %@", user.plan[@"tariff"]];
+    self.price.text = [NSString stringWithFormat:@"%@ ₽", user.plan[@"price"]];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"y-M-d H:m:s";
+    NSDateComponents *monthComponent = [[NSDateComponents alloc] init];
+    monthComponent.month = 1;
+    NSCalendar *theCalendar = [NSCalendar currentCalendar];
+    NSDate *beginDate = [formatter dateFromString:user.plan[@"create_date"]];
+    NSDate *endDate = [theCalendar dateByAddingComponents:monthComponent toDate:beginDate options:nil];
+    formatter.dateFormat = @"d MMMM";
+    self.timeLimitLabel.text = [NSString stringWithFormat:@"Годен до %@", [formatter stringFromDate:endDate]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -128,5 +151,6 @@
 */
 
 - (IBAction)changePlan:(UIButton *)sender {
+    
 }
 @end
