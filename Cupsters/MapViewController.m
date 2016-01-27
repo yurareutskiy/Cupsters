@@ -33,6 +33,7 @@ static NSString *baseURL = @"http://cupsters.ru";
 @implementation MapViewController {
     CLLocationManager *locationManager;
     GMSMapView *mapView;
+    CLLocation *pointOfInterest;
 }
 
 
@@ -53,11 +54,12 @@ static NSString *baseURL = @"http://cupsters.ru";
                                  longitude:locationManager.location.coordinate.longitude
                                  zoom:15];
     
+    pointOfInterest = [[CLLocation alloc] initWithLatitude:locationManager.location.coordinate.latitude longitude:locationManager.location.coordinate.longitude];
+    
     mapView = [GMSMapView mapWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height - _tableView.frame.size.height - 64.0) camera:camera];
     mapView.myLocationEnabled = YES;
     
     [self.view addSubview:mapView];
-    
     
     
     mapView.layer.shadowColor = [[UIColor grayColor] CGColor];
@@ -65,31 +67,6 @@ static NSString *baseURL = @"http://cupsters.ru";
     mapView.layer.shadowRadius = 1.0f;
     mapView.layer.shadowOpacity = 0.5f;
     [mapView.layer setMasksToBounds:NO];
-    
-//    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-//    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Cafes" inManagedObjectContext:context];
-//    [fetchRequest setEntity:entity];
-//    
-//    NSError *error = nil;
-//    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-//    if (fetchedObjects == nil) {
-//        NSLog(@"error with cafes");
-//    }
-    
-    for (NSManagedObject* cafe in self.source) {
-        NSNumber *longitude = [cafe valueForKey:@"longitude"];
-        NSLog(@"%@", longitude);
-        
-        NSNumber *lattitude = [cafe valueForKey:@"lattitude"];
-        NSLog(@"%@", lattitude);
-        
-        NSString *name = [cafe valueForKey:@"name"];
-        NSLog(@"%@", name);
-        //
-        //[self makeCafeMarker:lattitude.doubleValue longi:longitude.doubleValue name:name on:mapView ];
-    }
     
     // Creates a marker in the center of the map.
     GMSMarker *marker = [[GMSMarker alloc] init];
@@ -99,7 +76,6 @@ static NSString *baseURL = @"http://cupsters.ru";
     marker.map = mapView;
     
     mapView.settings.myLocationButton = YES;
-    
     
     [self setNeedsStatusBarAppearanceUpdate];
     [self customNavBar];
@@ -112,15 +88,22 @@ static NSString *baseURL = @"http://cupsters.ru";
     // Do any additional setup after loading the view.
 }
 
--(void) makeCafeMarker:(double)lat longi:(double)longi name:(NSString*)name on:(GMSMapView*)map row:(NSInteger*)row {
+-(void) makeCafeMarker:(GMSMapView*)map {
     
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake(lat, longi);
-    marker.title = name;
-    marker.snippet = name;
-    marker.map = map;
-    marker.icon = [self makePin:row];
-    NSLog(@"im here");
+    for (NSInteger i = 0; i < self.source.count; i++) {
+        
+        NSNumber *longitude = [self.source[i] valueForKey:@"longitude"];
+        NSNumber *lattitude = [self.source[i] valueForKey:@"lattitude"];
+        NSString *name = [self.source[i] valueForKey:@"name"];
+        
+        GMSMarker *marker = [[GMSMarker alloc] init];
+        marker.position = CLLocationCoordinate2DMake(lattitude.doubleValue, longitude.doubleValue);
+        marker.title = name;
+        marker.snippet = name;
+        marker.map = map;
+        marker.icon = [self makePin:(i + 1)];
+        
+    }
     
 }
 
@@ -141,7 +124,36 @@ static NSString *baseURL = @"http://cupsters.ru";
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    self.source = [[DataManager sharedManager] getDataFromEntity:@"Cafes"];
+//    self.source = [[DataManager sharedManager] getDataFromEntity:@"Cafes"];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"Cafes" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    static double const D = 5000000. * 1.1;
+    double const R = 6371009.; // Earth readius in meters
+    double meanLatitidue = pointOfInterest.coordinate.latitude * M_PI / 180.;
+    double deltaLatitude = D / R * 180. / M_PI;
+    double deltaLongitude = D / (R * cos(meanLatitidue)) * 180. / M_PI;
+    double minLatitude = pointOfInterest.coordinate.latitude - deltaLatitude;
+    double maxLatitude = pointOfInterest.coordinate.latitude + deltaLatitude;
+    double minLongitude = pointOfInterest.coordinate.longitude - deltaLongitude;
+    double maxLongitude = pointOfInterest.coordinate.longitude + deltaLongitude;
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                              @"(%@ <= longitude) AND (longitude <= %@)"
+                              @"AND (%@ <= lattitude) AND (lattitude <= %@)",
+                              @(minLongitude), @(maxLongitude), @(minLatitude), @(maxLatitude)];
+    
+    [fetchRequest setPredicate:predicate];
+    
+    NSError *error = nil;
+    self.source = [context executeFetchRequest:fetchRequest error:&error];
+    NSAssert(self.source != nil, @"Failed to execute %@: %@", fetchRequest, error);
+    
+    [self makeCafeMarker:mapView];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -250,16 +262,10 @@ static NSString *baseURL = @"http://cupsters.ru";
 
 -(MapTableViewCell*)configurePlace:(MapTableViewCell*)cell At:(NSInteger)row {
     
-    NSNumber *longitude = [self.source[row] valueForKey:@"longitude"];
-    NSNumber *lattitude = [self.source[row] valueForKey:@"lattitude"];
-    NSString *name = [self.source[row] valueForKey:@"name"];
-    
     [cell.numberRow setText:[NSString stringWithFormat:@"%ld", row + 1]];
     [cell.logo setImageWithURL:[NSURL URLWithString:@"http://cupsters.ru/img/logo_red.png"]];
-    [cell.name setText:name];
+    [cell.name setText:[self.source[row] valueForKey:@"name"]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    [self makeCafeMarker:lattitude.doubleValue longi:longitude.doubleValue name:name on:mapView row:(row + 1)];
     
     return cell;
 }
