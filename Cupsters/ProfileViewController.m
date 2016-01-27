@@ -52,19 +52,29 @@
     self.locationLabel.alpha = 0.6;
     self.locationLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
 
-    NSLog(@"%@", user.plan);
-    self.tariff.text = [NSString stringWithFormat:@"Тариф: %@", user.plan[@"name"]];
-    self.price.text = [NSString stringWithFormat:@"%@ ₽", user.plan[@"price"]];
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"y-M-d H:m:s";
-    NSDateComponents *monthComponent = [[NSDateComponents alloc] init];
-    monthComponent.month = 1;
-    NSCalendar *theCalendar = [NSCalendar currentCalendar];
-    NSDate *beginDate = [formatter dateFromString:user.plan[@"create_date"]];
-    NSDate *endDate = [theCalendar dateByAddingComponents:monthComponent toDate:beginDate options:nil];
-    formatter.dateFormat = @"d MMMM";
-    self.timeLimitLabel.text = [NSString stringWithFormat:@"Годен до %@", [formatter stringFromDate:endDate]];
+    if (user.plan) {
+        self.tariff.text = [NSString stringWithFormat:@"Тариф: %@", user.plan[@"name"]];
+        self.price.text = [NSString stringWithFormat:@"%@ ₽", user.plan[@"price"]];
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"y-M-d H:m:s";
+        NSDateComponents *monthComponent = [[NSDateComponents alloc] init];
+        monthComponent.month = 1;
+        NSCalendar *theCalendar = [NSCalendar currentCalendar];
+        NSDate *beginDate = [formatter dateFromString:user.plan[@"create_date"]];
+        NSDate *endDate = [theCalendar dateByAddingComponents:monthComponent toDate:beginDate options:nil];
+        formatter.dateFormat = @"d MMMM";
+        self.timeLimitLabel.text = [NSString stringWithFormat:@"Годен до %@", [formatter stringFromDate:endDate]];
+    } else {
+//        self.tariff.text = @"Вы еще не выбрали тариф. Почему бы не начать сейчас пить вкусный кофе?";
+//        self.tariff.hidden = YES;
+//        self.price.hidden = YES;
+//        self.timeLimitLabel.hidden = YES;
+        float upperPoint = self.tariff.frame.origin.x;
+//        float bottomPoint = self.;
+        NSLog(@"%f", upperPoint);
+    }
+
 }
 
 - (void)didReceiveMemoryWarning {
