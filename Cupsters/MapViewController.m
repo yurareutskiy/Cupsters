@@ -17,6 +17,7 @@
 #import "DataManager.h"
 #import "CafeViewController.h"
 #import "AppDelegate.h"
+#import <RKDropdownAlert.h>
 
 @interface MapViewController ()
 
@@ -218,10 +219,9 @@ static NSString *baseURL = @"http://cupsters.ru";
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-    NSLog(@"didFailWithError: %@", error);
-    UIAlertView *errorAlert = [[UIAlertView alloc]
-                               initWithTitle:@"Error" message:@"Failed to Get Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [errorAlert show];
+    NSString* title = @"Ошибка";
+    NSString* message = @"Не удалось установить местоположение";
+    [RKDropdownAlert title:title message:message backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:5];
 }
 
 #pragma mark - Table View

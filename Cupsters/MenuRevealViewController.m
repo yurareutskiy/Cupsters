@@ -18,7 +18,9 @@
 
 @end
 
-@implementation MenuRevealViewController
+@implementation MenuRevealViewController {
+    UIView *mask;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,6 +31,9 @@
     
     self.user = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
 
+
+
+    
 
 //    [self.view addSubview:self.user.image];
     
