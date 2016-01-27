@@ -40,7 +40,7 @@
     self.userPhoto.layer.cornerRadius = 30;
     self.userInitials.text = self.user.initials;
     
-    self.userPlan.text = self.user.plan[@"tariff"];
+    self.userPlan.text = self.user.plan[@"name"];
     self.userName.text = self.user.name;
     self.userName.adjustsFontSizeToFitWidth = true;
     

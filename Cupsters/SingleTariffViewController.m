@@ -182,31 +182,11 @@
     if (sender.value == sender.maximumValue) {
         [self setTariffForUser];
     }
-    
-//    if (sender.value <= 1){
-//        [self.price setText:@"799 Р"];
-//        [self.amount setText:@"5"];
-//        [self.avgPrice setText:@"160"];
-//        [self.time setText:@"Действует 3 месяца"];
-//        [self.cups setText:@"чашек"];
-//    } else if (sender.value > 2){
-//        [self.price setText:@"3 599 Р"];
-//        [self.amount setText:@"Безлимитно"];
-//        [self.avgPrice setText:@"120"];
-//        [self.time setText:@"Действует 1 месяц"];
-//        [self.cups setText:@""];
-//    } else {
-//        [self.price setText:@"2 299 Р"];
-//        [self.amount setText:@"15"];
-//        [self.avgPrice setText:@"150"];
-//        [self.time setText:@"Действует 3 месяца"];
-//        [self.cups setText:@"чашек"];
-//    }
 }
 
 - (void)configureData {
     tariff = self.source[currentValue];
-    NSNumber *count = [tariff valueForKey:@"count"];
+    NSNumber *count = [tariff valueForKey:@"counter"];
     NSNumber *price = [tariff valueForKey:@"price"];
     [self.price setText:[self formattedStringWithPrice:price.stringValue]];
     [self.amount setText:[NSString stringWithFormat:@"%@", [count stringValue]]];
@@ -249,26 +229,20 @@
     Server *server = [[Server alloc] init];
     ServerRequest *request = [ServerRequest initRequest:ServerRequestTypePOST With:body To:SetTariffURLStrring];
     [server sentToServer:request OnSuccess:^(NSDictionary *result) {
-        NSLog(@"%@", result);
+//        NSLog(@"%@", result[@"tariff"][0]);
         NSLog(@"%@", user.plan);
+        user.plan = result[@"tariff"][0];
+        NSLog(@"%@", user.plan);
+        NSData *userData = [NSKeyedArchiver archivedDataWithRootObject:user];
+        [[NSUserDefaults standardUserDefaults] setObject:userData forKey:@"user"];
+
     } OrFailure:^(NSError *error) {
         NSLog(@"%@", [error debugDescription]);
     }];
 }
 
-//func formattedStringWithPrice(price: String) -> String {
-//    var lenghtString = price.characters.count
-//    var resultString: String = ""
-//    for char in price.characters {
-//        if (lenghtString % 3 == 0) && (price.characters.count != lenghtString) {
-//            resultString += " "
-//        }
-//        resultString += String(char)
-//        lenghtString -= 1
-//    }
-//    return resultString + " ₽"
-//}
 
 - (IBAction)connect:(UIButton *)sender {
+    [self setTariffForUser];
 }
 @end

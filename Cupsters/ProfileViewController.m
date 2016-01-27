@@ -53,7 +53,7 @@
     self.locationLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
 
     NSLog(@"%@", user.plan);
-    self.tariff.text = [NSString stringWithFormat:@"Тариф - %@", user.plan[@"tariff"]];
+    self.tariff.text = [NSString stringWithFormat:@"Тариф: %@", user.plan[@"name"]];
     self.price.text = [NSString stringWithFormat:@"%@ ₽", user.plan[@"price"]];
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -154,7 +154,8 @@
 */
 
 - (IBAction)changePlan:(UIButton *)sender {
-    
+    TariffViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"tariffs"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)changeCond:(UIButton *)sender {
