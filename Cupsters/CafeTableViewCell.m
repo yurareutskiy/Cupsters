@@ -18,7 +18,7 @@
 
 @implementation CafeTableViewCell {
     NSUserDefaults *userDefaults;
-    NSArray *source;
+    
 }
 @synthesize delegate;
 
@@ -44,13 +44,14 @@
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     
     NSError *error = nil;
-    source = [context executeFetchRequest:fetchRequest error:&error];
-    NSAssert(source != nil, @"Failed to execute %@: %@", fetchRequest, error);
+    _source = [context executeFetchRequest:fetchRequest error:&error];
+
+    NSAssert(_source != nil, @"Failed to execute %@: %@", fetchRequest, error);
 
     
     _volumeNum = [[NSMutableArray alloc] init];
-    for (NSInteger i = 0; i < source.count; i++) {
-        [_volumeNum addObject:source[i][@"volume"]];
+    for (NSInteger i = 0; i < _source.count; i++) {
+        [_volumeNum addObject:_source[i][@"volume"]];
     }
     
     userDefaults = [NSUserDefaults standardUserDefaults];
@@ -112,6 +113,11 @@
 }
 
 - (IBAction)orderBtn:(UIButton*)sender {
+    
+//    [_source setValue:[NSString stringWithFormat:@"%@", _volumeNum[_index]] forKey:@"volume"];
+//    [_source setValue:self.coffeeName.text forKey:@"coffee"];
+//    [_source setValue:[userDefaults objectForKey:@"id"] forKey:@"id"];
+    
     [self.delegate makeOrder:self];
 }
 

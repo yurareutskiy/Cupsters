@@ -16,6 +16,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *labelCode;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *bgBottom;
 @property (strong, nonatomic) IBOutlet UIView *upView;
+@property (strong, nonatomic) IBOutlet UILabel *volume;
+@property (strong, nonatomic) IBOutlet UILabel *name;
+@property (strong, nonatomic) IBOutlet UIImageView *image;
 
 @property (strong, nonatomic) NSManagedObject *cafe;
 @property (strong, nonatomic) NSManagedObject *coffee;

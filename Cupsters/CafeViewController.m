@@ -36,6 +36,8 @@
     NSArray *volumeNum;
     NSUserDefaults *userDefaults;
     NSArray *source;
+    NSDictionary *final;
+    NSArray *sourceFinal;
 }
 
 - (void)viewDidLoad {
@@ -386,8 +388,30 @@
 
 - (void) makeOrder:(UITableViewCell*)cell {
     
-    [userDefaults setObject:[NSString stringWithFormat:@"%@", ((CafeTableViewCell*)cell).volumeNum[((CafeTableViewCell*)cell).index]] forKey:@"volume"];
-    [userDefaults setObject:((CafeTableViewCell*)cell).coffeeName.text forKey:@"coffee"];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"Coffees" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                              @"%@ == id_cafe AND %@ == name AND %@ == volume",
+                              [_cafe valueForKey:@"id"],
+                              ((CafeTableViewCell*)cell).coffeeName.text,
+                              [NSString stringWithFormat:@"%@", ((CafeTableViewCell*)cell).volumeNum[((CafeTableViewCell*)cell).index]]];
+    NSLog(@"im here!");
+    NSLog(@"%@", [_cafe valueForKey:@"id"]);
+    NSLog(@"%@", ((CafeTableViewCell*)cell).coffeeName.text);
+    NSLog(@"%@", ((CafeTableViewCell*)cell).volumeNum[((CafeTableViewCell*)cell).index]);
+    [fetchRequest setPredicate:predicate];
+    
+    NSError *error = nil;
+    sourceFinal = [context executeFetchRequest:fetchRequest error:&error];
+    NSAssert(source != nil, @"Failed to execute %@: %@", fetchRequest, error);
+    
+    NSLog(@"BLYAT");
+    NSLog(@"%@", [sourceFinal valueForKey:@"id"]);
     
     [self performSegueWithIdentifier:@"makeOrder" sender:self];
 
@@ -396,8 +420,8 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"makeOrder"]) {
         OrderViewController *vc = (OrderViewController*)segue.destinationViewController;
-        vc.cafe = [source objectAtIndex:((NSIndexPath*)sender).row];
         
+        vc.coffee = [sourceFinal objectAtIndex:0];
     }
     
 }
