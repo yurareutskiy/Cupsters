@@ -166,7 +166,6 @@
     
     NSManagedObject *object = [self.source objectAtIndex:row];
     
-    NSURL *imageURL = nil;
 //    if ([[object valueForKey:@"image"] isEqualToString:@""]) {
 //        // default image
 //        imageURL = [NSURL URLWithString:@"http://lk.cupsters.ru/img/cafe/maxresdefault.jpg"];
@@ -174,8 +173,8 @@
 //        imageURL = [NSURL URLWithString:[object valueForKey:@"image"]];
 //    }
     
-//    imageURL = [NSURL URLWithString:@"http://lk.cupsters.ru/img/cafe/KatesCafe.jpg"];
-    
+    NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://lk.cupsters.ru/%@", [object valueForKey:@"image"]]];
+    NSLog(@"%@", imageURL);
 //    imageURL = [NSURL URLWithString:@"http://lk.cupsters.ru/img/cafe/maxresdefault.jpg"];
 
     [cell.backPhoto setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"cafeBack1"]];
