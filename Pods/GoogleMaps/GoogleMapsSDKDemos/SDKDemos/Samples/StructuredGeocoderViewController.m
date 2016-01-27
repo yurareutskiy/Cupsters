@@ -64,8 +64,8 @@
       marker.snippet = snippet;
 
       marker.appearAnimation = kGMSMarkerAnimationPop;
-      marker.map = _mapView;
       mapView.selectedMarker = marker;
+      marker.map = _mapView;
     } else {
       NSLog(@"Could not reverse geocode point (%f,%f): %@",
             coordinate.latitude, coordinate.longitude, error);

@@ -21,7 +21,9 @@
 
 @end
 
-@implementation OrderViewController
+@implementation OrderViewController {
+    NSUserDefaults *userDefaults;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,6 +33,8 @@
     [self preferredStatusBarStyle];
     [self configureMenu];
     
+    userDefaults = [NSUserDefaults standardUserDefaults];
+    
     self.code.delegate = self;
     self.notCode.delegate = self;
     
@@ -39,6 +43,12 @@
     self.upView.layer.shadowRadius = 1.0f;
     self.upView.layer.shadowOpacity = 0.5f;
     [self.upView.layer setMasksToBounds:NO];
+    
+    NSLog(@"HELLO");
+    NSLog(@"%@", [userDefaults objectForKey:@"cafe"]);
+    NSLog(@"%@", [userDefaults objectForKey:@"address"]);
+    NSLog(@"%@", [userDefaults objectForKey:@"volume"]);
+    NSLog(@"%@", [userDefaults objectForKey:@"coffee"]);
     
     // Do any additional setup after loading the view.
 }
