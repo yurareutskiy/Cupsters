@@ -44,6 +44,13 @@
     NSDictionary *plan = nil;
     if (![result[@"plan"] isKindOfClass:[NSString class]]) {
 //        plan = [Plan initWithParams:result[@"plan"]];
+        if ([result[@"plan"][@"counter"] isEqualToString:@"-1"]) {
+            [ud setObject:@"∞ ЧАШЕК  " forKey:@"currentCounter"];
+        } else if (result[@"plan"][@"counter"]) {
+            [ud setObject:[NSString stringWithFormat:@"%@ ЧАШЕК  ", result[@"plan"][@"counter"]] forKey:@"currentCounter"];
+        } else {
+            [ud setObject:@"НЕТ ЧАШЕК  " forKey:@"currentCounter"];
+        }
         plan = result[@"plan"];
     }
     User *user = [User initUserWithFirstName:result[@"user"][@"first_name"] LastName:result[@"user"][@"last_name"] userID:result[@"user"][@"id"] UserPlan:plan];

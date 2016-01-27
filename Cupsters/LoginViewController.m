@@ -17,7 +17,7 @@
 
 @end
 
-@implementation LoginViewController
+@implementation LoginViewController 
 
 -(void)viewWillAppear:(BOOL)animated {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -46,6 +46,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+    [VKSdk instance].uiDelegate = nil;
+    [[VKSdk instance] unregisterDelegate:self];
+
+}
 #pragma mark - VKSDK Delegate
 
 - (void)vkSdkAccessAuthorizationFinishedWithResult:(VKAuthorizationResult*)result {
@@ -59,7 +65,7 @@
         token = @"first";
     }
 
-    NSDictionary *parameters = @{@"email":result.token.email, @"sn":@"VK", @"sn_id":result.token.userId, @"token":token};
+    NSDictionary *parameters = @{@"email":result.token.email, @"type":@"VK", @"id_sn":result.token.userId, @"token":token};
     ServerRequest *request = [ServerRequest initRequest:ServerRequestTypePOST With:parameters To:SigninURLStrring];
     Server *server = [[Server alloc] init];
     [server sentToServer:request OnSuccess:^(NSDictionary *result) {
@@ -163,10 +169,10 @@
     [VKSdk wakeUpSession:@[@"audio"] completeBlock:^(VKAuthorizationState state, NSError *error) {
         if (error) {
             NSLog(@"fetched error:%@", error);
-        } else if (state == VKAuthorizationAuthorized) {
-            [[NSUserDefaults standardUserDefaults] setObject:@"true" forKey:@"isLogin"];
-            NSLog(@"I'm here");
-        } else if (state == VKAuthorizationInitialized) {
+//        } else if (state == VKAuthorizationAuthorized) {
+//            [[NSUserDefaults standardUserDefaults] setObject:@"true" forKey:@"isLogin"];
+//            NSLog(@"I'm here");
+        } else if ([self isKindOfClass:[LoginViewController class]]) {
             [self firstVK];
         }
     }];

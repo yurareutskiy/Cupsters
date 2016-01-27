@@ -151,7 +151,8 @@
     NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
     attachment.image = [UIImage imageNamed:@"smallCup"];
     NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:attachment];
-    NSMutableAttributedString *myString= [[NSMutableAttributedString alloc] initWithString:@"1 ЧАШКА  "];
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSMutableAttributedString *myString= [[NSMutableAttributedString alloc] initWithString:[ud objectForKey:@"currentCounter"]];
     [myString appendAttributedString:attachmentString];
     
     // Configure our label
