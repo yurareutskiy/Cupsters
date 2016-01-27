@@ -15,6 +15,7 @@
 #import "DataManager.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "CafeViewController.h"
+#import "AppDelegate.h"
 
 @interface ListPlacesImagesViewController ()
 
@@ -27,6 +28,8 @@
 
 @implementation ListPlacesImagesViewController {
     NSUserDefaults *userDefaults;
+    CLLocationManager *locationManager;
+    CLLocation *pointOfInterest;
 }
 
 - (void)viewDidLoad {
@@ -34,6 +37,12 @@
     
     userDefaults = [NSUserDefaults standardUserDefaults];
     [self setNeedsStatusBarAppearanceUpdate];
+    
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [locationManager requestWhenInUseAuthorization];
+    [locationManager startUpdatingLocation];
 
     [self customNavBar];
     
@@ -44,10 +53,39 @@
     
     [self configureMenu];
     
+    pointOfInterest = [[CLLocation alloc] initWithLatitude:locationManager.location.coordinate.latitude longitude:locationManager.location.coordinate.longitude];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    self.source = [[DataManager sharedManager] getDataFromEntity:@"Cafes"];
+    //self.source = [[DataManager sharedManager] getDataFromEntity:@"Cafes"];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"Cafes" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    static double const D = 5000000. * 1.1;
+    double const R = 6371009.; // Earth readius in meters
+    double meanLatitidue = pointOfInterest.coordinate.latitude * M_PI / 180.;
+    double deltaLatitude = D / R * 180. / M_PI;
+    double deltaLongitude = D / (R * cos(meanLatitidue)) * 180. / M_PI;
+    double minLatitude = pointOfInterest.coordinate.latitude - deltaLatitude;
+    double maxLatitude = pointOfInterest.coordinate.latitude + deltaLatitude;
+    double minLongitude = pointOfInterest.coordinate.longitude - deltaLongitude;
+    double maxLongitude = pointOfInterest.coordinate.longitude + deltaLongitude;
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                             @"(%@ <= longitude) AND (longitude <= %@)"
+                             @"AND (%@ <= lattitude) AND (lattitude <= %@)",
+                             @(minLongitude), @(maxLongitude), @(minLatitude), @(maxLatitude)];
+    
+    [fetchRequest setPredicate:predicate];
+    
+    NSError *error = nil;
+    self.source = [context executeFetchRequest:fetchRequest error:&error];
+    NSAssert(self.source != nil, @"Failed to execute %@: %@", fetchRequest, error);
+
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
