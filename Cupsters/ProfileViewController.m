@@ -23,7 +23,9 @@
 
 @end
 
-@implementation ProfileViewController
+@implementation ProfileViewController {
+    UIView *mask;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -113,6 +115,7 @@
     self.navigationItem.leftBarButtonItem = self.menuButton;
     
 }
+
 
 - (void)toList:(id)sender {
     
