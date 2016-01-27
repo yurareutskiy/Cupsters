@@ -19,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *tariff;
 @property (strong, nonatomic) IBOutlet UILabel *price;
 @property (strong, nonatomic) IBOutlet UILabel *timeLimitLabel;
+@property (strong, nonatomic) IBOutlet UIButton *changePlanButton;
 - (IBAction)changePlan:(UIButton *)sender;
 - (IBAction)changeCond:(UIButton *)sender;
 

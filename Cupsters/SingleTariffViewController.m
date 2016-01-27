@@ -171,16 +171,10 @@
 */
 
 - (IBAction)sliderValue:(UISlider *)sender {
-    
-    NSLog(@"sender max %f", sender.value);
-    
+        
     if (((int)sender.value) != currentValue && sender.value != sender.maximumValue) {
         currentValue = ((int)sender.value);
         [self configureData];
-    }
-    
-    if (sender.value == sender.maximumValue) {
-        [self setTariffForUser];
     }
 }
 
