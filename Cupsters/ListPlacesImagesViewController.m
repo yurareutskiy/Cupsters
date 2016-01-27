@@ -235,7 +235,9 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"goToCafe"]) {
         CafeViewController *vc = (CafeViewController*)segue.destinationViewController;
-        vc.cafe = [self.source objectAtIndex:((NSIndexPath*)sender).row];
+        NSInteger row = ((NSIndexPath*)sender).row;
+        NSManagedObject *cafe = [self.source objectAtIndex:row];
+        vc.cafe = cafe;
     }
 
 }

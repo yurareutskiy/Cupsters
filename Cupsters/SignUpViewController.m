@@ -146,7 +146,13 @@
 
 - (IBAction)signUpDoneButtonAction:(UIButton *)sender {
     
+    if (![self validateFields]) {
+        
+        return;
+    }
+    
     if (self.agreeButton.selected == NO) {
+        
         return;
     }
     
@@ -163,6 +169,61 @@
         NSLog(@"%@", [error debugDescription]);
     }];
 
+}
+
+- (BOOL)validateFields {
+
+    for (UITextField *field in self.fields) {
+        field.text = [field.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if ([field.text length] < 4) {
+            NSLog(@"Less then 4 symbols");
+            return NO;
+        }
+        if ([field.text isEqualToString:@"Email"] || [field.text isEqualToString:@"Password"] || [field.text isEqualToString:@"Имя"] || [field.text isEqualToString:@"Фамилия"]) {
+            NSLog(@"No unique value");
+            return NO;
+        }
+        if (field.tag == 1 || field.tag == 2) {
+            NSRegularExpression *regex = [[NSRegularExpression alloc]
+                                           initWithPattern:@"[a-zA-Zа-яА-Я]" options:0 error:NULL];
+            
+            NSUInteger matches = [regex numberOfMatchesInString:field.text options:0
+                                                          range:NSMakeRange(0, [field.text length])];
+            
+            if (matches != [field.text length]) {
+                NSLog(@"First name or last name must contain only latin characters");
+                return NO;
+            }
+        }
+        if (field.tag == 3) {
+            if (![field.text containsString:@"@"] || ![field.text containsString:@"."]) {
+                NSLog(@"Invalid email");
+                return NO;
+            }
+            if (![field.text canBeConvertedToEncoding:NSISOLatin1StringEncoding]) {
+                NSLog(@"Invalid email");
+                return NO;
+            }
+        }
+        if (field.tag == 4) {
+            if ([field.text length] < 8) {
+                NSLog(@"Too short password");
+                return NO;
+            }
+            NSRegularExpression *regex = [[NSRegularExpression alloc]
+                                          initWithPattern:@"[a-zA-Z0-9]" options:0 error:NULL];
+            
+            NSUInteger matches = [regex numberOfMatchesInString:field.text options:0
+                                                          range:NSMakeRange(0, [field.text length])];
+            
+            if (matches != [field.text length]) {
+                NSLog(@"Invalid password");
+                return NO;
+            }
+
+        }
+    }
+    return YES;
 }
 
 - (IBAction)regWithVk:(UIButton *)sender {

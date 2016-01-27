@@ -156,8 +156,9 @@
                                    entityForName:@"Coffees" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     
+    NSNumber *idCafe = [_cafe valueForKey:@"id"];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"%@ <= id_cafe", [_cafe valueForKey:@"id"]];
+                              @"%@ == id_cafe", idCafe];
     [fetchRequest setPredicate:predicate];
     fetchRequest.propertiesToFetch = [NSArray arrayWithObject:[[entity propertiesByName] objectForKey:@"name"]];
     fetchRequest.returnsDistinctResults = YES;
