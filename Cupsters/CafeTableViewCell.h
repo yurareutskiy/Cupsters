@@ -23,6 +23,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *volume;
 @property (strong, nonatomic) NSMutableArray *volumeNum;
 @property (nonatomic) NSInteger index;
+@property (strong, nonatomic) NSArray *source;
 @property (assign, nonatomic) NSInteger idCafe;
 @property (assign, nonatomic) NSUInteger row;
 @property (weak, nonatomic) id<CafeTableViewCellDelegate> delegate;

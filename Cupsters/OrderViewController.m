@@ -12,6 +12,8 @@
 #import "MenuRevealViewController.h"
 #import "SWRevealViewController.h"
 #import <SCLAlertView.h>
+#import "Server.h"
+#import "User.h"
 
 @interface OrderViewController ()
 
@@ -44,11 +46,8 @@
     self.upView.layer.shadowOpacity = 0.5f;
     [self.upView.layer setMasksToBounds:NO];
     
-    NSLog(@"HELLO");
-    NSLog(@"%@", [userDefaults objectForKey:@"cafe"]);
-    NSLog(@"%@", [userDefaults objectForKey:@"address"]);
-    NSLog(@"%@", [userDefaults objectForKey:@"volume"]);
-    NSLog(@"%@", [userDefaults objectForKey:@"coffee"]);
+    [self.name setText:[self.coffee valueForKey:@"name"]];
+    [self.volume setText:[NSString stringWithFormat:@"%@ мл", [self.coffee valueForKey:@"volume"]]];
     
     // Do any additional setup after loading the view.
 }
@@ -88,7 +87,7 @@
     self.menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"arrow"]
                                                        style:UIBarButtonItemStyleDone
                                                       target:self
-                                                      action:@selector(backAction:)];
+                                                      action:@selector(backAction)];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
     self.navigationController.navigationBar.layer.shadowColor = [[UIColor grayColor] CGColor];
@@ -138,7 +137,7 @@
     
     UIColor *color = [UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0];
     
-    SCLButton *firstButton = [alert addButton:@"Да" target:self selector:@selector(agreeButton)];
+    SCLButton *firstButton = [alert addButton:@"Да" target:self selector:@selector(sendOrder)];
     
     firstButton.buttonFormatBlock = ^NSDictionary* (void)
     {
@@ -167,15 +166,8 @@
         
         return buttonConfig;
     };
-    NSLog(@"HELLO");
-    UIImage *pic = [UIImage imageNamed:@"cup"];
-    NSLog(@"%f", pic.size.height);
-    NSLog(@"%f", pic.size.width);
-    pic = [self scaleImage:pic toSize:CGSizeMake(40.0, 40.0)];
-    NSLog(@"%f", pic.size.height);
-    NSLog(@"%f", pic.size.width);
     
-    [alert showCustom:self image:[UIImage imageNamed:@"cup"] color:color title:@"Подтверждение" subTitle:@"Вы заказали капучино, объем 300 мл" closeButtonTitle:nil duration:0.0f];
+    [alert showCustom:self image:[UIImage imageNamed:@"cup"] color:color title:@"Подтверждение" subTitle:[NSString stringWithFormat:@"Вы заказали %@, объем %@ мл", self.name.text, self.volume.text]  closeButtonTitle:nil duration:0.0f];
 
 }
 
@@ -349,6 +341,36 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) sendOrder {
+    
+    NSManagedObject *coffeeId = [self.coffee valueForKey:@"id"];;
+    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
+    NSNumber *userID = user.id;
+    NSNumber *number = @1;
+    
+    NSDictionary *body = @{@"coffee_id":coffeeId, @"user_id":userID, @"number":number};
+    NSLog(@"im work");
+    NSLog(@"%@", body);
+    
+    Server *server = [[Server alloc] init];
+    ServerRequest *request = [ServerRequest initRequest:ServerRequestTypePOST With:body To:OrderURLStrring];
+    [server sentToServer:request OnSuccess:^(NSDictionary *result) {
+        user.plan = result[@"tariff"][0];
+        if ([user.plan[@"counter"] isEqualToString:@"-1"]) {
+        } else {
+            NSInteger cups = user.plan.count - 1;
+            [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%ld ЧАШЕК  ", (long)cups] forKey:@"currentCounter"];
+            NSInteger newCups = [userDefaults integerForKey:@"currentCounter"];
+            if (cups == 0) {
+                [[NSUserDefaults standardUserDefaults] setObject:@"НЕТ ЧАШЕК  " forKey:@"currentCounter"];
+            }
+        }
+        NSLog(@"Блять, работает?!");
+    } OrFailure:^(NSError *error) {
+        NSLog(@"%@", [error debugDescription]);
+    }];
 }
 
 
