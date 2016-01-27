@@ -113,10 +113,11 @@ static NSString *baseURL = @"http://cupsters.ru";
     UILabel *number = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height / 2)];
     [number setText:[NSString stringWithFormat:@"%d", row]];
     [number setTextAlignment:NSTextAlignmentCenter];
+    [number setFont:[UIFont fontWithName:@"MyriadPro-Regular" size:13.0]];
     [number setTextColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0]];
     UIGraphicsBeginImageContext(image.size);
     [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
-    [number drawTextInRect:CGRectMake(0, 3, image.size.width, image.size.height / 2)];
+    [number drawTextInRect:CGRectMake(0, 4, image.size.width, image.size.height / 2)];
     UIImage *resultImage  = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
