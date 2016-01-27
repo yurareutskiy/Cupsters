@@ -139,6 +139,12 @@
 }
 
 - (IBAction)signInButtonAction:(UIButton *)sender {
+    
+    if (![self validateFields]) {
+        #pragma message "Make alert for validating"
+        return;
+    }
+    
     // email - 1, pass - 0
     NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
     if (!token) {
@@ -159,8 +165,48 @@
 //        UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
 //        [self presentViewController:vc animated:true completion:nil];
     }];
+}
 
-
+- (BOOL)validateFields {
+    for (UITextField *field in self.fields) {
+        field.text = [field.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if ([field.text length] < 4) {
+            NSLog(@"Less then 4 symbols");
+            return NO;
+        }
+        if ([field.text isEqualToString:@"Email"] || [field.text isEqualToString:@"Password"]) {
+            NSLog(@"No unique value");
+            return NO;
+        }
+        if (field.tag == 1) {
+            if (![field.text containsString:@"@"] || ![field.text containsString:@"."]) {
+                NSLog(@"Invalid email");
+                return NO;
+            }
+            if (![field.text canBeConvertedToEncoding:NSISOLatin1StringEncoding]) {
+                NSLog(@"Invalid email");
+                return NO;
+            }
+        }
+        if (field.tag == 2) {
+            if ([field.text length] < 8) {
+                NSLog(@"Too short password");
+                return NO;
+            }
+            NSRegularExpression *regex = [[NSRegularExpression alloc]
+                                          initWithPattern:@"[a-zA-Z0-9]" options:0 error:NULL];
+            
+            NSUInteger matches = [regex numberOfMatchesInString:field.text options:0
+                                                          range:NSMakeRange(0, [field.text length])];
+            
+            if (matches != [field.text length]) {
+                NSLog(@"Invalid password");
+                return NO;
+            }
+            
+        }
+    }
+    return YES;
 }
 
 #pragma mark - Buttons
