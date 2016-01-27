@@ -11,6 +11,7 @@
 #import "VKSdk+CustomAuthorizationDelegate.h"
 #import "Server.h"
 #import <NSHash/NSString+NSHash.h>
+#import "DataManager.h"
 
 @interface SignUpViewController ()
 
@@ -53,18 +54,15 @@
     NSLog(@"%@", result.user.last_name);
     NSLog(@"%@", result.token.userId);
     NSLog(@"%@", result.token.email);
-    NSDictionary *parameters = @{@"email":result.token.email, @"sn":@"VK", @"sn_id":result.token.userId, @"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"]};
-    ServerRequest *request = [ServerRequest initRequest:ServerRequestTypePOST With:parameters To:SigninURLStrring];
+    NSDictionary *parameters = @{@"email":result.token.email, @"sn":@"VK", @"sn_id":result.user.id, @"first_name":result.user.first_name, @"last_name":result.user.last_name};
+    ServerRequest *request = [ServerRequest initRequest:ServerRequestTypePOST With:parameters To:SignupURLStrring];
     Server *server = [[Server alloc] init];
     [server sentToServer:request OnSuccess:^(NSDictionary *result) {
-        NSLog(@"%@", result);
+        [[DataManager sharedManager] saveDataWithLogin:result];
         UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
         [self presentViewController:vc animated:true completion:nil];
     } OrFailure:^(NSError *error) {
         NSLog(@"%@", [error debugDescription]);
-        // fix it
-        UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
-        [self presentViewController:vc animated:true completion:nil];
     }];
 }
 
@@ -155,16 +153,11 @@
     NSDictionary *parameters = @{@"type":@"self", @"email":((UITextField*)self.fieldsOutlet[1]).text, @"password":password, @"first_name":((UITextField*)self.fieldsOutlet[3]).text, @"last_name":((UITextField*)self.fieldsOutlet[2]).text};
     ServerRequest *requset = [ServerRequest initRequest:ServerRequestTypePOST With:parameters To:SignupURLStrring];
     [server sentToServer:requset OnSuccess:^(NSDictionary *result) {
-        NSLog(@"%@", result);
-        [[NSUserDefaults standardUserDefaults] setObject:@"true" forKey:@"isLogin"];
-        [[NSUserDefaults standardUserDefaults] setObject:[result objectForKey:@"token"] forKey:@"token"];
-        [[NSUserDefaults standardUserDefaults] setObject:[result objectForKey:@"return_id"] forKey:@"id"];
+        [[DataManager sharedManager] saveDataWithLogin:result];
         UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
         [self presentViewController:vc animated:true completion:nil];
     } OrFailure:^(NSError *error) {
         NSLog(@"%@", [error debugDescription]);
-        UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
-        [self presentViewController:vc animated:true completion:nil];
     }];
 
 }
@@ -197,25 +190,17 @@
                                                        NSError *error) {
                      if (!error) {
                          
-                         NSDictionary *parameters = @{@"email":result[@"email"], @"sn":@"FB", @"sn_id":result[@"id"], @"token":[[NSUserDefaults standardUserDefaults] objectForKey:@"token"]};
-                         ServerRequest *request = [ServerRequest initRequest:ServerRequestTypePOST With:parameters To:SigninURLStrring];
+                         NSDictionary *parameters = @{@"email":result[@"email"], @"sn":@"FB", @"sn_id":result[@"id"], @"first_name":result[@"first_name"], @"last_name":result[@"last_name"]};
+                         ServerRequest *request = [ServerRequest initRequest:ServerRequestTypePOST With:parameters To:SignupURLStrring];
                          Server *server = [[Server alloc] init];
                          [server sentToServer:request OnSuccess:^(NSDictionary *result) {
-                             NSLog(@"%@", result);
-                             [[NSUserDefaults standardUserDefaults] setObject:@"true" forKey:@"isLogin"];
+                             [[DataManager sharedManager] saveDataWithLogin:result];
                              UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
                              [self presentViewController:vc animated:true completion:nil];
                          } OrFailure:^(NSError *error) {
                              NSLog(@"%@", [error debugDescription]);
-                             // fix it
-                             UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
-                             [self presentViewController:vc animated:true completion:nil];
                          }];
-                         
-                         NSLog(@"fetched email:%@", result[@"email"]);
-                         NSLog(@"fetched first_name:%@", result[@"first_name"]);
-                         NSLog(@"fetched id:%@", result[@"id"]);
-                         NSLog(@"fetched last_name:%@", result[@"last_name"]);
+
                      }
                      else {
                          NSLog(@"fetched error:%@", error);
