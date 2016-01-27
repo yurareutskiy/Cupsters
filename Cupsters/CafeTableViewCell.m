@@ -9,16 +9,16 @@
 #import "CafeTableViewCell.h"
 
 @implementation CafeTableViewCell {
-    NSArray *volumeNum;
-    NSInteger index;
     NSUserDefaults *userDefaults;
 }
-
+@synthesize delegate;
 - (void)awakeFromNib {
+    
+    
     userDefaults = [NSUserDefaults standardUserDefaults];
-    index = 0;
-    volumeNum = @[@150, @200, @250, @300, @350, @400, @450];
-    [userDefaults setObject:[NSString stringWithFormat:@"%@", volumeNum[index]] forKey:@"volume"];
+    _index = 0;
+    _volumeNum = @[@150, @200, @250, @300, @350, @400, @450];
+    //[userDefaults setObject:[NSString stringWithFormat:@"%@", _volumeNum[_index]] forKey:@"volume"];
     
     // Initialization code
 }
@@ -31,43 +31,60 @@
 
 - (IBAction)plusBtn:(UIButton *)sender{
     
-    if ((index >= 0) && (index + 2) < volumeNum.count){
-        [self.volume setText:[NSString stringWithFormat:@"%@ мл", volumeNum[index + 1]]];
+    if ((_index >= 0) && (_index + 2) < _volumeNum.count){
+        [self.volume setText:[NSString stringWithFormat:@"%@ мл", _volumeNum[_index + 1]]];
         [self.plus setImage:[UIImage imageNamed:@"plusBrown"] forState:UIControlStateNormal];
         [self.minus setImage:[UIImage imageNamed:@"minusBrown"] forState:UIControlStateNormal];
-        
-        [userDefaults setObject:[NSString stringWithFormat:@"%@", volumeNum[index + 1]]
+
+        [userDefaults setObject:[NSString stringWithFormat:@"%@", _volumeNum[_index + 1]]
             forKey:@"volume"];
         
-        index++;
-    } else if (index + 2 == volumeNum.count){
-        [self.volume setText:[NSString stringWithFormat:@"%@ мл", volumeNum[index + 1]]];
+        _index++;
+    } else if (_index + 2 == _volumeNum.count){
+        [self.volume setText:[NSString stringWithFormat:@"%@ мл", _volumeNum[_index + 1]]];
         [self.plus setImage:[UIImage imageNamed:@"plusGrey"] forState:UIControlStateNormal];
         [self.minus setImage:[UIImage imageNamed:@"minusBrown"] forState:UIControlStateNormal];
         
-        [userDefaults setObject:[NSString stringWithFormat:@"%@", volumeNum[index + 1]] forKey:@"volume"];
+        [userDefaults setObject:[NSString stringWithFormat:@"%@", _volumeNum[_index + 1]] forKey:@"volume"];
         
-        index++;
+        _index++;
     }
 }
 
 - (IBAction)minusBtn:(UIButton *)sender{
-    if (index == 1) {
-        [self.volume setText:[NSString stringWithFormat:@"%@ мл", volumeNum[index - 1]]];
+    if (_index == 1) {
+        [self.volume setText:[NSString stringWithFormat:@"%@ мл", _volumeNum[_index - 1]]];
         [self.plus setImage:[UIImage imageNamed:@"plusBrown"] forState:UIControlStateNormal];
         [self.minus setImage:[UIImage imageNamed:@"minusGrey"] forState:UIControlStateNormal];
         
-        [userDefaults setObject:[NSString stringWithFormat:@"%@", volumeNum[index - 1]] forKey:@"volume"];
+        [userDefaults setObject:[NSString stringWithFormat:@"%@", _volumeNum[_index - 1]] forKey:@"volume"];
         
-        index--;
-    } else if ((index > 1) && (index + 1) <= volumeNum.count) {
-        [self.volume setText:[NSString stringWithFormat:@"%@ мл", volumeNum[index - 1]]];
+        _index--;
+    } else if ((_index > 1) && (_index + 1) <= _volumeNum.count) {
+        [self.volume setText:[NSString stringWithFormat:@"%@ мл", _volumeNum[_index - 1]]];
         [self.plus setImage:[UIImage imageNamed:@"plusBrown"] forState:UIControlStateNormal];
         [self.minus setImage:[UIImage imageNamed:@"minusBrown"] forState:UIControlStateNormal];
         
-        [userDefaults setObject:[NSString stringWithFormat:@"%@", volumeNum[index - 1]] forKey:@"volume"];
+        [userDefaults setObject:[NSString stringWithFormat:@"%@", _volumeNum[_index - 1]] forKey:@"volume"];
         
-        index--;
+        _index--;
     }
 }
+
+- (IBAction)orderBtn:(UIButton*)sender {
+    [self.delegate makeOrder:self];
+}
+
+//- (void) makeOrder {
+//    
+////    [userDefaults setObject:[NSString stringWithFormat:@"%@", volumeNum[index]] forKey:@"volume"];
+////    [userDefaults setObject:self.coffeeName.text forKey:@"coffee"];
+////    
+////    NSLog(@"hey!");
+////    NSLog(@"%@", self.coffeeName.text);
+////    NSLog(@"%@", [userDefaults objectForKey:@"coffee"]);
+//    
+//    
+//}
+
 @end

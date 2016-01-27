@@ -220,11 +220,11 @@
         NSLog(@"Select row at index %@ in table %ld, volume is %@", indexPath, (long)tableView.tag, [userDefaults objectForKey:@"volume"]);
         
     } else if (tableView.tag == 2) {
-        
+
         NSLog(@"Select row at index %@ in table %ld, volume is %@", indexPath, (long)tableView.tag, [userDefaults objectForKey:@"volume"]);
         
     } else {
-        
+
         NSLog(@"Select row at index %@ in table %ld, volume is %@", indexPath, (long)tableView.tag, [userDefaults objectForKey:@"volume"]);
         
     }
@@ -272,41 +272,44 @@
     if (tableView.tag == 1) {
         CafeTableViewCell *cell = [self.tableView1 dequeueReusableCellWithIdentifier:@"cafeCell" forIndexPath:indexPath];
         
+        cell.delegate = self;
+        
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell.makeButton addTarget:self action:@selector(makeOrder:) forControlEvents:UIControlEventTouchUpInside];
+
+        
         
 //        [cell.plus addTarget:self action:@selector(plusBtn:index:for:plus:minus:) with forControlEvents:UIControlEventTouchUpInside];
 //        [cell.minus addTarget:self action:@selector(minusBtn:index:for:plus:minus:) forControlEvents:UIControlEventTouchUpInside];
         
         [cell.coffeeName setText:@"lol"];
+        [cell setRow:indexPath.row];
         
         return cell;
     }
     else if (tableView.tag == 2) {
         CafeTableViewCell *cell = [self.tableView2 dequeueReusableCellWithIdentifier:@"cafeCell" forIndexPath:indexPath];
-        
+        cell.delegate = self;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell.makeButton addTarget:self action:@selector(makeOrder:) forControlEvents:UIControlEventTouchUpInside];
         [cell.coffeeName setText:@"lol"];
-        
+        [cell setRow:indexPath.row];
         return cell;
     }
     else if (tableView.tag == 3) {
         CafeTableViewCell *cell = [self.tableView3 dequeueReusableCellWithIdentifier:@"cafeCell" forIndexPath:indexPath];
-        
+        cell.delegate = self;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell.makeButton addTarget:self action:@selector(makeOrder:) forControlEvents:UIControlEventTouchUpInside];
         [cell.coffeeName setText:@"lol"];
+        [cell setRow:indexPath.row];
         
         return cell;
     }
     else {
         CafeTableViewCell *cell = [self.tableView1 dequeueReusableCellWithIdentifier:@"cafeCell" forIndexPath:indexPath];
-        
+        cell.delegate = self;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell.makeButton addTarget:self action:@selector(makeOrder:) forControlEvents:UIControlEventTouchUpInside];
         [cell.coffeeName setText:@"lol"];
-
+        [cell setRow:indexPath.row];
+        
         return cell;
     }
     
@@ -339,8 +342,12 @@
     }
 }
 
-- (void)makeOrder:(UIButton*)sender{
+- (void) makeOrder:(UITableViewCell*)cell {
+    
+    [userDefaults setObject:[NSString stringWithFormat:@"%@", ((CafeTableViewCell*)cell).volumeNum[((CafeTableViewCell*)cell).index]] forKey:@"volume"];
+    [userDefaults setObject:((CafeTableViewCell*)cell).coffeeName.text forKey:@"coffee"];
     [self performSegueWithIdentifier:@"makeOrder" sender:self];
+
 }
 
 /*

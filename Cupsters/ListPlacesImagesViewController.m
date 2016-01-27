@@ -25,11 +25,14 @@
 
 @end
 
-@implementation ListPlacesImagesViewController
+@implementation ListPlacesImagesViewController {
+    NSUserDefaults *userDefaults;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    userDefaults = [NSUserDefaults standardUserDefaults];
     [self setNeedsStatusBarAppearanceUpdate];
 
     [self customNavBar];
@@ -194,6 +197,9 @@
     if ([segue.identifier isEqualToString:@"goToCafe"]) {
         CafeViewController *vc = (CafeViewController*)segue.destinationViewController;
         vc.cafe = [self.source objectAtIndex:((NSIndexPath*)sender).row];
+        
+        [userDefaults setObject:[((NSManagedObject*)[self.source objectAtIndex:((NSIndexPath*)sender).row]) valueForKey:@"name"] forKey:@"cafe"];
+        [userDefaults setObject:[((NSManagedObject*)[self.source objectAtIndex:((NSIndexPath*)sender).row]) valueForKey:@"address"] forKey:@"address"];
     }
 
 }
