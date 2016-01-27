@@ -33,7 +33,7 @@ NSString* const cFontMyraid = @"MyriadPro-Regular";
 
 NSString * const BaseURLString = @"http://api.cupsters.ru/";
 
-NSString * const SigninURLStrring = @"signin";
+NSString * const SigninURLStrring = @"login";
 NSString * const SignupURLStrring = @"signup";
 NSString * const ActivityURLStrring = @"useractivity";
 NSString * const CafeURLStrring = @"cafe";

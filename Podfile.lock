@@ -18,11 +18,7 @@ PODS:
   - HMSegmentedControl (1.5.2)
   - NSHash (1.1.0)
   - RKDropdownAlert (0.3.0)
-<<<<<<< HEAD
   - SCLAlertView-Objective-C (0.8.2)
-=======
-  - SCLAlertView-Objective-C (0.7.7)
->>>>>>> ui-branch
   - VK-ios-sdk (1.3.6)
 
 DEPENDENCIES:
@@ -62,11 +58,7 @@ SPEC CHECKSUMS:
   HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
   NSHash: 61d598c6d48957c5557f1eef0aeafd6ef5ec5fb7
   RKDropdownAlert: f4b3364c251829ad439dc666836a1f2dad26f4c7
-<<<<<<< HEAD
   SCLAlertView-Objective-C: de137408b04f3587551fa98b876b3cbc612cee79
-=======
-  SCLAlertView-Objective-C: 062808b4664add2d38d44b7867267985a02267ad
->>>>>>> ui-branch
   VK-ios-sdk: c40f2ab5045f6bf97f57cc2dfb2d5e0c0b920fe6
 
 COCOAPODS: 0.39.0

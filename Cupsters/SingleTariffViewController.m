@@ -143,7 +143,7 @@
     NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
     attachment.image = [UIImage imageNamed:@"smallCup"];
     NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:attachment];
-    NSMutableAttributedString *myString= [[NSMutableAttributedString alloc] initWithString:@"1 ЧАШКА  "];
+    NSMutableAttributedString *myString= [[NSMutableAttributedString alloc] initWithString:[[NSUserDefaults standardUserDefaults] valueForKey:@"currentCounter"]];
     [myString appendAttributedString:attachmentString];
     
     // Configure our label
@@ -229,7 +229,13 @@
         NSLog(@"%@", user.plan);
         NSData *userData = [NSKeyedArchiver archivedDataWithRootObject:user];
         [[NSUserDefaults standardUserDefaults] setObject:userData forKey:@"user"];
-
+        if ([user.plan[@"counter"] isEqualToString:@"-1"]) {
+            [[NSUserDefaults standardUserDefaults] setObject:@"∞ ЧАШЕК  " forKey:@"currentCounter"];
+        } else if (user.plan[@"counter"]) {
+            [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@ ЧАШЕК  ", user.plan[@"counter"]] forKey:@"currentCounter"];
+        } else {
+            [[NSUserDefaults standardUserDefaults] setObject:@"НЕТ ЧАШЕК  " forKey:@"currentCounter"];
+        }
     } OrFailure:^(NSError *error) {
         NSLog(@"%@", [error debugDescription]);
     }];

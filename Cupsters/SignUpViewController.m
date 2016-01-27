@@ -31,6 +31,9 @@
     [self.agreeButton setImage: [UIImage imageNamed:@"check"] forState:UIControlStateNormal];
     [self.agreeButton setImage: [UIImage imageNamed:@"checkIn"] forState:UIControlStateSelected];
     
+    [[VKSdk initializeWithAppId:@"5229696"] registerDelegate:self];
+    [[VKSdk instance] setUiDelegate:self];
+
 
     [super viewDidLoad];
 
@@ -46,7 +49,7 @@
 
 - (void)vkSdkAccessAuthorizationFinishedWithResult:(VKAuthorizationResult*)result {
     if (result.error) {
-        NSLog(@"%@", [result.error debugDescription]);
+        NSLog(@"65%@", [result.error debugDescription]);
         return;
     }
     NSLog(@"vkSdkAccessAuthorizationFinishedWithResult");
@@ -54,7 +57,7 @@
     NSLog(@"%@", result.user.last_name);
     NSLog(@"%@", result.token.userId);
     NSLog(@"%@", result.token.email);
-    NSDictionary *parameters = @{@"email":result.token.email, @"sn":@"VK", @"sn_id":result.user.id, @"first_name":result.user.first_name, @"last_name":result.user.last_name};
+    NSDictionary *parameters = @{@"email":result.token.email, @"type":@"VK", @"id_sn":result.user.id, @"first_name":result.user.first_name, @"last_name":result.user.last_name};
     ServerRequest *request = [ServerRequest initRequest:ServerRequestTypePOST With:parameters To:SignupURLStrring];
     Server *server = [[Server alloc] init];
     [server sentToServer:request OnSuccess:^(NSDictionary *result) {
@@ -62,7 +65,7 @@
         UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
         [self presentViewController:vc animated:true completion:nil];
     } OrFailure:^(NSError *error) {
-        NSLog(@"%@", [error debugDescription]);
+        NSLog(@"12%@", [error debugDescription]);
     }];
 }
 

@@ -325,8 +325,8 @@
 				DB67FEC21C3BD8FB00FC62E2 /* Main.storyboard */,
 				DB67FEC81C3BD8FB00FC62E2 /* Assets.xcassets */,
 				DB67FECA1C3BD8FB00FC62E2 /* LaunchScreen.storyboard */,
-				DB67FECD1C3BD8FB00FC62E2 /* Info.plist */,
 				DB67FEC51C3BD8FB00FC62E2 /* Cupsters.xcdatamodeld */,
+				DB67FECD1C3BD8FB00FC62E2 /* Info.plist */,
 				DB67FEB91C3BD8FB00FC62E2 /* Supporting Files */,
 			);
 			path = Cupsters;
