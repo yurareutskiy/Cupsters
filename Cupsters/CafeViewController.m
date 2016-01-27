@@ -13,6 +13,9 @@
 #import "SWRevealViewController.h"
 #import "CafeTableViewCell.h"
 @import GoogleMaps;
+#import <AFNetworking/UIImageView+AFNetworking.h>
+#import "AppDelegate.h"
+#import "OrderViewController.h"
 
 @interface CafeViewController ()
 
@@ -32,6 +35,7 @@
     UIView *viewHeader;
     NSArray *volumeNum;
     NSUserDefaults *userDefaults;
+    NSArray *source;
 }
 
 - (void)viewDidLoad {
@@ -41,6 +45,10 @@
     
     userDefaults = [NSUserDefaults standardUserDefaults];
     
+    [_name setText:[NSString stringWithFormat:@"%@", [_cafe valueForKey:@"name"]]];
+    [_address setText:[NSString stringWithFormat:@"%@", [_cafe valueForKey:@"address"]]];
+    [_cafeBg setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://lk.cupsters.ru/%@", [_cafe valueForKey:@"image"]]]];
+    [userDefaults setObject:[_cafe valueForKey:@"id"] forKey:@"id"];
     openMap = false;
     
     locationManager = [[CLLocationManager alloc] init];
@@ -73,10 +81,13 @@
     
     // Creates a marker in the center of the map.
     GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake(-33.86, 151.20);
+    NSNumber *lat = [_cafe valueForKey:@"lattitude"];
+    NSNumber *longi = [_cafe valueForKey:@"longitude"];
+    marker.position = CLLocationCoordinate2DMake(lat.doubleValue, longi.doubleValue);
     marker.title = @"Sydney";
     marker.snippet = @"Australia";
     marker.map = mapView;
+    marker.icon = [UIImage imageNamed:@"brownPin"];
     mapView.settings.myLocationButton = YES;
     
     self.tableView1.delegate = self;
@@ -133,7 +144,31 @@
     // Do any additional setup after loading the view.
 }
 
-
+-(void)viewWillAppear:(BOOL)animated {
+    
+    //self.source = [[DataManager sharedManager] getDataFromEntity:@"Cafes"];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"Coffees" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                              @"%@ <= id_cafe", [_cafe valueForKey:@"id"]];
+    [fetchRequest setPredicate:predicate];
+    fetchRequest.propertiesToFetch = [NSArray arrayWithObject:[[entity propertiesByName] objectForKey:@"name"]];
+    fetchRequest.returnsDistinctResults = YES;
+    fetchRequest.resultType = NSDictionaryResultType;
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    
+    NSError *error = nil;
+    source = [context executeFetchRequest:fetchRequest error:&error];
+    NSAssert(source != nil, @"Failed to execute %@: %@", fetchRequest, error);
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -217,15 +252,15 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (tableView.tag == 1) {
         
-        NSLog(@"Select row at index %@ in table %ld, volume is %@", indexPath, (long)tableView.tag, [userDefaults objectForKey:@"volume"]);
+        NSLog(@"Select row at index %d in table %ld, volume is %@", indexPath.row, (long)tableView.tag, [userDefaults objectForKey:@"volume"]);
         
     } else if (tableView.tag == 2) {
 
-        NSLog(@"Select row at index %@ in table %ld, volume is %@", indexPath, (long)tableView.tag, [userDefaults objectForKey:@"volume"]);
+        NSLog(@"Select row at index %d in table %ld, volume is %@", indexPath.row, (long)tableView.tag, [userDefaults objectForKey:@"volume"]);
         
     } else {
 
-        NSLog(@"Select row at index %@ in table %ld, volume is %@", indexPath, (long)tableView.tag, [userDefaults objectForKey:@"volume"]);
+        NSLog(@"Select row at index %d in table %ld, volume is %@", indexPath.row, (long)tableView.tag, [userDefaults objectForKey:@"volume"]);
         
     }
     
@@ -254,7 +289,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (tableView.tag == 1) {
-        return 10;
+        return source.count;
     }
     else if (tableView.tag == 2) {
         return 10;
@@ -272,22 +307,25 @@
     if (tableView.tag == 1) {
         CafeTableViewCell *cell = [self.tableView1 dequeueReusableCellWithIdentifier:@"cafeCell" forIndexPath:indexPath];
         
+        NSNumber *idCafeCell = [_cafe valueForKey:@"id"];
+        cell.idCafe = idCafeCell.integerValue;
+        
         cell.delegate = self;
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-        
         
 //        [cell.plus addTarget:self action:@selector(plusBtn:index:for:plus:minus:) with forControlEvents:UIControlEventTouchUpInside];
 //        [cell.minus addTarget:self action:@selector(minusBtn:index:for:plus:minus:) forControlEvents:UIControlEventTouchUpInside];
         
-        [cell.coffeeName setText:@"lol"];
+        [cell.coffeeName setText:[source[indexPath.row] valueForKey:@"name"]];
         [cell setRow:indexPath.row];
         
         return cell;
     }
     else if (tableView.tag == 2) {
         CafeTableViewCell *cell = [self.tableView2 dequeueReusableCellWithIdentifier:@"cafeCell" forIndexPath:indexPath];
+        NSNumber *idCafeCell = [_cafe valueForKey:@"id"];
+        cell.idCafe = idCafeCell.integerValue;
         cell.delegate = self;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell.coffeeName setText:@"lol"];
@@ -296,6 +334,8 @@
     }
     else if (tableView.tag == 3) {
         CafeTableViewCell *cell = [self.tableView3 dequeueReusableCellWithIdentifier:@"cafeCell" forIndexPath:indexPath];
+        NSNumber *idCafeCell = [_cafe valueForKey:@"id"];
+        cell.idCafe = idCafeCell.integerValue;
         cell.delegate = self;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell.coffeeName setText:@"lol"];
@@ -305,6 +345,8 @@
     }
     else {
         CafeTableViewCell *cell = [self.tableView1 dequeueReusableCellWithIdentifier:@"cafeCell" forIndexPath:indexPath];
+        NSNumber *idCafeCell = [_cafe valueForKey:@"id"];
+        cell.idCafe = idCafeCell.integerValue;
         cell.delegate = self;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [cell.coffeeName setText:@"lol"];
@@ -346,8 +388,18 @@
     
     [userDefaults setObject:[NSString stringWithFormat:@"%@", ((CafeTableViewCell*)cell).volumeNum[((CafeTableViewCell*)cell).index]] forKey:@"volume"];
     [userDefaults setObject:((CafeTableViewCell*)cell).coffeeName.text forKey:@"coffee"];
+    
     [self performSegueWithIdentifier:@"makeOrder" sender:self];
 
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"makeOrder"]) {
+        OrderViewController *vc = (OrderViewController*)segue.destinationViewController;
+        vc.cafe = [source objectAtIndex:((NSIndexPath*)sender).row];
+        
+    }
+    
 }
 
 /*

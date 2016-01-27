@@ -7,18 +7,57 @@
 //
 
 #import "CafeTableViewCell.h"
+#import "AppDelegate.h"
+#import <CoreData/CoreData.h>
+
+@interface CafeTableViewCell ()
+
+//@property (strong, nonatomic) NSArray *source;
+
+@end
 
 @implementation CafeTableViewCell {
     NSUserDefaults *userDefaults;
+    NSArray *source;
 }
 @synthesize delegate;
+
 - (void)awakeFromNib {
     
+    userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"Coffees" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                              @"%@ <= id_cafe", [userDefaults objectForKey:@"id"]];
+    [fetchRequest setPredicate:predicate];
+    fetchRequest.propertiesToFetch = [NSArray arrayWithObject:[[entity propertiesByName] objectForKey:@"volume"]];
+    fetchRequest.returnsDistinctResults = YES;
+    fetchRequest.resultType = NSDictionaryResultType;
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"volume" ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    
+    NSError *error = nil;
+    source = [context executeFetchRequest:fetchRequest error:&error];
+    NSAssert(source != nil, @"Failed to execute %@: %@", fetchRequest, error);
+
+    
+    _volumeNum = [[NSMutableArray alloc] init];
+    for (NSInteger i = 0; i < source.count; i++) {
+        [_volumeNum addObject:source[i][@"volume"]];
+    }
     
     userDefaults = [NSUserDefaults standardUserDefaults];
     _index = 0;
-    _volumeNum = @[@150, @200, @250, @300, @350, @400, @450];
-    //[userDefaults setObject:[NSString stringWithFormat:@"%@", _volumeNum[_index]] forKey:@"volume"];
+    if (_volumeNum.count != 0){
+        [_volume setText:[NSString stringWithFormat:@"%@ мл", _volumeNum[_index]]];
+    }
     
     // Initialization code
 }
@@ -28,6 +67,7 @@
 
     // Configure the view for the selected state
 }
+
 
 - (IBAction)plusBtn:(UIButton *)sender{
     

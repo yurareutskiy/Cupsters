@@ -21,11 +21,11 @@
 @property (strong, nonatomic) IBOutlet UIButton *plus;
 @property (strong, nonatomic) IBOutlet UIButton *minus;
 @property (strong, nonatomic) IBOutlet UILabel *volume;
-@property (strong, nonatomic) NSArray *volumeNum;
+@property (strong, nonatomic) NSMutableArray *volumeNum;
 @property (nonatomic) NSInteger index;
+@property (assign, nonatomic) NSInteger idCafe;
 @property (assign, nonatomic) NSUInteger row;
 @property (weak, nonatomic) id<CafeTableViewCellDelegate> delegate;
-- (instancetype)initWith:(NSInteger)tableFrom row:(NSInteger)rowFrom;
 - (IBAction)plusBtn:(UIButton *)sender;
 - (IBAction)minusBtn:(UIButton *)sender;
 

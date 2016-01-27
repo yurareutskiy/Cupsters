@@ -100,9 +100,7 @@
     
 }
 
-- (void)backAction:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
 - (UILabel*)customTitleViewWithImage {
     
     // Create
@@ -155,7 +153,7 @@
         return buttonConfig;
     };
     
-    SCLButton *secondButton = [alert addButton:@"Нет" target:self selector:@selector(declineButton)];
+    SCLButton *secondButton = [alert addButton:@"Нет" target:self selector:@selector(backAction)];
     
     secondButton.buttonFormatBlock = ^NSDictionary* (void)
     {
@@ -179,6 +177,10 @@
     
     [alert showCustom:self image:[UIImage imageNamed:@"cup"] color:color title:@"Подтверждение" subTitle:@"Вы заказали капучино, объем 300 мл" closeButtonTitle:nil duration:0.0f];
 
+}
+
+- (void) backAction {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (UIImage*) scaleImage:(UIImage*)image toSize:(CGSize)newSize {

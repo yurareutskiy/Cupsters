@@ -235,9 +235,6 @@
     if ([segue.identifier isEqualToString:@"goToCafe"]) {
         CafeViewController *vc = (CafeViewController*)segue.destinationViewController;
         vc.cafe = [self.source objectAtIndex:((NSIndexPath*)sender).row];
-        
-        [userDefaults setObject:[((NSManagedObject*)[self.source objectAtIndex:((NSIndexPath*)sender).row]) valueForKey:@"name"] forKey:@"cafe"];
-        [userDefaults setObject:[((NSManagedObject*)[self.source objectAtIndex:((NSIndexPath*)sender).row]) valueForKey:@"address"] forKey:@"address"];
     }
 
 }
