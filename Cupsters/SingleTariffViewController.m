@@ -15,6 +15,7 @@
 #import "AppDelegate.h"
 #import "User.h"
 #import "Server.h"
+#import <SCLAlertView.h>
 
 @interface SingleTariffViewController ()
 
@@ -244,5 +245,13 @@
 
 - (IBAction)connect:(UIButton *)sender {
     [self setTariffForUser];
+    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
+    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+    
+    if ([user.plan[@"type"] isEqualToString:@"standart"]) {
+        [alert showSuccess:@"Успешно" subTitle:@"Вы подключили тариф 'Расширенный'" closeButtonTitle:@"Ок" duration:5.0];
+    } else if ([user.plan[@"type"] isEqualToString:@"advanced"]){
+        [alert showSuccess:@"Успешно" subTitle:@"Вы подключили тариф 'Базовый'" closeButtonTitle:@"Ок" duration:5.0];
+    }
 }
 @end

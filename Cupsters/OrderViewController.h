@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 
 @interface OrderViewController : UIViewController<UITextFieldDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *code;
@@ -16,4 +17,6 @@
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *bgBottom;
 @property (strong, nonatomic) IBOutlet UIView *upView;
 
+@property (strong, nonatomic) NSManagedObject *cafe;
+@property (strong, nonatomic) NSManagedObject *coffee;
 @end
