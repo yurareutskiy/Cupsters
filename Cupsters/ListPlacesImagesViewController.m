@@ -16,6 +16,7 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "CafeViewController.h"
 #import "AppDelegate.h"
+@import GoogleMaps;
 
 @interface ListPlacesImagesViewController ()
 
@@ -38,6 +39,7 @@
     userDefaults = [NSUserDefaults standardUserDefaults];
     [self setNeedsStatusBarAppearanceUpdate];
     
+    
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -54,6 +56,11 @@
     [self configureMenu];
     
     pointOfInterest = [[CLLocation alloc] initWithLatitude:locationManager.location.coordinate.latitude longitude:locationManager.location.coordinate.longitude];
+
+}
+
+- (void) reverseGeocodeCoordinate:(CLLocationCoordinate2D)coordinate completionHandler:(GMSReverseGeocodeCallback)handler {
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated {

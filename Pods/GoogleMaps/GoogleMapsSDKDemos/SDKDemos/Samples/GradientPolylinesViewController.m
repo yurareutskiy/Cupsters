@@ -8,9 +8,9 @@
 
 
 @implementation GradientPolylinesViewController {
-  GMSMapView *_mapView;
-  GMSPolyline *_polyline;
-  NSMutableArray *_trackData;
+  GMSMapView *mapView_;
+  GMSPolyline *polyline_;
+  NSMutableArray *trackData_;
 }
 
 - (void)viewDidLoad {
@@ -20,20 +20,19 @@
                                                                zoom:14.059f
                                                             bearing:328.f
                                                        viewingAngle:40.f];
-  _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-  self.view = _mapView;
+  mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+  self.view = mapView_;
 
   [self parseTrackFile];
-  [_polyline setSpans:[self gradientSpans]];
+  [polyline_ setSpans:[self gradientSpans]];
 }
 
 - (NSArray *)gradientSpans {
   NSMutableArray *colorSpans = [NSMutableArray array];
-  NSUInteger count = [_trackData count];
+  NSUInteger count = [trackData_ count];
   UIColor *prevColor;
   for (NSUInteger i = 0; i < count; i++) {
-    NSDictionary *dict = [_trackData objectAtIndex:i];
-    double elevation = [[dict objectForKey:@"elevation"] doubleValue];
+    double elevation = [[[trackData_ objectAtIndex:i] objectForKey:@"elevation"] doubleValue];
 
     UIColor *toColor = [UIColor colorWithHue:(float)elevation/700
                                   saturation:1.f
@@ -56,7 +55,7 @@
   NSString *filePath = [[NSBundle mainBundle] pathForResource:@"track" ofType:@"json"];
   NSData *data = [NSData dataWithContentsOfFile:filePath];
   NSArray *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-  _trackData = [[NSMutableArray alloc] init];
+  trackData_ = [[NSMutableArray alloc] init];
   GMSMutablePath *path = [GMSMutablePath path];
 
   for (NSUInteger i = 0; i < [json count]; i++) {
@@ -65,13 +64,13 @@
     CLLocationDegrees lat = [[info objectForKey:@"lat"] doubleValue];
     CLLocationDegrees lng = [[info objectForKey:@"lng"] doubleValue];
     CLLocation *loc = [[CLLocation alloc] initWithLatitude:lat longitude:lng];
-    [_trackData addObject:@{@"loc": loc, @"elevation": elevation}];
+    [trackData_ addObject:@{@"loc": loc, @"elevation": elevation}];
     [path addLatitude:lat longitude:lng];
   }
 
-  _polyline = [GMSPolyline polylineWithPath:path];
-  _polyline.strokeWidth = 6;
-  _polyline.map = _mapView;
+  polyline_ = [GMSPolyline polylineWithPath:path];
+  polyline_.strokeWidth = 6;
+  polyline_.map = mapView_;
 }
 
 @end

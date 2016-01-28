@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '095A167A7EC3B91618798B01'
+               BlueprintIdentifier = '7794AD2E3AD75325D1623EF2'
                BlueprintName = 'NSHash'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'libNSHash.a'>

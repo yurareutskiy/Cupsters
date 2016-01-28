@@ -48,7 +48,8 @@
       'xcode_settings': {
         'INFOPLIST_FILE': '<(DEPTH)/SDKDemos/SDKDemo-Info.plist',
         'TARGETED_DEVICE_FAMILY': '1,2',
-        'IPHONEOS_DEPLOYMENT_TARGET': '7.0',
+        'VALID_ARCHS': 'i386 armv7',
+        'IPHONEOS_DEPLOYMENT_TARGET': '6.0',
         'OTHER_LDFLAGS': '-ObjC',
         'USER_HEADER_SEARCH_PATHS': '$(SRCROOT)',
         'USE_HEADERMAP': 'NO',

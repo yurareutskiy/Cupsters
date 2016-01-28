@@ -69,9 +69,12 @@
     viewHeader = [[UIView alloc]initWithFrame:CGRectMake(0, self.cafeView.frame.size.height, self.view.frame.size.width, 40.0)];
     [viewHeader setBackgroundColor:[UIColor whiteColor]];
     
+    NSNumber *lat = [_cafe valueForKey:@"lattitude"];
+    NSNumber *longi = [_cafe valueForKey:@"longitude"];
+    
     GMSCameraPosition *camera = [GMSCameraPosition
-                                 cameraWithLatitude:locationManager.location.coordinate.latitude
-                                 longitude:locationManager.location.coordinate.longitude
+                                 cameraWithLatitude:lat.doubleValue
+                                 longitude:longi.doubleValue
                                  zoom:15];
     
     mapView = [GMSMapView mapWithFrame:CGRectMake(self.view.frame.origin.x, self.cafeView.frame.size.height, self.view.frame.size.width, 200.0) camera:camera];
@@ -83,11 +86,18 @@
     
     // Creates a marker in the center of the map.
     GMSMarker *marker = [[GMSMarker alloc] init];
-    NSNumber *lat = [_cafe valueForKey:@"lattitude"];
-    NSNumber *longi = [_cafe valueForKey:@"longitude"];
     marker.position = CLLocationCoordinate2DMake(lat.doubleValue, longi.doubleValue);
-    marker.title = @"Sydney";
-    marker.snippet = @"Australia";
+    marker.title = [_cafe valueForKey:@"name"];
+    
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    formatter.dateFormat = @"H:m:s";
+//    NSDate *oDate = [formatter dateFromString:[_cafe valueForKey:@"open"]];
+//    NSDate *cDate = [formatter dateFromString:[_cafe valueForKey:@"close"]];
+//    formatter.dateFormat = @"H:m";
+//    NSString *openDate = [formatter stringFromDate:oDate];
+//    NSString *closeDate = [formatter stringFromDate:cDate];
+//    
+//    marker.snippet = [NSString stringWithFormat:@"%@ - %@", openDate, closeDate];
     marker.map = mapView;
     marker.icon = [UIImage imageNamed:@"brownPin"];
     mapView.settings.myLocationButton = YES;
