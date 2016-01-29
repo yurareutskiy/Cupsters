@@ -7,8 +7,8 @@
 #import <GoogleMaps/GoogleMaps.h>
 
 @implementation GestureControlViewController {
-  GMSMapView *_mapView;
-  UISwitch *_zoomSwitch;
+  GMSMapView *mapView_;
+  UISwitch *zoomSwitch_;
 }
 
 - (void)viewDidLoad {
@@ -17,12 +17,12 @@
                                                           longitude:133.605097
                                                                zoom:3];
 
-  _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-  _mapView.autoresizingMask =
+  mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+  mapView_.autoresizingMask =
       UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 
   self.view = [[UIView alloc] initWithFrame:CGRectZero];
-  [self.view addSubview:_mapView];
+  [self.view addSubview:mapView_];
 
   UIView *holder = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 59)];
   holder.autoresizingMask =
@@ -43,17 +43,17 @@
   [holder addSubview:label];
 
   // Control zooming.
-  _zoomSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(-90, 16, 0, 0)];
-  _zoomSwitch.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
-  [_zoomSwitch addTarget:self
+  zoomSwitch_ = [[UISwitch alloc] initWithFrame:CGRectMake(-90, 16, 0, 0)];
+  zoomSwitch_.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin;
+  [zoomSwitch_ addTarget:self
                   action:@selector(didChangeZoomSwitch)
         forControlEvents:UIControlEventValueChanged];
-  _zoomSwitch.on = YES;
-  [holder addSubview:_zoomSwitch];
+  zoomSwitch_.on = YES;
+  [holder addSubview:zoomSwitch_];
 }
 
 - (void)didChangeZoomSwitch {
-  _mapView.settings.zoomGestures = _zoomSwitch.isOn;
+  mapView_.settings.zoomGestures = zoomSwitch_.isOn;
 }
 
 @end

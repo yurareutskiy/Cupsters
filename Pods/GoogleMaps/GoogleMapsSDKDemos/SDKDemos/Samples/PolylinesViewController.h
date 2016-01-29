@@ -1,5 +1,7 @@
 #import <UIKit/UIKit.h>
 
-@interface PolylinesViewController : UIViewController
+#import <GoogleMaps/GoogleMaps.h>
+
+@interface PolylinesViewController : UIViewController <GMSMapViewDelegate>
 
 @end
