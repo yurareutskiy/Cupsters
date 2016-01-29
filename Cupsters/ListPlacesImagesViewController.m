@@ -151,8 +151,7 @@
     }
     
 
-    // Add gesture recognizer
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    
 
     
     // Set menu button
@@ -160,6 +159,10 @@
                                                        style:UIBarButtonItemStyleDone
                                                       target:self.revealViewController
                                                       action:@selector(revealToggle:)];
+    
+    // Add gesture recognizer
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
     self.navigationController.navigationBar.layer.shadowColor = [[UIColor grayColor] CGColor];

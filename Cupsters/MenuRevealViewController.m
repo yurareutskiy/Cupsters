@@ -31,7 +31,12 @@
     
     self.user = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
 
-
+    UITapGestureRecognizer *singleFingerTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self.revealViewController
+                                            action:@selector(revealToggle:)];
+    [self.view addGestureRecognizer:singleFingerTap];
+    
+    [self.revealViewController.frontViewController.view addGestureRecognizer:singleFingerTap];
 
     
 
@@ -49,6 +54,10 @@
     _tapRecognizerProfile.delegate = self;
     
 }
+
+//- (void) closeMenu {
+//    self.revealViewController
+//}
 
 -(void)ClickTheProfile:(id)sender {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

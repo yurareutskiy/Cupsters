@@ -10,28 +10,28 @@
 #import "SDKDemos/Samples/Samples.h"
 
 @implementation SDKDemoMasterViewController {
-  NSArray *_demos;
-  NSArray *_demoSections;
-  BOOL _isPhone;
-  UIPopoverController *_popover;
-  UIBarButtonItem *_samplesButton;
-  __weak UIViewController *_controller;
-  CLLocationManager *_locationManager;
+  NSArray *demos_;
+  NSArray *demoSections_;
+  BOOL isPhone_;
+  UIPopoverController *popover_;
+  UIBarButtonItem *samplesButton_;
+  __weak UIViewController *controller_;
+  CLLocationManager *locationManager_;
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  _isPhone = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;
+  isPhone_ = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone;
 
-  if (!_isPhone) {
+  if (!isPhone_) {
     self.clearsSelectionOnViewWillAppear = NO;
   } else {
     UIBarButtonItem *backButton =
-        [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", @"Back")
-                                         style:UIBarButtonItemStylePlain
-                                        target:nil
-                                        action:nil];
+    [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Back", @"Back")
+                                     style:UIBarButtonItemStyleBordered
+                                    target:nil
+                                    action:nil];
     [self.navigationItem setBackBarButtonItem:backButton];
   }
 
@@ -39,68 +39,74 @@
   self.title = [NSString stringWithFormat:@"%@: %@", self.title, [GMSServices SDKVersion]];
 
   self.tableView.autoresizingMask =
-      UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+      UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
   self.tableView.delegate = self;
   self.tableView.dataSource = self;
 
-  _demoSections = [Samples loadSections];
-  _demos = [Samples loadDemos];
+  demoSections_ = [Samples loadSections];
+  demos_ = [Samples loadDemos];
   [self addPlacesDemos];
 
-  if (!_isPhone) {
+  if (!isPhone_) {
     [self loadDemo:0 atIndex:0];
   }
 }
 - (void)addPlacesDemos {
-  NSMutableArray *sections = [NSMutableArray arrayWithArray:_demoSections];
-  [sections insertObject:@"Places" atIndex:1];
-  _demoSections = [sections copy];
+  NSMutableArray *sections = [NSMutableArray arrayWithArray:demoSections_];
+  [sections insertObject:@"Places" atIndex:0];
+  demoSections_ = [sections copy];
 
-  NSMutableArray *demos = [NSMutableArray arrayWithArray:_demos];
-  [demos insertObject:[Samples placesDemos] atIndex:1];
-  _demos = [demos copy];
+  NSMutableArray *demos = [NSMutableArray arrayWithArray:demos_];
+  [demos insertObject:[Samples placesDemos]
+              atIndex:0];
+  demos_ = [demos copy];
 }
 
 #pragma mark - UITableViewController
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-  return _demoSections.count;
+  return demoSections_.count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+- (CGFloat)tableView:(UITableView *)tableView
+    heightForHeaderInSection:(NSInteger)section {
   return 35.0;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-  return [_demoSections objectAtIndex:section];
+- (NSString *)tableView:(UITableView *)tableView
+    titleForHeaderInSection:(NSInteger)section {
+  return [demoSections_ objectAtIndex:section];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  NSArray *demosInSection = [_demos objectAtIndex:section];
-  return [demosInSection count];
+- (NSInteger)tableView:(UITableView *)tableView
+    numberOfRowsInSection:(NSInteger)section {
+  return [[demos_ objectAtIndex: section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   static NSString *cellIdentifier = @"Cell";
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+  UITableViewCell *cell =
+      [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
   if (cell == nil) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                   reuseIdentifier:cellIdentifier];
 
-    if (_isPhone) {
+    if (isPhone_) {
       [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     }
   }
 
-  NSDictionary *demo = [[_demos objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+  NSDictionary *demo = [[demos_ objectAtIndex:indexPath.section]
+                        objectAtIndex:indexPath.row];
   cell.textLabel.text = [demo objectForKey:@"title"];
   cell.detailTextLabel.text = [demo objectForKey:@"description"];
 
   return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView
+    didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   // The user has chosen a sample; load it and clear the selection!
   [self loadDemo:indexPath.section atIndex:indexPath.row];
   [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -112,36 +118,38 @@
      willHideViewController:(UIViewController *)viewController
           withBarButtonItem:(UIBarButtonItem *)barButtonItem
        forPopoverController:(UIPopoverController *)popoverController {
-  _popover = popoverController;
-  _samplesButton = barButtonItem;
-  _samplesButton.title = NSLocalizedString(@"Samples", @"Samples");
-  _samplesButton.style = UIBarButtonItemStyleDone;
+  popover_ = popoverController;
+  samplesButton_ = barButtonItem;
+  samplesButton_.title = NSLocalizedString(@"Samples", @"Samples");
+  samplesButton_.style = UIBarButtonItemStyleDone;
   [self updateSamplesButton];
 }
 
 - (void)splitViewController:(UISplitViewController *)splitController
        willShowViewController:(UIViewController *)viewController
     invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
-  _popover = nil;
-  _samplesButton = nil;
+  popover_ = nil;
+  samplesButton_ = nil;
   [self updateSamplesButton];
 }
 
 #pragma mark - Private methods
 
-- (void)loadDemo:(NSUInteger)section atIndex:(NSUInteger)index {
-  NSDictionary *demo = [[_demos objectAtIndex:section] objectAtIndex:index];
-  UIViewController *controller = [[[demo objectForKey:@"controller"] alloc] init];
-  _controller = controller;
+- (void)loadDemo:(NSUInteger)section
+         atIndex:(NSUInteger)index {
+  NSDictionary *demo = [[demos_ objectAtIndex:section] objectAtIndex:index];
+  UIViewController *controller =
+      [[[demo objectForKey:@"controller"] alloc] init];
+  controller_ = controller;
 
   if (controller != nil) {
     controller.title = [demo objectForKey:@"title"];
 
-    if (_isPhone) {
+    if (isPhone_) {
       [self.navigationController pushViewController:controller animated:YES];
     } else {
       [self.appDelegate setSample:controller];
-      [_popover dismissPopoverAnimated:YES];
+      [popover_ dismissPopoverAnimated:YES];
     }
 
     [self updateSamplesButton];
@@ -153,7 +161,7 @@
 // It assumes that the left bar button item may be safely modified to contain
 // the samples button.
 - (void)updateSamplesButton {
-  _controller.navigationItem.leftBarButtonItem = _samplesButton;
+  controller_.navigationItem.leftBarButtonItem = samplesButton_;
 }
 
 @end
