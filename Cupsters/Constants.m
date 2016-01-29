@@ -18,6 +18,7 @@ NSString* const cSideMenuBackColor = @"666666";
 
 #pragma mark - Cell identifieres
 NSString* const cCellBigPlace = @"BigPlaces";
+NSString* const cCellCoffee = @"cafeCell";
 
 
 #pragma mark - Numbers
@@ -43,4 +44,6 @@ NSString * const OrderURLStrring = @"order";
 NSString * const SetTariffURLStrring = @"tariffToUser";
 NSString * const CoffeeURLStrring = @"coffee";
 
+#pragma mark - Notofications
+NSString * const kNotificatiionLoading = @"FinishLoadStartingData";
 

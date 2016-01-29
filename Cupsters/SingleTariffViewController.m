@@ -216,28 +216,43 @@
 
 - (void)setTariffForUser {
 
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     NSNumber *tariffID = [tariff valueForKey:@"id"];
     User *user = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
     NSNumber *userID = user.id;
     NSDictionary *body = @{@"user_id":userID, @"tariff_id":tariffID};
-    
+    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
     Server *server = [[Server alloc] init];
     ServerRequest *request = [ServerRequest initRequest:ServerRequestTypePOST With:body To:SetTariffURLStrring];
     [server sentToServer:request OnSuccess:^(NSDictionary *result) {
-//        NSLog(@"%@", result[@"tariff"][0]);
-        NSLog(@"%@", user.plan);
-        user.plan = result[@"tariff"][0];
-        NSLog(@"%@", user.plan);
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"y-M-d H:m:s";
+        NSDateComponents *monthComponent = [[NSDateComponents alloc] init];
+        NSCalendar *theCalendar = [NSCalendar currentCalendar];
+        NSDate *beginDate = [formatter dateFromString:result[@"tariff"][0][@"create_date"]];
+        
+        if ([result[@"tariff"][0][@"counter"] isEqualToString:@"-1"]) {
+            monthComponent.month = 1;
+            [ud setObject:@"∞ ЧАШЕК  " forKey:@"currentCounter"];
+        } else if (result[@"tariff"][0][@"counter"]) {
+            monthComponent.month = 3;
+            [ud setObject:[NSString stringWithFormat:@"%@ ЧАШЕК  ", result[@"tariff"][0][@"counter"]] forKey:@"currentCounter"];
+        }
+        NSDate *endDate = [theCalendar dateByAddingComponents:monthComponent toDate:beginDate options:0];
+        NSMutableDictionary *mutDict = [[NSMutableDictionary alloc] initWithDictionary:result[@"tariff"][0]];
+        [mutDict setObject:endDate forKey:@"endDate"];
+        user.plan = mutDict;
         NSData *userData = [NSKeyedArchiver archivedDataWithRootObject:user];
-        [[NSUserDefaults standardUserDefaults] setObject:userData forKey:@"user"];
-        if ([user.plan[@"counter"] isEqualToString:@"-1"]) {
-            [[NSUserDefaults standardUserDefaults] setObject:@"∞ ЧАШЕК  " forKey:@"currentCounter"];
-        } else if (user.plan[@"counter"]) {
-            [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%@ ЧАШЕК  ", user.plan[@"counter"]] forKey:@"currentCounter"];
-        } else {
-            [[NSUserDefaults standardUserDefaults] setObject:@"НЕТ ЧАШЕК  " forKey:@"currentCounter"];
+        [ud setObject:userData forKey:@"user"];
+
+        if ([self.type isEqualToString:@"advanced"]) {
+            [alert showSuccess:@"Успешно" subTitle:@"Вы подключили тариф 'Расширенный'" closeButtonTitle:@"Ок" duration:5.0];
+        } else if ([self.type isEqualToString:@"standart"]){
+            [alert showSuccess:@"Успешно" subTitle:@"Вы подключили тариф 'Базовый'" closeButtonTitle:@"Ок" duration:5.0];
         }
     } OrFailure:^(NSError *error) {
+        [alert showSuccess:@"Ошибка" subTitle:@"Не удалось выполнить подключение" closeButtonTitle:@"Ок" duration:5.0];
         NSLog(@"%@", [error debugDescription]);
     }];
 }
@@ -245,13 +260,6 @@
 
 - (IBAction)connect:(UIButton *)sender {
     [self setTariffForUser];
-    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
-    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-    
-    if ([user.plan[@"type"] isEqualToString:@"standart"]) {
-        [alert showSuccess:@"Успешно" subTitle:@"Вы подключили тариф 'Расширенный'" closeButtonTitle:@"Ок" duration:5.0];
-    } else if ([user.plan[@"type"] isEqualToString:@"advanced"]){
-        [alert showSuccess:@"Успешно" subTitle:@"Вы подключили тариф 'Базовый'" closeButtonTitle:@"Ок" duration:5.0];
-    }
+
 }
 @end

@@ -263,9 +263,12 @@ static NSString *baseURL = @"http://cupsters.ru";
 
 -(MapTableViewCell*)configurePlace:(MapTableViewCell*)cell At:(NSInteger)row {
     
+    NSManagedObject *object = [self.source objectAtIndex:row];
+    
+//    NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://lk.cupsters.ru/%@", [object valueForKey:@"icon"]]];
     [cell.numberRow setText:[NSString stringWithFormat:@"%ld", row + 1]];
     [cell.logo setImageWithURL:[NSURL URLWithString:@"http://cupsters.ru/img/logo_red.png"]];
-    [cell.name setText:[self.source[row] valueForKey:@"name"]];
+    [cell.name setText:[object valueForKey:@"name"]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;

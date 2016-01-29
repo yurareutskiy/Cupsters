@@ -28,6 +28,10 @@
 @end
 
 @implementation CafeViewController {
+    NSInteger coffeeRows;
+    NSInteger teaRows;
+    NSInteger othereRows;
+    NSManagedObjectContext *context;
     CLLocationManager *locationManager;
     GMSMapView *mapView;
     BOOL openMap;
@@ -153,6 +157,10 @@
         [weakSelf.scrollView scrollRectToVisible:CGRectMake(viewWidth * index, 0, viewWidth, self.scrollView.frame.size.height) animated:YES];
     }];
     
+    coffeeRows = 0;
+    teaRows = 0;
+    othereRows = 0;
+    
     // Do any additional setup after loading the view.
 }
 
@@ -160,7 +168,7 @@
     
     //self.source = [[DataManager sharedManager] getDataFromEntity:@"Cafes"];
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    context = [appDelegate managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription
                                    entityForName:@"Coffees" inManagedObjectContext:context];
@@ -170,7 +178,7 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:
                               @"%@ == id_cafe", idCafe];
     [fetchRequest setPredicate:predicate];
-    fetchRequest.propertiesToFetch = [NSArray arrayWithObject:[[entity propertiesByName] objectForKey:@"name"]];
+    fetchRequest.propertiesToFetch = @[[[entity propertiesByName] objectForKey:@"name"], [[entity propertiesByName] objectForKey:@"type"], [[entity propertiesByName] objectForKey:@"icon"]];
     fetchRequest.returnsDistinctResults = YES;
     fetchRequest.resultType = NSDictionaryResultType;
     
@@ -179,6 +187,16 @@
     
     NSError *error = nil;
     source = [context executeFetchRequest:fetchRequest error:&error];
+    for (int i = 0; i < [source count]; i++) {
+        NSString *type = [source[i] valueForKey:@"type"];
+        if ([type isEqualToString:@"coffee"]) {
+            coffeeRows++;
+        } else if ([type isEqualToString:@"tea"]) {
+            teaRows++;
+        } else if ([type isEqualToString:@"other"]) {
+            othereRows++;
+        }
+    }
     NSAssert(source != nil, @"Failed to execute %@: %@", fetchRequest, error);
     
 }
@@ -282,18 +300,8 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (tableView.tag == 1) {
-        return 1;
-    }
-    else if (tableView.tag == 2) {
-        return 1;
-    }
-    else if (tableView.tag == 3) {
-        return 1;
-    }
-    else {
-        return 1;
-    }
+
+    return 1;
 }
 
 // Tying up the segmented control to a scroll view
@@ -301,84 +309,112 @@
 
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (tableView.tag == 1) {
-        return source.count;
+    switch (tableView.tag) {
+        case 1:
+            return coffeeRows ? coffeeRows : 1;
+            break;
+        case 2:
+            return teaRows ? teaRows : 1;
+            break;
+        case 3:
+            return othereRows ? othereRows : 1;
+            break;
+        default:
+            return 0;
     }
-    else if (tableView.tag == 2) {
-        return 10;
-    }
-    else if (tableView.tag == 3) {
-        return 10;
-    }
-    else {
-        return 10;
-    }
+
 }
 
--(CafeTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    CafeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cCellCoffee forIndexPath:indexPath];
+    if (!cell) {
+        cell = [[CafeTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cCellCoffee];
+    }
+
+    switch (tableView.tag) {
+        case 1:
+            if (coffeeRows == 0) {
+                cell.hidden = true;
+                return cell;
+            }
+            break;
+        case 2:
+            if (teaRows == 0) {
+                cell.hidden = true;
+                return cell;
+            }
+            break;
+        case 3:
+            if (othereRows == 0) {
+                cell.hidden = true;
+                return cell;
+            }
+            break;
+        default:
+            break;
+
+    }
+
+    NSLog(@"%@\n%d", indexPath, tableView.tag);
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+    NSManagedObject *coffee = [source objectAtIndex:indexPath.row];
+        
+    NSNumber *idCafeCell = [_cafe valueForKey:@"id"];
+    cell.idCafe = idCafeCell.integerValue;
     
-    if (tableView.tag == 1) {
-        CafeTableViewCell *cell = [self.tableView1 dequeueReusableCellWithIdentifier:@"cafeCell" forIndexPath:indexPath];
-        
-        NSNumber *idCafeCell = [_cafe valueForKey:@"id"];
-        cell.idCafe = idCafeCell.integerValue;
-        
-        cell.delegate = self;
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+    cell.delegate = self;
+
+    NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://lk.cupsters.ru%@BIG1.png", [coffee valueForKey:@"icon"]]];
+    [cell.coffeePic setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"cafeBack1"]];
+
+    
 //        [cell.plus addTarget:self action:@selector(plusBtn:index:for:plus:minus:) with forControlEvents:UIControlEventTouchUpInside];
 //        [cell.minus addTarget:self action:@selector(minusBtn:index:for:plus:minus:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [cell.coffeeName setText:[source[indexPath.row] valueForKey:@"name"]];
-        [cell setRow:indexPath.row];
-        
-        return cell;
-    }
-    else if (tableView.tag == 2) {
-        CafeTableViewCell *cell = [self.tableView2 dequeueReusableCellWithIdentifier:@"cafeCell" forIndexPath:indexPath];
-        NSNumber *idCafeCell = [_cafe valueForKey:@"id"];
-        cell.idCafe = idCafeCell.integerValue;
-        cell.delegate = self;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell.coffeeName setText:@"lol"];
-        [cell setRow:indexPath.row];
-        return cell;
-    }
-    else if (tableView.tag == 3) {
-        CafeTableViewCell *cell = [self.tableView3 dequeueReusableCellWithIdentifier:@"cafeCell" forIndexPath:indexPath];
-        NSNumber *idCafeCell = [_cafe valueForKey:@"id"];
-        cell.idCafe = idCafeCell.integerValue;
-        cell.delegate = self;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell.coffeeName setText:@"lol"];
-        [cell setRow:indexPath.row];
-        
-        return cell;
-    }
-    else {
-        CafeTableViewCell *cell = [self.tableView1 dequeueReusableCellWithIdentifier:@"cafeCell" forIndexPath:indexPath];
-        NSNumber *idCafeCell = [_cafe valueForKey:@"id"];
-        cell.idCafe = idCafeCell.integerValue;
-        cell.delegate = self;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [cell.coffeeName setText:@"lol"];
-        [cell setRow:indexPath.row];
-        
-        return cell;
-    }
+    
+    [cell.coffeeName setText:[coffee valueForKey:@"name"]];
+    [cell setRow:indexPath.row];
+    
+    return cell;
+//    }
+//    else if (tableView.tag == 2) {
+//        CafeTableViewCell *cell = [self.tableView2 dequeueReusableCellWithIdentifier:@"cafeCell" forIndexPath:indexPath];
+//        NSNumber *idCafeCell = [_cafe valueForKey:@"id"];
+//        cell.idCafe = idCafeCell.integerValue;
+//        cell.delegate = self;
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        [cell.coffeeName setText:@"lol"];
+//        [cell setRow:indexPath.row];
+//        return cell;
+//    }
+//    else if (tableView.tag == 3) {
+//        CafeTableViewCell *cell = [self.tableView3 dequeueReusableCellWithIdentifier:@"cafeCell" forIndexPath:indexPath];
+//        NSNumber *idCafeCell = [_cafe valueForKey:@"id"];
+//        cell.idCafe = idCafeCell.integerValue;
+//        cell.delegate = self;
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        [cell.coffeeName setText:@"lol"];
+//        [cell setRow:indexPath.row];
+//        
+//        return cell;
+//    }
+//    else {
+//        CafeTableViewCell *cell = [self.tableView1 dequeueReusableCellWithIdentifier:@"cafeCell" forIndexPath:indexPath];
+//        NSNumber *idCafeCell = [_cafe valueForKey:@"id"];
+//        cell.idCafe = idCafeCell.integerValue;
+//        cell.delegate = self;
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        [cell.coffeeName setText:@"lol"];
+//        [cell setRow:indexPath.row];
+//        
+//        return cell;
+//    }
     
     
     //[self configurePlace:cell At:indexPath.row];
 }
 
-
--(CafeTableViewCell*)configurePlace:(CafeTableViewCell*)cell At:(NSInteger)row {
-    
-
-    
-    return cell;
-}
 
 - (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     NSLog(@"yeap");
@@ -402,15 +438,17 @@
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:@"Coffees" inManagedObjectContext:context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Coffees" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
-    
+    NSNumber *idCafe = [_cafe valueForKey:@"id"];
+    NSString *name = ((CafeTableViewCell*)cell).coffeeName.text;
+//
+    NSString *volume = [NSString stringWithFormat:@"%@", ((CafeTableViewCell*)cell).volumeNum[((CafeTableViewCell*)cell).index]];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"%@ == id_cafe AND %@ == name AND %@ == volume",
-                              [_cafe valueForKey:@"id"],
-                              ((CafeTableViewCell*)cell).coffeeName.text,
-                              [NSString stringWithFormat:@"%@", ((CafeTableViewCell*)cell).volumeNum[((CafeTableViewCell*)cell).index]]];
+                              @"((%@ == id_cafe) AND (%@ == name)) AND (%@ == volume)",
+                              idCafe,
+                              name,
+                              volume];
     NSLog(@"im here!");
     NSLog(@"%@", [_cafe valueForKey:@"id"]);
     NSLog(@"%@", ((CafeTableViewCell*)cell).coffeeName.text);
