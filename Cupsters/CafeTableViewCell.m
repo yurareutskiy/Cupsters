@@ -34,7 +34,7 @@
     [fetchRequest setEntity:entity];
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"%@ <= id_cafe", [userDefaults objectForKey:@"id"]];
+                              @"%@ == id_cafe", [userDefaults objectForKey:@"id"]];
     [fetchRequest setPredicate:predicate];
     fetchRequest.propertiesToFetch = [NSArray arrayWithObject:[[entity propertiesByName] objectForKey:@"volume"]];
     fetchRequest.returnsDistinctResults = YES;

@@ -57,12 +57,12 @@
         self.price.text = [NSString stringWithFormat:@"%@ ₽", user.plan[@"price"]];
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        formatter.dateFormat = @"y-M-d H:m:s";
-        NSDateComponents *monthComponent = [[NSDateComponents alloc] init];
-        monthComponent.month = 1;
-        NSCalendar *theCalendar = [NSCalendar currentCalendar];
-        NSDate *beginDate = [formatter dateFromString:user.plan[@"create_date"]];
-        NSDate *endDate = [theCalendar dateByAddingComponents:monthComponent toDate:beginDate options:nil];
+//        formatter.dateFormat = @"y-M-d H:m:s";
+//        NSDateComponents *monthComponent = [[NSDateComponents alloc] init];
+//        monthComponent.month = 1;
+//        NSCalendar *theCalendar = [NSCalendar currentCalendar];
+//        NSDate *beginDate = [formatter dateFromString:user.plan[@"create_date"]];
+        NSDate *endDate = user.plan[@"endDate"];
         formatter.dateFormat = @"d MMMM";
         self.timeLimitLabel.text = [NSString stringWithFormat:@"Годен до %@", [formatter stringFromDate:endDate]];
     } else {

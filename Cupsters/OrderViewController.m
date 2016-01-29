@@ -25,6 +25,7 @@
 
 @implementation OrderViewController {
     NSUserDefaults *userDefaults;
+    User *user;
 }
 
 - (void)viewDidLoad {
@@ -167,7 +168,7 @@
         return buttonConfig;
     };
     
-    [alert showCustom:self image:[UIImage imageNamed:@"cup"] color:color title:@"Подтверждение" subTitle:[NSString stringWithFormat:@"Вы заказали %@, объем %@ мл", self.name.text, self.volume.text]  closeButtonTitle:nil duration:0.0f];
+    [alert showCustom:self image:[UIImage imageNamed:@"cup"] color:color title:@"Подтверждение" subTitle:[NSString stringWithFormat:@"Вы заказали %@, объем %@", self.name.text, self.volume.text]  closeButtonTitle:nil duration:0.0f];
 
 }
 
@@ -344,9 +345,13 @@
 }
 
 - (void) sendOrder {
+    user = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
+    if (![self checkUserCanMakeOrder]) {
+        
+        return;
+    }
     
     NSManagedObject *coffeeId = [self.coffee valueForKey:@"id"];;
-    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
     NSNumber *userID = user.id;
     NSNumber *number = @1;
     
@@ -357,12 +362,15 @@
     Server *server = [[Server alloc] init];
     ServerRequest *request = [ServerRequest initRequest:ServerRequestTypePOST With:body To:OrderURLStrring];
     [server sentToServer:request OnSuccess:^(NSDictionary *result) {
-        user.plan = result[@"tariff"][0];
         if ([user.plan[@"counter"] isEqualToString:@"-1"]) {
         } else {
-            NSInteger cups = user.plan.count - 1;
+            NSString *cupsString = user.plan[@"counter"];
+            NSInteger cups = [cupsString intValue] - 1;
             [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%ld ЧАШЕК  ", (long)cups] forKey:@"currentCounter"];
-            NSInteger newCups = [userDefaults integerForKey:@"currentCounter"];
+            NSMutableDictionary *mutDict = [[NSMutableDictionary alloc] initWithDictionary:user.plan];
+            mutDict[@"counter"] = [NSString stringWithFormat:@"%d", cups];
+            user.plan = mutDict;
+            [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:user] forKey:@"user"];
             if (cups == 0) {
                 [[NSUserDefaults standardUserDefaults] setObject:@"НЕТ ЧАШЕК  " forKey:@"currentCounter"];
             }
@@ -372,6 +380,21 @@
         NSLog(@"%@", [error debugDescription]);
     }];
 }
+
+- (BOOL)checkUserCanMakeOrder {
+    NSInteger counter = [user.plan[@"counter"] intValue];
+    if (counter == 0) {
+        return NO;
+    } else if (counter == -1) {
+        NSDate *expiredDate = user.plan[@"endDate"];
+        NSInteger result = [expiredDate compare:[NSDate date]];
+        if (result != 1) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
 
 
 @end

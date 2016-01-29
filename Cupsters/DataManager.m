@@ -10,9 +10,10 @@
 #import "Plan.h"
 #import "User.h"
 #import "AppDelegate.h"
+#import "Constants.h"
 
 @implementation DataManager
-
+@synthesize delegate;
 #pragma mark Singleton Methods
 
 + (id)sharedManager {
@@ -44,14 +45,33 @@
     NSDictionary *plan = nil;
     if (![result[@"plan"] isKindOfClass:[NSString class]]) {
 //        plan = [Plan initWithParams:result[@"plan"]];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"y-M-d H:m:s";
+        NSDateComponents *monthComponent = [[NSDateComponents alloc] init];
+        NSCalendar *theCalendar = [NSCalendar currentCalendar];
+        NSDate *beginDate = [formatter dateFromString:result[@"plan"][@"create_date"]];
+        
         if ([result[@"plan"][@"counter"] isEqualToString:@"-1"]) {
+            monthComponent.month = 1;
             [ud setObject:@"∞ ЧАШЕК  " forKey:@"currentCounter"];
         } else if (result[@"plan"][@"counter"]) {
+            monthComponent.month = 3;
             [ud setObject:[NSString stringWithFormat:@"%@ ЧАШЕК  ", result[@"plan"][@"counter"]] forKey:@"currentCounter"];
-        } else {
-            [ud setObject:@"НЕТ ЧАШЕК  " forKey:@"currentCounter"];
         }
-        plan = result[@"plan"];
+        
+        
+        if (!result[@"plan"][@"counter"]) {
+            [ud setObject:@"НЕТ ЧАШЕК  " forKey:@"currentCounter"];
+        } else {
+            NSDate *endDate = [theCalendar dateByAddingComponents:monthComponent toDate:beginDate options:0];
+//            [result[@"plan"] setObject:endDate forKey:@"endDate"];
+            NSMutableDictionary *mutDict = [[NSMutableDictionary alloc] initWithDictionary:result[@"plan"]];
+            [mutDict addEntriesFromDictionary:@{@"endDate":endDate}];
+            plan = mutDict;
+        }
+
+    } else {
+        [ud setObject:@"НЕТ ЧАШЕК  " forKey:@"currentCounter"];
     }
     User *user = [User initUserWithFirstName:result[@"user"][@"first_name"] LastName:result[@"user"][@"last_name"] userID:result[@"user"][@"id"] UserPlan:plan];
     NSData *userData = [NSKeyedArchiver archivedDataWithRootObject:user];
@@ -144,7 +164,7 @@
         NSArray *fetchedObjects = [context executeFetchRequest:request error:&error];
         NSLog(@"%@", fetchedObjects);
 
-        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificatiionLoading object:object];
     }
 
 }

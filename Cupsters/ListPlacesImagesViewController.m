@@ -36,6 +36,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(finishLoadingDataFromEntity:)
+                                                 name:kNotificatiionLoading
+                                               object:nil];
+    
     userDefaults = [NSUserDefaults standardUserDefaults];
     [self setNeedsStatusBarAppearanceUpdate];
     
@@ -59,12 +64,31 @@
 
 }
 
+-(void)viewDidDisappear:(BOOL)animated {
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+
+}
+
+- (void)finishLoadingDataFromEntity:(NSNotification*)notification {
+    if ([[notification object] isEqualToString:@"Cafes"]) {
+
+        [self fetchData];
+        [self.table reloadData];
+        
+    }
+}
+
 - (void) reverseGeocodeCoordinate:(CLLocationCoordinate2D)coordinate completionHandler:(GMSReverseGeocodeCallback)handler {
     
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     //self.source = [[DataManager sharedManager] getDataFromEntity:@"Cafes"];
+    [self fetchData];
+}
+
+- (void)fetchData {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -83,11 +107,11 @@
     double maxLongitude = pointOfInterest.coordinate.longitude + deltaLongitude;
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                             @"(%@ <= longitude) AND (longitude <= %@)"
-                             @"AND (%@ <= lattitude) AND (lattitude <= %@)",
-                             @(minLongitude), @(maxLongitude), @(minLatitude), @(maxLatitude)];
+                              @"(%@ <= longitude) AND (longitude <= %@)"
+                              @"AND (%@ <= lattitude) AND (lattitude <= %@)",
+                              @(minLongitude), @(maxLongitude), @(minLatitude), @(maxLatitude)];
     
-    [fetchRequest setPredicate:predicate];
+    //    [fetchRequest setPredicate:predicate];
     
     NSError *error = nil;
     self.source = [context executeFetchRequest:fetchRequest error:&error];
@@ -221,7 +245,9 @@
 //    } else {
 //        imageURL = [NSURL URLWithString:[object valueForKey:@"image"]];
 //    }
-    
+    if ([object valueForKey:@"name"] == nil) {
+//        [self fetchData];
+    }
     NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://lk.cupsters.ru/%@", [object valueForKey:@"image"]]];
     NSLog(@"%@", imageURL);
 //    imageURL = [NSURL URLWithString:@"http://lk.cupsters.ru/img/cafe/maxresdefault.jpg"];
@@ -229,7 +255,7 @@
     [cell.backPhoto setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"cafeBack1"]];
     [cell.placeName setText:[object valueForKey:@"name"]];
     [cell.underground setText:[object valueForKey:@"address"]];
-    [cell.distance setText:@"2 км."];
+//    [cell.distance setText:@"2 км."];
     
     return cell;
 }

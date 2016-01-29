@@ -8,7 +8,15 @@
 
 #import <CoreData/CoreData.h>
 
+@protocol DataManagerDelegate <NSObject>
+@optional
+- (void)finishLoadingDataFromEntity:(NSString*)entity;
+
+@end
+
 @interface DataManager : NSFetchedResultsController
+
+@property (weak, nonatomic) id <DataManagerDelegate> delegate;
 
 //- (void)saveDataWithLogin:(NSDictionary*)result;
 //- (void)saveDataWithLoginInSN:(NSString*)sn WithResult:(NSDictionary *)result;

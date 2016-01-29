@@ -12,6 +12,7 @@ extern NSString* const cSideMenuBackColor;
 
 #pragma mark - Cell identifieres
 extern NSString* const cCellBigPlace;
+extern NSString* const cCellCoffee;
 
 #pragma mark - Numbers
 
@@ -33,3 +34,6 @@ extern NSString * const MenuURLStrring;
 extern NSString * const OrderURLStrring;
 extern NSString * const SetTariffURLStrring;
 extern NSString * const CoffeeURLStrring;
+
+#pragma mark - Notofications
+extern NSString * const kNotificatiionLoading;
