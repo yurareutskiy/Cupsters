@@ -30,6 +30,7 @@
 		3AFD2D461C4AB471004F8E72 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFD2D451C4AB471004F8E72 /* MapViewController.m */; };
 		3AFD2D481C4ABBB8004F8E72 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFD2D471C4ABBB8004F8E72 /* CoreLocation.framework */; };
 		D29AE48A6D499E64286DB83E /* libPods-Cupsters.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FD21CA9A973FF164B7FBFE4 /* libPods-Cupsters.a */; };
+		DB478BBF1C5D2F890067BDE5 /* ShowAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = DB478BBE1C5D2F890067BDE5 /* ShowAnimator.m */; };
 		DB671F3C1C3DCFA0008C1408 /* ListPlacesImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F3B1C3DCFA0008C1408 /* ListPlacesImagesViewController.m */; };
 		DB671F3F1C3DD39F008C1408 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F3E1C3DD39F008C1408 /* Constants.m */; };
 		DB671F421C3DEA07008C1408 /* UIColor+HEX.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F411C3DEA07008C1408 /* UIColor+HEX.m */; };
@@ -112,6 +113,8 @@
 		3AFD2D471C4ABBB8004F8E72 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3FD21CA9A973FF164B7FBFE4 /* libPods-Cupsters.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cupsters.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAB1AEDCFE52DD16B159BD48 /* Pods-Cupsters.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cupsters.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cupsters/Pods-Cupsters.release.xcconfig"; sourceTree = "<group>"; };
+		DB478BBD1C5D2F890067BDE5 /* ShowAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowAnimator.h; sourceTree = "<group>"; };
+		DB478BBE1C5D2F890067BDE5 /* ShowAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowAnimator.m; sourceTree = "<group>"; };
 		DB671F3A1C3DCF9F008C1408 /* ListPlacesImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListPlacesImagesViewController.h; sourceTree = "<group>"; };
 		DB671F3B1C3DCFA0008C1408 /* ListPlacesImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListPlacesImagesViewController.m; sourceTree = "<group>"; };
 		DB671F3D1C3DD369008C1408 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -262,6 +265,24 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		DB478BB51C5D1FFD0067BDE5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DB478BB61C5D20160067BDE5 /* Animators */,
+				DB67FED51C3C0B8100FC62E2 /* Cells */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		DB478BB61C5D20160067BDE5 /* Animators */ = {
+			isa = PBXGroup;
+			children = (
+				DB478BBD1C5D2F890067BDE5 /* ShowAnimator.h */,
+				DB478BBE1C5D2F890067BDE5 /* ShowAnimator.m */,
+			);
+			name = Animators;
+			sourceTree = "<group>";
+		};
 		DB671F461C3EC30B008C1408 /* Mock files */ = {
 			isa = PBXGroup;
 			children = (
@@ -318,7 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				DB67FED31C3C0B6500FC62E2 /* Models */,
-				DB67FED51C3C0B8100FC62E2 /* Cells */,
+				DB478BB51C5D1FFD0067BDE5 /* Views */,
 				DB67FED61C3C0B8800FC62E2 /* Controllers */,
 				DB67FEBC1C3BD8FB00FC62E2 /* AppDelegate.h */,
 				DB67FEBD1C3BD8FB00FC62E2 /* AppDelegate.m */,
@@ -608,6 +629,7 @@
 				DBA9C4B01C4DBC84002A5E0D /* ServerError.m in Sources */,
 				3A08A37F1C4C1B970094AB63 /* CustomButtonSettings.m in Sources */,
 				DB6733BF1C41022100BA7832 /* Plan.m in Sources */,
+				DB478BBF1C5D2F890067BDE5 /* ShowAnimator.m in Sources */,
 				DB671F3C1C3DCFA0008C1408 /* ListPlacesImagesViewController.m in Sources */,
 				DB671F4B1C3EE5F7008C1408 /* MenuRevealViewController.m in Sources */,
 				DBDC1C301C40EB05003A8507 /* SWRevealViewController.m in Sources */,

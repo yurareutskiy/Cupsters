@@ -50,6 +50,8 @@
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [locationManager requestWhenInUseAuthorization];
     [locationManager startUpdatingLocation];
+    
+
 
     [self customNavBar];
     
@@ -61,7 +63,12 @@
     [self configureMenu];
     
     pointOfInterest = [[CLLocation alloc] initWithLatitude:locationManager.location.coordinate.latitude longitude:locationManager.location.coordinate.longitude];
+}
 
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    NSLog(@"locations: %@", locations);
+    pointOfInterest = [[CLLocation alloc] initWithLatitude:locationManager.location.coordinate.latitude longitude:locationManager.location.coordinate.longitude];
+    [locationManager stopUpdatingLocation];
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -75,7 +82,6 @@
 
         [self fetchData];
         [self.table reloadData];
-        
     }
 }
 
@@ -111,12 +117,39 @@
                               @"AND (%@ <= lattitude) AND (lattitude <= %@)",
                               @(minLongitude), @(maxLongitude), @(minLatitude), @(maxLatitude)];
     
-    //    [fetchRequest setPredicate:predicate];
+    [fetchRequest setPredicate:predicate];
     
     NSError *error = nil;
     self.source = [context executeFetchRequest:fetchRequest error:&error];
     NSAssert(self.source != nil, @"Failed to execute %@: %@", fetchRequest, error);
+    [self completeDistanceArray];
 
+}
+
+- (void)completeDistanceArray {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    NSManagedObject *place;
+    NSString *address;
+    NSString *distanceText;
+    NSLog(@"lat - %f, lon - %f", pointOfInterest.coordinate.latitude, pointOfInterest.coordinate.longitude);
+    for (int i = 0; i < [self.source count]; i++) {
+        place = [self.source objectAtIndex:i];
+        address = [place valueForKey:@"address"];
+        double longitude = ((NSNumber*)[self.source[i] valueForKey:@"longitude"]).doubleValue;
+        double lattitude = ((NSNumber*)[self.source[i] valueForKey:@"lattitude"]).doubleValue;
+//        CLLocationCoordinate2D place = cllo
+        CLLocation *placeLocation = [[CLLocation alloc] initWithLatitude:lattitude longitude:longitude];
+        double distance = [pointOfInterest distanceFromLocation:placeLocation];
+        
+        if (distance < 1000.f) {
+            distanceText = [NSString stringWithFormat:@"%d м", (int)distance];
+        } else {
+            distanceText = [NSString stringWithFormat:@"%d км", ((int)(distance + 500.f))/1000];
+        }
+        array[i] = distanceText;
+    }
+    NSLog(@"%@", array);
+    self.distanceArray = array;
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
@@ -254,7 +287,7 @@
     NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://lk.cupsters.ru/%@", [object valueForKey:@"image"]]];
     NSLog(@"%@", imageURL);
 //    imageURL = [NSURL URLWithString:@"http://lk.cupsters.ru/img/cafe/maxresdefault.jpg"];
-
+    [cell.distance setText:[self.distanceArray objectAtIndex:row]];
     [cell.backPhoto setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"cafeBack1"]];
     [cell.placeName setText:[object valueForKey:@"name"]];
     [cell.underground setText:[object valueForKey:@"address"]];
@@ -266,6 +299,14 @@
 
 - (IBAction)goToMap:(UIButton *)sender {
     [self performSegueWithIdentifier:@"goToMap" sender:self];
+////    MainView *nextView = [[MainView alloc] init];
+//    [UIView animateWithDuration:0.75
+//                     animations:^{
+//                         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+////                         [self.navigationController pushViewController:nextView animated:NO];
+//                         [self performSegueWithIdentifier:@"goToMap" sender:self];
+//                         [UIView setAnimationTransition:UIViewAnimationTransitionCurlUp forView:self.navigationController.view cache:NO];
+//                     }];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -275,6 +316,18 @@
         NSManagedObject *cafe = [self.source objectAtIndex:row];
         vc.cafe = cafe;
     }
+//    } else if ([segue.identifier isEqualToString:@"goToMap"]) {
+//        UIViewController *destination = segue.destinationViewController;
+//        NSMutableArray *viewControllers = self.navigationController.viewControllers;
+//        segue.destinationViewController.navigationController.navigationBarHidden = false;
+//        [self.navigationController setViewControllers:viewControllers];
+//    }
 
 }
+
+
+
+- (IBAction)unwindFromViewController:(UIStoryboardSegue *)sender {
+}
+
 @end

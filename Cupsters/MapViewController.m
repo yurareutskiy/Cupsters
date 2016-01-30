@@ -269,6 +269,7 @@ static NSString *baseURL = @"http://cupsters.ru";
     [cell.numberRow setText:[NSString stringWithFormat:@"%ld", row + 1]];
     [cell.logo setImageWithURL:[NSURL URLWithString:@"http://cupsters.ru/img/logo_red.png"]];
     [cell.name setText:[object valueForKey:@"name"]];
+    [cell.underground setText:[object valueForKey:@"address"]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
@@ -307,7 +308,8 @@ static NSString *baseURL = @"http://cupsters.ru";
 */
 
 - (IBAction)goToList:(UIButton *)sender {
-    [self performSegueWithIdentifier:@"goToList" sender:self];
+    [self.navigationController popViewControllerAnimated:true];
+//    [self performSegueWithIdentifier:@"goToList" sender:self];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

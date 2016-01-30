@@ -8,9 +8,12 @@
 
 #import "NavViewController.h"
 #import "SWRevealViewController.h"
+#import "ShowAnimator.h"
 
 @interface NavViewController () <UIGestureRecognizerDelegate, SWRevealViewControllerDelegate>
+
 @property (nonatomic, strong) UITapGestureRecognizer *tapGestureRecognizer;
+
 @end
 
 @implementation NavViewController
@@ -42,6 +45,12 @@
         self.interactivePopGestureRecognizer.enabled = YES;
         self.topViewController.view.userInteractionEnabled = YES;
     }
+}
+
+#pragma mark - Animator delegate
+
+-(id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC {
+    return [[ShowAnimator alloc] init];
 }
 
 /*

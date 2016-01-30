@@ -8,6 +8,7 @@
 
 #import "EntryNavigationController.h"
 #import "Constants.h"
+#import "ShowAnimator.h"
 
 @interface EntryNavigationController ()
 
@@ -21,10 +22,13 @@
 
 }
 
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
 #pragma mark - Navigation

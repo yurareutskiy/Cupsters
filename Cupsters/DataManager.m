@@ -144,7 +144,8 @@
                 if ([key isEqualToString:@"id"] || [key isEqualToString:@"volume"] || [key isEqualToString:@"price"] || [key isEqualToString:@"counter"] || [key isEqualToString:@"id_cafe"]) {
                     [managedObject setValue:[NSNumber numberWithInt:[item[key] intValue]] forKey:key];
                 } else if ([key isEqualToString:@"lattitude"] || [key isEqualToString:@"longitude"]) {
-                    [managedObject setValue:[NSNumber numberWithDouble:[item[key] doubleValue]] forKey:key];
+                    NSNumber *number = [NSNumber numberWithDouble:[item[key] doubleValue]];
+                    [managedObject setValue:number forKey:key];
                 } else if ([@[@"date", @"open", @"close", @"open_weekend", @"close_weekend"] containsObject:key]) {
                     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
                     if ([key isEqualToString:@"date"]) {

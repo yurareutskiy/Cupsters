@@ -14,6 +14,9 @@
 @interface ListPlacesImagesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, DataManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *table;
+@property (strong, nonatomic) NSArray *distanceArray;
 - (IBAction)goToMap:(UIButton *)sender;
+- (IBAction)unwindFromViewController:(UIStoryboardSegue *)sender;
+
 
 @end
