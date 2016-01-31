@@ -91,6 +91,9 @@
             [order setValue:tempDict[@"coffee"] forKey:@"coffee"];
             [order setValue:tempDict[@"volume"] forKey:@"volume"];
             [order setValue:tempDict[@"date_accept"] forKey:@"date"];
+            [order setValue:tempDict[@"cafe_id"] forKey:@"cafe_id"];
+            NSLog(@"%@", tempDict[@"coffee_id"]);
+            [order setValue:tempDict[@"coffee_id"] forKey:@"coffee_id"];
             [order setValue:[NSNumber numberWithInt:((NSString*)tempDict[@"id"]).intValue] forKey:@"id"];
             NSError *error = nil;
             [context save:&error];
@@ -141,7 +144,7 @@
             }
             
             for (NSString *key in [item allKeys]) {
-                if ([key isEqualToString:@"id"] || [key isEqualToString:@"volume"] || [key isEqualToString:@"price"] || [key isEqualToString:@"counter"] || [key isEqualToString:@"id_cafe"]) {
+                if ([key isEqualToString:@"id"] || [key isEqualToString:@"volume"] || [key isEqualToString:@"price"] || [key isEqualToString:@"counter"] || [key isEqualToString:@"id_cafe"] || [key isEqualToString:@"coffee_id"] || [key isEqualToString:@"cafe_id"]) {
                     [managedObject setValue:[NSNumber numberWithInt:[item[key] intValue]] forKey:key];
                 } else if ([key isEqualToString:@"lattitude"] || [key isEqualToString:@"longitude"]) {
                     NSNumber *number = [NSNumber numberWithDouble:[item[key] doubleValue]];
@@ -172,15 +175,19 @@
 
 
 - (NSArray*)getDataFromEntity:(NSString*)entityName {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    return [self getDataFromEntity:entityName AndRequest:fetchRequest];
+}
+
+- (NSArray*)getDataFromEntity:(NSString *)entityName AndRequest:(NSFetchRequest*)fetchRequest {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription
                                    entityForName:entityName inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     NSError *error = nil;
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-
+    
     return fetchedObjects;
 }
 

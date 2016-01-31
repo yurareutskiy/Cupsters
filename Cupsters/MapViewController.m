@@ -78,7 +78,6 @@ static NSString *baseURL = @"http://cupsters.ru";
     mapView.settings.myLocationButton = YES;
     
     [self setNeedsStatusBarAppearanceUpdate];
-    [self customNavBar];
     [self preferredStatusBarStyle];
     [self configureMenu];
     
@@ -125,36 +124,41 @@ static NSString *baseURL = @"http://cupsters.ru";
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-//    self.source = [[DataManager sharedManager] getDataFromEntity:@"Cafes"];
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:@"Cafes" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    
-    static double const D = 5000000. * 1.1;
-    double const R = 6371009.; // Earth readius in meters
-    double meanLatitidue = pointOfInterest.coordinate.latitude * M_PI / 180.;
-    double deltaLatitude = D / R * 180. / M_PI;
-    double deltaLongitude = D / (R * cos(meanLatitidue)) * 180. / M_PI;
-    double minLatitude = pointOfInterest.coordinate.latitude - deltaLatitude;
-    double maxLatitude = pointOfInterest.coordinate.latitude + deltaLatitude;
-    double minLongitude = pointOfInterest.coordinate.longitude - deltaLongitude;
-    double maxLongitude = pointOfInterest.coordinate.longitude + deltaLongitude;
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"(%@ <= longitude) AND (longitude <= %@)"
-                              @"AND (%@ <= lattitude) AND (lattitude <= %@)",
-                              @(minLongitude), @(maxLongitude), @(minLatitude), @(maxLatitude)];
-    
-    [fetchRequest setPredicate:predicate];
-    
-    NSError *error = nil;
-    self.source = [context executeFetchRequest:fetchRequest error:&error];
-    NSAssert(self.source != nil, @"Failed to execute %@: %@", fetchRequest, error);
-    
-    [self makeCafeMarker:mapView];
+
+    [self customNavBar];
+
+    if (self.source == nil) {
+        //    self.source = [[DataManager sharedManager] getDataFromEntity:@"Cafes"];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+        NSManagedObjectContext *context = [appDelegate managedObjectContext];
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription
+                                       entityForName:@"Cafes" inManagedObjectContext:context];
+        [fetchRequest setEntity:entity];
+        
+        static double const D = 5000000. * 1.1;
+        double const R = 6371009.; // Earth readius in meters
+        double meanLatitidue = pointOfInterest.coordinate.latitude * M_PI / 180.;
+        double deltaLatitude = D / R * 180. / M_PI;
+        double deltaLongitude = D / (R * cos(meanLatitidue)) * 180. / M_PI;
+        double minLatitude = pointOfInterest.coordinate.latitude - deltaLatitude;
+        double maxLatitude = pointOfInterest.coordinate.latitude + deltaLatitude;
+        double minLongitude = pointOfInterest.coordinate.longitude - deltaLongitude;
+        double maxLongitude = pointOfInterest.coordinate.longitude + deltaLongitude;
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                                  @"(%@ <= longitude) AND (longitude <= %@)"
+                                  @"AND (%@ <= lattitude) AND (lattitude <= %@)",
+                                  @(minLongitude), @(maxLongitude), @(minLatitude), @(maxLatitude)];
+        
+        [fetchRequest setPredicate:predicate];
+        
+        NSError *error = nil;
+        self.source = [context executeFetchRequest:fetchRequest error:&error];
+        NSAssert(self.source != nil, @"Failed to execute %@: %@", fetchRequest, error);
+        
+        [self makeCafeMarker:mapView];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -270,6 +274,7 @@ static NSString *baseURL = @"http://cupsters.ru";
     [cell.logo setImageWithURL:[NSURL URLWithString:@"http://cupsters.ru/img/logo_red.png"]];
     [cell.name setText:[object valueForKey:@"name"]];
     [cell.underground setText:[object valueForKey:@"address"]];
+    [cell.distance setText:[self.distanceArray objectAtIndex:row]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
@@ -317,6 +322,7 @@ static NSString *baseURL = @"http://cupsters.ru";
     if ([segue.identifier isEqualToString:@"goToCafe"]) {
         CafeViewController *vc = (CafeViewController*)segue.destinationViewController;
         vc.cafe = [self.source objectAtIndex:((NSIndexPath*)sender).row];
+        vc.distanceText = [self.distanceArray objectAtIndex:((NSIndexPath*)sender).row];
     }
 }
 

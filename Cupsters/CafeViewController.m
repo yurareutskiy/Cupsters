@@ -53,6 +53,7 @@
     
     [_name setText:[NSString stringWithFormat:@"%@", [_cafe valueForKey:@"name"]]];
     [_address setText:[NSString stringWithFormat:@"%@", [_cafe valueForKey:@"address"]]];
+    [_distance setText:[NSString stringWithFormat:@"%@", [_cafe valueForKey:@"address"]]];
     [_cafeBg setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://lk.cupsters.ru/%@", [_cafe valueForKey:@"image"]]]];
     [userDefaults setObject:[_cafe valueForKey:@"id"] forKey:@"id"];
     openMap = false;
@@ -64,7 +65,6 @@
     [locationManager startUpdatingLocation];
     
     [self setNeedsStatusBarAppearanceUpdate];
-    [self customNavBar];
     [self preferredStatusBarStyle];
     [self configureMenu];
     
@@ -91,6 +91,7 @@
     // Creates a marker in the center of the map.
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.position = CLLocationCoordinate2DMake(lat.doubleValue, longi.doubleValue);
+    NSLog(@"coords: lat - %f, long - %f", lat.doubleValue, longi.doubleValue);
     marker.title = [_cafe valueForKey:@"name"];
     
 //    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -166,38 +167,47 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     
-    //self.source = [[DataManager sharedManager] getDataFromEntity:@"Cafes"];
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    context = [appDelegate managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:@"Coffees" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
+    [_distance setText:self.distanceText];
+
     
-    NSNumber *idCafe = [_cafe valueForKey:@"id"];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"%@ == id_cafe", idCafe];
-    [fetchRequest setPredicate:predicate];
-    fetchRequest.propertiesToFetch = @[[[entity propertiesByName] objectForKey:@"name"], [[entity propertiesByName] objectForKey:@"type"], [[entity propertiesByName] objectForKey:@"icon"]];
-    fetchRequest.returnsDistinctResults = YES;
-    fetchRequest.resultType = NSDictionaryResultType;
-    
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
-    
-    NSError *error = nil;
-    source = [context executeFetchRequest:fetchRequest error:&error];
-    for (int i = 0; i < [source count]; i++) {
-        NSString *type = [source[i] valueForKey:@"type"];
-        if ([type isEqualToString:@"coffee"]) {
-            coffeeRows++;
-        } else if ([type isEqualToString:@"tea"]) {
-            teaRows++;
-        } else if ([type isEqualToString:@"other"]) {
-            othereRows++;
+    [self customNavBar];
+
+    if (source == nil) {
+        //self.source = [[DataManager sharedManager] getDataFromEntity:@"Cafes"];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+        context = [appDelegate managedObjectContext];
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription
+                                       entityForName:@"Coffees" inManagedObjectContext:context];
+        [fetchRequest setEntity:entity];
+        
+        NSNumber *idCafe = [_cafe valueForKey:@"id"];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                                  @"%@ == id_cafe", idCafe];
+        [fetchRequest setPredicate:predicate];
+        fetchRequest.propertiesToFetch = @[[[entity propertiesByName] objectForKey:@"name"], [[entity propertiesByName] objectForKey:@"type"], [[entity propertiesByName] objectForKey:@"icon"]];
+        fetchRequest.returnsDistinctResults = YES;
+        fetchRequest.resultType = NSDictionaryResultType;
+        
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+        [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+        
+        NSError *error = nil;
+        source = [context executeFetchRequest:fetchRequest error:&error];
+        for (int i = 0; i < [source count]; i++) {
+            NSString *type = [source[i] valueForKey:@"type"];
+            if ([type isEqualToString:@"coffee"]) {
+                coffeeRows++;
+            } else if ([type isEqualToString:@"tea"]) {
+                teaRows++;
+            } else if ([type isEqualToString:@"other"]) {
+                othereRows++;
+            }
         }
+        NSAssert(source != nil, @"Failed to execute %@: %@", fetchRequest, error);
     }
-    NSAssert(source != nil, @"Failed to execute %@: %@", fetchRequest, error);
+    
+    
     
 }
 

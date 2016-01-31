@@ -286,7 +286,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="89.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fPr-kH-SqV">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fPr-kH-SqV">
                                                     <rect key="frame" x="512" y="15" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="DMT-r8-aXo"/>
@@ -1359,14 +1359,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5UX-8h-iwY">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cafeBack1.png" translatesAutoresizingMaskIntoConstraints="NO" id="Fr9-Pb-Dan">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cafeBack1.png" translatesAutoresizingMaskIntoConstraints="NO" id="Fr9-Pb-Dan">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
                                     </imageView>
                                     <view alpha="0.69999999999999996" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="lzh-x6-iPI">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
                                         <color key="backgroundColor" red="0.16078431369999999" green="0.17254901959999999" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 км" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LyO-vR-H0y">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 км" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LyO-vR-H0y">
                                         <rect key="frame" x="56" y="132" width="25" height="14"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -2909,8 +2909,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="5cM-jH-TcB"/>
-        <segue reference="dwG-z4-33y"/>
-        <segue reference="S4n-iQ-Wpw"/>
+        <segue reference="x5o-Te-fyr"/>
+        <segue reference="7UB-0y-82p"/>
         <segue reference="IMf-SZ-TaL"/>
     </inferredMetricsTieBreakers>
 </document>

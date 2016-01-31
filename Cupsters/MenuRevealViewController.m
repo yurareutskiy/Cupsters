@@ -42,17 +42,24 @@
 
 //    [self.view addSubview:self.user.image];
     
+   
+    
+    _tapRecognizerProfile = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ClickTheProfile:)];
+    [self.profileView addGestureRecognizer:_tapRecognizerProfile];
+    _tapRecognizerProfile.delegate = self;
+    
+}
+
+
+-(void)viewDidAppear:(BOOL)animated {
+
     self.userPhoto.layer.cornerRadius = 30;
     self.userInitials.text = self.user.initials;
     
     self.userPlan.text = self.user.plan[@"name"];
     self.userName.text = self.user.name;
     self.userName.adjustsFontSizeToFitWidth = true;
-    
-    _tapRecognizerProfile = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ClickTheProfile:)];
-    [self.profileView addGestureRecognizer:_tapRecognizerProfile];
-    _tapRecognizerProfile.delegate = self;
-    
+
 }
 
 //- (void) closeMenu {

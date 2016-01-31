@@ -12,6 +12,7 @@
 
 @interface MapViewController : UIViewController<CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSArray *distanceArray;
 - (IBAction)goToList:(UIButton *)sender;
 
 @end

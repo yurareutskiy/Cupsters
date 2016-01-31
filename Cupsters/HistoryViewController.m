@@ -13,6 +13,9 @@
 #import "MenuRevealViewController.h"
 #import "SWRevealViewController.h"
 #import "DataManager.h"
+#import "AppDelegate.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
+#import "OrderViewController.h"
 
 @interface HistoryViewController ()
 
@@ -24,7 +27,10 @@
 
 @end
 
-@implementation HistoryViewController
+@implementation HistoryViewController {
+    NSArray *logoURLs;
+    NSManagedObjectContext *context;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,6 +44,7 @@
     [self customNavBar];
     [self preferredStatusBarStyle];
     [self configureMenu];
+    logoURLs = [self completeIconArrayForCoffee];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -165,9 +172,13 @@
     HistoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"histCell" forIndexPath:indexPath];
     
     NSManagedObject *order = self.source[indexPath.row];
-    [cell.coffeePic setImage:[UIImage imageNamed:@"cappucino"]];
+
+    
     [cell.cafeName setText:[order valueForKey:@"cafe"]];
-    [cell.coffeeName setText:[order valueForKey:@"coffee"]];
+    
+    NSString *coffeeName = [order valueForKey:@"coffee"];
+    [cell.coffeeName setText:coffeeName];
+    [cell.coffeePic setImageWithURL:[self urlForCoffee:coffeeName] placeholderImage:[UIImage imageNamed:@"americano"]];
     [cell.coffeeVol setText:[NSString stringWithFormat:@"%@ мл", [order valueForKey:@"volume"]]];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"y-M-d H:m:s";
@@ -180,12 +191,70 @@
     return cell;
 }
 
+- (NSArray*)completeIconArrayForCoffee {
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    context = [appDelegate managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Coffees" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+
+    fetchRequest.propertiesToFetch = @[[[entity propertiesByName] objectForKey:@"icon"], [[entity propertiesByName] objectForKey:@"name"]];
+    fetchRequest.returnsDistinctResults = YES;
+    fetchRequest.resultType = NSDictionaryResultType;
+    
+    NSError *error = nil;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    NSLog(@"%@", fetchedObjects);
+    return fetchedObjects;
+}
+
+- (NSURL*)urlForCoffee:(NSString*)coffeeName {
+    for (NSDictionary *coffee in logoURLs) {
+        if ([((NSString*)[coffee valueForKey:@"name"]) isEqualToString:coffeeName]) {
+            NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://lk.cupsters.ru%@BIG1.png", [coffee valueForKey:@"icon"]]];
+            return imageURL;
+        }
+    }
+    return [NSURL URLWithString:[NSString stringWithFormat:@"http://lk.cupsters.ru/img/icons/americanoBIG1.png"]];
+}
+
+
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
         [self.tableView deselectRowAtIndexPath:indexPath animated:false];
-        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-        [self performSegueWithIdentifier:@"fromHistory" sender:self];
+//        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        [self performSegueWithIdentifier:@"fromHistory" sender:indexPath];
         NSLog(@"Select row at index %@", indexPath);
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+    if ([segue.identifier isEqualToString:@"fromHistory"]) {
+        OrderViewController *vc = segue.destinationViewController;
+        NSManagedObject *order = self.source[((NSIndexPath*)sender).row];
+        vc.cafe = [self getObjectFrom:order For:@"Cafes"];
+        vc.coffee = [self getObjectFrom:order For:@"Coffees"];
+    }
+}
+
+- (NSManagedObject*)getObjectFrom:(NSManagedObject*)order For:(NSString*)type {
+    NSString *entityName = type;
+    NSString *propertyName;
+    if ([type isEqualToString:@"Coffees"]) {
+        propertyName = @"coffee_id";
+    } else if ([type isEqualToString:@"Cafes"]) {
+        propertyName = @"cafe_id";
+    }
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+    request.entity = entity;
+    NSString *idString = [order valueForKey:propertyName];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id == %@", idString];
+    request.predicate = predicate;
+    NSError *error = nil;
+    NSArray *fetchedResult = [context executeFetchRequest:request error:&error];
+    return [fetchedResult firstObject];
 }
 
 /*

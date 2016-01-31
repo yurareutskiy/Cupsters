@@ -38,7 +38,6 @@
     [super viewDidLoad];
     
     [self setNeedsStatusBarAppearanceUpdate];
-    [self customNavBar];
     [self preferredStatusBarStyle];
     [self configureMenu];
     
@@ -84,6 +83,8 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     self.menu.view.frame = CGRectMake(self.menu.view.frame.origin.x, 0.f, 280.f, self.menu.view.frame.size.height + 60.f);
+    [self customNavBar];
+
 }
 
 - (void)customNavBar {

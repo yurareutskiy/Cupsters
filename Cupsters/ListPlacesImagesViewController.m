@@ -16,6 +16,7 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "CafeViewController.h"
 #import "AppDelegate.h"
+#import "MapViewController.h"
 @import GoogleMaps;
 
 @interface ListPlacesImagesViewController ()
@@ -53,7 +54,6 @@
     
 
 
-    [self customNavBar];
     
     [self preferredStatusBarStyle];
     
@@ -90,8 +90,11 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    //self.source = [[DataManager sharedManager] getDataFromEntity:@"Cafes"];
-    [self fetchData];
+    [self customNavBar];
+
+    if (self.source == nil) {
+        [self fetchData];
+    }
 }
 
 - (void)fetchData {
@@ -113,11 +116,10 @@
     double maxLongitude = pointOfInterest.coordinate.longitude + deltaLongitude;
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"(%@ <= longitude) AND (longitude <= %@)"
-                              @"AND (%@ <= lattitude) AND (lattitude <= %@)",
-                              @(minLongitude), @(maxLongitude), @(minLatitude), @(maxLatitude)];
+                              @"(%f <= longitude) AND (longitude <= %f) AND (%f <= lattitude) AND (lattitude <= %f)",
+                              minLongitude, maxLongitude, minLatitude, maxLatitude];
     
-    [fetchRequest setPredicate:predicate];
+//    [fetchRequest setPredicate:predicate];
     
     NSError *error = nil;
     self.source = [context executeFetchRequest:fetchRequest error:&error];
@@ -315,6 +317,12 @@
         NSInteger row = ((NSIndexPath*)sender).row;
         NSManagedObject *cafe = [self.source objectAtIndex:row];
         vc.cafe = cafe;
+        vc.distanceText = [self.distanceArray objectAtIndex:((NSIndexPath*)sender).row];
+
+    } else if ([segue.identifier isEqualToString:@"goToMap"]) {
+        MapViewController *vc = segue.destinationViewController;
+        vc.distanceArray = self.distanceArray;
+    
     }
 //    } else if ([segue.identifier isEqualToString:@"goToMap"]) {
 //        UIViewController *destination = segue.destinationViewController;
