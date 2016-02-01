@@ -10,9 +10,9 @@
 #import <CoreLocation/CoreLocation.h>
 @import GoogleMaps;
 
-@interface MapViewController : UIViewController<CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface MapViewController : UIViewController<CLLocationManagerDelegate, UITableViewDataSource, UITableViewDelegate, GMSMapViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *distanceArray;
+@property (strong, nonatomic) NSArray *objectsArray;
 - (IBAction)goToList:(UIButton *)sender;
 
 @end

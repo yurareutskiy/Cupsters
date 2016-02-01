@@ -24,7 +24,7 @@
 @property (strong, nonatomic) MenuRevealViewController *menu;
 @property (strong, nonatomic) UIBarButtonItem *menuButton;
 @property (strong, nonatomic) SWRevealViewController *reveal;
-@property (strong, nonatomic) NSArray *source;
+//@property (strong, nonatomic) NSArray *source;
 
 @end
 
@@ -84,16 +84,18 @@ static NSString *baseURL = @"http://cupsters.ru";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    mapView.delegate = self;
     // Do any additional setup after loading the view.
 }
 
 -(void) makeCafeMarker:(GMSMapView*)map {
     
-    for (NSInteger i = 0; i < self.source.count; i++) {
+    for (int i = 0; i < self.objectsArray.count; i++) {
         
-        NSNumber *longitude = [self.source[i] valueForKey:@"longitude"];
-        NSNumber *lattitude = [self.source[i] valueForKey:@"lattitude"];
-        NSString *name = [self.source[i] valueForKey:@"name"];
+        NSManagedObject *cafe = [[self.objectsArray objectAtIndex:i] valueForKey:@"place"];
+        NSNumber *longitude = [cafe valueForKey:@"longitude"];
+        NSNumber *lattitude = [cafe valueForKey:@"lattitude"];
+        NSString *name = [cafe valueForKey:@"name"];
         
         GMSMarker *marker = [[GMSMarker alloc] init];
         marker.position = CLLocationCoordinate2DMake(lattitude.doubleValue, longitude.doubleValue);
@@ -101,12 +103,12 @@ static NSString *baseURL = @"http://cupsters.ru";
         marker.snippet = name;
         marker.map = map;
         marker.icon = [self makePin:(i + 1)];
-        
+        marker.userData = [[NSNumber alloc] initWithInt:i];
     }
     
 }
 
-- (UIImage*)makePin:(NSInteger*)row {
+- (UIImage*)makePin:(NSInteger)row {
     
     UIImage *image = [UIImage imageNamed:@"brownPin"];
     UILabel *number = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, image.size.width, image.size.height / 2)];
@@ -123,42 +125,47 @@ static NSString *baseURL = @"http://cupsters.ru";
     return resultImage;
 }
 
+-(void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker {
+    [self performSegueWithIdentifier:@"goToCafe" sender:marker.userData];
+}
+
 -(void)viewWillAppear:(BOOL)animated {
 
     [self customNavBar];
 
-    if (self.source == nil) {
-        //    self.source = [[DataManager sharedManager] getDataFromEntity:@"Cafes"];
-        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-        NSManagedObjectContext *context = [appDelegate managedObjectContext];
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription
-                                       entityForName:@"Cafes" inManagedObjectContext:context];
-        [fetchRequest setEntity:entity];
-        
-        static double const D = 5000000. * 1.1;
-        double const R = 6371009.; // Earth readius in meters
-        double meanLatitidue = pointOfInterest.coordinate.latitude * M_PI / 180.;
-        double deltaLatitude = D / R * 180. / M_PI;
-        double deltaLongitude = D / (R * cos(meanLatitidue)) * 180. / M_PI;
-        double minLatitude = pointOfInterest.coordinate.latitude - deltaLatitude;
-        double maxLatitude = pointOfInterest.coordinate.latitude + deltaLatitude;
-        double minLongitude = pointOfInterest.coordinate.longitude - deltaLongitude;
-        double maxLongitude = pointOfInterest.coordinate.longitude + deltaLongitude;
-        
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                                  @"(%@ <= longitude) AND (longitude <= %@)"
-                                  @"AND (%@ <= lattitude) AND (lattitude <= %@)",
-                                  @(minLongitude), @(maxLongitude), @(minLatitude), @(maxLatitude)];
-        
-        [fetchRequest setPredicate:predicate];
-        
-        NSError *error = nil;
-        self.source = [context executeFetchRequest:fetchRequest error:&error];
-        NSAssert(self.source != nil, @"Failed to execute %@: %@", fetchRequest, error);
-        
-        [self makeCafeMarker:mapView];
-    }
+//    if (self.objectsArray == nil) {
+//        //    self.source = [[DataManager sharedManager] getDataFromEntity:@"Cafes"];
+//        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+//        NSManagedObjectContext *context = [appDelegate managedObjectContext];
+//        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//        NSEntityDescription *entity = [NSEntityDescription
+//                                       entityForName:@"Cafes" inManagedObjectContext:context];
+//        [fetchRequest setEntity:entity];
+//        
+//        static double const D = 5000000. * 1.1;
+//        double const R = 6371009.; // Earth readius in meters
+//        double meanLatitidue = pointOfInterest.coordinate.latitude * M_PI / 180.;
+//        double deltaLatitude = D / R * 180. / M_PI;
+//        double deltaLongitude = D / (R * cos(meanLatitidue)) * 180. / M_PI;
+//        double minLatitude = pointOfInterest.coordinate.latitude - deltaLatitude;
+//        double maxLatitude = pointOfInterest.coordinate.latitude + deltaLatitude;
+//        double minLongitude = pointOfInterest.coordinate.longitude - deltaLongitude;
+//        double maxLongitude = pointOfInterest.coordinate.longitude + deltaLongitude;
+//        
+//        NSPredicate *predicate = [NSPredicate predicateWithFormat:
+//                                  @"(%@ <= longitude) AND (longitude <= %@)"
+//                                  @"AND (%@ <= lattitude) AND (lattitude <= %@)",
+//                                  @(minLongitude), @(maxLongitude), @(minLatitude), @(maxLatitude)];
+//        
+//        [fetchRequest setPredicate:predicate];
+//        
+//        NSError *error = nil;
+//        NSArray *fetchedResults = [context executeFetchRequest:fetchRequest error:&error];
+//        NSMutableDictionary *
+//        
+//    }
+    [self makeCafeMarker:mapView];
+
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -246,12 +253,12 @@ static NSString *baseURL = @"http://cupsters.ru";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:false];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    [self performSegueWithIdentifier:@"goToCafe" sender:indexPath];
+    [self performSegueWithIdentifier:@"goToCafe" sender:[[NSNumber alloc] initWithInt:indexPath.row]];
     NSLog(@"Select row at index %@", indexPath);
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.source.count;
+    return self.objectsArray.count;
 }
 
 -(MapTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -267,14 +274,14 @@ static NSString *baseURL = @"http://cupsters.ru";
 
 -(MapTableViewCell*)configurePlace:(MapTableViewCell*)cell At:(NSInteger)row {
     
-    NSManagedObject *object = [self.source objectAtIndex:row];
+    NSManagedObject *object = [[self.objectsArray objectAtIndex:row] valueForKey:@"place"];
     
 //    NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://lk.cupsters.ru/%@", [object valueForKey:@"icon"]]];
-    [cell.numberRow setText:[NSString stringWithFormat:@"%ld", row + 1]];
+    [cell.numberRow setText:[NSString stringWithFormat:@"%d", row + 1]];
     [cell.logo setImageWithURL:[NSURL URLWithString:@"http://cupsters.ru/img/logo_red.png"]];
     [cell.name setText:[object valueForKey:@"name"]];
     [cell.underground setText:[object valueForKey:@"address"]];
-    [cell.distance setText:[self.distanceArray objectAtIndex:row]];
+    [cell.distance setText:[[self.objectsArray objectAtIndex:row] valueForKey:@"distanceText"]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
@@ -320,9 +327,10 @@ static NSString *baseURL = @"http://cupsters.ru";
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if ([segue.identifier isEqualToString:@"goToCafe"]) {
+        NSInteger row = ((NSNumber*)sender).intValue;
         CafeViewController *vc = (CafeViewController*)segue.destinationViewController;
-        vc.cafe = [self.source objectAtIndex:((NSIndexPath*)sender).row];
-        vc.distanceText = [self.distanceArray objectAtIndex:((NSIndexPath*)sender).row];
+        vc.cafe = [[self.objectsArray objectAtIndex:row] valueForKey:@"place"];
+        vc.distanceText = [[self.objectsArray objectAtIndex:row] valueForKey:@"distanceText"];
     }
 }
 

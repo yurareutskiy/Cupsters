@@ -122,6 +122,9 @@
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Имя" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rsq-jf-YrB" userLabel="Name">
                                         <rect key="frame" x="200" y="178" width="200" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="e5w-JF-h6n"/>
+                                        </constraints>
                                         <color key="textColor" red="0.76078431372549016" green="0.76078431372549016" blue="0.76078431372549016" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
@@ -139,6 +142,9 @@
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Фамилия" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="26U-xJ-XGI">
                                         <rect key="frame" x="200" y="220" width="200" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="owK-NI-bjY"/>
+                                        </constraints>
                                         <color key="textColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
@@ -156,6 +162,9 @@
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LWX-4F-Mv2">
                                         <rect key="frame" x="200" y="262" width="200" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="IHu-cM-Sue"/>
+                                        </constraints>
                                         <color key="textColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
@@ -173,6 +182,9 @@
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Пароль" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HAg-BV-eND">
                                         <rect key="frame" x="200" y="304" width="200" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="CPz-CA-lvS"/>
+                                        </constraints>
                                         <color key="textColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -280,7 +292,7 @@
                                 <color key="separatorColor" red="0.68627450980000004" green="0.54117647059999996" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mapCell" id="xBN-IE-chF" customClass="MapTableViewCell">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="90"/>
+                                        <rect key="frame" x="0.0" y="28" width="600" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xBN-IE-chF" id="GXH-g4-HPO">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="89.5"/>
@@ -436,7 +448,7 @@
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BigPlaces" rowHeight="180" id="aww-Or-IR9" customClass="PlacePhotoTableViewCell">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="180"/>
+                                        <rect key="frame" x="0.0" y="28" width="600" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aww-Or-IR9" id="Xjp-CN-MbT">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
@@ -1177,7 +1189,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="248" image="cappucino" translatesAutoresizingMaskIntoConstraints="NO" id="1La-jE-JJW">
-                                        <rect key="frame" x="230" y="43" width="140" height="140"/>
+                                        <rect key="frame" x="243" y="51" width="114" height="114"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="1La-jE-JJW" secondAttribute="height" multiplier="1:1" id="b6q-hg-H4M"/>
@@ -1189,14 +1201,14 @@
                                     <constraint firstItem="499-0r-4Ne" firstAttribute="centerX" secondItem="voa-av-onE" secondAttribute="centerX" id="4ZQ-ic-fuF"/>
                                     <constraint firstItem="iTZ-6e-5yM" firstAttribute="top" secondItem="voa-av-onE" secondAttribute="top" constant="20" id="5MB-0u-yox"/>
                                     <constraint firstItem="mr6-zf-atq" firstAttribute="top" secondItem="1La-jE-JJW" secondAttribute="bottom" constant="10" id="87p-at-V8U"/>
-                                    <constraint firstItem="mr6-zf-atq" firstAttribute="top" secondItem="1La-jE-JJW" secondAttribute="bottom" constant="2" id="9lh-Fr-huH"/>
+                                    <constraint firstItem="mr6-zf-atq" firstAttribute="top" secondItem="1La-jE-JJW" secondAttribute="bottom" constant="20" id="9lh-Fr-huH"/>
                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="499-0r-4Ne" secondAttribute="bottom" constant="15" id="Gle-5n-rBe"/>
                                     <constraint firstItem="1La-jE-JJW" firstAttribute="top" secondItem="iTZ-6e-5yM" secondAttribute="bottom" constant="10" id="M6y-p0-Fr3"/>
                                     <constraint firstItem="1La-jE-JJW" firstAttribute="centerX" secondItem="voa-av-onE" secondAttribute="centerX" id="MCK-vB-Vid"/>
                                     <constraint firstItem="kOJ-54-0xk" firstAttribute="top" secondItem="voa-av-onE" secondAttribute="top" id="MwC-2m-Ul5"/>
                                     <constraint firstAttribute="trailing" secondItem="kOJ-54-0xk" secondAttribute="trailing" constant="-20" id="TkZ-MT-IPy"/>
                                     <constraint firstAttribute="bottom" secondItem="499-0r-4Ne" secondAttribute="bottom" constant="15" id="cgs-ss-lhE"/>
-                                    <constraint firstItem="1La-jE-JJW" firstAttribute="top" secondItem="iTZ-6e-5yM" secondAttribute="bottom" constant="2" id="dLH-p8-ixd"/>
+                                    <constraint firstItem="1La-jE-JJW" firstAttribute="top" secondItem="iTZ-6e-5yM" secondAttribute="bottom" constant="10" id="dLH-p8-ixd"/>
                                     <constraint firstItem="499-0r-4Ne" firstAttribute="centerY" secondItem="voa-av-onE" secondAttribute="centerY" id="eIE-nD-Bgo"/>
                                     <constraint firstItem="499-0r-4Ne" firstAttribute="top" secondItem="mr6-zf-atq" secondAttribute="bottom" constant="2" id="el9-Jp-e3y"/>
                                     <constraint firstItem="499-0r-4Ne" firstAttribute="top" secondItem="mr6-zf-atq" secondAttribute="bottom" constant="1" id="fqA-44-Rqd"/>
@@ -1267,7 +1279,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Попросите официанта ввести код:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EO2-5m-gMK">
-                                        <rect key="frame" x="161" y="459" width="277" height="21"/>
+                                        <rect key="frame" x="161" y="459.5" width="277" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.68627450980000004" green="0.54117647059999996" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -2629,6 +2641,9 @@
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AXV-nJ-6ub">
                                         <rect key="frame" x="200" y="196" width="200" height="19"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="O9R-8B-d6I"/>
+                                        </constraints>
                                         <color key="textColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
@@ -2643,6 +2658,9 @@
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Пароль" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YzY-SX-e6e">
                                         <rect key="frame" x="200" y="250" width="200" height="19"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="Q6Y-X7-Lcf"/>
+                                        </constraints>
                                         <color key="textColor" red="0.76078431369999999" green="0.76078431369999999" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>

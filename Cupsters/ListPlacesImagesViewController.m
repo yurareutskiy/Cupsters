@@ -66,9 +66,18 @@
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-    NSLog(@"locations: %@", locations);
-    pointOfInterest = [[CLLocation alloc] initWithLatitude:locationManager.location.coordinate.latitude longitude:locationManager.location.coordinate.longitude];
-    [locationManager stopUpdatingLocation];
+    NSLog(@"horizontal Accuracy: %f", [locations firstObject].horizontalAccuracy);
+    NSLog(@"vertical Accuracy: %f\n", [locations firstObject].verticalAccuracy);
+
+    if ([locations firstObject].horizontalAccuracy < 10.f && [locations firstObject].verticalAccuracy < 10.f) {
+        [manager stopUpdatingLocation];
+        pointOfInterest = [[CLLocation alloc] initWithLatitude:locationManager.location.coordinate.latitude longitude:locationManager.location.coordinate.longitude];
+        [self fetchData];
+        [self completeDistanceArray];
+        [self.table reloadData];
+
+    }
+//    [locationManager stopUpdatingLocation];
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -139,7 +148,6 @@
         address = [place valueForKey:@"address"];
         double longitude = ((NSNumber*)[self.source[i] valueForKey:@"longitude"]).doubleValue;
         double lattitude = ((NSNumber*)[self.source[i] valueForKey:@"lattitude"]).doubleValue;
-//        CLLocationCoordinate2D place = cllo
         CLLocation *placeLocation = [[CLLocation alloc] initWithLatitude:lattitude longitude:longitude];
         double distance = [pointOfInterest distanceFromLocation:placeLocation];
         
@@ -148,10 +156,20 @@
         } else {
             distanceText = [NSString stringWithFormat:@"%d км", ((int)(distance + 500.f))/1000];
         }
-        array[i] = distanceText;
+        array[i] = @{@"distanceText":distanceText, @"distanceRaw":[NSNumber numberWithDouble:distance], @"place":place};
     }
-    NSLog(@"%@", array);
-    self.distanceArray = array;
+    
+//    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"distanceRaw" ascending:NO];
+    self.objectsArray = [array sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        double value1 = ((NSNumber*)[obj1 valueForKey:@"distanceRaw"]).doubleValue;
+        double value2 = ((NSNumber*)[obj2 valueForKey:@"distanceRaw"]).doubleValue;
+        if (value1 > value2) {
+            return (NSComparisonResult)NSOrderedDescending;
+        } else {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+    }];
+    
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle {
@@ -258,7 +276,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.source count];
+    return [self.objectsArray count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -275,7 +293,7 @@
 
 -(PlacePhotoTableViewCell*)configurePlace:(PlacePhotoTableViewCell*)cell At:(NSInteger)row {
     
-    NSManagedObject *object = [self.source objectAtIndex:row];
+    NSManagedObject *object = [[self.objectsArray objectAtIndex:row] valueForKey:@"place"];
     
 //    if ([[object valueForKey:@"image"] isEqualToString:@""]) {
 //        // default image
@@ -289,7 +307,7 @@
     NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://lk.cupsters.ru/%@", [object valueForKey:@"image"]]];
     NSLog(@"%@", imageURL);
 //    imageURL = [NSURL URLWithString:@"http://lk.cupsters.ru/img/cafe/maxresdefault.jpg"];
-    [cell.distance setText:[self.distanceArray objectAtIndex:row]];
+    [cell.distance setText:[[self.objectsArray objectAtIndex:row] valueForKey:@"distanceText"]];
     [cell.backPhoto setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"cafeBack1"]];
     [cell.placeName setText:[object valueForKey:@"name"]];
     [cell.underground setText:[object valueForKey:@"address"]];
@@ -315,13 +333,13 @@
     if ([segue.identifier isEqualToString:@"goToCafe"]) {
         CafeViewController *vc = (CafeViewController*)segue.destinationViewController;
         NSInteger row = ((NSIndexPath*)sender).row;
-        NSManagedObject *cafe = [self.source objectAtIndex:row];
+        NSManagedObject *cafe = [[self.objectsArray objectAtIndex:row] valueForKey:@"place"];
         vc.cafe = cafe;
-        vc.distanceText = [self.distanceArray objectAtIndex:((NSIndexPath*)sender).row];
+        vc.distanceText = [[self.objectsArray objectAtIndex:((NSIndexPath*)sender).row] valueForKey:@"distanceText"];
 
     } else if ([segue.identifier isEqualToString:@"goToMap"]) {
         MapViewController *vc = segue.destinationViewController;
-        vc.distanceArray = self.distanceArray;
+        vc.objectsArray = self.objectsArray;
     
     }
 //    } else if ([segue.identifier isEqualToString:@"goToMap"]) {
