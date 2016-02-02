@@ -115,7 +115,7 @@
     [fetchRequest setEntity:entity];
     
     static double const D = 5000000. * 1.1;
-    double const R = 6371009.; // Earth readius in meters
+    double const R = 6371009.; // Earth readius in meter=
     double meanLatitidue = pointOfInterest.coordinate.latitude * M_PI / 180.;
     double deltaLatitude = D / R * 180. / M_PI;
     double deltaLongitude = D / (R * cos(meanLatitidue)) * 180. / M_PI;

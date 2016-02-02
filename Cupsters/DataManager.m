@@ -56,7 +56,16 @@
             [ud setObject:@"∞ ЧАШЕК  " forKey:@"currentCounter"];
         } else if (result[@"plan"][@"counter"]) {
             monthComponent.month = 3;
-            [ud setObject:[NSString stringWithFormat:@"%@ ЧАШЕК  ", result[@"plan"][@"counter"]] forKey:@"currentCounter"];
+            NSInteger cups = ((NSString*)result[@"plan"][@"counter"]).intValue;
+            NSString *text;
+            if (cups == 1) {
+                text = @"ЧАШКА";
+            } else if (cups == 2 || cups == 3 || cups == 4) {
+                text = @"ЧАШКИ";
+            } else {
+                text = @"ЧАШЕК";
+            }
+            [ud setObject:[NSString stringWithFormat:@"%ld %@  ", (long)cups, text] forKey:@"currentCounter"];
         }
         
         

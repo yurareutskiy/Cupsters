@@ -12,6 +12,7 @@
 #import "Server.h"
 #import <NSHash/NSString+NSHash.h>
 #import "DataManager.h"
+#import <RKDropdownAlert.h>
 
 @interface SignUpViewController ()
 
@@ -34,10 +35,10 @@
     [[VKSdk initializeWithAppId:@"5229696"] registerDelegate:self];
     [[VKSdk instance] setUiDelegate:self];
 
-
     [super viewDidLoad];
 
 }
+
 
 
 - (void)didReceiveMemoryWarning {
@@ -61,7 +62,6 @@
     ServerRequest *request = [ServerRequest initRequest:ServerRequestTypePOST With:parameters To:SignupURLStrring];
     Server *server = [[Server alloc] init];
     [server sentToServer:request OnSuccess:^(NSDictionary *result) {
-        [[DataManager sharedManager] saveDataWithLogin:result];
         UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
         [self presentViewController:vc animated:true completion:nil];
     } OrFailure:^(NSError *error) {
@@ -152,7 +152,7 @@
     }
     
     if (self.agreeButton.selected == NO) {
-        
+        [RKDropdownAlert title:nil message:@"Забыли дать согласие на обработку данных." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
         return;
     }
     
@@ -166,6 +166,11 @@
         UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
         [self presentViewController:vc animated:true completion:nil];
     } OrFailure:^(NSError *error) {
+        if ([((ServerError*)error).serverCode isEqualToString:@"email_exist"]) {
+            [RKDropdownAlert title:@"Ошибка регистрации" message:@"Пользователь с таким email уже зарегестрирован." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
+        } else {
+            [RKDropdownAlert title:@"Ошибка сервера" message:@"Попробуйте повторить попытку позже." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
+        }
         NSLog(@"%@", [error debugDescription]);
     }];
 
@@ -176,10 +181,11 @@
     for (UITextField *field in self.fields) {
         field.text = [field.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         if ([field.text length] < 4) {
-            NSLog(@"Less then 4 symbols");
+            [RKDropdownAlert title:nil message:@"Слишком кратко, необходимо хотя бы 4 символа написать о себе и 8 в пароле." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
             return NO;
         }
         if ([field.text isEqualToString:@"Email"] || [field.text isEqualToString:@"Password"] || [field.text isEqualToString:@"Имя"] || [field.text isEqualToString:@"Фамилия"]) {
+            [RKDropdownAlert title:nil message:@"Не ленись и заполни все поля." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
             NSLog(@"No unique value");
             return NO;
         }
@@ -191,22 +197,26 @@
                                                           range:NSMakeRange(0, [field.text length])];
             
             if (matches != [field.text length]) {
+                [RKDropdownAlert title:nil message:@"Мы, конечно, все патриоты, но поля нужно заполнять латиницей." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
                 NSLog(@"First name or last name must contain only latin characters");
                 return NO;
             }
         }
         if (field.tag == 3) {
             if (![field.text containsString:@"@"] || ![field.text containsString:@"."]) {
+                [RKDropdownAlert title:nil message:@"Хмм. Уверен, что ты правильно написал почту?" backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
                 NSLog(@"Invalid email");
                 return NO;
             }
             if (![field.text canBeConvertedToEncoding:NSISOLatin1StringEncoding]) {
+                [RKDropdownAlert title:nil message:@"Хмм. Уверен, что ты правильно написал почту?" backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
                 NSLog(@"Invalid email");
                 return NO;
             }
         }
         if (field.tag == 4) {
             if ([field.text length] < 8) {
+                [RKDropdownAlert title:nil message:@"Надо быть хоть немного параноиком. Пароль должен содержать, как минимум 8 символов." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
                 NSLog(@"Too short password");
                 return NO;
             }
@@ -217,6 +227,7 @@
                                                           range:NSMakeRange(0, [field.text length])];
             
             if (matches != [field.text length]) {
+                [RKDropdownAlert title:nil message:@"Даже твоя бабушка подбирает пароль надежнее! Напиши хотя бы по одной цифре, заглавной и строчной букве." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
                 NSLog(@"Invalid password");
                 return NO;
             }
@@ -226,54 +237,10 @@
     return YES;
 }
 
-- (IBAction)regWithVk:(UIButton *)sender {
-    
-    [VKSdk authorize:@[@"audio", @"photos", @"pages", @"messages", @"stats", @"wall", @"questions", @"email"]];
-    
-}
 
-- (IBAction)regWithFb:(UIButton *)sender {
-    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
-    [login
-     logInWithReadPermissions: @[@"public_profile", @"email", @"user_friends"]
-     fromViewController:self
-     handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
-         if (error) {
-             NSLog(@"Process error");
-         } else if (result.isCancelled) {
-             NSLog(@"Cancelled");
-         } else {
-             NSLog(@"Logged in");
-             if ([FBSDKAccessToken currentAccessToken]) {
-                 FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc]
-                                               initWithGraphPath:@"/me"
-                                               parameters:@{@"fields": @"id, first_name, last_name, email"}
-                                               HTTPMethod:@"GET"];
-                 [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection,
-                                                       NSDictionary *result,
-                                                       NSError *error) {
-                     if (!error) {
-                         
-                         NSDictionary *parameters = @{@"email":result[@"email"], @"sn":@"FB", @"sn_id":result[@"id"], @"first_name":result[@"first_name"], @"last_name":result[@"last_name"]};
-                         ServerRequest *request = [ServerRequest initRequest:ServerRequestTypePOST With:parameters To:SignupURLStrring];
-                         Server *server = [[Server alloc] init];
-                         [server sentToServer:request OnSuccess:^(NSDictionary *result) {
-                             [[DataManager sharedManager] saveDataWithLogin:result];
-                             UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
-                             [self presentViewController:vc animated:true completion:nil];
-                         } OrFailure:^(NSError *error) {
-                             NSLog(@"%@", [error debugDescription]);
-                         }];
 
-                     }
-                     else {
-                         NSLog(@"fetched error:%@", error);
-                     }
-                 }];
-             }
-         }
-     }];
-
+- (IBAction)dismiss:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

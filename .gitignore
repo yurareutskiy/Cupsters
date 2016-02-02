@@ -15,9 +15,9 @@ DerivedData
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-Cupsters.xcworkspace/xcuserdata/
-Cupsters.xcworkspace/xcuserdata/yurka.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
-Cupsters.xcodeproj/xcuserdata/yurka.xcuserdatad/xcschemes/xcschememanagement.plist
+SixHands.xcworkspace/xcuserdata/
+SixHands.xcworkspace/xcuserdata/yurka.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
+SixHands.xcodeproj/xcuserdata/yurka.xcuserdatad/xcschemes/xcschememanagement.plist
 ## Other
 *.xccheckout
 *.moved-aside
@@ -53,6 +53,6 @@ Carthage/Build
 
 fastlane/report.xml
 fastlane/screenshots
-Cupsters.xcworkspace/xcuserdata/Anton.xcuserdatad/UserInterfaceState.xcuserstate
+SixHands.xcworkspace/xcuserdata/Anton.xcuserdatad/UserInterfaceState.xcuserstate
 
 *.xcuserstate

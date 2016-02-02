@@ -24,6 +24,11 @@
 
 - (void)awakeFromNib {
     
+    
+    // Initialization code
+}
+
+- (void)loadDataInCell {
     userDefaults = [NSUserDefaults standardUserDefaults];
     
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
@@ -33,21 +38,40 @@
                                    entityForName:@"Coffees" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"%@ == id_cafe", [userDefaults objectForKey:@"id"]];
+    //    NSString *url;
+    //    NSString *drinkName = _coffeeName.text;
+    //    if ([_coffeeName.text isEqualToString:@"Латте"]) {
+    //        url = @"/img/icons/latte";
+    //    } else if ([_coffeeName.text isEqualToString:@"Чай"]) {
+    //        url = @"/img/icons/tea";
+    //    } else if ([_coffeeName.text isEqualToString:@"Капучино"]) {
+    //        url = @"/img/icons/cappuchino";
+    //    }
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id_cafe = %@ ", [userDefaults objectForKey:@"id"]];
+    //    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id_cafe = %@", [userDefaults objectForKey:@"id"]];
     [fetchRequest setPredicate:predicate];
-    fetchRequest.propertiesToFetch = [NSArray arrayWithObject:[[entity propertiesByName] objectForKey:@"volume"]];
-    fetchRequest.returnsDistinctResults = YES;
+    fetchRequest.propertiesToFetch = @[[[entity propertiesByName] objectForKey:@"volume"], [[entity propertiesByName] objectForKey:@"name"]];
+    //    fetchRequest.returnsDistinctResults = YES;
     fetchRequest.resultType = NSDictionaryResultType;
     
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"volume" ascending:YES];
     [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     
     NSError *error = nil;
-    _source = [context executeFetchRequest:fetchRequest error:&error];
-
+    NSArray *fetchedResults = [context executeFetchRequest:fetchRequest error:&error];
+    NSMutableArray *coffeeNameWithVolumes = [[NSMutableArray alloc] init];
+    NSLog(@"%@", self.coffeeName.text);
+    for (NSManagedObject *object in fetchedResults) {
+        NSString *name = [object valueForKey:@"name"];
+        if ([name isEqualToString:self.coffeeName.text]) {
+            [coffeeNameWithVolumes addObject:object];
+        }
+    }
+    self.source = coffeeNameWithVolumes;
+    
+    
     NSAssert(_source != nil, @"Failed to execute %@: %@", fetchRequest, error);
-
+    
     
     _volumeNum = [[NSMutableArray alloc] init];
     for (NSInteger i = 0; i < _source.count; i++) {
@@ -60,7 +84,10 @@
         [_volume setText:[NSString stringWithFormat:@"%@ мл", _volumeNum[_index]]];
     }
     
-    // Initialization code
+    if (self.volumeNum.count == 1) {
+        self.plus.enabled = NO;
+    }
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

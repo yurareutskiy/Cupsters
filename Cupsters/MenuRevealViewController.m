@@ -20,6 +20,7 @@
 
 @implementation MenuRevealViewController {
     UIView *mask;
+    UITapGestureRecognizer *singleFingerTap;
 }
 
 - (void)viewDidLoad {
@@ -29,14 +30,7 @@
     
     self.revealViewController.delegate = self;
     
-    self.user = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
 
-    UITapGestureRecognizer *singleFingerTap =
-    [[UITapGestureRecognizer alloc] initWithTarget:self.revealViewController
-                                            action:@selector(revealToggle:)];
-    [self.view addGestureRecognizer:singleFingerTap];
-    
-    [self.revealViewController.frontViewController.view addGestureRecognizer:singleFingerTap];
 
     
 
@@ -44,14 +38,24 @@
     
    
     
-    _tapRecognizerProfile = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ClickTheProfile:)];
-    [self.profileView addGestureRecognizer:_tapRecognizerProfile];
-    _tapRecognizerProfile.delegate = self;
+    self.tapRecognizerProfile = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ClickTheProfile:)];
+    [self.profileView addGestureRecognizer:self.tapRecognizerProfile];
+    self.tapRecognizerProfile.delegate = self;
     
 }
 
 
 -(void)viewDidAppear:(BOOL)animated {
+
+    singleFingerTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self.revealViewController
+                                            action:@selector(revealToggle:)];
+    //    [self.view addGestureRecognizer:singleFingerTap];
+    
+    [self.revealViewController.frontViewController.view addGestureRecognizer:singleFingerTap];
+    
+    
+    self.user = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
 
     self.userPhoto.layer.cornerRadius = 30;
     self.userInitials.text = self.user.initials;
@@ -60,6 +64,13 @@
     self.userName.text = self.user.name;
     self.userName.adjustsFontSizeToFitWidth = true;
 
+}
+
+-(void)viewDidDisappear:(BOOL)animated {
+    [self.revealViewController.frontViewController.view removeGestureRecognizer:singleFingerTap];
+    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(reveal)];
+    swipe.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.revealViewController.frontViewController.view addGestureRecognizer:swipe];
 }
 
 //- (void) closeMenu {
@@ -78,6 +89,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)reveal {
+    [self.revealViewController revealToggleAnimated:YES];
+}
 
 -(void)revealController:(SWRevealViewController *)revealController panGestureBeganFromLocation:(CGFloat)location progress:(CGFloat)progress overProgress:(CGFloat)overProgress {
 

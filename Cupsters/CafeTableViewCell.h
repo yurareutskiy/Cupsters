@@ -30,4 +30,6 @@
 - (IBAction)plusBtn:(UIButton *)sender;
 - (IBAction)minusBtn:(UIButton *)sender;
 
+- (void)loadDataInCell;
+
 @end

@@ -29,5 +29,6 @@
 
 - (IBAction)regWithVk:(UIButton *)sender;
 - (IBAction)regWithFb:(UIButton *)sender;
+- (IBAction)dismiss:(UIButton *)sender;
 
 @end

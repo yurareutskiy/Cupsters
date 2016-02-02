@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cupsters/ProfileViewController.m"
-            timestampString = "475559487.634955"
+            timestampString = "476131020.283679"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "-customTitleViewWithImage"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cupsters/SingleTariffViewController.m"
-            timestampString = "475524181.986017"
+            timestampString = "476072131.228441"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cupsters/SignUpViewController.m"
-            timestampString = "475564502.037452"
+            timestampString = "476127267.790593"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "84"
@@ -74,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cupsters/SignUpViewController.m"
-            timestampString = "475564502.037452"
+            timestampString = "476127267.790593"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "87"
@@ -90,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cupsters/SignUpViewController.m"
-            timestampString = "475564502.037452"
+            timestampString = "476127267.790593"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "90"
@@ -105,13 +105,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Cupsters/ListPlacesImagesViewController.m"
-            timestampString = "476001599.063991"
+            filePath = "Cupsters/OrderViewController.m"
+            timestampString = "476130068.397534"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "-locationManager:didUpdateLocations:"
+            startingLineNumber = "417"
+            endingLineNumber = "417"
+            landmarkName = "-addOrderToHistory:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -121,46 +121,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Cupsters/ListPlacesImagesViewController.m"
-            timestampString = "476001687.972841"
+            filePath = "Cupsters/MenuRevealViewController.m"
+            timestampString = "476131924.36225"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "-fetchData"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "-reveal"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[ListPlacesImagesViewController fetchData]"
-                  moduleName = "Cupsters"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yurka/Documents/Development/Cupsters/Cupsters/ListPlacesImagesViewController.m"
-                  timestampString = "476001687.97506"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "135"
-                  endingLineNumber = "135"
-                  offsetFromSymbolStart = "1539">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[ListPlacesImagesViewController fetchData]"
-                  moduleName = "Cupsters"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yurka/Documents/Development/Cupsters/Cupsters/ListPlacesImagesViewController.m"
-                  timestampString = "476001687.975218"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "135"
-                  endingLineNumber = "135"
-                  offsetFromSymbolStart = "1631">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -49,6 +49,12 @@
     
     self.amount.font = [UIFont fontWithName:@"MyriadPro-Regular" size:42];
 
+    if ([self.type isEqualToString:@"standart"]) {
+        self.tariffName.text = @"Любитель";
+    } else {
+        self.tariffName.text = @"Кофеман";
+    }
+    self.tariffType.text = @"Тариф";
     
     // Do any additional setup after loading the view.
 }
@@ -238,7 +244,16 @@
             [ud setObject:@"∞ ЧАШЕК  " forKey:@"currentCounter"];
         } else if (result[@"tariff"][0][@"counter"]) {
             monthComponent.month = 3;
-            [ud setObject:[NSString stringWithFormat:@"%@ ЧАШЕК  ", result[@"tariff"][0][@"counter"]] forKey:@"currentCounter"];
+            NSInteger cups = ((NSString*)result[@"tariff"][0][@"counter"]).intValue;
+            NSString *text;
+            if (cups == 1) {
+                text = @"ЧАШКА";
+            } else if (cups == 2 || cups == 3 || cups == 4) {
+                text = @"ЧАШКИ";
+            } else {
+                text = @"ЧАШЕК";
+            }
+            [ud setObject:[NSString stringWithFormat:@"%ld %@  ", (long)cups, text] forKey:@"currentCounter"];
         }
         NSDate *endDate = [theCalendar dateByAddingComponents:monthComponent toDate:beginDate options:0];
         NSMutableDictionary *mutDict = [[NSMutableDictionary alloc] initWithDictionary:result[@"tariff"][0]];

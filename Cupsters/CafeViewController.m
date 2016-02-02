@@ -51,11 +51,12 @@
     
     userDefaults = [NSUserDefaults standardUserDefaults];
     
-    [_name setText:[NSString stringWithFormat:@"%@", [_cafe valueForKey:@"name"]]];
-    [_address setText:[NSString stringWithFormat:@"%@", [_cafe valueForKey:@"address"]]];
-    [_distance setText:[NSString stringWithFormat:@"%@", [_cafe valueForKey:@"address"]]];
-    [_cafeBg setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://lk.cupsters.ru/%@", [_cafe valueForKey:@"image"]]]];
-    [userDefaults setObject:[_cafe valueForKey:@"id"] forKey:@"id"];
+    [self.name setText:[self.cafe valueForKey:@"name"]];
+    [self.address setText:[self.cafe valueForKey:@"address"]];
+    [self.distance setText:self.distanceText];
+    [self.cafeBg setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://lk.cupsters.ru/%@", [self.cafe valueForKey:@"image"]]]];
+    [self.subwayLabel setText:[self.cafe valueForKey:@"subway_station"]];
+    [userDefaults setObject:[self.cafe valueForKey:@"id"] forKey:@"id"];
     openMap = false;
     
     locationManager = [[CLLocationManager alloc] init];
@@ -193,17 +194,25 @@
         [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
         
         NSError *error = nil;
-        source = [context executeFetchRequest:fetchRequest error:&error];
-        for (int i = 0; i < [source count]; i++) {
-            NSString *type = [source[i] valueForKey:@"type"];
+        NSArray *fetchedResult = [context executeFetchRequest:fetchRequest error:&error];
+        NSMutableArray *first = [[NSMutableArray alloc] init];
+        NSMutableArray *second = [[NSMutableArray alloc] init];
+        NSMutableArray *third = [[NSMutableArray alloc] init];
+        for (int i = 0; i < [fetchedResult count]; i++) {
+            NSString *type = [fetchedResult[i] valueForKey:@"type"];
             if ([type isEqualToString:@"coffee"]) {
+                [first addObject:fetchedResult[i]];
                 coffeeRows++;
             } else if ([type isEqualToString:@"tea"]) {
+                [second addObject:fetchedResult[i]];
                 teaRows++;
             } else if ([type isEqualToString:@"other"]) {
+                [third addObject:fetchedResult[i]];
                 othereRows++;
             }
         }
+        source = [NSArray arrayWithObjects:first, second, third, nil];
+        NSLog(@"%@", source);
         NSAssert(source != nil, @"Failed to execute %@: %@", fetchRequest, error);
     }
     
@@ -348,10 +357,10 @@
 
     }
 
-    NSLog(@"%@\n%d", indexPath, tableView.tag);
+    NSLog(@"%@\n%ld", indexPath, (long)tableView.tag);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    NSManagedObject *coffee = [source objectAtIndex:indexPath.row];
+    NSManagedObject *coffee = [[source objectAtIndex:tableView.tag - 1] objectAtIndex:indexPath.row];
         
     NSNumber *idCafeCell = [_cafe valueForKey:@"id"];
     cell.idCafe = idCafeCell.integerValue;
@@ -364,6 +373,8 @@
 
     [cell.coffeeName setText:[coffee valueForKey:@"name"]];
     [cell setRow:indexPath.row];
+    
+    [cell loadDataInCell];
     
     return cell;
 
@@ -395,14 +406,14 @@
     
     NSNumber *idCafe = [_cafe valueForKey:@"id"];
     NSString *name = ((CafeTableViewCell*)cell).coffeeName.text;
-    NSString *volume = [NSString stringWithFormat:@"%@", ((CafeTableViewCell*)cell).volumeNum[((CafeTableViewCell*)cell).index]];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%@ == id_cafe AND %@ == name AND %@ == volume", idCafe, name, volume];
+    NSNumber *volume = [[NSNumber alloc] initWithInt:((NSString*)((CafeTableViewCell*)cell).volumeNum[((CafeTableViewCell*)cell).index]).intValue];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"id_cafe == %@ AND name == %@ AND volume == %@", idCafe, name, volume];
 
     [fetchRequest setPredicate:predicate];
     
     NSError *error = nil;
     sourceFinal = [context executeFetchRequest:fetchRequest error:&error];
-    NSAssert(source != nil, @"Failed to execute %@: %@", fetchRequest, error);
+    NSAssert(source.count != 0, @"Failed to execute %@: %@", fetchRequest, error);
     
     [self performSegueWithIdentifier:@"makeOrder" sender:self];
 

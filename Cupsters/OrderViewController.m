@@ -14,6 +14,8 @@
 #import <SCLAlertView.h>
 #import "Server.h"
 #import "User.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
+#import "AppDelegate.h"
 
 @interface OrderViewController ()
 
@@ -48,6 +50,8 @@
     
     [self.name setText:[self.coffee valueForKey:@"name"]];
     [self.volume setText:[NSString stringWithFormat:@"%@ мл", [self.coffee valueForKey:@"volume"]]];
+    NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://lk.cupsters.ru%@BIG3.png", [self.coffee valueForKey:@"icon"]]];
+    [self.image setImageWithURL:imageURL];
     
     // Do any additional setup after loading the view.
 }
@@ -363,11 +367,20 @@
     Server *server = [[Server alloc] init];
     ServerRequest *request = [ServerRequest initRequest:ServerRequestTypePOST With:body To:OrderURLStrring];
     [server sentToServer:request OnSuccess:^(NSDictionary *result) {
+        [self addOrderToHistory:result[@"order"]];
         if ([user.plan[@"counter"] isEqualToString:@"-1"]) {
         } else {
             NSString *cupsString = user.plan[@"counter"];
             NSInteger cups = [cupsString intValue] - 1;
-            [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%ld ЧАШЕК  ", (long)cups] forKey:@"currentCounter"];
+            NSString *text;
+            if (cups == 1) {
+                text = @"ЧАШКА";
+            } else if (cups == 2 || cups == 3 || cups == 4) {
+                text = @"ЧАШКИ";
+            } else {
+                text = @"ЧАШЕК";
+            }
+            [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%ld %@  ", (long)cups, text] forKey:@"currentCounter"];
             NSMutableDictionary *mutDict = [[NSMutableDictionary alloc] initWithDictionary:user.plan];
             mutDict[@"counter"] = [NSString stringWithFormat:@"%d", cups];
             user.plan = mutDict;
@@ -380,6 +393,27 @@
     } OrFailure:^(NSError *error) {
         NSLog(@"%@", [error debugDescription]);
     }];
+}
+
+- (void) addOrderToHistory:(NSDictionary*)orderDict {
+    
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Orders" inManagedObjectContext:context];
+    NSManagedObject *order = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:context];
+    [order setValue:orderDict[@"cafe"] forKey:@"cafe"];
+    [order setValue:orderDict[@"coffee"] forKey:@"coffee"];
+    [order setValue:orderDict[@"volume"] forKey:@"volume"];
+    [order setValue:orderDict[@"date_accept"] forKey:@"date"];
+    [order setValue:orderDict[@"cafe_id"] forKey:@"cafe_id"];
+    [order setValue:orderDict[@"coffee_id"] forKey:@"coffee_id"];
+    [order setValue:[NSNumber numberWithInt:((NSString*)orderDict[@"id"]).intValue] forKey:@"id"];
+    NSError *error = nil;
+    [context save:&error];
+    if (error) {
+        NSLog(@"%@", [error debugDescription]);
+    }
+
 }
 
 - (BOOL)checkUserCanMakeOrder {

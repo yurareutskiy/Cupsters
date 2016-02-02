@@ -18,7 +18,6 @@
 @property (strong, nonatomic) MenuRevealViewController *menu;
 @property (strong, nonatomic) UIBarButtonItem *menuButton;
 @property (strong, nonatomic) SWRevealViewController *reveal;
-@property (strong, nonatomic) UIViewController *vc;
 
 @end
 
@@ -27,7 +26,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
     
     [self setNeedsStatusBarAppearanceUpdate];
     [self preferredStatusBarStyle];
@@ -90,9 +88,9 @@
 }
 
 - (void)toList:(id)sender {
-    
-    [self presentViewController:self.vc animated:true completion:nil];
-    
+    [self.navigationController popViewControllerAnimated:YES];
+    UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
+    [self presentViewController:vc animated:true completion:nil];
 }
 
 - (UILabel*)customTitleViewWithImage {
