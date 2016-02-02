@@ -264,8 +264,12 @@
 
         if ([self.type isEqualToString:@"advanced"]) {
             [alert showSuccess:@"Успешно" subTitle:@"Вы подключили тариф 'Расширенный'" closeButtonTitle:@"Ок" duration:5.0];
+            UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
+            [self presentViewController:vc animated:true completion:nil];
         } else if ([self.type isEqualToString:@"standart"]){
             [alert showSuccess:@"Успешно" subTitle:@"Вы подключили тариф 'Базовый'" closeButtonTitle:@"Ок" duration:5.0];
+            UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
+            [self presentViewController:vc animated:true completion:nil];
         }
     } OrFailure:^(NSError *error) {
         [alert showSuccess:@"Ошибка" subTitle:@"Не удалось выполнить подключение" closeButtonTitle:@"Ок" duration:5.0];
