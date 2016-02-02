@@ -71,6 +71,7 @@
 		DBAA549B1C527732004F7C6D /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAA549A1C527732004F7C6D /* DataManager.m */; };
 		DBDC1C2B1C400583003A8507 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = DBDC1C2A1C400583003A8507 /* Podfile */; };
 		DBDC1C301C40EB05003A8507 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBDC1C2E1C40EB05003A8507 /* SWRevealViewController.m */; };
+		DBE52B021C61375A00475B48 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DBE52B011C61375A00475B48 /* StartViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -176,6 +177,8 @@
 		DBDC1C2A1C400583003A8507 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		DBDC1C2E1C40EB05003A8507 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = SWRevealViewController/SWRevealViewController.m; sourceTree = "<group>"; };
 		DBDC1C2F1C40EB05003A8507 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = SWRevealViewController/SWRevealViewController.h; sourceTree = "<group>"; };
+		DBE52B001C61375A00475B48 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
+		DBE52B011C61375A00475B48 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
 		DDC96F5213E98AC9D6EAF4A0 /* Pods-Cupsters.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cupsters.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cupsters/Pods-Cupsters.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -313,6 +316,8 @@
 				DB67FF131C3C307E00FC62E2 /* SignUpViewController.m */,
 				DBAA546A1C51CB44004F7C6D /* EntryNavigationController.h */,
 				DBAA546B1C51CB44004F7C6D /* EntryNavigationController.m */,
+				DBE52B001C61375A00475B48 /* StartViewController.h */,
+				DBE52B011C61375A00475B48 /* StartViewController.m */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -612,6 +617,7 @@
 				3AE55FAC1C4D482300025AB8 /* CouponViewController.m in Sources */,
 				DB671F451C3EC239008C1408 /* PlacePhotoTableViewCell.m in Sources */,
 				3A08A36B1C4BCAC60094AB63 /* MapTableViewCell.m in Sources */,
+				DBE52B021C61375A00475B48 /* StartViewController.m in Sources */,
 				DBA9C4AA1C4DBC61002A5E0D /* ServerRequest.m in Sources */,
 				DB671F421C3DEA07008C1408 /* UIColor+HEX.m in Sources */,
 				DBAA546C1C51CB44004F7C6D /* EntryNavigationController.m in Sources */,

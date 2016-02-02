@@ -18,6 +18,7 @@ extern NSString* const cCellCoffee;
 
 #pragma mark - Storyboard ID
 extern NSString* const cSBMenu;
+extern NSString* const cSBLogin;
 
 #pragma mark - Others
 extern NSString* const cFontMyraid;

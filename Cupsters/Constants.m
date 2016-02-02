@@ -26,6 +26,7 @@ NSString* const cCellCoffee = @"cafeCell";
 
 #pragma mark - Storyboard ID
 NSString* const cSBMenu = @"SWRevealViewController";
+NSString* const cSBLogin = @"EntryNavigationController";
 
 #pragma mark - Others
 NSString* const cFontMyraid = @"MyriadPro-Regular";
