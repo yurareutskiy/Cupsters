@@ -23,6 +23,7 @@
 
 @property (strong, nonatomic) MenuRevealViewController *menu;
 @property (strong, nonatomic) UIBarButtonItem *menuButton;
+@property (strong, nonatomic) UIBarButtonItem *searchButton;
 @property (strong, nonatomic) SWRevealViewController *reveal;
 @property (strong, nonatomic) NSArray *source;
 
@@ -32,6 +33,9 @@
     NSUserDefaults *userDefaults;
     CLLocationManager *locationManager;
     CLLocation *pointOfInterest;
+    NSMutableArray *filteredTableData;
+    NSManagedObjectContext *context;
+    NSArray *fullData;
 }
 
 - (void)viewDidLoad {
@@ -52,9 +56,9 @@
     [locationManager requestWhenInUseAuthorization];
     [locationManager startUpdatingLocation];
     
-
-
     
+//    self.searchBar.frame = CGRectMake(0.0, -44.0, self.view.frame.size.width, 44);
+    self.searchBar.barTintColor = [UIColor colorWithHEX:cBrown];
     [self preferredStatusBarStyle];
     
     self.table.delegate = self;
@@ -65,6 +69,15 @@
     pointOfInterest = [[CLLocation alloc] initWithLatitude:locationManager.location.coordinate.latitude longitude:locationManager.location.coordinate.longitude];
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [self customNavBar];
+    
+    if (self.source == nil) {
+        [self fetchData];
+    }
+}
+
+
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     NSLog(@"horizontal Accuracy: %f", [locations firstObject].horizontalAccuracy);
     NSLog(@"vertical Accuracy: %f\n", [locations firstObject].verticalAccuracy);
@@ -73,7 +86,7 @@
         [manager stopUpdatingLocation];
         pointOfInterest = [[CLLocation alloc] initWithLatitude:locationManager.location.coordinate.latitude longitude:locationManager.location.coordinate.longitude];
         [self fetchData];
-        [self completeDistanceArray];
+        [self completeDistanceArray:self.source];
         [self.table reloadData];
 
     }
@@ -98,17 +111,10 @@
     
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [self customNavBar];
-
-    if (self.source == nil) {
-        [self fetchData];
-    }
-}
 
 - (void)fetchData {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    context = [appDelegate managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription
                                    entityForName:@"Cafes" inManagedObjectContext:context];
@@ -133,21 +139,21 @@
     NSError *error = nil;
     self.source = [context executeFetchRequest:fetchRequest error:&error];
     NSAssert(self.source != nil, @"Failed to execute %@: %@", fetchRequest, error);
-    [self completeDistanceArray];
+    [self completeDistanceArray:self.source];
 
 }
 
-- (void)completeDistanceArray {
+- (void)completeDistanceArray:(NSArray*)dataArray {
     NSMutableArray *array = [[NSMutableArray alloc] init];
     NSManagedObject *place;
     NSString *address;
     NSString *distanceText;
     NSLog(@"lat - %f, lon - %f", pointOfInterest.coordinate.latitude, pointOfInterest.coordinate.longitude);
-    for (int i = 0; i < [self.source count]; i++) {
-        place = [self.source objectAtIndex:i];
+    for (int i = 0; i < [dataArray count]; i++) {
+        place = [dataArray objectAtIndex:i];
         address = [place valueForKey:@"address"];
-        double longitude = ((NSNumber*)[self.source[i] valueForKey:@"longitude"]).doubleValue;
-        double lattitude = ((NSNumber*)[self.source[i] valueForKey:@"lattitude"]).doubleValue;
+        double longitude = ((NSNumber*)[dataArray[i] valueForKey:@"longitude"]).doubleValue;
+        double lattitude = ((NSNumber*)[dataArray[i] valueForKey:@"lattitude"]).doubleValue;
         CLLocation *placeLocation = [[CLLocation alloc] initWithLatitude:lattitude longitude:longitude];
         double distance = [pointOfInterest distanceFromLocation:placeLocation];
         
@@ -203,15 +209,12 @@
         return;
     }
     
-
-    
-
-    
     // Set menu button
     self.menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu"]
                                                        style:UIBarButtonItemStyleDone
                                                       target:self.revealViewController
                                                       action:@selector(revealToggle:)];
+    self.searchButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(performSearch)];
     
     // Add gesture recognizer
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
@@ -224,6 +227,7 @@
     self.navigationController.navigationBar.layer.shadowOpacity = 0.5f;
     
     self.navigationItem.leftBarButtonItem = self.menuButton;
+    self.navigationItem.rightBarButtonItem = self.searchButton;
     
 }
 
@@ -269,8 +273,8 @@
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.table deselectRowAtIndexPath:indexPath animated:false];
-    [self.table reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [tableView deselectRowAtIndexPath:indexPath animated:false];
+    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     [self performSegueWithIdentifier:@"goToCafe" sender:indexPath];
     NSLog(@"Select row at index %@", indexPath);
 }
@@ -354,6 +358,70 @@
 
 
 - (IBAction)unwindFromViewController:(UIStoryboardSegue *)sender {
+}
+
+#pragma mark - Search
+
+- (void)performSearch {
+    NSLog(@"%f", self.searchBar.frame.origin.y);
+    [UIView animateWithDuration:0.3 animations:^{
+        self.table.contentOffset = CGPointMake(0.0, -44.0);
+        self.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
+    }];
+    NSLog(@"%f", self.searchBar.frame.origin.y);
+}
+
+-(void)filter:(NSString*)text {
+    filteredTableData = [[NSMutableArray alloc] init];
+    
+    // Create our fetch request
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    // Define the entity we are looking for
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"Cafes" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    // Define how we want our entities to be sorted
+    NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc]
+                                        initWithKey:@"name" ascending:YES];
+    NSArray* sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+//    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    // If we are searching for anything...
+    if(text.length != 0) {
+        // Define how we want our entities to be filtered
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(name CONTAINS[c] %@) OR (address CONTAINS[c] %@)", text, text];
+        [fetchRequest setPredicate:predicate];
+    }
+    
+    NSError *error;
+    
+    // Finally, perform the load
+    NSArray* loadedEntities = [context executeFetchRequest:fetchRequest error:&error];
+    filteredTableData = [[NSMutableArray alloc] initWithArray:loadedEntities];
+    [self completeDistanceArray:filteredTableData];
+    [self.table reloadData];
+}
+
+#pragma mark - UISearchBar Delegate
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    NSLog(@"text = %@", searchText);
+//    NSLog(@"first object 1 = %@", [searchResults firstObject]);
+    [self filter:searchText];
+//    [self.table reloadData];
+//    NSLog(@"first object 2 = %@", [searchResults firstObject]);
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (self.searchBar.frame.origin.y == 0) {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.searchBar.frame = CGRectMake(0, -44.f, self.view.frame.size.width, 44);
+            self.table.contentOffset = CGPointMake(0.0, 0.0);
+        }];
+        self.objectsArray = self.source;
+    }
 }
 
 @end

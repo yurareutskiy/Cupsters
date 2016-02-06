@@ -18,13 +18,14 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 //    manager.responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
-    NSLog(@"%@", manager.responseSerializer.acceptableContentTypes);
+    NSLog(@"%@", request.objectRequest);
     
     NSString *url = [NSString stringWithFormat:@"%@%@", BaseURLString, request.objectRequest];
     
     switch (request.type) {
         case ServerRequestTypeGET: {
             [manager GET:url parameters:request.parameters progress:nil success:^(NSURLSessionTask *task, NSDictionary *responseObject) {
+                NSLog(@"Code - %d", ((NSHTTPURLResponse*)task.response).statusCode);
                 NSLog(@"JSON: %@", responseObject);
                 ServerResponse *response = [ServerResponse parseResponse:responseObject];
                 if (response.type == ServerResponseTypeSuccess) {
