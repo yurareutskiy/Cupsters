@@ -424,6 +424,7 @@
         OrderViewController *vc = (OrderViewController*)segue.destinationViewController;
         
         vc.coffee = [sourceFinal objectAtIndex:0];
+        vc.cafe = self.cafe;
     }
     
 }

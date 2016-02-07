@@ -16,12 +16,14 @@
 #import "User.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "AppDelegate.h"
+#import <RKDropdownAlert.h>
 
 @interface OrderViewController ()
 
 @property (strong, nonatomic) MenuRevealViewController *menu;
 @property (strong, nonatomic) UIBarButtonItem *menuButton;
 @property (strong, nonatomic) SWRevealViewController *reveal;
+@property (strong, nonatomic) NSString *codeText;
 
 @end
 
@@ -48,9 +50,10 @@
     self.upView.layer.shadowOpacity = 0.5f;
     [self.upView.layer setMasksToBounds:NO];
     
-    [self.name setText:[self.coffee valueForKey:@"name"]];
+    [self.name setText:[self.cafe valueForKey:@"name"]];
     [self.volume setText:[NSString stringWithFormat:@"%@ мл", [self.coffee valueForKey:@"volume"]]];
-    NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://lk.cupsters.ru%@BIG3.png", [self.coffee valueForKey:@"icon"]]];
+    NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://lk.cupsters.ru/%@", [self.cafe valueForKey:@"image"]]];
+
     [self.image setImageWithURL:imageURL];
     
     // Do any additional setup after loading the view.
@@ -143,7 +146,7 @@
     
     UIColor *color = [UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0];
     
-    SCLButton *firstButton = [alert addButton:@"Да" target:self selector:@selector(sendOrder)];
+    SCLButton *firstButton = [alert addButton:@"Да" target:self selector:@selector(agreeButton)];
     
     firstButton.buttonFormatBlock = ^NSDictionary* (void)
     {
@@ -266,61 +269,90 @@
     NSLog(@"%f", self.code.frame.origin.y);
 }
 
+
 - (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    
-    NSString *code = [self formatCode:_code.text];
-    int length2 = [self getLength:code];
-    
-    NSString *space = @"_";
-    
-    if(length2 == 1)
-    {
-        NSString *code = [self formatCode:_code.text];
-        const char *c = [code UTF8String];
-        _code.text = [NSString stringWithFormat:@"%c ",c[0]];
-        //_notCode.text = [NSString stringWithFormat:@"  %@ %@ %@ %@ %@", space, space, space, space, space];
-        
-        
-        if(range.length > 0)
-            _code.text = [NSString stringWithFormat:@"%c",c[0]];
+    switch (range.location) {
+        case 0:
+            _code.text = [NSString stringWithFormat:@"%@ ", string];
+            self.codeText = string;
+            break;
+        case 2:
+            _code.text = [NSString stringWithFormat:@"%@%@ ", self.code.text, string];
+            self.codeText = [NSString stringWithFormat:@"%@%@", self.codeText, string];
+            break;
+        case 4:
+            _code.text = [NSString stringWithFormat:@"%@%@ ", self.code.text, string];
+            self.codeText = [NSString stringWithFormat:@"%@%@", self.codeText, string];
+            break;
+        case 6:
+            _code.text = [NSString stringWithFormat:@"%@%@", self.code.text, string];
+            self.codeText = [NSString stringWithFormat:@"%@%@", self.codeText, string];
+            [self sendOrder];
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                _code.text = @"";
+//                [self.code resignFirstResponder];
+//            });
+            break;
+        default:
+            break;
     }
-    if(length2 == 2)
-    {
-        NSString *code = [self formatCode:_code.text];
-        const char *c = [code UTF8String];
-        
-        _code.text = [NSString stringWithFormat:@"%c %c ",c[0],c[1]];
-        //_notCode.text = [NSString stringWithFormat:@"    %@ %@ %@ %@", space, space, space, space];
-        if(range.length > 0)
-            _code.text = [NSString stringWithFormat:@"%c %c",c[0],c[1]];
-    }
-    if(length2 == 3)
-    {
-        NSString *code = [self formatCode:_code.text];
-        const char *c = [code UTF8String];
-        
-        _code.text = [NSString stringWithFormat:@"%c %c %c ",c[0],c[1],c[2]];
-        //_notCode.text = [NSString stringWithFormat:@"      %@ %@ %@", space, space, space];
-        
-        if(range.length > 0)
-            _code.text = [NSString stringWithFormat:@"%c %c %c",c[0],c[1],c[2]];
-        
-    }
-    
-    if(length2 == 4)
-    {
-        NSString *code = [self formatCode:_code.text];
-        const char *c = [code UTF8String];
-        
-        _code.text = [NSString stringWithFormat:@"%c %c %c %c",c[0],c[1],c[2],c[3]];
-        //_notCode.text = [NSString stringWithFormat:@"           "];
-        
-        if(range.length == 0)
-            return NO;
-        
-    }
-    
-    return YES;
+    return NO;
+//    NSString *code = [self formatCode:_code.text];
+//    int length2 = [self getLength:code];
+//    NSLog(@"%d", range.location);
+//    NSString *space = @"_";
+//    
+//    if(length2 == 1)
+//    {
+//        NSString *code = [self formatCode:_code.text];
+//        const char *c = [code UTF8String];
+//        _code.text = [NSString stringWithFormat:@"%c ",c[0]];
+//        //_notCode.text = [NSString stringWithFormat:@"  %@ %@ %@ %@ %@", space, space, space, space, space];
+//        
+//        
+//        if(range.length > 0)
+//            _code.text = [NSString stringWithFormat:@"%c",c[0]];
+//    }
+//    if(length2 == 2)
+//    {
+//        NSString *code = [self formatCode:_code.text];
+//        const char *c = [code UTF8String];
+//        
+//        _code.text = [NSString stringWithFormat:@"%c %c ",c[0],c[1]];
+//        //_notCode.text = [NSString stringWithFormat:@"    %@ %@ %@ %@", space, space, space, space];
+//        if(range.length > 0)
+//            _code.text = [NSString stringWithFormat:@"%c %c",c[0],c[1]];
+//    }
+//    if(length2 == 3)
+//    {
+//        NSString *code = [self formatCode:_code.text];
+//        const char *c = [code UTF8String];
+//        
+//        _code.text = [NSString stringWithFormat:@"%c %c %c ",c[0],c[1],c[2]];
+//        //_notCode.text = [NSString stringWithFormat:@"      %@ %@ %@", space, space, space];
+//        
+//        if(range.length > 0)
+//            _code.text = [NSString stringWithFormat:@"%c %c %c",c[0],c[1],c[2]];
+//        
+//    }
+//    
+//    if(length2 == 4)
+//    {
+//        NSString *code = [self formatCode:_code.text];
+//        const char *c = [code UTF8String];
+//        
+//        self.code.text = [NSString stringWithFormat:@"%c %c %c %c",c[0],c[1],c[2],c[3]];
+//        self.codeText = [NSString stringWithFormat:@"%c%c%c%c",c[0],c[1],c[2],c[3]];
+//        //_notCode.text = [NSString stringWithFormat:@"           "];
+//        
+//        [self sendOrder];
+//        NSLog(@"%@", self.code.text);
+//        if(range.length == 0)
+//            return NO;
+//        
+//    }
+//    
+//    return YES;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -353,6 +385,15 @@
     user = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
     if (![self checkUserCanMakeOrder]) {
         
+        return;
+    }
+    
+    NSString *stringCode = [self.cafe valueForKey:@"code"];
+    if (![stringCode isEqualToString:self.codeText]) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.code.text = @"";
+            [RKDropdownAlert title:@"Неверный код" message:@"Переспросите код у бармена и введите заново." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
+        });
         return;
     }
     
@@ -390,7 +431,10 @@
             }
         }
         NSLog(@"Блять, работает?!");
+        [self.code resignFirstResponder];
     } OrFailure:^(NSError *error) {
+        [RKDropdownAlert title:@"Ошибка" message:@"Попробуйте ввести код заново." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
+        self.code.text = @"";
         NSLog(@"%@", [error debugDescription]);
     }];
 }

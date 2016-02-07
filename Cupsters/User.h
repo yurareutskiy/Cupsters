@@ -19,6 +19,9 @@
 @property (strong, nonatomic) NSString *initials;
 @property (strong, nonatomic) NSNumber *id;
 
+
+- (void)save;
 + (instancetype)initUserWithFirstName:(NSString*)firstName LastName:(NSString*)lastName userID:(NSString*)id UserPlan:(NSDictionary*)plan;
++ (instancetype)sharedUser;
 
 @end

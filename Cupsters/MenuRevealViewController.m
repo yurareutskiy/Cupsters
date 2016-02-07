@@ -29,15 +29,6 @@
     
     
     self.revealViewController.delegate = self;
-    
-
-
-    
-
-//    [self.view addSubview:self.user.image];
-    
-   
-    
     self.tapRecognizerProfile = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ClickTheProfile:)];
     [self.profileView addGestureRecognizer:self.tapRecognizerProfile];
     self.tapRecognizerProfile.delegate = self;

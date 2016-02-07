@@ -11,12 +11,15 @@
 #import "UIColor+HEX.h"
 #import "MenuRevealViewController.h"
 #import "SWRevealViewController.h"
+#import <RKDropdownAlert.h>
+#import "User.h"
 
 @interface CouponViewController ()
 
 @property (strong, nonatomic) MenuRevealViewController *menu;
 @property (strong, nonatomic) UIBarButtonItem *menuButton;
 @property (strong, nonatomic) SWRevealViewController *reveal;
+@property (strong, nonatomic) NSString *codeText;
 
 @end
 
@@ -116,84 +119,40 @@
 
 - (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
-    NSString *code = [self formatCode:_code.text];
-    int length2 = [self getLength:code];
-    
-    NSString *space = @"_";
-    
-    if(length2 == 1)
-    {
-        NSString *code = [self formatCode:_code.text];
-        const char *c = [code UTF8String];
-        _code.text = [NSString stringWithFormat:@"%c ",c[0]];
-        //_notCode.text = [NSString stringWithFormat:@"  %@ %@ %@ %@ %@", space, space, space, space, space];
-        
-        
-        if(range.length > 0)
-            _code.text = [NSString stringWithFormat:@"%c",c[0]];
+    switch (range.location) {
+        case 0:
+            _code.text = [NSString stringWithFormat:@"%@ ", string];
+            self.codeText = string;
+            break;
+        case 2:
+            _code.text = [NSString stringWithFormat:@"%@%@ ", self.code.text, string];
+            self.codeText = [NSString stringWithFormat:@"%@%@", self.codeText, string];
+            break;
+        case 4:
+            _code.text = [NSString stringWithFormat:@"%@%@ ", self.code.text, string];
+            self.codeText = [NSString stringWithFormat:@"%@%@", self.codeText, string];
+            break;
+        case 6:
+            _code.text = [NSString stringWithFormat:@"%@%@ ", self.code.text, string];
+            self.codeText = [NSString stringWithFormat:@"%@%@", self.codeText, string];
+            break;
+        case 8:
+            _code.text = [NSString stringWithFormat:@"%@%@ ", self.code.text, string];
+            self.codeText = [NSString stringWithFormat:@"%@%@", self.codeText, string];
+            break;
+        case 10:
+            _code.text = [NSString stringWithFormat:@"%@%@", self.code.text, string];
+            self.codeText = [NSString stringWithFormat:@"%@%@", self.codeText, string];
+            [self sendCoupon];
+            //            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            //                _code.text = @"";
+            //                [self.code resignFirstResponder];
+            //            });
+            break;
+        default:
+            break;
     }
-    if(length2 == 2)
-    {
-        NSString *code = [self formatCode:_code.text];
-        const char *c = [code UTF8String];
-        
-        _code.text = [NSString stringWithFormat:@"%c %c ",c[0],c[1]];
-        //_notCode.text = [NSString stringWithFormat:@"    %@ %@ %@ %@", space, space, space, space];
-        if(range.length > 0)
-            _code.text = [NSString stringWithFormat:@"%c %c",c[0],c[1]];
-    }
-    if(length2 == 3)
-    {
-        NSString *code = [self formatCode:_code.text];
-        const char *c = [code UTF8String];
-        
-        _code.text = [NSString stringWithFormat:@"%c %c %c ",c[0],c[1],c[2]];
-        //_notCode.text = [NSString stringWithFormat:@"      %@ %@ %@", space, space, space];
-        
-        if(range.length > 0)
-            _code.text = [NSString stringWithFormat:@"%c %c %c",c[0],c[1],c[2]];
-        
-    }
-    
-    if(length2 == 4)
-    {
-        NSString *code = [self formatCode:_code.text];
-        const char *c = [code UTF8String];
-        
-        _code.text = [NSString stringWithFormat:@"%c %c %c %c ",c[0],c[1],c[2],c[3]];
-        //_notCode.text = [NSString stringWithFormat:@"        %@ %@", space, space];
-        
-        if(range.length > 0)
-            _code.text = [NSString stringWithFormat:@"%c %c %c %c",c[0],c[1],c[2],c[3]];
-        
-    }
-
-    if(length2 == 5)
-    {
-        NSString *code = [self formatCode:_code.text];
-        const char *c = [code UTF8String];
-        
-        _code.text = [NSString stringWithFormat:@"%c %c %c %c %c ",c[0],c[1],c[2],c[3],c[4]];
-        //_notCode.text = [NSString stringWithFormat:@"          %@", space];
-        
-        if(range.length > 0)
-            _code.text = [NSString stringWithFormat:@"%c %c %c %c %c",c[0],c[1],c[2],c[3],c[4]];
-        
-    }
-
-    if (length2 == 6)
-    {
-        NSString *code = [self formatCode:_code.text];
-        const char *c = [code UTF8String];
-        
-        _code.text = [NSString stringWithFormat:@"%c %c %c %c %c %c",c[0],c[1],c[2],c[3],c[4],c[5]];
-        //_notCode.text = [NSString stringWithFormat:@"           "];
-        
-        if(range.length == 0)
-            return NO;
-    }
-
-    return YES;
+    return NO;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -207,13 +166,52 @@
     return code;
 }
 
--(int)getLength:(NSString*)code
-{
+-(NSInteger)getLength:(NSString*)code {
     code = [code stringByReplacingOccurrencesOfString:@" " withString:@""];
     
-    int length = [code length];
+    NSInteger length = [code length];
     
     return length;
+}
+
+- (void)sendCoupon {
+
+    NSString *couponCode = @"123456";
+    if (![self.codeText isEqualToString:couponCode]) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.code.text = @"";
+            [RKDropdownAlert title:@"Неверный код" message:@"Проверьте код еще раз и введите." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
+        });
+        return;
+    }
+    User *user = [User sharedUser];
+    NSMutableDictionary *plan = [user.plan mutableCopy];
+    int currentCounter = ((NSString*)user.plan[@"counter"]).intValue;
+    if (currentCounter != -1) {
+        currentCounter++;
+
+        NSString *text;
+        if (currentCounter == 1) {
+            text = @"ЧАШКА";
+        } else if (currentCounter == 2 || currentCounter == 3 || currentCounter == 4) {
+            text = @"ЧАШКИ";
+        } else {
+            text = @"ЧАШЕК";
+        }
+        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%ld %@  ", (long)currentCounter, text] forKey:@"currentCounter"];
+        plan[@"counter"] = [NSString stringWithFormat:@"%d", currentCounter];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:user] forKey:@"user"];
+        user.plan = plan;
+        [user save];
+        [self customNavBar];
+        [RKDropdownAlert title:@"Верный код" message:@"Теперь у вас на счету на одну кружку больше." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
+    } else {
+        [RKDropdownAlert title:@"Купон не доступен" message:@"У вас безлимитный тариф." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
+    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.code.text = @"";
+        [self.view endEditing:YES];
+    });
 }
 
 /*

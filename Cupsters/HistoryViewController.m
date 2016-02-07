@@ -16,6 +16,9 @@
 #import "AppDelegate.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "OrderViewController.h"
+#import <SCLAlertView.h>
+#import "Server.h"
+#import "User.h"
 
 @interface HistoryViewController ()
 
@@ -42,12 +45,25 @@
     [self preferredStatusBarStyle];
     [self configureMenu];
     logoURLs = [self completeIconArrayForCoffee];
+    
+    self.source = [[DataManager sharedManager] getDataFromEntity:@"Orders"];
+    
+    Server *server = [[Server alloc] init];
+    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
+    NSString *user_id = user.id.stringValue;
+    ServerRequest *request = [ServerRequest initRequest:ServerRequestTypeGET With:@{@"type" : @"history", @"user_id" : user_id} To:OrderURLStrring];
+    [server sentToServer:request OnSuccess:^(id result) {
+        self.source = [[DataManager sharedManager] getOrders:result];
+        [self.tableView reloadData];
+    } OrFailure:^(NSError *error) {
+        NSLog(@"%@", [error debugDescription]);
+    }];
+
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     
-    self.source = [[DataManager sharedManager] getDataFromEntity:@"Orders"];
-
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -108,8 +124,7 @@
     
 }
 
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
         [cell setSeparatorInset:UIEdgeInsetsZero];
     }
@@ -119,8 +134,7 @@
     }
 }
 
--(void)viewDidLayoutSubviews
-{
+-(void)viewDidLayoutSubviews {
     if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
         [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     }
@@ -177,13 +191,20 @@
     [cell.coffeeName setText:coffeeName];
     [cell.coffeePic setImageWithURL:[self urlForCoffee:coffeeName] placeholderImage:[UIImage imageNamed:@"americano"]];
     [cell.coffeeVol setText:[NSString stringWithFormat:@"%@ мл", [order valueForKey:@"volume"]]];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"y-M-d H:m:s";
-    NSDate *date = [formatter dateFromString:[order valueForKey:@"date"]];
-    formatter.dateFormat = @"d MMM yy";
-    NSString *lastDate = [[formatter stringFromDate:date] uppercaseString];
-    lastDate = [lastDate stringByReplacingOccurrencesOfString:@"." withString:@""];
-    [cell.date setText:lastDate];
+    
+    NSString *status = [order valueForKey:@"orderstatus"];
+    if ([status isEqualToString:@"Заказ готов"]) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"y-M-d H:m:s";
+        NSDate *date = [formatter dateFromString:[order valueForKey:@"date"]];
+        formatter.dateFormat = @"d MMM yy";
+        NSString *lastDate = [[formatter stringFromDate:date] uppercaseString];
+        lastDate = [lastDate stringByReplacingOccurrencesOfString:@"." withString:@""];
+        [cell.date setText:lastDate];
+    } else {
+        [cell.date setText:[order valueForKey:@"orderstatus"]];
+    }
+    
     
     return cell;
 }
@@ -219,10 +240,17 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-        [self.tableView deselectRowAtIndexPath:indexPath animated:false];
-//        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:false];
+    
+    NSManagedObject *order = self.source[indexPath.row];
+    NSString *status = [order valueForKey:@"orderstatus"];
+    if ([status isEqualToString:@"Заказ готов"]) {
         [self performSegueWithIdentifier:@"fromHistory" sender:indexPath];
-        NSLog(@"Select row at index %@", indexPath);
+    } else {
+        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+        [alert showInfo:@"Подождите" subTitle:@"Ваш заказ еще не готов." closeButtonTitle:@"Ок" duration:5.0];
+    }
+    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

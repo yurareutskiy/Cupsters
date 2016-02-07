@@ -101,6 +101,7 @@
             [order setValue:tempDict[@"volume"] forKey:@"volume"];
             [order setValue:tempDict[@"date_accept"] forKey:@"date"];
             [order setValue:tempDict[@"cafe_id"] forKey:@"cafe_id"];
+            [order setValue:tempDict[@"orderstatus"] forKey:@"orderstatus"];
             NSLog(@"%@", tempDict[@"coffee_id"]);
             [order setValue:tempDict[@"coffee_id"] forKey:@"coffee_id"];
             [order setValue:[NSNumber numberWithInt:((NSString*)tempDict[@"id"]).intValue] forKey:@"id"];
@@ -118,6 +119,52 @@
 //        NSLog(@"%@", fetchedObjects);
     }
     [ud setObject:@"true" forKey:@"isLogin"];
+}
+
+- (NSArray*)getOrders:(NSArray*)raw_data {
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    NSLog(@"%@", [raw_data objectAtIndex:0]);
+    if (![[raw_data objectAtIndex:0] isKindOfClass:[NSString class]]) {
+
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"Orders" inManagedObjectContext:context];
+        request.entity = entity;
+        NSError *error = nil;
+        NSArray *fetchResult = [context executeFetchRequest:request error:&error];
+        if (error) {
+            NSLog(@"%@", [error debugDescription]);
+            return nil;
+        }
+        for (NSManagedObject *object in fetchResult) {
+            [context deleteObject:object];
+        }
+        [context save:&error];
+        
+        for (int i = 0; i < [raw_data count]; i++) {
+            NSDictionary *tempDict = raw_data[i];
+            NSManagedObject *order = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:context];
+            [order setValue:tempDict[@"cafe"] forKey:@"cafe"];
+            [order setValue:tempDict[@"coffee"] forKey:@"coffee"];
+            [order setValue:tempDict[@"volume"] forKey:@"volume"];
+            [order setValue:tempDict[@"date_accept"] forKey:@"date"];
+            [order setValue:tempDict[@"cafe_id"] forKey:@"cafe_id"];
+            [order setValue:tempDict[@"orderstatus"] forKey:@"orderstatus"];
+            [order setValue:tempDict[@"coffee_id"] forKey:@"coffee_id"];
+            [order setValue:[NSNumber numberWithInt:((NSString*)tempDict[@"id"]).intValue] forKey:@"id"];
+            NSError *error = nil;
+            [context save:&error];
+            if (error) {
+                NSLog(@"%@", [error debugDescription]);
+            }
+        }
+        
+        fetchResult = [context executeFetchRequest:request error:&error];
+        return fetchResult;
+    } else {
+        return nil;
+    }
+
 }
 
 - (void)loadDataWithStart:(NSArray*)data From:(NSString*)object {

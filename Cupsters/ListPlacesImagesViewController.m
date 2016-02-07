@@ -49,6 +49,7 @@
     userDefaults = [NSUserDefaults standardUserDefaults];
     [self setNeedsStatusBarAppearanceUpdate];
     
+    pointOfInterest = [[CLLocation alloc] initWithLatitude:55.7522200 longitude:37.6155600];
     
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
@@ -65,8 +66,9 @@
     self.table.dataSource = self;
     
     [self configureMenu];
-    
-    pointOfInterest = [[CLLocation alloc] initWithLatitude:locationManager.location.coordinate.latitude longitude:locationManager.location.coordinate.longitude];
+//    [self.table setContentOffset:CGPointMake(0, 44)];
+
+//    pointOfInterest = [[CLLocation alloc] initWithLatitude:locationManager.location.coordinate.latitude longitude:locationManager.location.coordinate.longitude];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -82,13 +84,13 @@
     NSLog(@"horizontal Accuracy: %f", [locations firstObject].horizontalAccuracy);
     NSLog(@"vertical Accuracy: %f\n", [locations firstObject].verticalAccuracy);
 
-    if ([locations firstObject].horizontalAccuracy < 10.f && [locations firstObject].verticalAccuracy < 10.f) {
+    if ([locations firstObject].horizontalAccuracy < 50.f || [locations firstObject].verticalAccuracy < 50.f) {
         [manager stopUpdatingLocation];
         pointOfInterest = [[CLLocation alloc] initWithLatitude:locationManager.location.coordinate.latitude longitude:locationManager.location.coordinate.longitude];
         [self fetchData];
         [self completeDistanceArray:self.source];
         [self.table reloadData];
-
+        [locationManager stopUpdatingLocation];
     }
 //    [locationManager stopUpdatingLocation];
 }
@@ -299,14 +301,7 @@
     
     NSManagedObject *object = [[self.objectsArray objectAtIndex:row] valueForKey:@"place"];
     
-//    if ([[object valueForKey:@"image"] isEqualToString:@""]) {
-//        // default image
-//        imageURL = [NSURL URLWithString:@"http://lk.cupsters.ru/img/cafe/maxresdefault.jpg"];
-//    } else {
-//        imageURL = [NSURL URLWithString:[object valueForKey:@"image"]];
-//    }
     if ([object valueForKey:@"name"] == nil) {
-//        [self fetchData];
     }
     NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://lk.cupsters.ru/%@", [object valueForKey:@"image"]]];
     NSLog(@"%@", imageURL);
@@ -368,6 +363,7 @@
         self.table.contentOffset = CGPointMake(0.0, -44.0);
         self.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
     }];
+    [self.searchBar becomeFirstResponder];
     NSLog(@"%f", self.searchBar.frame.origin.y);
 }
 
@@ -415,13 +411,17 @@
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (self.searchBar.frame.origin.y == 0) {
-        [UIView animateWithDuration:0.3 animations:^{
-            self.searchBar.frame = CGRectMake(0, -44.f, self.view.frame.size.width, 44);
-            self.table.contentOffset = CGPointMake(0.0, 0.0);
-        }];
-        self.objectsArray = self.source;
-    }
+//    if (self.searchBar.frame.origin.y == 0 && [scrollView isEqual:self.table]) {
+//        [UIView animateWithDuration:0.3 animations:^{
+//            self.searchBar.frame = CGRectMake(0, -44.f, self.view.frame.size.width, 44);
+//            self.table.contentOffset = CGPointMake(0.0, 0.0);
+//        }];
+//        [self.view endEditing:YES];
+//
+//    }
+    NSLog(@"%@", scrollView);
 }
+
+
 
 @end

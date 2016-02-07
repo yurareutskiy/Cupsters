@@ -61,4 +61,14 @@
     return self;
 }
 
++ (instancetype)sharedUser {
+    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
+    return user;
+}
+
+- (void)save {
+    NSData *userData = [NSKeyedArchiver archivedDataWithRootObject:self];
+    [[NSUserDefaults standardUserDefaults] setObject:userData forKey:@"user"];
+}
+
 @end

@@ -263,6 +263,7 @@
         [ud setObject:userData forKey:@"user"];
 
         if ([self.type isEqualToString:@"advanced"]) {
+            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
             [alert showSuccess:@"Успешно" subTitle:@"Вы подключили тариф 'Расширенный'" closeButtonTitle:@"Ок" duration:5.0];
             UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
             [self presentViewController:vc animated:true completion:nil];

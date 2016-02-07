@@ -29,6 +29,7 @@
 - (void)saveDataWithLogin:(NSDictionary*)result;
 - (void)loadDataWithStart:(NSArray*)data From:(NSString*)object;
 - (NSArray*)getDataFromEntity:(NSString*)entityName;
+- (NSArray*)getOrders:(NSArray*)raw_data;
 
 + (instancetype)sharedManager;
 
