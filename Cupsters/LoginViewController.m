@@ -50,12 +50,6 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-
-    [VKSdk instance].uiDelegate = nil;
-    [[VKSdk instance] unregisterDelegate:self];
-
-}
 
 
 #pragma mark - Voids

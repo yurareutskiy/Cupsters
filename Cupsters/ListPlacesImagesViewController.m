@@ -57,6 +57,7 @@
     [locationManager requestWhenInUseAuthorization];
     [locationManager startUpdatingLocation];
     
+    self.table.backgroundColor = [UIColor clearColor];
     
 //    self.searchBar.frame = CGRectMake(0.0, -44.0, self.view.frame.size.width, 44);
     self.searchBar.barTintColor = [UIColor colorWithHEX:cBrown];
@@ -187,6 +188,8 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     self.menu.view.frame = CGRectMake(self.menu.view.frame.origin.x, 0.f, 280.f, self.menu.view.frame.size.height + 60.f);
+    self.table.contentInset = UIEdgeInsetsMake(0, 0, 50, 0);
+
 }
 
 - (void)customNavBar {

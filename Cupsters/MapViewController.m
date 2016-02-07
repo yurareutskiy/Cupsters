@@ -84,8 +84,24 @@ static NSString *baseURL = @"http://cupsters.ru";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    
     mapView.delegate = self;
     // Do any additional setup after loading the view.
+}
+
+
+-(void)viewWillAppear:(BOOL)animated {
+    
+    [self customNavBar];
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0);
+    
+    [self makeCafeMarker:mapView];
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    self.menu.view.frame = CGRectMake(self.menu.view.frame.origin.x, 0.f, 280.f, self.menu.view.frame.size.height + 60.f);
 }
 
 -(void) makeCafeMarker:(GMSMapView*)map {
@@ -129,48 +145,6 @@ static NSString *baseURL = @"http://cupsters.ru";
     [self performSegueWithIdentifier:@"goToCafe" sender:marker.userData];
 }
 
--(void)viewWillAppear:(BOOL)animated {
-
-    [self customNavBar];
-
-//    if (self.objectsArray == nil) {
-//        //    self.source = [[DataManager sharedManager] getDataFromEntity:@"Cafes"];
-//        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-//        NSManagedObjectContext *context = [appDelegate managedObjectContext];
-//        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//        NSEntityDescription *entity = [NSEntityDescription
-//                                       entityForName:@"Cafes" inManagedObjectContext:context];
-//        [fetchRequest setEntity:entity];
-//        
-//        static double const D = 5000000. * 1.1;
-//        double const R = 6371009.; // Earth readius in meters
-//        double meanLatitidue = pointOfInterest.coordinate.latitude * M_PI / 180.;
-//        double deltaLatitude = D / R * 180. / M_PI;
-//        double deltaLongitude = D / (R * cos(meanLatitidue)) * 180. / M_PI;
-//        double minLatitude = pointOfInterest.coordinate.latitude - deltaLatitude;
-//        double maxLatitude = pointOfInterest.coordinate.latitude + deltaLatitude;
-//        double minLongitude = pointOfInterest.coordinate.longitude - deltaLongitude;
-//        double maxLongitude = pointOfInterest.coordinate.longitude + deltaLongitude;
-//        
-//        NSPredicate *predicate = [NSPredicate predicateWithFormat:
-//                                  @"(%@ <= longitude) AND (longitude <= %@)"
-//                                  @"AND (%@ <= lattitude) AND (lattitude <= %@)",
-//                                  @(minLongitude), @(maxLongitude), @(minLatitude), @(maxLatitude)];
-//        
-//        [fetchRequest setPredicate:predicate];
-//        
-//        NSError *error = nil;
-//        NSArray *fetchedResults = [context executeFetchRequest:fetchRequest error:&error];
-//        NSMutableDictionary *
-//        
-//    }
-    [self makeCafeMarker:mapView];
-
-}
-
--(void)viewDidAppear:(BOOL)animated {
-    self.menu.view.frame = CGRectMake(self.menu.view.frame.origin.x, 0.f, 280.f, self.menu.view.frame.size.height + 60.f);
-}
 
 - (void)customNavBar {
     
