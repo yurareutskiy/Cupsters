@@ -242,9 +242,11 @@
         if ([result[@"tariff"][0][@"counter"] isEqualToString:@"-1"]) {
             monthComponent.month = 1;
             [ud setObject:@"∞ ЧАШЕК  " forKey:@"currentCounter"];
+            user.counter = @-1;
         } else if (result[@"tariff"][0][@"counter"]) {
             monthComponent.month = 3;
             NSInteger cups = ((NSString*)result[@"tariff"][0][@"counter"]).intValue;
+            user.counter = [NSNumber numberWithInteger:cups];
             NSString *text;
             if (cups == 1) {
                 text = @"ЧАШКА";

@@ -202,6 +202,8 @@
         plan[@"counter"] = [NSString stringWithFormat:@"%d", currentCounter];
         [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:user] forKey:@"user"];
         user.plan = plan;
+        NSLog(@"%d", ((NSNumber*)user.counter).intValue);
+        user.counter = [NSNumber numberWithInt:((NSNumber*)user.counter).intValue + 1];
         [user save];
         [self customNavBar];
         [RKDropdownAlert title:@"Верный код" message:@"Теперь у вас на счету на одну кружку больше." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];

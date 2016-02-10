@@ -411,8 +411,9 @@
         [self addOrderToHistory:result[@"order"]];
         if ([user.plan[@"counter"] isEqualToString:@"-1"]) {
         } else {
-            NSString *cupsString = user.plan[@"counter"];
+            NSString *cupsString = ((NSNumber*)user.counter).stringValue;
             NSInteger cups = [cupsString intValue] - 1;
+            user.counter = [NSNumber numberWithInteger:cups];
             NSString *text;
             if (cups == 1) {
                 text = @"ЧАШКА";
@@ -461,11 +462,14 @@
 }
 
 - (BOOL)checkUserCanMakeOrder {
-    NSInteger counter = [user.plan[@"counter"] intValue];
+    NSInteger counter = [user.counter intValue];
     if (counter == 0) {
         return NO;
-    } else if (counter == -1) {
+    } else {
         NSDate *expiredDate = user.plan[@"endDate"];
+        if (!expiredDate) {
+            return YES;
+        }
         NSInteger result = [expiredDate compare:[NSDate date]];
         if (result != 1) {
             return NO;
