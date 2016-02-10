@@ -26,6 +26,24 @@
 
 - (void)viewDidLoad {
 
+    for (UITextField *tf in self.fieldsOutlet) {
+        switch (tf.tag) {
+            case 3:
+                if ([self.email length] > 0 && ![self.email isEqualToString:@"Email"]) {
+                    tf.text = self.email;
+                }
+                break;
+            case 4:
+                if ([self.password length] > 0 && ![self.password isEqualToString:@"Пароль"]) {
+                    tf.text = self.password;
+                }
+            default:
+                break;
+        }
+    }
+
+
+
     self.fields = self.fieldsOutlet;
     self.scrollView = self.scrollViewOutlet;
     

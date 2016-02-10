@@ -5,6 +5,7 @@
         <attribute name="close" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="close_weekend" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contact_phone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lattitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -45,7 +46,7 @@
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Cafes" positionX="-936" positionY="72" width="128" height="238"/>
+        <element name="Cafes" positionX="-936" positionY="72" width="128" height="253"/>
         <element name="Coffees" positionX="-560" positionY="99" width="128" height="133"/>
         <element name="Menus" positionX="-738" positionY="45" width="128" height="73"/>
         <element name="Orders" positionX="-774" positionY="-124" width="128" height="163"/>

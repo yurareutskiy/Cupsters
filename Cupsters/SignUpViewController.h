@@ -22,6 +22,9 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *agreeButton;
 
+@property (strong, nonatomic) NSString *email;
+@property (strong, nonatomic) NSString *password;
+
 - (IBAction)editDidBeginAction:(UITextField *)sender;
 - (IBAction)editDidEndAction:(UITextField *)sender;
 - (IBAction)agreeButtonAction:(UIButton *)sender;

@@ -124,8 +124,7 @@
 - (NSArray*)getOrders:(NSArray*)raw_data {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
-    NSLog(@"%@", [raw_data objectAtIndex:0]);
-    if (![[raw_data objectAtIndex:0] isKindOfClass:[NSString class]]) {
+    if ([raw_data count] > 0) {
 
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Orders" inManagedObjectContext:context];
@@ -200,6 +199,7 @@
             }
             
             for (NSString *key in [item allKeys]) {
+
                 if ([key isEqualToString:@"id"] || [key isEqualToString:@"volume"] || [key isEqualToString:@"price"] || [key isEqualToString:@"counter"] || [key isEqualToString:@"id_cafe"] || [key isEqualToString:@"coffee_id"] || [key isEqualToString:@"cafe_id"]) {
                     [managedObject setValue:[NSNumber numberWithInt:[item[key] intValue]] forKey:key];
                 } else if ([key isEqualToString:@"lattitude"] || [key isEqualToString:@"longitude"]) {
@@ -214,6 +214,8 @@
                     }
                     NSDate *date = [formatter dateFromString:item[key]];
                     [managedObject setValue:date forKey:key];
+                } else if ([key isEqualToString:@"contact_phone"] || [key isEqualToString:@"password"] || [key isEqualToString:@"login"] || [key isEqualToString:@"contact_name"]) {
+                
                 } else {
                     [managedObject setValue:item[key] forKey:key];
                 }

@@ -455,10 +455,10 @@
             [mapView setAlpha:1.0];
         }];
         [UIView animateWithDuration:0.25 animations:^{
-        self.tableView1.frame = CGRectMake(self.tableView1.frame.origin.x, self.tableView1.frame.origin.y + mapView.frame.size.height, self.tableView1.frame.size.width, self.tableView1.frame.size.height);
-        self.tableView2.frame = CGRectMake(self.tableView2.frame.origin.x, self.tableView2.frame.origin.y + mapView.frame.size.height, self.tableView2.frame.size.width, self.tableView2.frame.size.height);
-        self.tableView3.frame = CGRectMake(self.tableView3.frame.origin.x, self.tableView3.frame.origin.y + mapView.frame.size.height, self.tableView3.frame.size.width, self.tableView3.frame.size.height);
-        _segmentedControl.frame = CGRectMake(_segmentedControl.frame.origin.x, _segmentedControl.frame.origin.y + mapView.frame.size.height, _segmentedControl.frame.size.width, _segmentedControl.frame.size.height);
+            self.tableView1.frame = CGRectMake(self.tableView1.frame.origin.x, self.tableView1.frame.origin.y + mapView.frame.size.height, self.tableView1.frame.size.width, self.tableView1.frame.size.height);
+            self.tableView2.frame = CGRectMake(self.tableView2.frame.origin.x, self.tableView2.frame.origin.y + mapView.frame.size.height, self.tableView2.frame.size.width, self.tableView2.frame.size.height);
+            self.tableView3.frame = CGRectMake(self.tableView3.frame.origin.x, self.tableView3.frame.origin.y + mapView.frame.size.height, self.tableView3.frame.size.width, self.tableView3.frame.size.height);
+            _segmentedControl.frame = CGRectMake(_segmentedControl.frame.origin.x, _segmentedControl.frame.origin.y + mapView.frame.size.height, _segmentedControl.frame.size.width, _segmentedControl.frame.size.height);
         }];
     }
     else {

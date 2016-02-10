@@ -13,6 +13,7 @@
 #import <NSHash/NSString+NSHash.h>
 #import "DataManager.h"
 #import <RKDropdownAlert.h>
+#import "SignUpViewController.h"
 
 @interface LoginViewController ()
 
@@ -77,7 +78,7 @@
                 break;
             case 2:
                 sender.secureTextEntry = false;
-                sender.text = @"Password";
+                sender.text = @"Пароль";
             default:
                 break;
         }
@@ -285,6 +286,15 @@
     NSLog(@"vkSdkReceivedNewToken - %@", newToken);
     //    defaults.setObject(newToken, forKey: "token")
     //    server.checkTokenOnServer(newToken.accessToken, user: defaults.objectForKey("user") as! String, deviceNum: deviceInfo)
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"signUp"]) {
+        SignUpViewController *vc = segue.destinationViewController;
+        vc.password = ((UITextField*)self.fieldsOutlet[0]).text;
+        vc.email = ((UITextField*)self.fieldsOutlet[1]).text;
+    }
+
 }
 
 @end

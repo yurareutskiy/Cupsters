@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSDictionary *plan;
 @property (strong, nonatomic) NSString *initials;
 @property (strong, nonatomic) NSNumber *id;
+@property (strong, nonatomic) NSNumber *counter;
 
 
 - (void)save;

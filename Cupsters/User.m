@@ -34,7 +34,7 @@
     NSString *secondLetter = [lastName substringToIndex:1];
         
     user.initials = [[@[firstLetter, secondLetter] componentsJoinedByString:@""] uppercaseString];
-    
+    user.counter = plan ? plan[@"counter"] : @0;
     user.plan = plan;
     
     return user;
@@ -47,6 +47,7 @@
     [aCoder encodeObject:self.initials forKey:@"initials"];
     [aCoder encodeObject:self.plan forKey:@"plan"];
     [aCoder encodeObject:self.id forKey:@"id"];
+    [aCoder encodeObject:self.counter forKey:@"counter"];
 }
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder {
@@ -57,6 +58,7 @@
         self.initials = [aDecoder decodeObjectForKey:@"initials"];
         self.id = [aDecoder decodeObjectForKey:@"id"];
         self.plan = [aDecoder decodeObjectForKey:@"plan"];
+        self.counter = [aDecoder decodeObjectForKey:@"counter"];
     }
     return self;
 }

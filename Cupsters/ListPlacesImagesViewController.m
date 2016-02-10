@@ -282,6 +282,7 @@
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     [self performSegueWithIdentifier:@"goToCafe" sender:indexPath];
     NSLog(@"Select row at index %@", indexPath);
+    [self.view endEditing:YES];
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -361,13 +362,28 @@
 #pragma mark - Search
 
 - (void)performSearch {
-    NSLog(@"%f", self.searchBar.frame.origin.y);
+    if (self.searchBar.frame.origin.y == 0) {
+        [self hideSearch:self];
+        return;
+    }
     [UIView animateWithDuration:0.3 animations:^{
         self.table.contentOffset = CGPointMake(0.0, -44.0);
         self.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
     }];
     [self.searchBar becomeFirstResponder];
-    NSLog(@"%f", self.searchBar.frame.origin.y);
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSearch:)];
+    [self.table addGestureRecognizer:tapRecognizer];
+}
+
+- (void)hideSearch:(id)sender {
+    if ([sender isKindOfClass:[UITableView class]]) {
+        [self.table removeGestureRecognizer:[self.table.gestureRecognizers lastObject]];
+    }
+    [self.view endEditing:YES];
+    [UIView animateWithDuration:0.3 animations:^{
+        self.table.contentOffset = CGPointMake(0.0, 0.0);
+        self.searchBar.frame = CGRectMake(0, -44, self.view.frame.size.width, 44);
+    }];
 }
 
 -(void)filter:(NSString*)text {
