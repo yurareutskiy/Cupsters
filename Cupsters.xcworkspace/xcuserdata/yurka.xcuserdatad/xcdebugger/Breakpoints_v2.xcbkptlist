@@ -202,7 +202,7 @@
                   moduleName = "Cupsters"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yurka/Documents/Development/Cupsters/Cupsters/HistoryViewController.m"
-                  timestampString = "476894117.491988"
+                  timestampString = "476899146.119499"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "230"
@@ -217,7 +217,7 @@
                   moduleName = "Cupsters"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yurka/Documents/Development/Cupsters/Cupsters/HistoryViewController.m"
-                  timestampString = "476894117.492167"
+                  timestampString = "476899146.119694"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "230"
@@ -272,6 +272,22 @@
             startingLineNumber = "465"
             endingLineNumber = "465"
             landmarkName = "-checkUserCanMakeOrder"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Cupsters/Server.m"
+            timestampString = "476896428.895684"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "-sentToServer:OnSuccess:OrFailure:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

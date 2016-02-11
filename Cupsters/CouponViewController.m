@@ -188,7 +188,7 @@
     
     [server sentToServer:request OnSuccess:^(NSDictionary *result) {
         NSMutableDictionary *plan = [user.plan mutableCopy];
-        currentCounter++;
+        currentCounter += + ((NSString*)result[@"counter"]).intValue;
         
         NSString *text;
         if (currentCounter == 1) {
@@ -202,11 +202,11 @@
         plan[@"counter"] = [NSString stringWithFormat:@"%d", currentCounter];
         [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:user] forKey:@"user"];
         user.plan = plan;
-        NSLog(@"%d", ((NSNumber*)user.counter).intValue);
-        user.counter = [NSNumber numberWithInt:((NSNumber*)user.counter).intValue + 1];
+        NSLog(@"%@", result);
+        user.counter = [NSNumber numberWithInt:((NSNumber*)user.counter).intValue + ((NSString*)result[@"counter"]).intValue];
         [user save];
         [self customNavBar];
-        [RKDropdownAlert title:@"Верный код" message:@"Теперь у вас на счету на одну кружку больше." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
+        [RKDropdownAlert title:@"Верный код" message:@"У вас увеличился счет кружек." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.code.text = @"";
             [self.view endEditing:YES];
@@ -221,14 +221,5 @@
     
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
