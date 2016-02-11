@@ -35,6 +35,7 @@ extern NSString * const MenuURLStrring;
 extern NSString * const OrderURLStrring;
 extern NSString * const SetTariffURLStrring;
 extern NSString * const CoffeeURLStrring;
+extern NSString * const CouponURLString;
 
 #pragma mark - Notofications
 extern NSString * const kNotificatiionLoading;

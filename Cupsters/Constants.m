@@ -44,6 +44,7 @@ NSString * const MenuURLStrring = @"menu";
 NSString * const OrderURLStrring = @"order";
 NSString * const SetTariffURLStrring = @"tariffToUser";
 NSString * const CoffeeURLStrring = @"coffee";
+NSString * const CouponURLString = @"coupon";
 
 #pragma mark - Notofications
 NSString * const kNotificatiionLoading = @"FinishLoadStartingData";

@@ -202,7 +202,7 @@
                   moduleName = "Cupsters"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yurka/Documents/Development/Cupsters/Cupsters/HistoryViewController.m"
-                  timestampString = "476839616.831838"
+                  timestampString = "476894117.491988"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "230"
@@ -217,7 +217,7 @@
                   moduleName = "Cupsters"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yurka/Documents/Development/Cupsters/Cupsters/HistoryViewController.m"
-                  timestampString = "476839616.831965"
+                  timestampString = "476894117.492167"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "230"
@@ -240,22 +240,6 @@
             startingLineNumber = "125"
             endingLineNumber = "125"
             landmarkName = "-getOrders:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Cupsters/LoginViewController.m"
-            timestampString = "476837965.898312"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "295"
-            endingLineNumber = "295"
-            landmarkName = "-prepareForSegue:sender:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -288,22 +272,6 @@
             startingLineNumber = "465"
             endingLineNumber = "465"
             landmarkName = "-checkUserCanMakeOrder"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Cupsters/CouponViewController.m"
-            timestampString = "476838645.232994"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
-            landmarkName = "-sendCoupon"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -13,6 +13,7 @@
 #import "SWRevealViewController.h"
 #import <RKDropdownAlert.h>
 #import "User.h"
+#include "Server.h"
 
 @interface CouponViewController ()
 
@@ -175,21 +176,20 @@
 }
 
 - (void)sendCoupon {
-
-    NSString *couponCode = @"123456";
-    if (![self.codeText isEqualToString:couponCode]) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            self.code.text = @"";
-            [RKDropdownAlert title:@"Неверный код" message:@"Проверьте код еще раз и введите." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
-        });
+    User *user = [User sharedUser];
+    int __block currentCounter = ((NSString*)user.plan[@"counter"]).intValue;
+    if (currentCounter == -1) {
+        [RKDropdownAlert title:@"Купон не доступен" message:@"У вас безлимитный тариф." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
         return;
     }
-    User *user = [User sharedUser];
-    NSMutableDictionary *plan = [user.plan mutableCopy];
-    int currentCounter = ((NSString*)user.plan[@"counter"]).intValue;
-    if (currentCounter != -1) {
+    Server *server = [[Server alloc] init];
+    NSDictionary *parameters = @{@"user_id":user.id, @"code":self.codeText};
+    ServerRequest *request = [ServerRequest initRequest:ServerRequestTypePOST With:parameters To:CouponURLString];
+    
+    [server sentToServer:request OnSuccess:^(NSDictionary *result) {
+        NSMutableDictionary *plan = [user.plan mutableCopy];
         currentCounter++;
-
+        
         NSString *text;
         if (currentCounter == 1) {
             text = @"ЧАШКА";
@@ -207,13 +207,18 @@
         [user save];
         [self customNavBar];
         [RKDropdownAlert title:@"Верный код" message:@"Теперь у вас на счету на одну кружку больше." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
-    } else {
-        [RKDropdownAlert title:@"Купон не доступен" message:@"У вас безлимитный тариф." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
-    }
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.code.text = @"";
-        [self.view endEditing:YES];
-    });
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.code.text = @"";
+            [self.view endEditing:YES];
+        });
+
+    } OrFailure:^(NSError *error) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.code.text = @"";
+            [RKDropdownAlert title:@"Неверный код" message:@"Проверьте код еще раз и введите." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
+        });
+    }];
+    
 }
 
 /*
