@@ -242,14 +242,7 @@
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:false];
     
-    NSManagedObject *order = self.source[indexPath.row];
-    NSString *status = [order valueForKey:@"orderstatus"];
-    if ([status isEqualToString:@"Заказ готов"]) {
-        [self performSegueWithIdentifier:@"fromHistory" sender:indexPath];
-    } else {
-        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-        [alert showInfo:@"Подождите" subTitle:@"Ваш заказ еще не готов." closeButtonTitle:@"Ок" duration:5.0];
-    }
+    [self performSegueWithIdentifier:@"fromHistory" sender:indexPath];
     
 }
 
@@ -260,6 +253,8 @@
         NSManagedObject *order = self.source[((NSIndexPath*)sender).row];
         vc.cafe = [self getObjectFrom:order For:@"Cafes"];
         vc.coffee = [self getObjectFrom:order For:@"Coffees"];
+        vc.orderID = ((NSNumber*)[order valueForKey:@"id"]).stringValue;
+        vc.isAlreadySend = 1;
     }
 }
 

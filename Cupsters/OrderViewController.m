@@ -137,10 +137,7 @@
     return YES;
 }
 
-
-- (void)viewWillAppear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+- (void)showAlert {
     
     SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
     
@@ -148,8 +145,7 @@
     
     SCLButton *firstButton = [alert addButton:@"Да" target:self selector:@selector(agreeButton)];
     
-    firstButton.buttonFormatBlock = ^NSDictionary* (void)
-    {
+    firstButton.buttonFormatBlock = ^NSDictionary* (void) {
         NSMutableDictionary *buttonConfig = [[NSMutableDictionary alloc] init];
         
         buttonConfig[@"backgroundColor"] = [UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0];
@@ -163,8 +159,7 @@
     
     SCLButton *secondButton = [alert addButton:@"Нет" target:self selector:@selector(backAction)];
     
-    secondButton.buttonFormatBlock = ^NSDictionary* (void)
-    {
+    secondButton.buttonFormatBlock = ^NSDictionary* (void) {
         NSMutableDictionary *buttonConfig = [[NSMutableDictionary alloc] init];
         
         buttonConfig[@"backgroundColor"] = [UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0];
@@ -176,8 +171,18 @@
         return buttonConfig;
     };
     
-    [alert showCustom:self image:[UIImage imageNamed:@"cup"] color:color title:@"Подтверждение" subTitle:[NSString stringWithFormat:@"Вы заказали %@, объем %@", self.name.text, self.volume.text]  closeButtonTitle:nil duration:0.0f];
+    [alert showCustom:self image:[UIImage imageNamed:@"cup"] color:color title:@"Подтверждение" subTitle:[NSString stringWithFormat:@"Вы заказали %@, объем %@", [self.coffee valueForKey:@"name"], self.volume.text]  closeButtonTitle:nil duration:0.0f];
 
+}
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    if (!self.isAlreadySend) {
+        [self showAlert];
+    }
 }
 
 - (void) backAction {
@@ -209,6 +214,7 @@
 
 - (void) agreeButton {
     NSLog(@"Подтверждено");
+    [self sendOrder];
 }
 - (void) declineButton {
     NSLog(@"Отклонено");
@@ -287,72 +293,12 @@
         case 6:
             _code.text = [NSString stringWithFormat:@"%@%@", self.code.text, string];
             self.codeText = [NSString stringWithFormat:@"%@%@", self.codeText, string];
-            [self sendOrder];
-//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                _code.text = @"";
-//                [self.code resignFirstResponder];
-//            });
+            [self updateOrder];
             break;
         default:
             break;
     }
     return NO;
-//    NSString *code = [self formatCode:_code.text];
-//    int length2 = [self getLength:code];
-//    NSLog(@"%d", range.location);
-//    NSString *space = @"_";
-//    
-//    if(length2 == 1)
-//    {
-//        NSString *code = [self formatCode:_code.text];
-//        const char *c = [code UTF8String];
-//        _code.text = [NSString stringWithFormat:@"%c ",c[0]];
-//        //_notCode.text = [NSString stringWithFormat:@"  %@ %@ %@ %@ %@", space, space, space, space, space];
-//        
-//        
-//        if(range.length > 0)
-//            _code.text = [NSString stringWithFormat:@"%c",c[0]];
-//    }
-//    if(length2 == 2)
-//    {
-//        NSString *code = [self formatCode:_code.text];
-//        const char *c = [code UTF8String];
-//        
-//        _code.text = [NSString stringWithFormat:@"%c %c ",c[0],c[1]];
-//        //_notCode.text = [NSString stringWithFormat:@"    %@ %@ %@ %@", space, space, space, space];
-//        if(range.length > 0)
-//            _code.text = [NSString stringWithFormat:@"%c %c",c[0],c[1]];
-//    }
-//    if(length2 == 3)
-//    {
-//        NSString *code = [self formatCode:_code.text];
-//        const char *c = [code UTF8String];
-//        
-//        _code.text = [NSString stringWithFormat:@"%c %c %c ",c[0],c[1],c[2]];
-//        //_notCode.text = [NSString stringWithFormat:@"      %@ %@ %@", space, space, space];
-//        
-//        if(range.length > 0)
-//            _code.text = [NSString stringWithFormat:@"%c %c %c",c[0],c[1],c[2]];
-//        
-//    }
-//    
-//    if(length2 == 4)
-//    {
-//        NSString *code = [self formatCode:_code.text];
-//        const char *c = [code UTF8String];
-//        
-//        self.code.text = [NSString stringWithFormat:@"%c %c %c %c",c[0],c[1],c[2],c[3]];
-//        self.codeText = [NSString stringWithFormat:@"%c%c%c%c",c[0],c[1],c[2],c[3]];
-//        //_notCode.text = [NSString stringWithFormat:@"           "];
-//        
-//        [self sendOrder];
-//        NSLog(@"%@", self.code.text);
-//        if(range.length == 0)
-//            return NO;
-//        
-//    }
-//    
-//    return YES;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -381,13 +327,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) sendOrder {
-    user = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
-    if (![self checkUserCanMakeOrder]) {
-        
-        return;
-    }
-    
+- (void)updateOrder {
     NSString *stringCode = [self.cafe valueForKey:@"code"];
     if (![stringCode isEqualToString:self.codeText]) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -397,18 +337,43 @@
         return;
     }
     
+    
+    NSDictionary *body = @{@"order_id":self.orderID, @"step":@"3"};
+    
+    
+    Server *server = [[Server alloc] init];
+    ServerRequest *request = [ServerRequest initRequest:ServerRequestTypePUT With:body To:OrderURLStrring];
+    [server sentToServer:request OnSuccess:^(NSDictionary *result) {
+        NSLog(@"%@", result);
+        [self.code resignFirstResponder];
+    } OrFailure:^(NSError *error) {
+        [RKDropdownAlert title:@"Ошибка" message:@"Попробуйте сделать заказ заново." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
+        NSLog(@"%@", [error debugDescription]);
+    }];
+    
+}
+
+- (void) sendOrder {
+    user = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
+    if (![self checkUserCanMakeOrder]) {
+        
+        return;
+    }
+    
+
+    
     NSManagedObject *coffeeId = [self.coffee valueForKey:@"id"];;
     NSNumber *userID = user.id;
     NSNumber *number = @1;
     
     NSDictionary *body = @{@"coffee_id":coffeeId, @"user_id":userID, @"number":number};
-    NSLog(@"im work");
-    NSLog(@"%@", body);
+
     
     Server *server = [[Server alloc] init];
     ServerRequest *request = [ServerRequest initRequest:ServerRequestTypePOST With:body To:OrderURLStrring];
     [server sentToServer:request OnSuccess:^(NSDictionary *result) {
         [self addOrderToHistory:result[@"order"]];
+        self.orderID = result[@"return_id"];
         if ([user.plan[@"counter"] isEqualToString:@"-1"]) {
         } else {
             NSString *cupsString = ((NSNumber*)user.counter).stringValue;
@@ -431,11 +396,9 @@
                 [[NSUserDefaults standardUserDefaults] setObject:@"НЕТ ЧАШЕК  " forKey:@"currentCounter"];
             }
         }
-        NSLog(@"Блять, работает?!");
         [self.code resignFirstResponder];
     } OrFailure:^(NSError *error) {
-        [RKDropdownAlert title:@"Ошибка" message:@"Попробуйте ввести код заново." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
-        self.code.text = @"";
+        [RKDropdownAlert title:@"Ошибка" message:@"Попробуйте сделать заказ заново." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
         NSLog(@"%@", [error debugDescription]);
     }];
 }

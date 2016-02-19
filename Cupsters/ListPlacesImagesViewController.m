@@ -36,6 +36,7 @@
     NSMutableArray *filteredTableData;
     NSManagedObjectContext *context;
     NSArray *fullData;
+    BOOL wasSegue;
 }
 
 - (void)viewDidLoad {
@@ -60,8 +61,7 @@
     self.table.backgroundColor = [UIColor clearColor];
     
 //    self.searchBar.frame = CGRectMake(0.0, -44.0, self.view.frame.size.width, 44);
-    self.searchBar.barTintColor = [UIColor colorWithHEX:cBrown];
-    [self preferredStatusBarStyle];
+
     
     self.table.delegate = self;
     self.table.dataSource = self;
@@ -73,6 +73,8 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    self.searchBar.barTintColor = [UIColor colorWithHEX:cBrown];
+    [self preferredStatusBarStyle];
     [self customNavBar];
     
     if (self.source == nil) {
@@ -333,6 +335,7 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    wasSegue = 1;
     if ([segue.identifier isEqualToString:@"goToCafe"]) {
         CafeViewController *vc = (CafeViewController*)segue.destinationViewController;
         NSInteger row = ((NSIndexPath*)sender).row;
@@ -366,19 +369,31 @@
         [self hideSearch:self];
         return;
     }
+    NSLog(@"Search %@", NSStringFromCGRect(self.searchBar.frame));
+
     [UIView animateWithDuration:0.3 animations:^{
-        self.table.contentOffset = CGPointMake(0.0, -44.0);
+        if (!wasSegue) {
+            self.table.contentOffset = CGPointMake(0.0, -44.0);
+        }
         self.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.3 animations:^{
+            if (wasSegue) {
+                self.table.contentOffset = CGPointMake(0.0, -44.0);
+                self.searchBar.frame = CGRectMake(0, 0, self.view.frame.size.width, 44);
+            }
+        }];
     }];
     [self.searchBar becomeFirstResponder];
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideSearch:)];
     [self.table addGestureRecognizer:tapRecognizer];
+    NSLog(@"Search 2 %@", self.searchBar);
 }
 
 - (void)hideSearch:(id)sender {
     if ([sender isKindOfClass:[UITableView class]]) {
-        [self.table removeGestureRecognizer:[self.table.gestureRecognizers lastObject]];
     }
+    [self.table removeGestureRecognizer:[self.table.gestureRecognizers lastObject]];
     [self.view endEditing:YES];
     [UIView animateWithDuration:0.3 animations:^{
         self.table.contentOffset = CGPointMake(0.0, 0.0);

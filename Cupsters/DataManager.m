@@ -128,6 +128,8 @@
 
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         NSEntityDescription *entity = [NSEntityDescription entityForName:@"Orders" inManagedObjectContext:context];
+        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO];
+        request.sortDescriptors = @[sort];
         request.entity = entity;
         NSError *error = nil;
         NSArray *fetchResult = [context executeFetchRequest:request error:&error];

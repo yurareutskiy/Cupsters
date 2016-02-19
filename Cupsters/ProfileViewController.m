@@ -52,7 +52,7 @@
 
     if (user.plan) {
         self.tariff.text = [NSString stringWithFormat:@"Тариф: %@", user.plan[@"name"]];
-        self.price.text = [NSString stringWithFormat:@"%@ ₽", user.plan[@"price"]];
+        self.price.text = [self formattedStringWithPrice:user.plan[@"price"]];
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 //        formatter.dateFormat = @"y-M-d H:m:s";
@@ -178,5 +178,22 @@
 }
 
 - (IBAction)changeCond:(UIButton *)sender {
+}
+
+- (NSString*)formattedStringWithPrice:(NSString*)price {
+    
+    NSInteger lenghtString = [price length];
+    NSMutableString *resultString = [NSMutableString stringWithString:@""];
+    NSInteger counter = lenghtString;
+    for (int i = 0; i < lenghtString; i++) {
+        char ch = [price characterAtIndex:i];
+        if (counter % 3 == 0 && lenghtString != counter) {
+            [resultString appendString:@" "];
+        }
+        [resultString appendString:[NSString stringWithFormat:@"%c", ch]];
+        counter--;
+    }
+    [resultString appendString:@" ₽"];
+    return resultString;
 }
 @end

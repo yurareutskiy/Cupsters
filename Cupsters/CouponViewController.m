@@ -119,7 +119,13 @@
 }
 
 - (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    
+    NSLog(@"%@", NSStringFromRange(range));
+    if (range.length == 1 && range.location % 2 == 1) {
+        self.code.text = [self.code.text substringToIndex:range.location - 1];
+        NSLog(@"%@", self.code.text);
+        self.codeText = [self.codeText substringToIndex:[self.codeText length] - 1];
+        return NO;
+    }
     switch (range.location) {
         case 0:
             _code.text = [NSString stringWithFormat:@"%@ ", string];

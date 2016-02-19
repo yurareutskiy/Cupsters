@@ -7,6 +7,9 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <mutableArray key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </mutableArray>
         <mutableArray key="HelveticaNeueCyr-Bold.otf">
             <string>HelveticaNeueCyr-Bold</string>
             <string>HelveticaNeueCyr-Bold</string>
@@ -686,14 +689,14 @@
                                     <action selector="toExpanded:" destination="TlD-RE-heB" eventType="touchUpInside" id="6hj-Lv-gyX"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="U76-kp-sPF">
-                                <rect key="frame" x="182" y="326" width="95" height="96"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="U76-kp-sPF">
+                                <rect key="frame" x="182" y="326" width="95" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="96" id="IJJ-Er-cEz"/>
                                     <constraint firstAttribute="width" constant="95" id="azK-zq-hLm"/>
                                 </constraints>
                                 <string key="text">Кофе
-Каппучино
+Капучино
 Эспрессо
 Американо
 Латте</string>
@@ -3025,9 +3028,9 @@
         <image name="ticket" width="399" height="258"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="IMf-SZ-TaL"/>
+        <segue reference="S4n-iQ-Wpw"/>
         <segue reference="dwG-z4-33y"/>
         <segue reference="5cM-jH-TcB"/>
-        <segue reference="S4n-iQ-Wpw"/>
-        <segue reference="IMf-SZ-TaL"/>
     </inferredMetricsTieBreakers>
 </document>

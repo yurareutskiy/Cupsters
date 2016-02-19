@@ -22,4 +22,7 @@
 
 @property (strong, nonatomic) NSManagedObject *cafe;
 @property (strong, nonatomic) NSManagedObject *coffee;
+
+@property (strong, nonatomic) NSString *orderID;
+@property (assign, nonatomic) BOOL isAlreadySend;
 @end

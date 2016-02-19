@@ -50,8 +50,6 @@
     [self.agreeButton setImage: [UIImage imageNamed:@"check"] forState:UIControlStateNormal];
     [self.agreeButton setImage: [UIImage imageNamed:@"checkIn"] forState:UIControlStateSelected];
     
-    [[VKSdk initializeWithAppId:@"5229696"] registerDelegate:self];
-    [[VKSdk instance] setUiDelegate:self];
 
     [super viewDidLoad];
 

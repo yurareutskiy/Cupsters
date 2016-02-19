@@ -150,7 +150,6 @@
     self.scrollView.pagingEnabled = YES;
     self.scrollView.showsHorizontalScrollIndicator = YES;
     self.scrollView.scrollsToTop = NO;
-    self.scrollView.contentSize = CGSizeMake(viewWidth * 3, self.scrollView.frame.size.height);
     
     //[self.scrollView scrollRectToVisible:CGRectMake(viewWidth, 0, viewWidth, self.scrollView.frame.size.height) animated:NO];
     
@@ -211,6 +210,9 @@
                 othereRows++;
             }
         }
+        int maxRows = MAX(MAX(coffeeRows, teaRows), othereRows);
+        self.scrollView.contentSize = CGSizeMake(viewWidth * 3, MAX(self.scrollView.frame.size.height, 100 * maxRows));
+        NSLog(@"Content size %@", NSStringFromCGSize(self.scrollView.contentSize));
         source = [NSArray arrayWithObjects:first, second, third, nil];
         NSLog(@"%@", source);
         NSAssert(source != nil, @"Failed to execute %@: %@", fetchRequest, error);
@@ -382,10 +384,10 @@
 
 
 - (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    NSLog(@"yeap");
-    NSLog(@"%f", scrollView.contentOffset.x);
-    NSLog(@"%f", scrollView.contentOffset.y);
-    
+//    NSLog(@"yeap");
+//    NSLog(@"%f", scrollView.contentOffset.x);
+//    NSLog(@"%f", scrollView.contentOffset.y);
+
     if (self.scrollView.contentOffset.x >= 0 && self.scrollView.contentOffset.x <= 106) {
         [self.segmentedControl setSelectedSegmentIndex:0 animated:YES];
     }
@@ -429,19 +431,6 @@
     
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-//- (IBAction)makeAnOrder:(UIButton *)sender {
-//    [self performSegueWithIdentifier:@"makeOrder" sender:self];
-//}
 
 
 - (IBAction)openMap:(UIButton *)sender {
@@ -476,23 +465,5 @@
         }];
     }
 }
-//- (IBAction)plusBtn:(UIButton *)sender index:(NSInteger)index for:(UILabel*)volume plus:(UIButton*)plus minus:(UIButton*)minus {
-//    if (index + 2 == volumeNum.count) {
-//        [volume setText:[NSString stringWithFormat:@"%@ мл", volumeNum[index + 1]]];
-//        [plus setImage:[UIImage imageNamed:@"plusGrey"] forState:UIControlStateNormal];
-//    } else if (index + 2 < volumeNum.count) {
-//        [volume setText:[NSString stringWithFormat:@"%@ мл", volumeNum[index + 1]]];
-//        [minus setImage:[UIImage imageNamed:@"minusBrown"] forState:UIControlStateNormal];
-//    }
-//}
-//
-//- (IBAction)minusBtn:(UIButton *)sender index:(NSInteger)index for:(UILabel*)volume plus:(UIButton*)plus minus:(UIButton*)minus {
-//    if (index + 1 == 2) {
-//        [volume setText:[NSString stringWithFormat:@"%@ мл", volumeNum[index - 1]]];
-//        [minus setImage:[UIImage imageNamed:@"minusGrey"] forState:UIControlStateNormal];
-//    } else if (index + 1 > 2) {
-//        [volume setText:[NSString stringWithFormat:@"%@ мл", volumeNum[index - 1]]];
-//        [plus setImage:[UIImage imageNamed:@"plusBrown"] forState:UIControlStateNormal];
-//    }
-//}
+
 @end

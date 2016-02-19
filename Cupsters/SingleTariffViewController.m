@@ -197,7 +197,7 @@
     if (count.intValue < 0) {
         [self.time setText:@"Действует 1 месяц"];
         [self.amount setText:@"∞"];
-        self.avgPrice.text = @"0";
+        self.avgPrice.text = @"120";
     } else {
         [self.time setText:@"Действует 3 месяца"];
     }

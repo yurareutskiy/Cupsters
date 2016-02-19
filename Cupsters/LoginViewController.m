@@ -118,7 +118,7 @@
         if ([((ServerError*)error).serverCode isEqualToString:@"no_user"]) {
             [RKDropdownAlert title:@"Ошибка входа" message:@"Такого пользователя мы еще не знаем. Проверьте данные или зарегестрируйтесь." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
         } else if ([((ServerError*)error).serverCode isEqualToString:@"wrong_password"]) {
-            [RKDropdownAlert title:@"Ошибка входа" message:@"Неправильеый пароль" backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
+            [RKDropdownAlert title:@"Ошибка входа" message:@"Неправильный пароль" backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
         } else {
             [RKDropdownAlert title:@"Ошибка сервера" message:@"Попробуйте повторить попытку позже." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
         }
