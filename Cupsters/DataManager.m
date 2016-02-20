@@ -57,6 +57,9 @@
         } else if (result[@"plan"][@"counter"]) {
             monthComponent.month = 3;
             NSInteger cups = ((NSString*)result[@"plan"][@"counter"]).intValue;
+            User *user = [User sharedUser];
+            user.counter = [NSNumber numberWithInteger:cups];
+            [user save];
             NSString *text;
             if (cups == 1) {
                 text = @"ЧАШКА";

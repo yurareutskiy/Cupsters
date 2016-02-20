@@ -35,6 +35,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    user = [User sharedUser];
+    
     [self setNeedsStatusBarAppearanceUpdate];
     [self preferredStatusBarStyle];
     [self configureMenu];
@@ -59,9 +61,26 @@
     // Do any additional setup after loading the view.
 }
 
+
+- (void)viewWillAppear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    if (!self.isAlreadySend) {
+        if (![self checkUserCanMakeOrder]) {
+            [RKDropdownAlert title:@"Ошибка заказа" message:@"Вы не можете сделать заказ. Проверьте ваш тариф." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
+            [self.navigationController popViewControllerAnimated:YES];
+            return;
+        }
+        [self showAlert];
+    }
+}
+
 -(void)viewDidAppear:(BOOL)animated {
     self.menu.view.frame = CGRectMake(self.menu.view.frame.origin.x, 0.f, 280.f, self.menu.view.frame.size.height + 60.f);
     [self customNavBar];
+    
+
 
 }
 
@@ -139,6 +158,8 @@
 
 - (void)showAlert {
     
+
+    
     SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
     
     UIColor *color = [UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0];
@@ -176,14 +197,6 @@
 }
 
 
-- (void)viewWillAppear:(BOOL)animated {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-    
-    if (!self.isAlreadySend) {
-        [self showAlert];
-    }
-}
 
 - (void) backAction {
     [self.navigationController popViewControllerAnimated:YES];
@@ -277,6 +290,13 @@
 
 
 - (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (range.length == 1 && range.location % 2 == 1) {
+        self.code.text = [self.code.text substringToIndex:range.location - 1];
+        NSLog(@"%@", self.code.text);
+        self.codeText = [self.codeText substringToIndex:[self.codeText length] - 1];
+        return NO;
+    }
+
     switch (range.location) {
         case 0:
             _code.text = [NSString stringWithFormat:@"%@ ", string];
@@ -346,6 +366,34 @@
     [server sentToServer:request OnSuccess:^(NSDictionary *result) {
         NSLog(@"%@", result);
         [self.code resignFirstResponder];
+        if ([user.plan[@"counter"] isEqualToString:@"-1"]) {
+        } else {
+//            NSLog(@"");
+            NSLog(@"cups %@", user.counter);
+            NSString *cupsString = [NSString stringWithFormat:@"%@", user.counter];
+            NSInteger cups = [cupsString intValue] - 1;
+            user.counter = [NSNumber numberWithInteger:cups];
+            NSString *text;
+            if (cups == 1) {
+                text = @"ЧАШКА";
+            } else if (cups == 2 || cups == 3 || cups == 4) {
+                text = @"ЧАШКИ";
+            } else {
+                text = @"ЧАШЕК";
+            }
+            [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%ld %@  ", (long)cups, text] forKey:@"currentCounter"];
+            NSMutableDictionary *mutDict = [[NSMutableDictionary alloc] initWithDictionary:user.plan];
+            mutDict[@"counter"] = [NSString stringWithFormat:@"%ld", (long)cups];
+            user.plan = mutDict;
+            [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:user] forKey:@"user"];
+            if (cups == 0) {
+                [[NSUserDefaults standardUserDefaults] setObject:@"НЕТ ЧАШЕК  " forKey:@"currentCounter"];
+            }
+            [self customNavBar];
+        }
+
+        [RKDropdownAlert title:@"Заказ готов" message:nil backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
+        [self.navigationController popToRootViewControllerAnimated:YES];
     } OrFailure:^(NSError *error) {
         [RKDropdownAlert title:@"Ошибка" message:@"Попробуйте сделать заказ заново." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
         NSLog(@"%@", [error debugDescription]);
@@ -354,13 +402,6 @@
 }
 
 - (void) sendOrder {
-    user = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
-    if (![self checkUserCanMakeOrder]) {
-        
-        return;
-    }
-    
-
     
     NSManagedObject *coffeeId = [self.coffee valueForKey:@"id"];;
     NSNumber *userID = user.id;
@@ -374,28 +415,6 @@
     [server sentToServer:request OnSuccess:^(NSDictionary *result) {
         [self addOrderToHistory:result[@"order"]];
         self.orderID = result[@"return_id"];
-        if ([user.plan[@"counter"] isEqualToString:@"-1"]) {
-        } else {
-            NSString *cupsString = ((NSNumber*)user.counter).stringValue;
-            NSInteger cups = [cupsString intValue] - 1;
-            user.counter = [NSNumber numberWithInteger:cups];
-            NSString *text;
-            if (cups == 1) {
-                text = @"ЧАШКА";
-            } else if (cups == 2 || cups == 3 || cups == 4) {
-                text = @"ЧАШКИ";
-            } else {
-                text = @"ЧАШЕК";
-            }
-            [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%ld %@  ", (long)cups, text] forKey:@"currentCounter"];
-            NSMutableDictionary *mutDict = [[NSMutableDictionary alloc] initWithDictionary:user.plan];
-            mutDict[@"counter"] = [NSString stringWithFormat:@"%d", cups];
-            user.plan = mutDict;
-            [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:user] forKey:@"user"];
-            if (cups == 0) {
-                [[NSUserDefaults standardUserDefaults] setObject:@"НЕТ ЧАШЕК  " forKey:@"currentCounter"];
-            }
-        }
         [self.code resignFirstResponder];
     } OrFailure:^(NSError *error) {
         [RKDropdownAlert title:@"Ошибка" message:@"Попробуйте сделать заказ заново." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
@@ -425,6 +444,12 @@
 }
 
 - (BOOL)checkUserCanMakeOrder {
+    NSLog(@"plan - %@", user.plan[@"type"]);
+    NSLog(@"coffee - %d", [[self.coffee valueForKey:@"in_standart"] isEqualToString:@"0"]);
+    if ([user.plan[@"type"] isEqualToString:@"standart"] && [[self.coffee valueForKey:@"in_standart"] isEqualToString:@"0"]) {
+        return NO;
+    }
+    
     NSInteger counter = [user.counter intValue];
     if (counter == 0) {
         return NO;

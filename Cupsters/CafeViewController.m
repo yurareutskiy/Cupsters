@@ -16,6 +16,8 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "AppDelegate.h"
 #import "OrderViewController.h"
+#import "User.h"
+#import <RKDropdownAlert.h>
 
 @interface CafeViewController ()
 
@@ -165,6 +167,11 @@
     // Do any additional setup after loading the view.
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    self.menu.view.frame = CGRectMake(self.menu.view.frame.origin.x, 0.f, 280.f, self.menu.view.frame.size.height + 60.f);
+
+}
+
 -(void)viewWillAppear:(BOOL)animated {
     
     [_distance setText:self.distanceText];
@@ -227,9 +234,6 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewDidAppear:(BOOL)animated {
-    self.menu.view.frame = CGRectMake(self.menu.view.frame.origin.x, 0.f, 280.f, self.menu.view.frame.size.height + 60.f);
-}
 
 - (void)customNavBar {
     
@@ -402,6 +406,8 @@
 
 - (void) makeOrder:(UITableViewCell*)cell {
     
+
+    
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Coffees" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
@@ -465,5 +471,31 @@
         }];
     }
 }
+
+
+- (BOOL)checkUserCanMakeOrder {
+    User *user = [User sharedUser];
+    NSLog(@"plan - %@", user.plan[@"type"]);
+    NSLog(@"coffee - %d", [[self.coffee valueForKey:@"in_standart"] isEqualToString:@"0"]);
+    if ([user.plan[@"type"] isEqualToString:@"standart"] && [[self.coffee valueForKey:@"in_standart"] isEqualToString:@"0"]) {
+        return NO;
+    }
+    
+    NSInteger counter = [user.counter intValue];
+    if (counter == 0) {
+        return NO;
+    } else {
+        NSDate *expiredDate = user.plan[@"endDate"];
+        if (!expiredDate) {
+            return YES;
+        }
+        NSInteger result = [expiredDate compare:[NSDate date]];
+        if (result != 1) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
 
 @end

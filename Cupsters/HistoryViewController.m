@@ -46,6 +46,15 @@
     [self configureMenu];
     logoURLs = [self completeIconArrayForCoffee];
     
+
+
+}
+
+
+
+-(void)viewWillAppear:(BOOL)animated {
+    self.menu.view.frame = CGRectMake(self.menu.view.frame.origin.x, 0.f, 280.f, self.menu.view.frame.size.height + 60.f);
+    [self customNavBar];
     self.source = [[DataManager sharedManager] getDataFromEntity:@"Orders"];
     
     Server *server = [[Server alloc] init];
@@ -58,12 +67,6 @@
     } OrFailure:^(NSError *error) {
         NSLog(@"%@", [error debugDescription]);
     }];
-
-}
-
--(void)viewWillAppear:(BOOL)animated {
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,9 +74,6 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)viewDidAppear:(BOOL)animated {
-    self.menu.view.frame = CGRectMake(self.menu.view.frame.origin.x, 0.f, 280.f, self.menu.view.frame.size.height + 60.f);
-}
 
 - (void)customNavBar {
     
