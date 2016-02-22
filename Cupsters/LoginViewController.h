@@ -11,9 +11,10 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
-#import <VKSdk.h>
+#import "VKSDK.h"
+#import "Cupsters-Swift.h"
 
-@interface LoginViewController : LoginModelViewController<VKSdkDelegate>
+@interface LoginViewController : LoginModelViewController<VKSdkDelegate, BWWalkthroughViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *fieldsOutlet;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollViewOutlet;

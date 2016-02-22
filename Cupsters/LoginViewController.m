@@ -15,35 +15,61 @@
 #import <RKDropdownAlert.h>
 #import "SignUpViewController.h"
 
+
 @interface LoginViewController ()
 
 @end
 
-@implementation LoginViewController 
+@implementation LoginViewController{
+    UIViewController *reg;
+    NSUserDefaults *userDefaults;
+}
 
 -(void)viewWillAppear:(BOOL)animated {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    userDefaults = [NSUserDefaults standardUserDefaults];
     
     if ([userDefaults objectForKey:@"isLogin"]) {
         UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
         [self presentViewController:vc animated:false completion:nil];
     }
+    
+    reg = [self.storyboard instantiateViewControllerWithIdentifier:@"reg"];
 
+    //if ([userDefaults valueForKey:@"firstTime"] == nil){
+    //[userDefaults setInteger:1 forKey:@"firstTime"];
+    [self turnOnboarding];
+    //}
 }
 
 - (void)viewDidLoad {
-    
-
-
     
     self.fields = self.fieldsOutlet;
     self.scrollView = self.scrollViewOutlet;
     
     [super viewDidLoad];
-
+    
     
     [[VKSdk initializeWithAppId:@"5229696"] registerDelegate:self];
     [[VKSdk instance] setUiDelegate:self];
+}
+
+- (void) turnOnboarding {
+    UIStoryboard *stb = [UIStoryboard storyboardWithName:@"Walkthrough" bundle:nil];
+    BWWalkthroughViewController *walkthrough = [stb instantiateViewControllerWithIdentifier:@"master"];
+    UIViewController *page_one = [stb instantiateViewControllerWithIdentifier:@"page1"];
+    UIViewController *page_two = [stb instantiateViewControllerWithIdentifier:@"page2"];
+    UIViewController *page_three = [stb instantiateViewControllerWithIdentifier:@"page3"];
+    UIViewController *page_four = [stb instantiateViewControllerWithIdentifier:@"page4"];
+    UIViewController *page_five = [stb instantiateViewControllerWithIdentifier:@"page5"];
+    
+    walkthrough.delegate = self;
+    [walkthrough addViewController:page_one];
+    [walkthrough addViewController:page_two];
+    [walkthrough addViewController:page_three];
+    [walkthrough addViewController:page_four];
+    [walkthrough addViewController:page_five];
+    
+    [self presentViewController:walkthrough animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -295,6 +321,15 @@
         vc.email = ((UITextField*)self.fieldsOutlet[1]).text;
     }
 
+}
+
+- (void) walkthroughCloseButtonPressed {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) walkthroughRegButtonPressed {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self presentViewController:reg animated:YES completion:nil];
 }
 
 @end

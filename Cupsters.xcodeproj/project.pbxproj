@@ -15,6 +15,9 @@
 		3A08A3791C4C07BF0094AB63 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A08A3781C4C07BF0094AB63 /* QuartzCore.framework */; };
 		3A08A37C1C4C0DA70094AB63 /* TariffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A08A37B1C4C0DA70094AB63 /* TariffViewController.m */; };
 		3A08A37F1C4C1B970094AB63 /* CustomButtonSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A08A37E1C4C1B970094AB63 /* CustomButtonSettings.m */; };
+		3A1A46731C7B2E3E002DFE51 /* BWWalkthroughPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1A46711C7B2E3E002DFE51 /* BWWalkthroughPageViewController.swift */; };
+		3A1A46741C7B2E3E002DFE51 /* BWWalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1A46721C7B2E3E002DFE51 /* BWWalkthroughViewController.swift */; };
+		3A1A46761C7B2E9D002DFE51 /* Walkthrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A1A46751C7B2E9D002DFE51 /* Walkthrough.storyboard */; };
 		3A44AC9C1C498CAA00F10D2E /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44AC991C498CAA00F10D2E /* FBSDKCoreKit.framework */; };
 		3A44AC9D1C498CAA00F10D2E /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44AC9A1C498CAA00F10D2E /* FBSDKLoginKit.framework */; };
 		3A44AC9E1C498CAA00F10D2E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44AC9B1C498CAA00F10D2E /* FBSDKShareKit.framework */; };
@@ -29,7 +32,7 @@
 		3AF288371C582BBF002723EC /* NavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AF288361C582BBF002723EC /* NavViewController.m */; };
 		3AFD2D461C4AB471004F8E72 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AFD2D451C4AB471004F8E72 /* MapViewController.m */; };
 		3AFD2D481C4ABBB8004F8E72 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AFD2D471C4ABBB8004F8E72 /* CoreLocation.framework */; };
-		D29AE48A6D499E64286DB83E /* libPods-Cupsters.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FD21CA9A973FF164B7FBFE4 /* libPods-Cupsters.a */; };
+		4C44A975E0D1552D36CEB002 /* libPods-Cupsters.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8202FBAC738CC340F33080C /* libPods-Cupsters.a */; };
 		DB478BBF1C5D2F890067BDE5 /* ShowAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = DB478BBE1C5D2F890067BDE5 /* ShowAnimator.m */; };
 		DB671F3C1C3DCFA0008C1408 /* ListPlacesImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F3B1C3DCFA0008C1408 /* ListPlacesImagesViewController.m */; };
 		DB671F3F1C3DD39F008C1408 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = DB671F3E1C3DD39F008C1408 /* Constants.m */; };
@@ -90,6 +93,18 @@
 		3A08A37B1C4C0DA70094AB63 /* TariffViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TariffViewController.m; sourceTree = "<group>"; };
 		3A08A37D1C4C1B970094AB63 /* CustomButtonSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomButtonSettings.h; sourceTree = "<group>"; };
 		3A08A37E1C4C1B970094AB63 /* CustomButtonSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomButtonSettings.m; sourceTree = "<group>"; };
+		3A1A465D1C7B1C2B002DFE51 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
+		3A1A465E1C7B1C2B002DFE51 /* BWWalkthrough.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BWWalkthrough.framework; path = "Pods/../build/Debug-iphoneos/BWWalkthrough.framework"; sourceTree = "<group>"; };
+		3A1A465F1C7B1C2B002DFE51 /* HMSegmentedControl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HMSegmentedControl.framework; path = "Pods/../build/Debug-iphoneos/HMSegmentedControl.framework"; sourceTree = "<group>"; };
+		3A1A46601C7B1C2B002DFE51 /* NSHash.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NSHash.framework; path = "Pods/../build/Debug-iphoneos/NSHash.framework"; sourceTree = "<group>"; };
+		3A1A46611C7B1C2B002DFE51 /* RKDropdownAlert.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RKDropdownAlert.framework; path = "Pods/../build/Debug-iphoneos/RKDropdownAlert.framework"; sourceTree = "<group>"; };
+		3A1A46621C7B1C2B002DFE51 /* SCLAlertView_Objective_C.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SCLAlertView_Objective_C.framework; path = "Pods/../build/Debug-iphoneos/SCLAlertView_Objective_C.framework"; sourceTree = "<group>"; };
+		3A1A46631C7B1C2B002DFE51 /* SHSPhoneComponent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SHSPhoneComponent.framework; path = "Pods/../build/Debug-iphoneos/SHSPhoneComponent.framework"; sourceTree = "<group>"; };
+		3A1A46641C7B1C2B002DFE51 /* VK_ios_sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VK_ios_sdk.framework; path = "Pods/../build/Debug-iphoneos/VK_ios_sdk.framework"; sourceTree = "<group>"; };
+		3A1A466D1C7B2556002DFE51 /* Cupsters-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cupsters-Bridging-Header.h"; sourceTree = "<group>"; };
+		3A1A46711C7B2E3E002DFE51 /* BWWalkthroughPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BWWalkthroughPageViewController.swift; sourceTree = "<group>"; };
+		3A1A46721C7B2E3E002DFE51 /* BWWalkthroughViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BWWalkthroughViewController.swift; sourceTree = "<group>"; };
+		3A1A46751C7B2E9D002DFE51 /* Walkthrough.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Walkthrough.storyboard; sourceTree = "<group>"; };
 		3A44AC991C498CAA00F10D2E /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		3A44AC9A1C498CAA00F10D2E /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		3A44AC9B1C498CAA00F10D2E /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -112,7 +127,7 @@
 		3AFD2D441C4AB471004F8E72 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		3AFD2D451C4AB471004F8E72 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		3AFD2D471C4ABBB8004F8E72 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		3FD21CA9A973FF164B7FBFE4 /* libPods-Cupsters.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cupsters.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8202FBAC738CC340F33080C /* libPods-Cupsters.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cupsters.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAB1AEDCFE52DD16B159BD48 /* Pods-Cupsters.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cupsters.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cupsters/Pods-Cupsters.release.xcconfig"; sourceTree = "<group>"; };
 		DB478BBD1C5D2F890067BDE5 /* ShowAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowAnimator.h; sourceTree = "<group>"; };
 		DB478BBE1C5D2F890067BDE5 /* ShowAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowAnimator.m; sourceTree = "<group>"; };
@@ -192,9 +207,9 @@
 				3A44ACA11C49917000F10D2E /* libAFNetworking.a in Frameworks */,
 				3A44ACA21C49917000F10D2E /* libVK-ios-sdk.a in Frameworks */,
 				3A44AC9E1C498CAA00F10D2E /* FBSDKShareKit.framework in Frameworks */,
-				D29AE48A6D499E64286DB83E /* libPods-Cupsters.a in Frameworks */,
 				3A44AC9C1C498CAA00F10D2E /* FBSDKCoreKit.framework in Frameworks */,
 				3A44AC9D1C498CAA00F10D2E /* FBSDKLoginKit.framework in Frameworks */,
+				4C44A975E0D1552D36CEB002 /* libPods-Cupsters.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +219,14 @@
 		01BF79CAEC332CDC20301AC9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3A1A465D1C7B1C2B002DFE51 /* AFNetworking.framework */,
+				3A1A465E1C7B1C2B002DFE51 /* BWWalkthrough.framework */,
+				3A1A465F1C7B1C2B002DFE51 /* HMSegmentedControl.framework */,
+				3A1A46601C7B1C2B002DFE51 /* NSHash.framework */,
+				3A1A46611C7B1C2B002DFE51 /* RKDropdownAlert.framework */,
+				3A1A46621C7B1C2B002DFE51 /* SCLAlertView_Objective_C.framework */,
+				3A1A46631C7B1C2B002DFE51 /* SHSPhoneComponent.framework */,
+				3A1A46641C7B1C2B002DFE51 /* VK_ios_sdk.framework */,
 				3A08A3781C4C07BF0094AB63 /* QuartzCore.framework */,
 				3AFD2D471C4ABBB8004F8E72 /* CoreLocation.framework */,
 				3A44AC9F1C49917000F10D2E /* libAFNetworking.a */,
@@ -211,9 +234,18 @@
 				3A44AC991C498CAA00F10D2E /* FBSDKCoreKit.framework */,
 				3A44AC9A1C498CAA00F10D2E /* FBSDKLoginKit.framework */,
 				3A44AC9B1C498CAA00F10D2E /* FBSDKShareKit.framework */,
-				3FD21CA9A973FF164B7FBFE4 /* libPods-Cupsters.a */,
+				D8202FBAC738CC340F33080C /* libPods-Cupsters.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3A1A46701C7B2E17002DFE51 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				3A1A46711C7B2E3E002DFE51 /* BWWalkthroughPageViewController.swift */,
+				3A1A46721C7B2E3E002DFE51 /* BWWalkthroughViewController.swift */,
+			);
+			name = "New Group";
 			sourceTree = "<group>";
 		};
 		3AA5165E1C4E2A410039F6AB /* SideMenu */ = {
@@ -318,6 +350,7 @@
 				DBAA546B1C51CB44004F7C6D /* EntryNavigationController.m */,
 				DBE52B001C61375A00475B48 /* StartViewController.h */,
 				DBE52B011C61375A00475B48 /* StartViewController.m */,
+				3A1A466D1C7B2556002DFE51 /* Cupsters-Bridging-Header.h */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -344,11 +377,12 @@
 			isa = PBXGroup;
 			children = (
 				DB67FED31C3C0B6500FC62E2 /* Models */,
-				DB478BB51C5D1FFD0067BDE5 /* Views */,
 				DB67FED61C3C0B8800FC62E2 /* Controllers */,
+				DB478BB51C5D1FFD0067BDE5 /* Views */,
 				DB67FEBC1C3BD8FB00FC62E2 /* AppDelegate.h */,
 				DB67FEBD1C3BD8FB00FC62E2 /* AppDelegate.m */,
 				DB67FEC21C3BD8FB00FC62E2 /* Main.storyboard */,
+				3A1A46751C7B2E9D002DFE51 /* Walkthrough.storyboard */,
 				DB67FEC81C3BD8FB00FC62E2 /* Assets.xcassets */,
 				DB67FECA1C3BD8FB00FC62E2 /* LaunchScreen.storyboard */,
 				DB67FEC51C3BD8FB00FC62E2 /* Cupsters.xcdatamodeld */,
@@ -364,6 +398,7 @@
 				DBDC1C2A1C400583003A8507 /* Podfile */,
 				3AA516601C4E2A860039F6AB /* IBDesignable */,
 				DB671F461C3EC30B008C1408 /* Mock files */,
+				3A1A46701C7B2E17002DFE51 /* New Group */,
 				DB67FEDB1C3C0FCF00FC62E2 /* Fonts */,
 				DB67FEBA1C3BD8FB00FC62E2 /* main.m */,
 				DB671F3D1C3DD369008C1408 /* Constants.h */,
@@ -493,6 +528,7 @@
 		DB67FEAE1C3BD8FB00FC62E2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Styleru;
 				TargetAttributes = {
@@ -542,6 +578,7 @@
 				DB67FF0A1C3C103600FC62E2 /* HelveticaNeueCyr-Medium.otf in Resources */,
 				DB67FF031C3C103600FC62E2 /* HelveticaNeueCyr-Black.otf in Resources */,
 				DB67FF0C1C3C103600FC62E2 /* HelveticaNeueCyr-Thin.otf in Resources */,
+				3A1A46761C7B2E9D002DFE51 /* Walkthrough.storyboard in Resources */,
 				DB67FF0B1C3C103600FC62E2 /* HelveticaNeueCyr-Roman.otf in Resources */,
 				DB67FF0F1C3C103600FC62E2 /* HelveticaNeueCyr-UltraLightItalic.otf in Resources */,
 			);
@@ -614,6 +651,7 @@
 				3A08A37C1C4C0DA70094AB63 /* TariffViewController.m in Sources */,
 				3AF288371C582BBF002723EC /* NavViewController.m in Sources */,
 				DB671F3F1C3DD39F008C1408 /* Constants.m in Sources */,
+				3A1A46741C7B2E3E002DFE51 /* BWWalkthroughViewController.swift in Sources */,
 				3AE55FAC1C4D482300025AB8 /* CouponViewController.m in Sources */,
 				DB671F451C3EC239008C1408 /* PlacePhotoTableViewCell.m in Sources */,
 				3A08A36B1C4BCAC60094AB63 /* MapTableViewCell.m in Sources */,
@@ -626,6 +664,7 @@
 				DB67FEBE1C3BD8FB00FC62E2 /* AppDelegate.m in Sources */,
 				DB67FEC71C3BD8FB00FC62E2 /* Cupsters.xcdatamodeld in Sources */,
 				DB67FEBB1C3BD8FB00FC62E2 /* main.m in Sources */,
+				3A1A46731C7B2E3E002DFE51 /* BWWalkthroughPageViewController.swift in Sources */,
 				DBAA549B1C527732004F7C6D /* DataManager.m in Sources */,
 				3A0024E21C4A8FFF00C248D2 /* VKSdk+CustomAuthorizationDelegate.m in Sources */,
 				3AFD2D461C4AB471004F8E72 /* MapViewController.m in Sources */,
@@ -752,12 +791,15 @@
 			baseConfigurationReference = DDC96F5213E98AC9D6EAF4A0 /* Pods-Cupsters.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = Cupsters/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -769,6 +811,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.reutskiy.cupsters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Cupsters/Cupsters-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -777,12 +821,15 @@
 			baseConfigurationReference = DAB1AEDCFE52DD16B159BD48 /* Pods-Cupsters.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = Cupsters/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -794,6 +841,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.reutskiy.cupsters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Cupsters/Cupsters-Bridging-Header.h";
 			};
 			name = Release;
 		};
