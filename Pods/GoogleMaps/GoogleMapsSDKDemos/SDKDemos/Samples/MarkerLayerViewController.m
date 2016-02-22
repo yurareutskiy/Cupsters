@@ -37,16 +37,16 @@
 @end
 
 @implementation MarkerLayerViewController {
-  GMSMapView *_mapView;
-  GMSMarker *_fadedMarker;
+  GMSMapView *mapView_;
+  GMSMarker *fadedMarker_;
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  _mapView = [[GMSMapView alloc] init];
-  _mapView.camera = [GMSCameraPosition cameraWithLatitude:50.6042 longitude:3.9599 zoom:5];
-  _mapView.delegate = self;
-  self.view = _mapView;
+  mapView_ = [[GMSMapView alloc] init];
+  mapView_.camera = [GMSCameraPosition cameraWithLatitude:50.6042 longitude:3.9599 zoom:5];
+  mapView_.delegate = self;
+  self.view = mapView_;
 
   GMSMutablePath *coords;
   GMSMarker *marker;
@@ -61,7 +61,7 @@
   marker.icon = [UIImage imageNamed:@"aeroplane"];
   marker.groundAnchor = CGPointMake(0.5f, 0.5f);
   marker.flat = YES;
-  marker.map = _mapView;
+  marker.map = mapView_;
   marker.userData = [[CoordsList alloc] initWithPath:coords];
   [self animateToNextCoord:marker];
 
@@ -80,7 +80,7 @@
   [coords addLatitude:55.665193 longitude:10.741196];
   marker = [GMSMarker markerWithPosition:[coords coordinateAtIndex:0]];
   marker.icon = [UIImage imageNamed:@"boat"];
-  marker.map = _mapView;
+  marker.map = mapView_;
   marker.userData = [[CoordsList alloc] initWithPath:coords];
   [self animateToNextCoord:marker];
 }
@@ -116,11 +116,11 @@
 }
 
 - (void)fadeMarker:(GMSMarker *)marker {
-  _fadedMarker.opacity = 1.0f;  // reset previous faded marker
+  fadedMarker_.opacity = 1.0f;  // reset previous faded marker
 
   // Fade this new marker.
-  _fadedMarker = marker;
-  _fadedMarker.opacity = 0.5f;
+  fadedMarker_ = marker;
+  fadedMarker_.opacity = 0.5f;
 }
 
 #pragma mark - GMSMapViewDelegate

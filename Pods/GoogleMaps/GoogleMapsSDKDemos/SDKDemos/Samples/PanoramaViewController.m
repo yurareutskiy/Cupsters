@@ -13,29 +13,18 @@ static CLLocationCoordinate2D kMarkerAt = {40.761455, -73.977814};
 @end
 
 @implementation PanoramaViewController {
-  GMSPanoramaView *_view;
-  BOOL _configured;
-  UILabel *_statusLabel;
+  GMSPanoramaView *view_;
+  BOOL configured_;
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  _view = [GMSPanoramaView panoramaWithFrame:CGRectZero
+  view_ = [GMSPanoramaView panoramaWithFrame:CGRectZero
                               nearCoordinate:kPanoramaNear];
-  _view.backgroundColor = [UIColor grayColor];
-  _view.delegate = self;
-  self.view = _view;
-
-  // Add status label, initially hidden.
-  _statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 30)];
-  _statusLabel.alpha = 0.0f;
-  _statusLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-  _statusLabel.backgroundColor = [UIColor blueColor];
-  _statusLabel.textColor = [UIColor whiteColor];
-  _statusLabel.textAlignment = NSTextAlignmentCenter;
-
-  [_view addSubview:_statusLabel];
+  view_.backgroundColor = [UIColor grayColor];
+  view_.delegate = self;
+  self.view = view_;
 }
 
 #pragma mark - GMSPanoramaDelegate
@@ -48,26 +37,17 @@ static CLLocationCoordinate2D kMarkerAt = {40.761455, -73.977814};
 
 - (void)panoramaView:(GMSPanoramaView *)view
    didMoveToPanorama:(GMSPanorama *)panorama {
-  if (!_configured) {
+  if (!configured_) {
     GMSMarker *marker = [GMSMarker markerWithPosition:kMarkerAt];
     marker.icon = [GMSMarker markerImageWithColor:[UIColor purpleColor]];
-    marker.panoramaView = _view;
+    marker.panoramaView = view_;
 
     CLLocationDegrees heading = GMSGeometryHeading(kPanoramaNear, kMarkerAt);
-    _view.camera =
+    view_.camera =
         [GMSPanoramaCamera cameraWithHeading:heading pitch:0 zoom:1];
 
-    _configured = YES;
+    configured_ = YES;
   }
-}
-
-- (void)panoramaViewDidStartRendering:(GMSPanoramaView *)panoramaView {
-  _statusLabel.alpha = 0.8f;
-  _statusLabel.text = @"Rendering";
-}
-
-- (void)panoramaViewDidFinishRendering:(GMSPanoramaView *)panoramaView {
-  _statusLabel.alpha = 0.0f;
 }
 
 @end

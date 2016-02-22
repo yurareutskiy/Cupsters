@@ -7,8 +7,8 @@
 #import <GoogleMaps/GoogleMaps.h>
 
 @implementation GeocoderViewController {
-  GMSMapView *_mapView;
-  GMSGeocoder *_geocoder;
+  GMSMapView *mapView_;
+  GMSGeocoder *geocoder_;
 }
 
 - (void)viewDidLoad {
@@ -17,12 +17,12 @@
                                                           longitude:151.2086
                                                                zoom:12];
 
-  _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-  _mapView.delegate = self;
+  mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+  mapView_.delegate = self;
 
-  _geocoder = [[GMSGeocoder alloc] init];
+  geocoder_ = [[GMSGeocoder alloc] init];
 
-  self.view = _mapView;
+  self.view = mapView_;
 }
 
 - (void)mapView:(GMSMapView *)mapView
@@ -41,13 +41,13 @@
       }
 
       marker.appearAnimation = kGMSMarkerAnimationPop;
-      marker.map = _mapView;
+      marker.map = mapView_;
     } else {
       NSLog(@"Could not reverse geocode point (%f,%f): %@",
             coordinate.latitude, coordinate.longitude, error);
     }
   };
-  [_geocoder reverseGeocodeCoordinate:coordinate completionHandler:handler];
+  [geocoder_ reverseGeocodeCoordinate:coordinate completionHandler:handler];
 }
 
 @end

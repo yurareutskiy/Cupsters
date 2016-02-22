@@ -4,7 +4,6 @@
 
 #import "SDKDemos/PlacesSamples/Samples+Places.h"
 
-#import "SDKDemos/PlacesSamples/SDKDemoAutocompleteWidgetViewController.h"
 #import "SDKDemos/PlacesSamples/SDKDemoPlacePickerViewController.h"
 
 @implementation Samples (Places)
@@ -13,9 +12,6 @@
   return @[
     [Samples newDemo:[SDKDemoPlacePickerViewController class]
            withTitle:@"Places API Place Picker"
-      andDescription:nil],
-    [Samples newDemo:[SDKDemoAutocompleteWidgetViewController class]
-           withTitle:@"Places API Autocomplete Widget"
       andDescription:nil],
     ];
 }
