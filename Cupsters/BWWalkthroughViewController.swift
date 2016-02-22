@@ -183,7 +183,7 @@ At the moment it's only used to perform custom animations on didScroll.
     }
     
     @IBAction public func reg(){
-        delegate?.walkthroughRegButtonPressed?()
+        delegate?.walkthroughCloseButtonPressed?()
     }
     
     // TODO: If you want to implement a "skip" button

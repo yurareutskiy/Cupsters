@@ -80,7 +80,7 @@
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KDx-nz-Nqq">
                                 <rect key="frame" x="212" y="508" width="176" height="42"/>
                                 <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
-                                <state key="normal" title="Регистрация" backgroundImage="sign_up_bg">
+                                <state key="normal" title="Начать пользоваться" backgroundImage="sign_up_bg">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -169,16 +169,17 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="step1" translatesAutoresizingMaskIntoConstraints="NO" id="maJ-qN-Kxp">
-                                <rect key="frame" x="168" y="170" width="265" height="430"/>
+                                <rect key="frame" x="-200" y="120" width="1001" height="500"/>
+                                <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="KK8-sw-vjV" secondAttribute="trailing" constant="-20" id="Hkt-JZ-lvV"/>
                             <constraint firstItem="KK8-sw-vjV" firstAttribute="leading" secondItem="15K-ly-T9g" secondAttribute="leadingMargin" constant="-20" id="XPj-dj-FJu"/>
-                            <constraint firstItem="maJ-qN-Kxp" firstAttribute="top" secondItem="KK8-sw-vjV" secondAttribute="bottom" constant="50" id="gBk-CL-zqV"/>
+                            <constraint firstItem="maJ-qN-Kxp" firstAttribute="top" secondItem="KK8-sw-vjV" secondAttribute="bottom" id="gBk-CL-zqV"/>
                             <constraint firstItem="maJ-qN-Kxp" firstAttribute="centerX" secondItem="15K-ly-T9g" secondAttribute="centerX" id="knM-vV-Fee"/>
-                            <constraint firstItem="n7U-l5-qXw" firstAttribute="top" secondItem="maJ-qN-Kxp" secondAttribute="bottom" id="oC9-A4-6pN"/>
+                            <constraint firstItem="n7U-l5-qXw" firstAttribute="top" secondItem="maJ-qN-Kxp" secondAttribute="bottom" constant="-20" id="oC9-A4-6pN"/>
                             <constraint firstItem="KK8-sw-vjV" firstAttribute="top" secondItem="15K-ly-T9g" secondAttribute="topMargin" id="pXQ-Dn-7GV"/>
                         </constraints>
                     </view>
@@ -219,15 +220,15 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="step2" translatesAutoresizingMaskIntoConstraints="NO" id="Vpn-N3-lI0">
-                                <rect key="frame" x="168" y="170" width="265" height="430"/>
+                                <rect key="frame" x="-200" y="120" width="1001" height="500"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="NxO-x6-tob" firstAttribute="top" secondItem="Vpn-N3-lI0" secondAttribute="bottom" id="0Z9-cy-xnd"/>
+                            <constraint firstItem="NxO-x6-tob" firstAttribute="top" secondItem="Vpn-N3-lI0" secondAttribute="bottom" constant="-20" id="0Z9-cy-xnd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="We2-Tp-ZqO" secondAttribute="trailing" constant="-20" id="4kp-Ww-gbH"/>
                             <constraint firstItem="Vpn-N3-lI0" firstAttribute="centerX" secondItem="03R-Tp-xC7" secondAttribute="centerX" id="Gu0-Cg-VK6"/>
-                            <constraint firstItem="Vpn-N3-lI0" firstAttribute="top" secondItem="We2-Tp-ZqO" secondAttribute="bottom" constant="50" id="ecd-th-F6i"/>
+                            <constraint firstItem="Vpn-N3-lI0" firstAttribute="top" secondItem="We2-Tp-ZqO" secondAttribute="bottom" id="ecd-th-F6i"/>
                             <constraint firstItem="We2-Tp-ZqO" firstAttribute="top" secondItem="03R-Tp-xC7" secondAttribute="topMargin" id="eu1-dG-zOe"/>
                             <constraint firstItem="We2-Tp-ZqO" firstAttribute="leading" secondItem="03R-Tp-xC7" secondAttribute="leadingMargin" constant="-20" id="ySE-kd-F9O"/>
                         </constraints>
@@ -269,7 +270,7 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="step3" translatesAutoresizingMaskIntoConstraints="NO" id="7fb-99-eEN">
-                                <rect key="frame" x="168" y="170" width="265" height="430"/>
+                                <rect key="frame" x="-200" y="120" width="1001" height="500"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -277,8 +278,8 @@
                             <constraint firstItem="rM6-AT-ffX" firstAttribute="top" secondItem="UVV-R7-Pty" secondAttribute="topMargin" id="2wI-Yi-XhZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rM6-AT-ffX" secondAttribute="trailing" constant="-20" id="39O-sb-TQR"/>
                             <constraint firstItem="rM6-AT-ffX" firstAttribute="leading" secondItem="UVV-R7-Pty" secondAttribute="leadingMargin" constant="-20" id="Vhf-A5-PUA"/>
-                            <constraint firstItem="7fb-99-eEN" firstAttribute="top" secondItem="rM6-AT-ffX" secondAttribute="bottom" constant="50" id="YUl-9E-Byy"/>
-                            <constraint firstItem="eWW-co-WjC" firstAttribute="top" secondItem="7fb-99-eEN" secondAttribute="bottom" id="f7f-0c-5bc"/>
+                            <constraint firstItem="7fb-99-eEN" firstAttribute="top" secondItem="rM6-AT-ffX" secondAttribute="bottom" id="YUl-9E-Byy"/>
+                            <constraint firstItem="eWW-co-WjC" firstAttribute="top" secondItem="7fb-99-eEN" secondAttribute="bottom" constant="-20" id="f7f-0c-5bc"/>
                             <constraint firstItem="7fb-99-eEN" firstAttribute="centerX" secondItem="UVV-R7-Pty" secondAttribute="centerX" id="y8J-ep-YES"/>
                         </constraints>
                     </view>
@@ -319,15 +320,15 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="step4" translatesAutoresizingMaskIntoConstraints="NO" id="gNc-E0-Xwi">
-                                <rect key="frame" x="168" y="170" width="265" height="430"/>
+                                <rect key="frame" x="-200" y="120" width="1001" height="500"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="gNc-E0-Xwi" firstAttribute="top" secondItem="Zja-Qy-Uyb" secondAttribute="bottom" constant="50" id="76k-5e-6dY"/>
+                            <constraint firstItem="gNc-E0-Xwi" firstAttribute="top" secondItem="Zja-Qy-Uyb" secondAttribute="bottom" id="76k-5e-6dY"/>
                             <constraint firstItem="Zja-Qy-Uyb" firstAttribute="leading" secondItem="0yx-XP-2Pt" secondAttribute="leadingMargin" constant="-20" id="COf-ba-TX2"/>
                             <constraint firstItem="gNc-E0-Xwi" firstAttribute="centerX" secondItem="0yx-XP-2Pt" secondAttribute="centerX" id="Rjd-gz-lKb"/>
-                            <constraint firstItem="Dip-SI-jwB" firstAttribute="top" secondItem="gNc-E0-Xwi" secondAttribute="bottom" id="Tf5-lx-ZpI"/>
+                            <constraint firstItem="Dip-SI-jwB" firstAttribute="top" secondItem="gNc-E0-Xwi" secondAttribute="bottom" constant="-20" id="Tf5-lx-ZpI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Zja-Qy-Uyb" secondAttribute="trailing" constant="-20" id="aSz-LX-7je"/>
                             <constraint firstItem="Zja-Qy-Uyb" firstAttribute="top" secondItem="0yx-XP-2Pt" secondAttribute="topMargin" id="nPN-WF-K5H"/>
                         </constraints>
@@ -533,9 +534,9 @@
         <image name="pig" width="67" height="60"/>
         <image name="shop" width="58" height="58"/>
         <image name="sign_up_bg" width="176" height="42"/>
-        <image name="step1" width="265" height="469"/>
-        <image name="step2" width="265" height="469"/>
-        <image name="step3" width="265" height="469"/>
-        <image name="step4" width="265" height="469"/>
+        <image name="step1" width="1000" height="1000"/>
+        <image name="step2" width="1000" height="1000"/>
+        <image name="step3" width="1000" height="1000"/>
+        <image name="step4" width="1000" height="1000"/>
     </resources>
 </document>

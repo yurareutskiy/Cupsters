@@ -21,7 +21,7 @@
 @end
 
 @implementation LoginViewController{
-    UIViewController *reg;
+    UIViewController *login;
     NSUserDefaults *userDefaults;
 }
 
@@ -33,12 +33,6 @@
         [self presentViewController:vc animated:false completion:nil];
     }
     
-    reg = [self.storyboard instantiateViewControllerWithIdentifier:@"reg"];
-
-    //if ([userDefaults valueForKey:@"firstTime"] == nil){
-    //[userDefaults setInteger:1 forKey:@"firstTime"];
-    [self turnOnboarding];
-    //}
 }
 
 - (void)viewDidLoad {
@@ -48,6 +42,12 @@
     
     [super viewDidLoad];
     
+    login = [self.storyboard instantiateViewControllerWithIdentifier:@"login"];
+    
+    //if ([userDefaults valueForKey:@"firstTime"] == nil){
+    //[userDefaults setInteger:1 forKey:@"firstTime"];
+    [self turnOnboarding];
+    //}
     
     [[VKSdk initializeWithAppId:@"5229696"] registerDelegate:self];
     [[VKSdk instance] setUiDelegate:self];
@@ -325,11 +325,6 @@
 
 - (void) walkthroughCloseButtonPressed {
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void) walkthroughRegButtonPressed {
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [self presentViewController:reg animated:YES completion:nil];
 }
 
 @end
