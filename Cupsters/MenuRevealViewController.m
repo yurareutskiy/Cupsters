@@ -120,6 +120,7 @@
     navigationController.navigationBar.barTintColor = [UIColor colorWithHEX:cBrown];
     navigationController.navigationBar.translucent = NO;
     webViewController.title = @"Cupsters - About us";
+    webViewController.showPageTitles = NO;
     navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName: [UIFont fontWithName:cFontMyraid size:18.f],
                                                                NSForegroundColorAttributeName: [UIColor whiteColor]};
     navigationController.navigationBar.tintColor = [UIColor whiteColor];

@@ -14,7 +14,6 @@ PODS:
   - AFNetworking/Serialization (3.0.4)
   - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
-<<<<<<< HEAD
   - GoogleMaps (1.12.1)
   - HMSegmentedControl (1.5.2)
   - NSHash (1.1.0)
@@ -24,14 +23,6 @@ PODS:
   - TOWebViewController (2.2.3):
     - TOWebViewController/Core (= 2.2.3)
   - TOWebViewController/Core (2.2.3)
-=======
-  - GoogleMaps (1.10.3)
-  - HMSegmentedControl (1.5.2)
-  - NSHash (1.1.0)
-  - RKDropdownAlert (0.3.0)
-  - SCLAlertView-Objective-C (0.7.7)
-  - SHSPhoneComponent (2.15)
->>>>>>> c2dae5b8b142eddc3cbe1d2a43edc2dedca322d2
   - VK-ios-sdk (1.3.6)
 
 DEPENDENCIES:
@@ -42,10 +33,7 @@ DEPENDENCIES:
   - RKDropdownAlert
   - SCLAlertView-Objective-C
   - SHSPhoneComponent
-<<<<<<< HEAD
   - TOWebViewController
-=======
->>>>>>> c2dae5b8b142eddc3cbe1d2a43edc2dedca322d2
   - VK-ios-sdk (from `https://github.com/VKCOM/vk-ios-sdk.git`, tag `1.3.6`)
 
 EXTERNAL SOURCES:
@@ -72,7 +60,6 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
-<<<<<<< HEAD
   GoogleMaps: d4e7526e96e78faf7131ea95f13dd5411cc2916d
   HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
   NSHash: 61d598c6d48957c5557f1eef0aeafd6ef5ec5fb7
@@ -80,14 +67,6 @@ SPEC CHECKSUMS:
   SCLAlertView-Objective-C: b99922177c20ff56305fe9c2987bcf0d38c9ebf7
   SHSPhoneComponent: 4cec0653a150ad63cbc52b0c8b29ce2d3c9c26f0
   TOWebViewController: ca47b9aeefe66acb3353d197dc8270338540b116
-=======
-  GoogleMaps: 945e4ac3b74bcca3ddada51df256eb7beddb474d
-  HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
-  NSHash: 61d598c6d48957c5557f1eef0aeafd6ef5ec5fb7
-  RKDropdownAlert: f4b3364c251829ad439dc666836a1f2dad26f4c7
-  SCLAlertView-Objective-C: 062808b4664add2d38d44b7867267985a02267ad
-  SHSPhoneComponent: 4cec0653a150ad63cbc52b0c8b29ce2d3c9c26f0
->>>>>>> c2dae5b8b142eddc3cbe1d2a43edc2dedca322d2
   VK-ios-sdk: c40f2ab5045f6bf97f57cc2dfb2d5e0c0b920fe6
 
 COCOAPODS: 0.39.0
