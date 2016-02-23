@@ -24,6 +24,7 @@
 - (IBAction)goToTarifs:(UIButton *)sender;
 - (IBAction)goToCoupons:(UIButton *)sender;
 - (IBAction)goToHistory:(UIButton *)sender;
+- (IBAction)aboutUsAction:(id)sender;
 
 
 @end

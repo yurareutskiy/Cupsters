@@ -21,7 +21,7 @@
 @end
 
 @implementation LoginViewController{
-    UIViewController *reg;
+    UIViewController *login;
     NSUserDefaults *userDefaults;
 }
 
@@ -33,12 +33,6 @@
         [self presentViewController:vc animated:false completion:nil];
     }
     
-    reg = [self.storyboard instantiateViewControllerWithIdentifier:@"reg"];
-
-    //if ([userDefaults valueForKey:@"firstTime"] == nil){
-    //[userDefaults setInteger:1 forKey:@"firstTime"];
-    [self turnOnboarding];
-    //}
 }
 
 - (void)viewDidLoad {
@@ -48,6 +42,12 @@
     
     [super viewDidLoad];
     
+    login = [self.storyboard instantiateViewControllerWithIdentifier:@"login"];
+    
+    //if ([userDefaults valueForKey:@"firstTime"] == nil){
+    //[userDefaults setInteger:1 forKey:@"firstTime"];
+    [self turnOnboarding];
+    //}
     
     [[VKSdk initializeWithAppId:@"5229696"] registerDelegate:self];
     [[VKSdk instance] setUiDelegate:self];
@@ -142,11 +142,11 @@
     } OrFailure:^(NSError *error) {
         NSLog(@"%@", [error debugDescription]);
         if ([((ServerError*)error).serverCode isEqualToString:@"no_user"]) {
-            [RKDropdownAlert title:@"Ошибка входа" message:@"Такого пользователя мы еще не знаем. Проверьте данные или зарегестрируйтесь." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
+            [RKDropdownAlert title:@"Ошибка входа" message:@"Похоже, мы с Вами еще не знакомы. Введите свои данные." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
         } else if ([((ServerError*)error).serverCode isEqualToString:@"wrong_password"]) {
-            [RKDropdownAlert title:@"Ошибка входа" message:@"Неправильный пароль" backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
+            [RKDropdownAlert title:@"Ошибка входа" message:@"Упс! Вы ввели неверный пароль." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
         } else {
-            [RKDropdownAlert title:@"Ошибка сервера" message:@"Попробуйте повторить попытку позже." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
+            [RKDropdownAlert title:@"Ошибка сервера" message:@"Что-то пошло не так, но мы уже работаем над этим. Попробуйте позже." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
         }
 //        UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
 //        [self presentViewController:vc animated:true completion:nil];
@@ -158,29 +158,29 @@
         field.text = [field.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         if ([field.text length] < 4) {
             NSLog(@"Less then 4 symbols");
-            [RKDropdownAlert title:nil message:@"Слишком кратко, необходимо хотя бы 4 символа написать о себе и 8 в пароле." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
+            [RKDropdownAlert title:nil message:@"Нужно больше букв!" backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
             return NO;
         }
         if ([field.text isEqualToString:@"Email"] || [field.text isEqualToString:@"Password"]) {
             NSLog(@"No unique value");
-            [RKDropdownAlert title:nil message:@"Не ленись и заполни все поля." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];            
+            [RKDropdownAlert title:nil message:@"Пожалуйста, заполните все поля" backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
             return NO;
         }
         if (field.tag == 1) {
             if (![field.text containsString:@"@"] || ![field.text containsString:@"."]) {
                 NSLog(@"Invalid email");
-                [RKDropdownAlert title:nil message:@"Хмм. Уверен, что ты правильно написал почту?" backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
+                [RKDropdownAlert title:nil message:@"Некорректно указан e-mail. Проверьте и попробуйте еще раз" backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
                 return NO;
             }
             if (![field.text canBeConvertedToEncoding:NSISOLatin1StringEncoding]) {
                 NSLog(@"Invalid email");
-                [RKDropdownAlert title:nil message:@"Хмм. Уверен, что ты правильно написал почту?" backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];                
+                [RKDropdownAlert title:nil message:@"Некорректно указан e-mail. Проверьте и попробуйте еще раз" backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];                
                 return NO;
             }
         }
         if (field.tag == 2) {
             if ([field.text length] < 8) {
-                [RKDropdownAlert title:nil message:@"Надо быть хоть немного параноиком. Пароль должен содержать, как минимум 8 символов." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
+                [RKDropdownAlert title:nil message:@"Попробуйте придумать пароль посложнее (от 8 символов)." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
                 NSLog(@"Too short password");
                 return NO;
             }
@@ -191,7 +191,7 @@
                                                           range:NSMakeRange(0, [field.text length])];
             
             if (matches != [field.text length]) {
-                [RKDropdownAlert title:nil message:@"Даже твоя бабушка подбирает пароль надежнее! Напиши хотя бы по одной цифре, заглавной и строчной букве." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
+                [RKDropdownAlert title:nil message:@"Попробуйте придумать пароль посложнее (от 8 символов, содержать цифру, строчную и заглавную букву)" backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
                 NSLog(@"Invalid password");
                 return NO;
             }
@@ -325,11 +325,6 @@
 
 - (void) walkthroughCloseButtonPressed {
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void) walkthroughRegButtonPressed {
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [self presentViewController:reg animated:YES completion:nil];
 }
 
 @end

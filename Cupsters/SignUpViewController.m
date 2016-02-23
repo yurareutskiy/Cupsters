@@ -185,7 +185,7 @@
         if ([((ServerError*)error).serverCode isEqualToString:@"email_exist"]) {
             [RKDropdownAlert title:@"Ошибка регистрации" message:@"Пользователь с таким email уже зарегестрирован." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
         } else {
-            [RKDropdownAlert title:@"Ошибка сервера" message:@"Попробуйте повторить попытку позже." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
+            [RKDropdownAlert title:@"Ошибка сервера" message:@"Что-то пошло не так, но мы уже работаем над этим. Попробуйте позже." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
         }
         NSLog(@"%@", [error debugDescription]);
     }];
@@ -197,11 +197,11 @@
     for (UITextField *field in self.fields) {
         field.text = [field.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         if ([field.text length] < 4) {
-            [RKDropdownAlert title:nil message:@"Слишком кратко, необходимо хотя бы 4 символа написать о себе и 8 в пароле." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
+            [RKDropdownAlert title:nil message:@"Нужно больше букв!" backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
             return NO;
         }
         if ([field.text isEqualToString:@"Email"] || [field.text isEqualToString:@"Password"] || [field.text isEqualToString:@"Имя"] || [field.text isEqualToString:@"Фамилия"]) {
-            [RKDropdownAlert title:nil message:@"Не ленись и заполни все поля." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
+            [RKDropdownAlert title:nil message:@"Пожалуйста, заполните все поля." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
             NSLog(@"No unique value");
             return NO;
         }
@@ -213,26 +213,26 @@
                                                           range:NSMakeRange(0, [field.text length])];
             
             if (matches != [field.text length]) {
-                [RKDropdownAlert title:nil message:@"Мы, конечно, все патриоты, но поля нужно заполнять латиницей." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
+                [RKDropdownAlert title:nil message:@"Поля e-mail и пароль необходимо заполнить латиницей" backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
                 NSLog(@"First name or last name must contain only latin characters");
                 return NO;
             }
         }
         if (field.tag == 3) {
             if (![field.text containsString:@"@"] || ![field.text containsString:@"."]) {
-                [RKDropdownAlert title:nil message:@"Хмм. Уверен, что ты правильно написал почту?" backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
+                [RKDropdownAlert title:nil message:@"Некорректно указан e-mail. Проверьте и попробуйте еще раз." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
                 NSLog(@"Invalid email");
                 return NO;
             }
             if (![field.text canBeConvertedToEncoding:NSISOLatin1StringEncoding]) {
-                [RKDropdownAlert title:nil message:@"Хмм. Уверен, что ты правильно написал почту?" backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
+                [RKDropdownAlert title:nil message:@"Некорректно указан e-mail. Проверьте и попробуйте еще раз." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
                 NSLog(@"Invalid email");
                 return NO;
             }
         }
         if (field.tag == 4) {
             if ([field.text length] < 8) {
-                [RKDropdownAlert title:nil message:@"Надо быть хоть немного параноиком. Пароль должен содержать, как минимум 8 символов." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
+                [RKDropdownAlert title:nil message:@"НПопробуйте придумать пароль посложнее (от 8 символов)" backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
                 NSLog(@"Too short password");
                 return NO;
             }
@@ -243,7 +243,7 @@
                                                           range:NSMakeRange(0, [field.text length])];
             
             if (matches != [field.text length]) {
-                [RKDropdownAlert title:nil message:@"Даже твоя бабушка подбирает пароль надежнее! Напиши хотя бы по одной цифре, заглавной и строчной букве." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
+                [RKDropdownAlert title:nil message:@"Попробуйте придумать пароль посложнее (от 8 символов, содержать цифру, строчную и заглавную букву)." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
                 NSLog(@"Invalid password");
                 return NO;
             }

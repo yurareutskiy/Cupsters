@@ -65,6 +65,7 @@
 		DB67FF111C3C19EC00FC62E2 /* MyriadPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = DB67FF101C3C19EC00FC62E2 /* MyriadPro-Regular.otf */; };
 		DB67FF141C3C307E00FC62E2 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB67FF131C3C307E00FC62E2 /* SignUpViewController.m */; };
 		DB67FF171C3D591D00FC62E2 /* LoginModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB67FF161C3D591D00FC62E2 /* LoginModelViewController.m */; };
+		DB745A1A1C7BD01D00082134 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB745A191C7BD01D00082134 /* AboutUsViewController.m */; };
 		DBA9C4AA1C4DBC61002A5E0D /* ServerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA9C4A91C4DBC61002A5E0D /* ServerRequest.m */; };
 		DBA9C4AD1C4DBC74002A5E0D /* ServerResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA9C4AC1C4DBC74002A5E0D /* ServerResponse.m */; };
 		DBA9C4B01C4DBC84002A5E0D /* ServerError.m in Sources */ = {isa = PBXBuildFile; fileRef = DBA9C4AF1C4DBC84002A5E0D /* ServerError.m */; };
@@ -175,6 +176,8 @@
 		DB67FF131C3C307E00FC62E2 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		DB67FF151C3D591D00FC62E2 /* LoginModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginModelViewController.h; sourceTree = "<group>"; };
 		DB67FF161C3D591D00FC62E2 /* LoginModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginModelViewController.m; sourceTree = "<group>"; };
+		DB745A181C7BD01D00082134 /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
+		DB745A191C7BD01D00082134 /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
 		DBA9C4A81C4DBC61002A5E0D /* ServerRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerRequest.h; sourceTree = "<group>"; };
 		DBA9C4A91C4DBC61002A5E0D /* ServerRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerRequest.m; sourceTree = "<group>"; };
 		DBA9C4AB1C4DBC74002A5E0D /* ServerResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerResponse.h; sourceTree = "<group>"; };
@@ -261,6 +264,8 @@
 				3AE55FA51C4D3DB100025AB8 /* HistoryViewController.m */,
 				3AE55FAA1C4D482300025AB8 /* CouponViewController.h */,
 				3AE55FAB1C4D482300025AB8 /* CouponViewController.m */,
+				DB745A181C7BD01D00082134 /* AboutUsViewController.h */,
+				DB745A191C7BD01D00082134 /* AboutUsViewController.m */,
 			);
 			name = SideMenu;
 			sourceTree = "<group>";
@@ -674,6 +679,7 @@
 				DBA9C4B01C4DBC84002A5E0D /* ServerError.m in Sources */,
 				3A08A37F1C4C1B970094AB63 /* CustomButtonSettings.m in Sources */,
 				DB6733BF1C41022100BA7832 /* Plan.m in Sources */,
+				DB745A1A1C7BD01D00082134 /* AboutUsViewController.m in Sources */,
 				DB478BBF1C5D2F890067BDE5 /* ShowAnimator.m in Sources */,
 				DB671F3C1C3DCFA0008C1408 /* ListPlacesImagesViewController.m in Sources */,
 				DB671F4B1C3EE5F7008C1408 /* MenuRevealViewController.m in Sources */,

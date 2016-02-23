@@ -217,8 +217,8 @@ static NSString *baseURL = @"http://cupsters.ru";
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
-    NSString* title = @"Ошибка";
-    NSString* message = @"Не удалось установить местоположение";
+    NSString* title = @"Нет данных о геолокации";
+    NSString* message = @" Мы не можем Вас найти. Пожалуйста, включите геолокацию";
     [RKDropdownAlert title:title message:message backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:5];
 }
 

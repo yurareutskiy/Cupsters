@@ -10,6 +10,7 @@
 #import "UIColor+HEX.h"
 #import "Constants.h"
 #import "User.h"
+#import <TOWebViewController.h>
 
 @interface MenuRevealViewController ()
 
@@ -109,5 +110,20 @@
 
 - (IBAction)goToHistory:(UIButton *)sender {
     [self performSegueWithIdentifier:@"goToHistory" sender:self];
+}
+
+- (IBAction)aboutUsAction:(id)sender {
+//    [self performSegueWithIdentifier:@"aboutUs" sender:self];
+//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://cupsters.ru"]];
+    TOWebViewController *webViewController = [[TOWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://cupsters.ru/"]];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:webViewController];
+    navigationController.navigationBar.barTintColor = [UIColor colorWithHEX:cBrown];
+    navigationController.navigationBar.translucent = NO;
+    webViewController.title = @"Cupsters - About us";
+    navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName: [UIFont fontWithName:cFontMyraid size:18.f],
+                                                               NSForegroundColorAttributeName: [UIColor whiteColor]};
+    navigationController.navigationBar.tintColor = [UIColor whiteColor];
+
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 @end

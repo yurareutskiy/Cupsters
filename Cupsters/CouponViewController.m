@@ -185,7 +185,7 @@
     User *user = [User sharedUser];
     int __block currentCounter = ((NSString*)user.plan[@"counter"]).intValue;
     if (currentCounter == -1) {
-        [RKDropdownAlert title:@"Купон не доступен" message:@"У вас безлимитный тариф." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
+        [RKDropdownAlert title:@"Купон не доступен" message:@"У вас безлимитный тариф. Вы сможете воспользоваться кодом, когда он закончится." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
         return;
     }
     Server *server = [[Server alloc] init];
@@ -212,7 +212,7 @@
         user.counter = [NSNumber numberWithInt:((NSNumber*)user.counter).intValue + ((NSString*)result[@"counter"]).intValue];
         [user save];
         [self customNavBar];
-        [RKDropdownAlert title:@"Верный код" message:@"У вас увеличился счет кружек." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
+        [RKDropdownAlert title:@"Верный код" message:@"Ура! Еще больше ароматного кофе." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.code.text = @"";
             [self.view endEditing:YES];
@@ -221,7 +221,7 @@
     } OrFailure:^(NSError *error) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.code.text = @"";
-            [RKDropdownAlert title:@"Неверный код" message:@"Проверьте код еще раз и введите." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
+            [RKDropdownAlert title:@"Неверный код" message:@"Упс! Вы ввели неверный код." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
         });
     }];
     

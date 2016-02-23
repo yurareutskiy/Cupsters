@@ -14,6 +14,7 @@
 
 @implementation DataManager
 @synthesize delegate;
+
 #pragma mark Singleton Methods
 
 + (id)sharedManager {

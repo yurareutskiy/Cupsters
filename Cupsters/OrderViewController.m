@@ -68,7 +68,7 @@
     
     if (!self.isAlreadySend) {
         if (![self checkUserCanMakeOrder]) {
-            [RKDropdownAlert title:@"Ошибка заказа" message:@"Вы не можете сделать заказ. Проверьте ваш тариф." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
+            [RKDropdownAlert title:@"Ошибка заказа" message:@"Упс! Вы исчерпали лимит. Выберите любой тариф и продолжайте пить вкусный кофе." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
             [self.navigationController popViewControllerAnimated:YES];
             return;
         }
@@ -352,7 +352,7 @@
     if (![stringCode isEqualToString:self.codeText]) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.code.text = @"";
-            [RKDropdownAlert title:@"Неверный код" message:@"Переспросите код у бармена и введите заново." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
+            [RKDropdownAlert title:@"Неверный код" message:@"Неверный код. Попробуйте еще раз." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
         });
         return;
     }
@@ -392,7 +392,7 @@
             [self customNavBar];
         }
 
-        [RKDropdownAlert title:@"Заказ готов" message:nil backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
+        [RKDropdownAlert title:@"Заказ готов" message:@"Отлично! Наслаждайтесь любимым напитком" backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
         [self.navigationController popToRootViewControllerAnimated:YES];
     } OrFailure:^(NSError *error) {
         [RKDropdownAlert title:@"Ошибка" message:@"Попробуйте сделать заказ заново." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
@@ -413,6 +413,7 @@
     Server *server = [[Server alloc] init];
     ServerRequest *request = [ServerRequest initRequest:ServerRequestTypePOST With:body To:OrderURLStrring];
     [server sentToServer:request OnSuccess:^(NSDictionary *result) {
+        [RKDropdownAlert title:@"Принято" message:@"Заказ вот-вот будет готов." backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
         [self addOrderToHistory:result[@"order"]];
         self.orderID = result[@"return_id"];
         [self.code resignFirstResponder];

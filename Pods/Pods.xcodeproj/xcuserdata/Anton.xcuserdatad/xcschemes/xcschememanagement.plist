@@ -34,6 +34,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SHSPhoneComponent.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>VK-ios-sdk.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,17 +52,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2F13173905C2910379B89AA1BCABE4C6</key>
+		<key>332F16D50F98AAD757111A0869C4AD2B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>377D34BC54C85209ED9A0E1503FDD110</key>
+		<key>4444130DB3A3047CC2CD3DCD5936F146</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>48B5D392696216DF32CE61B3C99DF2A9</key>
+		<key>622FE00A242EED169B67E64F6DB06ABF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,7 +77,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B07EA05A3EA19461D73D1CA69ABECDFD</key>
+		<key>BDF506B0573C9DD3015FA66D011C8617</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D13D8983C3440E6A80102A1146208716</key>
 		<dict>
 			<key>primary</key>
 			<true/>

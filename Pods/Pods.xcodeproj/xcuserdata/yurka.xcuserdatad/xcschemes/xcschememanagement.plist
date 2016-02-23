@@ -34,6 +34,21 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SHSPhoneComponent.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>TOWebViewController-TOWebViewControllerLocalizable.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>TOWebViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>VK-ios-sdk.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,22 +57,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>1E11D57A2F8BCA82BC42AC9992B5C964</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>20DCE82D6FFF254003ED1939C568B793</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>2AB49797D14D57FA43A345254AFB9F18</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2F13173905C2910379B89AA1BCABE4C6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>377D34BC54C85209ED9A0E1503FDD110</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>48B5D392696216DF32CE61B3C99DF2A9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,12 +77,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>8CD6481300572AB5D9C68195AD5782B8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>928353533005A4198EBDA5B700D37B64</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B07EA05A3EA19461D73D1CA69ABECDFD</key>
+		<key>A739F2B38C6E1967B5E1A946C5A4EF2F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B8FCA1671620E27CB684795BEC76243B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BAE271162E38B62B191B15EE126DABD1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F0E184264B17C39152DEFB2355611CF2</key>
 		<dict>
 			<key>primary</key>
 			<true/>

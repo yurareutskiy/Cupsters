@@ -53,9 +53,9 @@
     [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         NSLog(@"Reachability: %@", AFStringFromNetworkReachabilityStatus(status));
         if (!status) {
-            NSString* title = @"Отсутствует интернет";
-            NSString* message = @"Для работы с приложением необходимо соединение с интернетом";
-            [RKDropdownAlert title:title message:message backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:1000];
+            NSString* title = @"Отсутствует интернет соединение";
+//            NSString* message = @"Для работы с приложением необходимо соединение с интернетом";
+            [RKDropdownAlert title:title message:nil backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:1000];
         }
     }];
     
