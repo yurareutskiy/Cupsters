@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PaymentViewController : UIViewController
+@interface PaymentViewController : UIViewController<UIWebViewDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *name;
-@property (strong, nonatomic) IBOutlet UITextField *surname;
 @property (strong, nonatomic) IBOutlet UITextField *number;
 @property (strong, nonatomic) IBOutlet UITextField *date;
 @property (strong, nonatomic) IBOutlet UITextField *cvv;
+@property (strong, nonatomic) IBOutlet UILabel *price;
+
+- (IBAction)makePaymentAction:(id)sender;
 
 @end

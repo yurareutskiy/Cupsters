@@ -12,5 +12,6 @@ target 'Cupsters' do
     pod 'SCLAlertView-Objective-C'
     pod 'SHSPhoneComponent'
     pod 'TOWebViewController'
+    pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
 end
 

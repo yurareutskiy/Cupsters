@@ -20,6 +20,7 @@ PODS:
   - RKDropdownAlert (0.3.0)
   - SCLAlertView-Objective-C (0.7.7)
   - SHSPhoneComponent (2.15)
+  - SVProgressHUD (2.0-beta8)
   - TOWebViewController (2.0.19)
   - VK-ios-sdk (1.3.6)
 
@@ -31,6 +32,7 @@ DEPENDENCIES:
   - RKDropdownAlert
   - SCLAlertView-Objective-C
   - SHSPhoneComponent
+  - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
   - TOWebViewController
   - VK-ios-sdk (from `https://github.com/VKCOM/vk-ios-sdk.git`, tag `1.3.6`)
 
@@ -41,6 +43,8 @@ EXTERNAL SOURCES:
   NSHash:
     :git: https://github.com/jerolimov/NSHash
     :tag: 1.1.0
+  SVProgressHUD:
+    :git: https://github.com/SVProgressHUD/SVProgressHUD.git
   VK-ios-sdk:
     :git: https://github.com/VKCOM/vk-ios-sdk.git
     :tag: 1.3.6
@@ -52,6 +56,9 @@ CHECKOUT OPTIONS:
   NSHash:
     :git: https://github.com/jerolimov/NSHash
     :tag: 1.1.0
+  SVProgressHUD:
+    :commit: 8d25b659df56ef86ce8b03e532c2278cfc3cb294
+    :git: https://github.com/SVProgressHUD/SVProgressHUD.git
   VK-ios-sdk:
     :git: https://github.com/VKCOM/vk-ios-sdk.git
     :tag: 1.3.6
@@ -64,6 +71,7 @@ SPEC CHECKSUMS:
   RKDropdownAlert: f4b3364c251829ad439dc666836a1f2dad26f4c7
   SCLAlertView-Objective-C: 062808b4664add2d38d44b7867267985a02267ad
   SHSPhoneComponent: 4cec0653a150ad63cbc52b0c8b29ce2d3c9c26f0
+  SVProgressHUD: 6e48a1dda09ce3b58adc41d013baed3a8e8980ff
   TOWebViewController: accd62ec0acc8d5c2e1e195c6f7ff7654c3c840c
   VK-ios-sdk: c40f2ab5045f6bf97f57cc2dfb2d5e0c0b920fe6
 

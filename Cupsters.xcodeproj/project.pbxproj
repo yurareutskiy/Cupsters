@@ -25,6 +25,7 @@
 		3A44ACA21C49917000F10D2E /* libVK-ios-sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44ACA01C49917000F10D2E /* libVK-ios-sdk.a */; };
 		3A56C5B61C817DE5001B7A6F /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A56C5B51C817DE5001B7A6F /* PaymentViewController.m */; };
 		3A661FA31C52B7AD00B9E604 /* CustomViewSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A661FA21C52B7AC00B9E604 /* CustomViewSettings.m */; };
+		3AA7ACF21C81B44300544E3E /* CloudPaymentsAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA7ACF11C81B44300544E3E /* CloudPaymentsAPI.framework */; };
 		3AE149701C4E83B8002B74DF /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE1496F1C4E83B8002B74DF /* OrderViewController.m */; };
 		3AE55FA31C4D22E600025AB8 /* SingleTariffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE55FA21C4D22E600025AB8 /* SingleTariffViewController.m */; };
 		3AE55FA61C4D3DB100025AB8 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE55FA51C4D3DB100025AB8 /* HistoryViewController.m */; };
@@ -116,6 +117,7 @@
 		3A56C5B51C817DE5001B7A6F /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
 		3A661FA11C52B7AC00B9E604 /* CustomViewSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewSettings.h; sourceTree = "<group>"; };
 		3A661FA21C52B7AC00B9E604 /* CustomViewSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewSettings.m; sourceTree = "<group>"; };
+		3AA7ACF11C81B44300544E3E /* CloudPaymentsAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CloudPaymentsAPI.framework; sourceTree = "<group>"; };
 		3AE1496E1C4E83B8002B74DF /* OrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewController.h; sourceTree = "<group>"; };
 		3AE1496F1C4E83B8002B74DF /* OrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderViewController.m; sourceTree = "<group>"; };
 		3AE55FA11C4D22E600025AB8 /* SingleTariffViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleTariffViewController.h; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				3A08A3791C4C07BF0094AB63 /* QuartzCore.framework in Frameworks */,
 				3AFD2D481C4ABBB8004F8E72 /* CoreLocation.framework in Frameworks */,
 				3A44ACA11C49917000F10D2E /* libAFNetworking.a in Frameworks */,
+				3AA7ACF21C81B44300544E3E /* CloudPaymentsAPI.framework in Frameworks */,
 				3A44ACA21C49917000F10D2E /* libVK-ios-sdk.a in Frameworks */,
 				3A44AC9E1C498CAA00F10D2E /* FBSDKShareKit.framework in Frameworks */,
 				3A44AC9C1C498CAA00F10D2E /* FBSDKCoreKit.framework in Frameworks */,
@@ -225,6 +228,7 @@
 		01BF79CAEC332CDC20301AC9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3AA7ACF11C81B44300544E3E /* CloudPaymentsAPI.framework */,
 				3A1A465D1C7B1C2B002DFE51 /* AFNetworking.framework */,
 				3A1A465E1C7B1C2B002DFE51 /* BWWalkthrough.framework */,
 				3A1A465F1C7B1C2B002DFE51 /* HMSegmentedControl.framework */,
