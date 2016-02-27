@@ -282,7 +282,7 @@
 
 
 - (IBAction)connect:(UIButton *)sender {
-    [self setTariffForUser];
-
+    //[self setTariffForUser];
+    [self performSegueWithIdentifier:@"toPay" sender:self];
 }
 @end

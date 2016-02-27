@@ -23,6 +23,7 @@
 		3A44AC9E1C498CAA00F10D2E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44AC9B1C498CAA00F10D2E /* FBSDKShareKit.framework */; };
 		3A44ACA11C49917000F10D2E /* libAFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44AC9F1C49917000F10D2E /* libAFNetworking.a */; };
 		3A44ACA21C49917000F10D2E /* libVK-ios-sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A44ACA01C49917000F10D2E /* libVK-ios-sdk.a */; };
+		3A56C5B61C817DE5001B7A6F /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A56C5B51C817DE5001B7A6F /* PaymentViewController.m */; };
 		3A661FA31C52B7AD00B9E604 /* CustomViewSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A661FA21C52B7AC00B9E604 /* CustomViewSettings.m */; };
 		3AE149701C4E83B8002B74DF /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE1496F1C4E83B8002B74DF /* OrderViewController.m */; };
 		3AE55FA31C4D22E600025AB8 /* SingleTariffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AE55FA21C4D22E600025AB8 /* SingleTariffViewController.m */; };
@@ -111,6 +112,8 @@
 		3A44AC9B1C498CAA00F10D2E /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
 		3A44AC9F1C49917000F10D2E /* libAFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAFNetworking.a; path = "Pods/../build/Debug-iphoneos/libAFNetworking.a"; sourceTree = "<group>"; };
 		3A44ACA01C49917000F10D2E /* libVK-ios-sdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libVK-ios-sdk.a"; path = "Pods/../build/Debug-iphoneos/libVK-ios-sdk.a"; sourceTree = "<group>"; };
+		3A56C5B41C817DE5001B7A6F /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
+		3A56C5B51C817DE5001B7A6F /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
 		3A661FA11C52B7AC00B9E604 /* CustomViewSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewSettings.h; sourceTree = "<group>"; };
 		3A661FA21C52B7AC00B9E604 /* CustomViewSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewSettings.m; sourceTree = "<group>"; };
 		3AE1496E1C4E83B8002B74DF /* OrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderViewController.h; sourceTree = "<group>"; };
@@ -387,6 +390,8 @@
 				DB67FEBC1C3BD8FB00FC62E2 /* AppDelegate.h */,
 				DB67FEBD1C3BD8FB00FC62E2 /* AppDelegate.m */,
 				DB67FEC21C3BD8FB00FC62E2 /* Main.storyboard */,
+				3A56C5B41C817DE5001B7A6F /* PaymentViewController.h */,
+				3A56C5B51C817DE5001B7A6F /* PaymentViewController.m */,
 				3A1A46751C7B2E9D002DFE51 /* Walkthrough.storyboard */,
 				DB67FEC81C3BD8FB00FC62E2 /* Assets.xcassets */,
 				DB67FECA1C3BD8FB00FC62E2 /* LaunchScreen.storyboard */,
@@ -677,6 +682,7 @@
 				DBA9C4AD1C4DBC74002A5E0D /* ServerResponse.m in Sources */,
 				3A08A3711C4BDE720094AB63 /* CafeViewController.m in Sources */,
 				DBA9C4B01C4DBC84002A5E0D /* ServerError.m in Sources */,
+				3A56C5B61C817DE5001B7A6F /* PaymentViewController.m in Sources */,
 				3A08A37F1C4C1B970094AB63 /* CustomButtonSettings.m in Sources */,
 				DB6733BF1C41022100BA7832 /* Plan.m in Sources */,
 				DB745A1A1C7BD01D00082134 /* AboutUsViewController.m in Sources */,
@@ -801,6 +807,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -831,6 +839,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
