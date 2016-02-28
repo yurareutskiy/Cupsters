@@ -136,10 +136,10 @@
     double maxLongitude = pointOfInterest.coordinate.longitude + deltaLongitude;
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"(%f <= longitude) AND (longitude <= %f) AND (%f <= lattitude) AND (lattitude <= %f)",
-                              minLongitude, maxLongitude, minLatitude, maxLatitude];
+                              @"(%f <= longitude) AND (longitude <= %f) AND (%f <= lattitude) AND (lattitude <= %f) AND (status = %@)",
+                              minLongitude, maxLongitude, minLatitude, maxLatitude, @1];
     
-//    [fetchRequest setPredicate:predicate];
+    [fetchRequest setPredicate:predicate];
     
     NSError *error = nil;
     self.source = [context executeFetchRequest:fetchRequest error:&error];

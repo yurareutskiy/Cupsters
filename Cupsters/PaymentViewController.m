@@ -51,8 +51,8 @@
     _apiService = [[CPService alloc] init];
     
 #pragma message "These values you MUST store at your server."
-    _apiPublicID = @"pk_348c635ba69b355d6f4dc75a4a205";
-    _apiSecret = @"02a16349d37b79838a1d0310e21bd369";
+    _apiPublicID = @"pk_2eded2fc5dddab906da276add5fbc";
+    _apiSecret = @"a719ef1cabfcebeffc737bde9655cb70";
     
     NSUInteger year = 0;
     NSUInteger month = 0;

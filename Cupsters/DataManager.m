@@ -206,7 +206,7 @@
             
             for (NSString *key in [item allKeys]) {
 
-                if ([key isEqualToString:@"id"] || [key isEqualToString:@"volume"] || [key isEqualToString:@"price"] || [key isEqualToString:@"counter"] || [key isEqualToString:@"id_cafe"] || [key isEqualToString:@"coffee_id"] || [key isEqualToString:@"cafe_id"]) {
+                if ([key isEqualToString:@"id"] || [key isEqualToString:@"volume"] || [key isEqualToString:@"price"] || [key isEqualToString:@"counter"] || [key isEqualToString:@"id_cafe"] || [key isEqualToString:@"coffee_id"] || [key isEqualToString:@"cafe_id"] || [key isEqualToString:@"status"]) {
                     [managedObject setValue:[NSNumber numberWithInt:[item[key] intValue]] forKey:key];
                 } else if ([key isEqualToString:@"lattitude"] || [key isEqualToString:@"longitude"]) {
                     NSNumber *number = [NSNumber numberWithDouble:[item[key] doubleValue]];
