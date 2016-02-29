@@ -16,6 +16,7 @@
 #import "User.h"
 #import "Server.h"
 #import <SCLAlertView.h>
+#import "PaymentViewController.h"
 
 @interface SingleTariffViewController ()
 
@@ -23,6 +24,7 @@
 @property (strong, nonatomic) UIBarButtonItem *menuButton;
 @property (strong, nonatomic) SWRevealViewController *reveal;
 @property (strong, nonatomic) NSArray *source;
+@property (strong, nonatomic) NSString *priceValue;
 
 @end
 
@@ -190,6 +192,7 @@
     tariff = self.source[currentValue];
     NSNumber *count = [tariff valueForKey:@"counter"];
     NSNumber *price = [tariff valueForKey:@"price"];
+    self.priceValue = price;
     [self.price setText:[self formattedStringWithPrice:price.stringValue]];
     [self.amount setText:[NSString stringWithFormat:@"%@", [count stringValue]]];
     int avr = [price intValue] / [count intValue];
@@ -285,4 +288,14 @@
     //[self setTariffForUser];
     [self performSegueWithIdentifier:@"toPay" sender:self];
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"toPay"]) {
+        PaymentViewController *vc = segue.destinationViewController;
+        vc.priceValue = self.priceValue;
+    }
+}
+
+
+
 @end

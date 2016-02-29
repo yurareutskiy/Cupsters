@@ -15,7 +15,9 @@
 @property (strong, nonatomic) IBOutlet UITextField *date;
 @property (strong, nonatomic) IBOutlet UITextField *cvv;
 @property (strong, nonatomic) IBOutlet UILabel *price;
+@property (strong, nonatomic) NSString *priceValue;
 
 - (IBAction)makePaymentAction:(id)sender;
+- (IBAction)useCouponAction:(UIButton *)sender;
 
 @end

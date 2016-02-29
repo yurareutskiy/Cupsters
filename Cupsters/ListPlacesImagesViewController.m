@@ -87,14 +87,14 @@
     NSLog(@"horizontal Accuracy: %f", [locations firstObject].horizontalAccuracy);
     NSLog(@"vertical Accuracy: %f\n", [locations firstObject].verticalAccuracy);
 
-    if ([locations firstObject].horizontalAccuracy < 50.f || [locations firstObject].verticalAccuracy < 50.f) {
+//    if ([locations firstObject].horizontalAccuracy < 50.f || [locations firstObject].verticalAccuracy < 50.f) {
         [manager stopUpdatingLocation];
         pointOfInterest = [[CLLocation alloc] initWithLatitude:locationManager.location.coordinate.latitude longitude:locationManager.location.coordinate.longitude];
         [self fetchData];
         [self completeDistanceArray:self.source];
         [self.table reloadData];
         [locationManager stopUpdatingLocation];
-    }
+//    }
 //    [locationManager stopUpdatingLocation];
 }
 

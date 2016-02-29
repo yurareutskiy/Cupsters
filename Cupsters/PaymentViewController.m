@@ -38,6 +38,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    // for test
+    
+    self.priceValue = @"1";
+    
     keyboard = false;
     
     [self setNeedsStatusBarAppearanceUpdate];
@@ -58,7 +63,8 @@
     NSUInteger month = 0;
     
     NSString *cardExpirationDateString = [NSString stringWithFormat:@"%02lu%02lu",(unsigned long)year%100, (unsigned long)month];
-
+    
+    self.price.text = [self formattedStringWithPrice:[NSString stringWithFormat:@"%@", self.priceValue]];
     
     // Do any additional setup after loading the view.
 }
@@ -169,20 +175,34 @@
 
 - (IBAction)makePaymentAction:(id)sender {
     
+    if (![self validateFields]) {
+        [RKDropdownAlert title:@"Невозможно выполнить платеж" message:@"Проверьте правильность ввода полей" backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil time:3];
+        return;
+    }
+    
     // ExpDate must be in YYMM format
     NSArray *cardDateComponents = [self.date.text componentsSeparatedByString:@"/"];
+    if ([cardDateComponents count] < 2) {
+        cardDateComponents = @[@"00", @"00"];
+    }
     NSString *cardExpirationDateString = [NSString stringWithFormat:@"%@%@",cardDateComponents[1],cardDateComponents[0]];
+    
+    NSString *numberText = @"";
+    NSArray *numberCardComponents = [self.number.text componentsSeparatedByString:@" "];
+    for (NSString *part in numberCardComponents) {
+        numberText = [NSString stringWithFormat:@"%@%@", numberText, part];
+    }
     
     // create dictionary with parameters for send
     NSMutableDictionary *paramsDictionary = [[NSMutableDictionary alloc] init];
     
-    NSString *cryptogramPacket = [_apiService makeCardCryptogramPacket:self.number.text
+    NSString *cryptogramPacket = [_apiService makeCardCryptogramPacket:numberText
                                                             andExpDate:cardExpirationDateString
                                                                 andCVV:self.cvv.text
                                                       andStorePublicID:_apiPublicID];
     
     [paramsDictionary setObject:cryptogramPacket forKey:@"CardCryptogramPacket"];
-    [paramsDictionary setObject:self.price.text forKey:@"Amount"];
+    [paramsDictionary setObject:self.priceValue forKey:@"Amount"];
     [paramsDictionary setObject:@"RUB" forKey:@"Currency"];
     [paramsDictionary setObject:self.name.text forKey:@"Name"];
     
@@ -226,6 +246,11 @@
     
     [SVProgressHUD showWithStatus:@"Отправка данных"];
     [manager POST:apiURLString parameters:paramsDictionary progress:nil success:successBlock failure:failureBlock];
+}
+
+- (IBAction)useCouponAction:(UIButton *)sender {
+    
+    [self performSegueWithIdentifier:@"toTariff" sender:self];
 }
 
 -(void) make3DSPaymentWithAcsURLString: (NSString *) acsUrlString andPaReqString: (NSString *) paReqString andTransactionIdString: (NSString *) transactionIdString {
@@ -376,6 +401,8 @@
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    
     if ([textField isEqual:self.date]) {
         
         // handle backspace
@@ -406,6 +433,20 @@
         }
         
         return NO;
+    } else if ([textField isEqual:self.number]) {
+        if (range.location > 18) {
+            return NO;
+        }
+        if (range.location == 3 || range.location == 8 || range.location == 13) {
+//            if ([string isEqualToString:@""]) {
+//                return YES;
+//            }
+            self.number.text = [NSString stringWithFormat:@"%@%@ ", self.number.text, string];
+            return NO;
+        } else if ((range.location == 5 || range.location == 10 || range.location == 15) && ([string isEqualToString:@""])) {
+            self.number.text = [self.number.text substringToIndex:[self.number.text length] - 3];
+            return NO;
+        }
     }
     
     return YES;
@@ -413,6 +454,7 @@
 
 #pragma mark - UIWebViewDelegate implementation
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    [self.view endEditing:YES];
     NSString *urlString = [request.URL absoluteString];
     if ([urlString isEqualToString:@"http://cloudpayments.ru/"]) {
         NSString *response = [[NSString alloc] initWithData:request.HTTPBody encoding:NSASCIIStringEncoding];
@@ -443,14 +485,42 @@
     return dict;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSString*)formattedStringWithPrice:(NSString*)price {
+    
+    NSInteger lenghtString = [price length];
+    NSMutableString *resultString = [NSMutableString stringWithString:@""];
+    NSInteger counter = lenghtString;
+    for (int i = 0; i < lenghtString; i++) {
+        char ch = [price characterAtIndex:i];
+        if (counter % 3 == 0 && lenghtString != counter) {
+            [resultString appendString:@" "];
+        }
+        [resultString appendString:[NSString stringWithFormat:@"%c", ch]];
+        counter--;
+    }
+    [resultString appendString:@" ₽"];
+    return resultString;
 }
-*/
+
+- (BOOL)validateFields {
+    if ([self.number.text length] == 0 || [self.cvv.text length] == 0 || [self.number.text length] == 0 || [self.name.text length] == 0) {
+        return NO;
+    }
+    
+    NSRegularExpression *regex = [[NSRegularExpression alloc] initWithPattern:@"[A-Z]" options:0 error:NULL];
+    
+    NSUInteger matches = [regex numberOfMatchesInString:self.name.text options:0 range:NSMakeRange(0, [self.name.text length])];
+    
+//    if (matches != [self.name.text length]) {
+//        return NO;
+//    }
+    
+    regex = [[NSRegularExpression alloc] initWithPattern:@"[^(0[1-9]|1[0-2])\/(20[0-9]{2})$]" options:0 error:NULL];
+    
+    
+    return YES;
+}
+
+
 
 @end

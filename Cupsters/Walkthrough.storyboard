@@ -56,9 +56,10 @@
                                     <action selector="prevPage" destination="Cix-WU-g4X" eventType="touchUpInside" id="aIk-xQ-hjA"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOK-pz-Aui">
-                                <rect key="frame" x="440" y="135" width="150" height="18"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DOK-pz-Aui">
+                                <rect key="frame" x="390" y="135" width="200" height="18"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="8OT-vh-FqI"/>
                                     <constraint firstAttribute="width" constant="150" id="TiX-Sd-SnS"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="18"/>
@@ -115,7 +116,7 @@
                             <constraint firstItem="4FP-QU-cxj" firstAttribute="top" secondItem="fi2-vN-p8x" secondAttribute="bottom" constant="20" id="rKk-tC-Tkq"/>
                             <constraint firstItem="4FP-QU-cxj" firstAttribute="top" secondItem="cqK-v8-5VW" secondAttribute="bottom" id="vip-2g-POW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cqK-v8-5VW" secondAttribute="trailing" constant="-20" id="vue-5j-Lxd"/>
-                            <constraint firstItem="DOK-pz-Aui" firstAttribute="top" secondItem="2X2-rp-lBe" secondAttribute="bottom" constant="15" id="zO4-lp-zhr"/>
+                            <constraint firstItem="DOK-pz-Aui" firstAttribute="top" secondItem="2X2-rp-lBe" secondAttribute="bottom" constant="5" id="zO4-lp-zhr"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">

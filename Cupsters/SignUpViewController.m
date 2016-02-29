@@ -196,7 +196,7 @@
 
     for (UITextField *field in self.fields) {
         field.text = [field.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        if ([field.text length] < 4) {
+        if ([field.text length] < 2) {
             [RKDropdownAlert title:nil message:@"Нужно больше букв!" backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
             return NO;
         }
@@ -213,7 +213,7 @@
                                                           range:NSMakeRange(0, [field.text length])];
             
             if (matches != [field.text length]) {
-                [RKDropdownAlert title:nil message:@"Поля e-mail и пароль необходимо заполнить латиницей" backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
+                [RKDropdownAlert title:nil message:@"Все поля необходимо заполнять латиницей" backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
                 NSLog(@"First name or last name must contain only latin characters");
                 return NO;
             }
