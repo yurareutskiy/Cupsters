@@ -38,6 +38,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.date.delegate = self;
+    self.cvv.delegate = self;
+    self.name.delegate = self;
+    self.number.delegate = self;
     
     // for test
     
@@ -273,9 +277,10 @@
     if ([response statusCode] == 200 || [response statusCode] == 201) {
         [SVProgressHUD dismiss];
         UIWebView *webView=[[UIWebView alloc] initWithFrame:self.view.frame];
+        
         webView.delegate = self;
         [self.view addSubview:webView];
-        
+
         [webView loadData:responseData
                  MIMEType:[response MIMEType]
          textEncodingName:[response textEncodingName]
@@ -344,6 +349,11 @@
 
 #pragma mark - UITextFieldDelegate implementation
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    if ([textField isEqual:self.cvv]) {
+        
+    }
+    
     // check if card number valid
     if ([textField isEqual:self.number]) {
         NSString *cardNumberString = textField.text;
@@ -414,37 +424,37 @@
             return NO;
         }
         
-        NSString *addChar = [[string componentsSeparatedByCharactersInSet:
-                              [[NSCharacterSet decimalDigitCharacterSet] invertedSet]]
-                             componentsJoinedByString:@""];
-        
-        switch (textField.text.length) {
-            case 0:
-            case 3:
-            case 4:
-                textField.text = [textField.text stringByAppendingString:addChar];
-                break;
-            case 1:
-                textField.text = [textField.text stringByAppendingString:addChar];
-                textField.text = [textField.text stringByAppendingString:@"/"];
-                break;
-            default:
-                break;
+        if (textField.text.length == 2) {
+            textField.text = [textField.text stringByAppendingString:[NSString stringWithFormat:@"/"]];
         }
         
-        return NO;
+        return YES;
     } else if ([textField isEqual:self.number]) {
-        if (range.location > 18) {
+        
+        // Only the 16 digits + 3 spaces
+        if (range.location == 19) {
             return NO;
         }
-        if (range.location == 3 || range.location == 8 || range.location == 13) {
-//            if ([string isEqualToString:@""]) {
-//                return YES;
-//            }
-            self.number.text = [NSString stringWithFormat:@"%@%@ ", self.number.text, string];
-            return NO;
-        } else if ((range.location == 5 || range.location == 10 || range.location == 15) && ([string isEqualToString:@""])) {
-            self.number.text = [self.number.text substringToIndex:[self.number.text length] - 3];
+        
+        if ([textField.text length] == 19) {
+            if ([string length] == 0) {
+                return YES;
+            } else {
+                return NO;
+            }
+        }
+        
+        // Backspace
+        if ([string length] == 0)
+            return YES;
+        
+        if ((range.location == 4) || (range.location == 9) || (range.location == 14))
+        {
+            NSString *str = [NSString stringWithFormat:@"%@ ", textField.text];
+            textField.text = str;
+        }
+    } else if ([textField isEqual:self.cvv]) {
+        if (range.location > 2){
             return NO;
         }
     }
@@ -461,6 +471,7 @@
         
         NSDictionary *responseDictionary = [self parseQueryString:response];
         [webView removeFromSuperview];
+        self.view.frame = CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height);
         
         [self complete3DSPaymentWithPaResString:[responseDictionary objectForKey:@"PaRes"] andTransactionIdString:[responseDictionary objectForKey:@"MD"]];
         return NO;
