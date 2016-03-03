@@ -16,6 +16,8 @@
 #import "AFNetworking.h"
 #import <AFHTTPSessionManager.h>
 #import <SVProgressHUD.h>
+#import "User.h"
+#import <SCLAlertView.h>
 
 @interface PaymentViewController () {
     CPService *_apiService;
@@ -27,12 +29,14 @@
 
 - (NSDictionary *)parseQueryString:(NSString *)query;
 @property (strong, nonatomic) UIBarButtonItem *menuButton;
+@property (strong, nonatomic) UIWebView *webViewPayment;
 
 @end
 
 @implementation PaymentViewController{
     NSUserDefaults *userDefaults;
     BOOL keyboard;
+    BOOL isWebViewClose;
 }
 
 - (void)viewDidLoad {
@@ -47,7 +51,8 @@
     
     self.priceValue = @"1";
     
-    keyboard = false;
+    keyboard = NO;
+    isWebViewClose = NO;
     
     [self setNeedsStatusBarAppearanceUpdate];
     [self preferredStatusBarStyle];
@@ -62,6 +67,7 @@
 #pragma message "These values you MUST store at your server."
     _apiPublicID = @"pk_2eded2fc5dddab906da276add5fbc";
     _apiSecret = @"a719ef1cabfcebeffc737bde9655cb70";
+    
     
     NSUInteger year = 0;
     NSUInteger month = 0;
@@ -88,24 +94,23 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)keyboardWillShow:(NSNotification *)notification
-{
+- (void)keyboardWillShow:(NSNotification *)notification {
     CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    if (!keyboard){
-        keyboard = true;
+    if (!keyboard) {
+        keyboard = YES;
         [UIView animateWithDuration:0.3 animations:^{
-            self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y - keyboardSize.height, self.view.frame.size.width, self.view.frame.size.height);
+            self.view.frame = CGRectMake(0, 64 - keyboardSize.height, self.view.frame.size.width, self.view.frame.size.height);
         }];
     }
 }
 
--(void)keyboardWillHide:(NSNotification *)notification
-{
-    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    if (keyboard){
-        keyboard = false;
+-(void)keyboardWillHide:(NSNotification *)notification {
+//    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    if (keyboard) {
+        keyboard = NO;
+        self.view.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height);
         [UIView animateWithDuration:0.3 animations:^{
-            self.view.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y + keyboardSize.height, self.view.frame.size.width, self.view.frame.size.height);
+            self.view.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height);
         }];
     }
 }
@@ -276,7 +281,10 @@
     
     if ([response statusCode] == 200 || [response statusCode] == 201) {
         [SVProgressHUD dismiss];
-        UIWebView *webView=[[UIWebView alloc] initWithFrame:self.view.frame];
+        CGRect rect = self.view.frame;
+        rect.origin.y = 64;
+        rect.size.height -= 64;
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:rect];
         
         webView.delegate = self;
         [self.view addSubview:webView];
@@ -318,8 +326,11 @@
                 if (([model objectForKey:@"CardHolderMessage"]) && ![[model objectForKey:@"CardHolderMessage"] isKindOfClass:[NSNull class]]) {
                     // some error from acquier
                     [SVProgressHUD showSuccessWithStatus:[model objectForKey:@"CardHolderMessage"]];
+                    NSLog(@"%@", [model objectForKey:@"CardHolderMessage"]);
+                    [self setTariffForUser];
                 } else {
                     [SVProgressHUD showSuccessWithStatus:@"Ok"];
+                    [self setTariffForUser];
                 }
             } else {
                 NSDictionary *model = [responseObject objectForKey:@"Model"];
@@ -464,10 +475,16 @@
 
 #pragma mark - UIWebViewDelegate implementation
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    
+    CGRect rect = webView.frame;
+    rect.origin.y = 0;
+    rect.size.height += 64;
+    webView.frame = rect;
     [self.view endEditing:YES];
     NSString *urlString = [request.URL absoluteString];
     if ([urlString isEqualToString:@"http://cloudpayments.ru/"]) {
         NSString *response = [[NSString alloc] initWithData:request.HTTPBody encoding:NSASCIIStringEncoding];
+        
         
         NSDictionary *responseDictionary = [self parseQueryString:response];
         [webView removeFromSuperview];
@@ -530,6 +547,66 @@
     
     
     return YES;
+}
+
+
+- (void)setTariffForUser {
+    
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSNumber *tariffID = [self.tariff valueForKey:@"id"];
+    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
+    NSNumber *userID = user.id;
+    NSDictionary *body = @{@"user_id":userID, @"tariff_id":tariffID};
+    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+    Server *server = [[Server alloc] init];
+    ServerRequest *request = [ServerRequest initRequest:ServerRequestTypePOST With:body To:SetTariffURLStrring];
+    [server sentToServer:request OnSuccess:^(NSDictionary *result) {
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"y-M-d H:m:s";
+        NSDateComponents *monthComponent = [[NSDateComponents alloc] init];
+        NSCalendar *theCalendar = [NSCalendar currentCalendar];
+        NSDate *beginDate = [formatter dateFromString:result[@"tariff"][0][@"create_date"]];
+        
+        if ([result[@"tariff"][0][@"counter"] isEqualToString:@"-1"]) {
+            monthComponent.month = 1;
+            [ud setObject:@"∞ ЧАШЕК  " forKey:@"currentCounter"];
+            user.counter = @-1;
+        } else if (result[@"tariff"][0][@"counter"]) {
+            monthComponent.month = 3;
+            NSInteger cups = ((NSString*)result[@"tariff"][0][@"counter"]).intValue;
+            user.counter = [NSNumber numberWithInteger:cups];
+            NSString *text;
+            if (cups == 1) {
+                text = @"ЧАШКА";
+            } else if (cups == 2 || cups == 3 || cups == 4) {
+                text = @"ЧАШКИ";
+            } else {
+                text = @"ЧАШЕК";
+            }
+            [ud setObject:[NSString stringWithFormat:@"%ld %@  ", (long)cups, text] forKey:@"currentCounter"];
+        }
+        NSDate *endDate = [theCalendar dateByAddingComponents:monthComponent toDate:beginDate options:0];
+        NSMutableDictionary *mutDict = [[NSMutableDictionary alloc] initWithDictionary:result[@"tariff"][0]];
+        [mutDict setObject:endDate forKey:@"endDate"];
+        user.plan = mutDict;
+        NSData *userData = [NSKeyedArchiver archivedDataWithRootObject:user];
+        [ud setObject:userData forKey:@"user"];
+        
+        if ([[self.tariff valueForKey:@"type"] isEqualToString:@"advanced"]) {
+            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+            [alert showSuccess:@"Успешно" subTitle:@"Вы подключили тариф 'Расширенный'" closeButtonTitle:@"Ок" duration:5.0];
+            UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
+            [self presentViewController:vc animated:true completion:nil];
+        } else if ([[self.tariff valueForKey:@"type"] isEqualToString:@"standart"]){
+            [alert showSuccess:@"Успешно" subTitle:@"Вы подключили тариф 'Базовый'" closeButtonTitle:@"Ок" duration:5.0];
+            UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
+            [self presentViewController:vc animated:true completion:nil];
+        }
+    } OrFailure:^(NSError *error) {
+        [alert showSuccess:@"Ошибка" subTitle:@"Не удалось выполнить подключение" closeButtonTitle:@"Ок" duration:5.0];
+        NSLog(@"%@", [error debugDescription]);
+    }];
 }
 
 

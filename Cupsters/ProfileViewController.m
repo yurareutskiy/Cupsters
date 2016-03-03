@@ -55,33 +55,17 @@
         self.price.text = [self formattedStringWithPrice:user.plan[@"price"]];
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//        formatter.dateFormat = @"y-M-d H:m:s";
-//        NSDateComponents *monthComponent = [[NSDateComponents alloc] init];
-//        monthComponent.month = 1;
-//        NSCalendar *theCalendar = [NSCalendar currentCalendar];
-//        NSDate *beginDate = [formatter dateFromString:user.plan[@"create_date"]];
         NSDate *endDate = user.plan[@"endDate"];
         formatter.dateFormat = @"d MMMM";
         self.timeLimitLabel.text = [NSString stringWithFormat:@"Годен до %@", [formatter stringFromDate:endDate]];
+        
     } else {
         self.suggestLabel.hidden = NO;
         self.tariff.hidden = YES;
         self.price.hidden = YES;
         self.periodLabel.hidden = YES;
         self.timeLimitLabel.hidden = YES;
-//        float upperPoint = self.tariff.frame.origin.y;
-//        float bottomPoint = self.changePlanButton.frame.origin.y;
-//        CGRect rect = CGRectMake(25.f, self.tariff.superview.frame.origin.y - 35, self.view.frame.size.width - 50, 75);
-//        UILabel *suugestLabel = [[UILabel alloc] initWithFrame:rect];
-//        rect = self.changePlanButton.frame;
-//        rect.origin.y = suugestLabel.frame.origin.y + suugestLabel.frame.size.height + 20;
-//        self.changePlanButton.frame = rect;
-//        suugestLabel.numberOfLines = 0;
-//        suugestLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:22];
         self.changePlanButton.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:32];
-//        suugestLabel.textColor = [UIColor colorWithHEX:cBrown];
-      
-        
     }
 
 }
@@ -178,6 +162,15 @@
 }
 
 - (IBAction)changeCond:(UIButton *)sender {
+    
+    
+}
+
+- (IBAction)switchRecurrenPayment:(UISwitch *)sender {
+    
+}
+
+- (IBAction)addNewCardAction:(id)sender {
 }
 
 - (NSString*)formattedStringWithPrice:(NSString*)price {

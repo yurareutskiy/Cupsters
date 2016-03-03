@@ -293,6 +293,7 @@
     if ([segue.identifier isEqualToString:@"toPay"]) {
         PaymentViewController *vc = segue.destinationViewController;
         vc.priceValue = self.priceValue;
+        vc.tariff = tariff;
     }
 }
 

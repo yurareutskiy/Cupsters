@@ -22,7 +22,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *suggestLabel;
 @property (strong, nonatomic) IBOutlet UIButton *changePlanButton;
 @property (weak, nonatomic) IBOutlet UILabel *periodLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *recurrentPaymentSwitcher;
+@property (weak, nonatomic) IBOutlet UILabel *cardNumberLabel;
 - (IBAction)changePlan:(UIButton *)sender;
 - (IBAction)changeCond:(UIButton *)sender;
+- (IBAction)switchRecurrenPayment:(UISwitch *)sender;
+- (IBAction)addNewCardAction:(id)sender;
 
 @end
