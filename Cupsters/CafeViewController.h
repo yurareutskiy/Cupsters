@@ -27,6 +27,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *name;
 @property (strong, nonatomic) IBOutlet UILabel *address;
 @property (strong, nonatomic) IBOutlet UILabel *subwayLabel;
+@property (strong, nonatomic) IBOutlet UIView *infoView;
+@property (strong, nonatomic) IBOutlet UILabel *timeWeek;
+@property (strong, nonatomic) IBOutlet UILabel *timeWeekend;
 
 
 //- (IBAction)plusBtn:(UIButton *)sender;

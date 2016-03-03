@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -169,7 +169,7 @@
                                     <constraint firstItem="DZs-DP-EFw" firstAttribute="centerY" secondItem="KK8-sw-vjV" secondAttribute="centerY" constant="-10" id="eri-jW-SRL"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="step1" translatesAutoresizingMaskIntoConstraints="NO" id="maJ-qN-Kxp">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="step1" translatesAutoresizingMaskIntoConstraints="NO" id="maJ-qN-Kxp">
                                 <rect key="frame" x="-200" y="120" width="1001" height="500"/>
                                 <rect key="contentStretch" x="0.0" y="1" width="1" height="1"/>
                             </imageView>
@@ -220,7 +220,7 @@
                                     <constraint firstItem="HoM-Ad-i19" firstAttribute="centerX" secondItem="We2-Tp-ZqO" secondAttribute="centerX" id="dct-a3-bLq"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="step2" translatesAutoresizingMaskIntoConstraints="NO" id="Vpn-N3-lI0">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="step2" translatesAutoresizingMaskIntoConstraints="NO" id="Vpn-N3-lI0">
                                 <rect key="frame" x="-200" y="120" width="1001" height="500"/>
                             </imageView>
                         </subviews>
@@ -270,7 +270,7 @@
                                     <constraint firstAttribute="height" constant="120" id="ht6-HH-mNA"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="step3" translatesAutoresizingMaskIntoConstraints="NO" id="7fb-99-eEN">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="step3" translatesAutoresizingMaskIntoConstraints="NO" id="7fb-99-eEN">
                                 <rect key="frame" x="-200" y="120" width="1001" height="500"/>
                             </imageView>
                         </subviews>
@@ -320,7 +320,7 @@
                                     <constraint firstAttribute="height" constant="120" id="XyF-yY-F2S"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="step4" translatesAutoresizingMaskIntoConstraints="NO" id="gNc-E0-Xwi">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="step4" translatesAutoresizingMaskIntoConstraints="NO" id="gNc-E0-Xwi">
                                 <rect key="frame" x="-200" y="120" width="1001" height="500"/>
                             </imageView>
                         </subviews>

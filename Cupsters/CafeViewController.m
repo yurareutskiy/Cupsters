@@ -49,6 +49,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.infoView.hidden = true;
+    
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
     userDefaults = [NSUserDefaults standardUserDefaults];
@@ -87,6 +89,7 @@
     mapView = [GMSMapView mapWithFrame:CGRectMake(self.view.frame.origin.x, self.cafeView.frame.size.height, self.view.frame.size.width, 200.0) camera:camera];
     mapView.myLocationEnabled = YES;
     [mapView setBackgroundColor:[UIColor whiteColor]];
+    [self.infoView setFrame:CGRectMake(0, mapView.frame.origin.y + mapView.frame.size.height, self.infoView.frame.size.width, self.infoView.frame.size.height)];
     
     [self.view addSubview:mapView];
     mapView.hidden = true;
@@ -192,15 +195,20 @@
         NSPredicate *predicate = [NSPredicate predicateWithFormat:
                                   @"%@ == id_cafe", idCafe];
         [fetchRequest setPredicate:predicate];
-        fetchRequest.propertiesToFetch = @[[[entity propertiesByName] objectForKey:@"name"], [[entity propertiesByName] objectForKey:@"type"], [[entity propertiesByName] objectForKey:@"icon"]];
+        fetchRequest.propertiesToFetch = @[[[entity propertiesByName] objectForKey:@"name"], [[entity propertiesByName] objectForKey:@"type"], [[entity propertiesByName] objectForKey:@"icon"], [[entity propertiesByName] objectForKey:@"close"], [[entity propertiesByName] objectForKey:@"close_weekend"], [[entity propertiesByName] objectForKey:@"open"], [[entity propertiesByName] objectForKey:@"open_weekend"]];
         fetchRequest.returnsDistinctResults = YES;
         fetchRequest.resultType = NSDictionaryResultType;
         
         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
         [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
         
+        
         NSError *error = nil;
         NSArray *fetchedResult = [context executeFetchRequest:fetchRequest error:&error];
+        
+        [self.timeWeek setText:[NSString stringWithFormat:@"Пн-Вт %@ - %@", [fetchedResult valueForKey:@"open"], [fetchedResult valueForKey:@"close"]]];
+        [self.timeWeekend setText:[NSString stringWithFormat:@"Пн-Вт %@ - %@", [fetchedResult valueForKey:@"open_weekend"], [fetchedResult valueForKey:@"close_weekend"]]];
+        
         NSMutableArray *first = [[NSMutableArray alloc] init];
         NSMutableArray *second = [[NSMutableArray alloc] init];
         NSMutableArray *third = [[NSMutableArray alloc] init];
@@ -446,28 +454,33 @@
         openMap = true;
         [mapView setAlpha:0.0];
         mapView.hidden = false;
+        [self.infoView setAlpha:0.0];
+        self.infoView.hidden = false;
         [UIView animateWithDuration:0.5 animations:^{
             [mapView setAlpha:1.0];
+            [self.infoView setAlpha:1.0];
         }];
         [UIView animateWithDuration:0.25 animations:^{
-            self.tableView1.frame = CGRectMake(self.tableView1.frame.origin.x, self.tableView1.frame.origin.y + mapView.frame.size.height, self.tableView1.frame.size.width, self.tableView1.frame.size.height);
-            self.tableView2.frame = CGRectMake(self.tableView2.frame.origin.x, self.tableView2.frame.origin.y + mapView.frame.size.height, self.tableView2.frame.size.width, self.tableView2.frame.size.height);
-            self.tableView3.frame = CGRectMake(self.tableView3.frame.origin.x, self.tableView3.frame.origin.y + mapView.frame.size.height, self.tableView3.frame.size.width, self.tableView3.frame.size.height);
-            _segmentedControl.frame = CGRectMake(_segmentedControl.frame.origin.x, _segmentedControl.frame.origin.y + mapView.frame.size.height, _segmentedControl.frame.size.width, _segmentedControl.frame.size.height);
+            self.tableView1.frame = CGRectMake(self.tableView1.frame.origin.x, self.tableView1.frame.origin.y + mapView.frame.size.height + self.infoView.frame.size.height, self.tableView1.frame.size.width, self.tableView1.frame.size.height);
+            self.tableView2.frame = CGRectMake(self.tableView2.frame.origin.x, self.tableView2.frame.origin.y + mapView.frame.size.height + self.infoView.frame.size.height, self.tableView2.frame.size.width, self.tableView2.frame.size.height);
+            self.tableView3.frame = CGRectMake(self.tableView3.frame.origin.x, self.tableView3.frame.origin.y + mapView.frame.size.height + self.infoView.frame.size.height, self.tableView3.frame.size.width, self.tableView3.frame.size.height);
+            _segmentedControl.frame = CGRectMake(_segmentedControl.frame.origin.x, _segmentedControl.frame.origin.y + mapView.frame.size.height + self.infoView.frame.size.height, _segmentedControl.frame.size.width, _segmentedControl.frame.size.height);
         }];
     }
     else {
         openMap = false;
         [UIView animateWithDuration:0.25 animations:^{
             [mapView setAlpha:0.0];
+            [self.infoView setAlpha:0.0];
         } completion:^ (BOOL finished) {
             mapView.hidden = true;
+            self.infoView.hidden = true;
         }];
         [UIView animateWithDuration:0.5 animations:^{
-        self.tableView1.frame = CGRectMake(self.tableView1.frame.origin.x, self.tableView1.frame.origin.y - mapView.frame.size.height, self.tableView1.frame.size.width, self.tableView1.frame.size.height);
-        self.tableView2.frame = CGRectMake(self.tableView2.frame.origin.x, self.tableView2.frame.origin.y - mapView.frame.size.height, self.tableView2.frame.size.width, self.tableView2.frame.size.height);
-        self.tableView3.frame = CGRectMake(self.tableView3.frame.origin.x, self.tableView3.frame.origin.y - mapView.frame.size.height, self.tableView3.frame.size.width, self.tableView3.frame.size.height);
-        _segmentedControl.frame = CGRectMake(_segmentedControl.frame.origin.x, _segmentedControl.frame.origin.y - mapView.frame.size.height, _segmentedControl.frame.size.width, _segmentedControl.frame.size.height);
+        self.tableView1.frame = CGRectMake(self.tableView1.frame.origin.x, self.tableView1.frame.origin.y - mapView.frame.size.height - self.infoView.frame.size.height, self.tableView1.frame.size.width, self.tableView1.frame.size.height);
+        self.tableView2.frame = CGRectMake(self.tableView2.frame.origin.x, self.tableView2.frame.origin.y - mapView.frame.size.height - self.infoView.frame.size.height, self.tableView2.frame.size.width, self.tableView2.frame.size.height);
+        self.tableView3.frame = CGRectMake(self.tableView3.frame.origin.x, self.tableView3.frame.origin.y - mapView.frame.size.height - self.infoView.frame.size.height, self.tableView3.frame.size.width, self.tableView3.frame.size.height);
+        _segmentedControl.frame = CGRectMake(_segmentedControl.frame.origin.x, _segmentedControl.frame.origin.y - mapView.frame.size.height - self.infoView.frame.size.height, _segmentedControl.frame.size.width, _segmentedControl.frame.size.height);
         }];
     }
 }
