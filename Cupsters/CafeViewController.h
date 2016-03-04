@@ -30,6 +30,7 @@
 @property (strong, nonatomic) IBOutlet UIView *infoView;
 @property (strong, nonatomic) IBOutlet UILabel *timeWeek;
 @property (strong, nonatomic) IBOutlet UILabel *timeWeekend;
+@property (strong, nonatomic) IBOutlet UILabel *addons;
 
 
 //- (IBAction)plusBtn:(UIButton *)sender;

@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -553,13 +554,13 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Пн-Пт 8:30 - 21:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eYH-dt-yb7">
                                         <rect key="frame" x="20" y="8" width="150" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сб-Вс 9:30 - 24:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uu0-5Z-q57">
                                         <rect key="frame" x="20" y="29" width="500" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ods-Tx-NNs">
@@ -579,7 +580,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Free Wi-Fi, пледы, плюшки" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8FT-3J-KlI">
                                         <rect key="frame" x="20" y="69" width="212" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -2216,13 +2217,13 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Пн-Пт 8:30 - 21:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TT8-Sr-sbf">
                                         <rect key="frame" x="20" y="8" width="150" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сб-Вс 9:30 - 24:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43N-M7-aLu">
                                         <rect key="frame" x="20" y="29" width="500" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jwX-ue-rqQ">
@@ -2242,7 +2243,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Free Wi-Fi, пледы, плюшки" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peH-F1-SdO">
                                         <rect key="frame" x="20" y="69" width="212" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -2290,6 +2291,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="addons" destination="peH-F1-SdO" id="tha-Zd-cxT"/>
                         <outlet property="address" destination="Ky0-Nu-aPv" id="WwP-Cv-aNp"/>
                         <outlet property="cafeBg" destination="Fr9-Pb-Dan" id="kR3-z6-r5h"/>
                         <outlet property="cafeView" destination="5UX-8h-iwY" id="nbh-jt-OGe"/>
@@ -2910,13 +2912,13 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="Kvm-yb-8fT"/>
-                                        <exclude reference="bQF-R1-EEU"/>
-                                        <exclude reference="eF2-Zg-RDQ"/>
                                         <exclude reference="MiZ-I6-jyK"/>
                                         <exclude reference="V2d-H7-MBg"/>
                                         <exclude reference="gRo-Xw-zWw"/>
                                         <exclude reference="6hP-ri-EoF"/>
                                         <exclude reference="PCY-Ic-KWJ"/>
+                                        <exclude reference="bQF-R1-EEU"/>
+                                        <exclude reference="eF2-Zg-RDQ"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -2960,7 +2962,7 @@
                                             <constraint firstAttribute="width" constant="2" id="9Eh-Pq-9z4"/>
                                         </constraints>
                                     </view>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="MdF-Qw-Ofv">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="MdF-Qw-Ofv">
                                         <rect key="frame" x="332" y="99" width="51" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="ete-1j-yPt"/>
@@ -3029,9 +3031,9 @@
                                 <exclude reference="jHO-Kf-7iH"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="eSR-Cy-1d4"/>
                                 <exclude reference="Iu0-3h-zVb"/>
                                 <exclude reference="yL9-Sp-m64"/>
+                                <exclude reference="eSR-Cy-1d4"/>
                             </mask>
                         </variation>
                     </view>

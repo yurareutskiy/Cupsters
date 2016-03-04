@@ -195,7 +195,7 @@
         NSPredicate *predicate = [NSPredicate predicateWithFormat:
                                   @"%@ == id_cafe", idCafe];
         [fetchRequest setPredicate:predicate];
-        fetchRequest.propertiesToFetch = @[[[entity propertiesByName] objectForKey:@"name"], [[entity propertiesByName] objectForKey:@"type"], [[entity propertiesByName] objectForKey:@"icon"], [[entity propertiesByName] objectForKey:@"close"], [[entity propertiesByName] objectForKey:@"close_weekend"], [[entity propertiesByName] objectForKey:@"open"], [[entity propertiesByName] objectForKey:@"open_weekend"]];
+        fetchRequest.propertiesToFetch = @[[[entity propertiesByName] objectForKey:@"name"], [[entity propertiesByName] objectForKey:@"type"], [[entity propertiesByName] objectForKey:@"icon"], [[entity propertiesByName] objectForKey:@"close"], [[entity propertiesByName] objectForKey:@"close_weekend"], [[entity propertiesByName] objectForKey:@"open"], [[entity propertiesByName] objectForKey:@"open_weekend"], [[entity propertiesByName] objectForKey:@"addons"]];
         fetchRequest.returnsDistinctResults = YES;
         fetchRequest.resultType = NSDictionaryResultType;
         
@@ -208,6 +208,7 @@
         
         [self.timeWeek setText:[NSString stringWithFormat:@"Пн-Вт %@ - %@", [fetchedResult valueForKey:@"open"], [fetchedResult valueForKey:@"close"]]];
         [self.timeWeekend setText:[NSString stringWithFormat:@"Пн-Вт %@ - %@", [fetchedResult valueForKey:@"open_weekend"], [fetchedResult valueForKey:@"close_weekend"]]];
+        [self.addons setText:[NSString stringWithFormat:@"%@"], [fetchedResult valueForKey:@"addons"]]];
         
         NSMutableArray *first = [[NSMutableArray alloc] init];
         NSMutableArray *second = [[NSMutableArray alloc] init];
