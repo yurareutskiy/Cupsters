@@ -152,6 +152,7 @@
     
     self.scrollView.frame = CGRectMake(self.scrollView.frame.origin.x, self.scrollView.frame.origin.y, self.view.frame.size.width * 3, self.scrollView.frame.size.height);
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
+    //self.scrollView.contentSize = CGSizeMake(viewWidth * 3, self.tableView1.frame.size.height);
     
     self.tableView1.frame = CGRectMake(0, 0, viewWidth, self.scrollView.frame.size.height);
     self.tableView2.frame = CGRectMake(viewWidth, 0, viewWidth, self.scrollView.frame.size.height);
