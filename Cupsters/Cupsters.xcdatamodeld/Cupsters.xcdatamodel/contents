@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Automatic">
     <entity name="Cafes" representedClassName="" syncable="YES">
-        <attribute name="addons" optional="YES" syncable="YES"/>
+        <attribute name="addons" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="close" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="close_weekend" optional="YES" attributeType="Date" syncable="YES"/>
@@ -49,7 +49,7 @@
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Cafes" positionX="-936" positionY="72" width="128" height="285"/>
+        <element name="Cafes" positionX="-936" positionY="72" width="128" height="283"/>
         <element name="Coffees" positionX="-560" positionY="99" width="128" height="148"/>
         <element name="Menus" positionX="-738" positionY="45" width="128" height="73"/>
         <element name="Orders" positionX="-774" positionY="-124" width="128" height="163"/>

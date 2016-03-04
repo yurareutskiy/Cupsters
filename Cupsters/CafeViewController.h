@@ -12,7 +12,7 @@
 #import "CafeTableViewCell.h"
 #import <CoreData/CoreData.h>
 
-@interface CafeViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, CLLocationManagerDelegate, CafeTableViewCellDelegate>
+@interface CafeViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, CLLocationManagerDelegate, CafeTableViewCellDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UITableView *tableView1;
 @property (strong, nonatomic) IBOutlet UIView *cafeView;
@@ -31,6 +31,10 @@
 @property (strong, nonatomic) IBOutlet UILabel *timeWeek;
 @property (strong, nonatomic) IBOutlet UILabel *timeWeekend;
 @property (strong, nonatomic) IBOutlet UILabel *addons;
+@property (strong, nonatomic) IBOutlet UIButton *callButton;
+@property (strong, nonatomic) IBOutlet UIView *separ;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollViewAddon;
+- (IBAction)makeCall:(UIButton *)sender;
 
 
 //- (IBAction)plusBtn:(UIButton *)sender;

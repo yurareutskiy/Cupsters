@@ -44,12 +44,16 @@
     NSArray *source;
     NSDictionary *final;
     NSArray *sourceFinal;
+    NSURL *telURL;
+    UIAlertView *callAlert;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.infoView.hidden = true;
+    self.scrollViewAddon.delegate = self;
+    callAlert.delegate = self;
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
@@ -100,14 +104,21 @@
     NSLog(@"coords: lat - %f, long - %f", lat.doubleValue, longi.doubleValue);
     marker.title = [_cafe valueForKey:@"name"];
     
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    formatter.dateFormat = @"H:m:s";
-//    NSDate *oDate = [formatter dateFromString:[_cafe valueForKey:@"open"]];
-//    NSDate *cDate = [formatter dateFromString:[_cafe valueForKey:@"close"]];
-//    formatter.dateFormat = @"H:m";
-//    NSString *openDate = [formatter stringFromDate:oDate];
-//    NSString *closeDate = [formatter stringFromDate:cDate];
-//    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSDate *oDate = [_cafe valueForKey:@"open"];
+    NSDate *cDate = [_cafe valueForKey:@"close"];
+    NSDate *owDate = [_cafe valueForKey:@"open_weekend"];
+    NSDate *cwDate = [_cafe valueForKey:@"close_weekend"];
+    formatter.dateFormat = @"HH:mm";
+    NSString *openDate = [formatter stringFromDate:oDate];
+    NSString *closeDate = [formatter stringFromDate:cDate];
+    NSString *opewWDate = [formatter stringFromDate:owDate];
+    NSString *closeWDate = [formatter stringFromDate:cwDate];
+    
+    [self.timeWeek setText:[NSString stringWithFormat:@"Пн-Вт %@ - %@", openDate, closeDate]];
+    [self.timeWeekend setText:[NSString stringWithFormat:@"Пн-Вт %@ - %@", opewWDate, closeWDate]];
+    [self.addons setText:[NSString stringWithFormat:@"%@", [_cafe valueForKey:@"addons"]]];
+//
 //    marker.snippet = [NSString stringWithFormat:@"%@ - %@", openDate, closeDate];
     marker.map = mapView;
     marker.icon = [UIImage imageNamed:@"brownPin"];
@@ -172,6 +183,7 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     self.menu.view.frame = CGRectMake(self.menu.view.frame.origin.x, 0.f, 280.f, self.menu.view.frame.size.height + 60.f);
+    self.scrollViewAddon.contentSize = CGSizeMake(self.addons.frame.size.width, self.addons.frame.size.height);
 
 }
 
@@ -195,7 +207,7 @@
         NSPredicate *predicate = [NSPredicate predicateWithFormat:
                                   @"%@ == id_cafe", idCafe];
         [fetchRequest setPredicate:predicate];
-        fetchRequest.propertiesToFetch = @[[[entity propertiesByName] objectForKey:@"name"], [[entity propertiesByName] objectForKey:@"type"], [[entity propertiesByName] objectForKey:@"icon"], [[entity propertiesByName] objectForKey:@"close"], [[entity propertiesByName] objectForKey:@"close_weekend"], [[entity propertiesByName] objectForKey:@"open"], [[entity propertiesByName] objectForKey:@"open_weekend"], [[entity propertiesByName] objectForKey:@"addons"]];
+        fetchRequest.propertiesToFetch = @[[[entity propertiesByName] objectForKey:@"name"], [[entity propertiesByName] objectForKey:@"type"], [[entity propertiesByName] objectForKey:@"icon"]];
         fetchRequest.returnsDistinctResults = YES;
         fetchRequest.resultType = NSDictionaryResultType;
         
@@ -205,10 +217,6 @@
         
         NSError *error = nil;
         NSArray *fetchedResult = [context executeFetchRequest:fetchRequest error:&error];
-        
-        [self.timeWeek setText:[NSString stringWithFormat:@"Пн-Вт %@ - %@", [fetchedResult valueForKey:@"open"], [fetchedResult valueForKey:@"close"]]];
-        [self.timeWeekend setText:[NSString stringWithFormat:@"Пн-Вт %@ - %@", [fetchedResult valueForKey:@"open_weekend"], [fetchedResult valueForKey:@"close_weekend"]]];
-        [self.addons setText:[NSString stringWithFormat:@"%@"], [fetchedResult valueForKey:@"addons"]]];
         
         NSMutableArray *first = [[NSMutableArray alloc] init];
         NSMutableArray *second = [[NSMutableArray alloc] init];
@@ -466,6 +474,7 @@
             self.tableView2.frame = CGRectMake(self.tableView2.frame.origin.x, self.tableView2.frame.origin.y + mapView.frame.size.height + self.infoView.frame.size.height, self.tableView2.frame.size.width, self.tableView2.frame.size.height);
             self.tableView3.frame = CGRectMake(self.tableView3.frame.origin.x, self.tableView3.frame.origin.y + mapView.frame.size.height + self.infoView.frame.size.height, self.tableView3.frame.size.width, self.tableView3.frame.size.height);
             _segmentedControl.frame = CGRectMake(_segmentedControl.frame.origin.x, _segmentedControl.frame.origin.y + mapView.frame.size.height + self.infoView.frame.size.height, _segmentedControl.frame.size.width, _segmentedControl.frame.size.height);
+            self.infoView.frame = CGRectMake(self.infoView.frame.origin.x, mapView.frame.origin.y + mapView.frame.size.height, self.infoView.frame.size.width, self.infoView.frame.size.height);
         }];
     }
     else {
@@ -512,4 +521,33 @@
 }
 
 
+- (IBAction)makeCall:(UIButton *)sender {
+    
+    NSString *phNo = [_cafe valueForKey:@"phone"];
+    if ([[phNo substringToIndex:1] isEqualToString:@"8"] ||
+        [[phNo substringToIndex:2] isEqualToString:@"88"] ||
+        [[phNo substringToIndex:3] isEqualToString:@"8(8"] ||
+        [[phNo substringToIndex:1] isEqualToString:@"("]){
+            phNo = [NSString stringWithFormat:@"+7%@", [phNo substringFromIndex:1]];
+    }
+    NSString *cleanedString = [[phNo componentsSeparatedByCharactersInSet:[[NSCharacterSet characterSetWithCharactersInString:@"0123456789-+"] invertedSet]] componentsJoinedByString:@""];
+    telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", cleanedString]];
+    
+    NSString *forAlert = [NSString stringWithFormat:@"Номер %@", cleanedString];
+    if ([[UIApplication sharedApplication] canOpenURL:telURL]) {
+        callAlert = [[UIAlertView alloc] initWithTitle:@"Совершить вызов?" message:forAlert delegate:self cancelButtonTitle:@"Нет" otherButtonTitles:@"Да", nil];
+        [callAlert show];
+    } else
+    {
+        UIAlertView *calert = [[UIAlertView alloc]initWithTitle:@"Ошибка" message:@"Не удалось совершить вызов" delegate:nil cancelButtonTitle:@"Ок" otherButtonTitles:nil, nil];
+        [calert show];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView
+clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex != [alertView cancelButtonIndex]){
+        [[UIApplication sharedApplication] openURL:telURL];
+    }
+}
 @end
