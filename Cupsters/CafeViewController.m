@@ -205,8 +205,16 @@
         [fetchRequest setEntity:entity];
         
         NSNumber *idCafe = [_cafe valueForKey:@"id"];
-        NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                                  @"%@ == id_cafe", idCafe];
+        
+        User *user = [User sharedUser];
+        NSPredicate *predicate;
+        if ([user.plan[@"type"] isEqualToString:@"standart"] && [[self.coffee valueForKey:@"in_standart"] isEqualToString:@"0"]) {
+            predicate = [NSPredicate predicateWithFormat:
+                                      @"%@ == id_cafe AND 0 == in_standart", idCafe];
+        } else {
+            predicate = [NSPredicate predicateWithFormat:
+                                      @"%@ == id_cafe", idCafe];
+        }
         [fetchRequest setPredicate:predicate];
         fetchRequest.propertiesToFetch = @[[[entity propertiesByName] objectForKey:@"name"], [[entity propertiesByName] objectForKey:@"type"], [[entity propertiesByName] objectForKey:@"icon"]];
         fetchRequest.returnsDistinctResults = YES;
@@ -391,7 +399,7 @@
     
     cell.delegate = self;
 
-    NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://lk.cupsters.ru%@BIG1.png", [coffee valueForKey:@"icon"]]];
+    NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://lk.cupsters.ru/%@BIG1.png", [coffee valueForKey:@"icon"]]];
     [cell.coffeePic setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"cafeBack1"]];
     
 

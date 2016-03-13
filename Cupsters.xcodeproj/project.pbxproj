@@ -548,7 +548,7 @@
 				TargetAttributes = {
 					DB67FEB51C3BD8FB00FC62E2 = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = 9W968RZS7A;
+						DevelopmentTeam = PK62EBWEC2;
 					};
 				};
 			};
@@ -826,7 +826,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.reutskiy.cupsters;
+				PRODUCT_BUNDLE_IDENTIFIER = com.styleru.cupstersapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Cupsters/Cupsters-Bridging-Header.h";
@@ -858,7 +858,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.reutskiy.cupsters;
+				PRODUCT_BUNDLE_IDENTIFIER = com.styleru.cupstersapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Cupsters/Cupsters-Bridging-Header.h";

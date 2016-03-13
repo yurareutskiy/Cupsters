@@ -25,7 +25,7 @@
     
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
-    [GMSServices provideAPIKey:@"AIzaSyC7-l9lWhURQqNkJKjqaPHTrIm9lTyvdS8"];
+    [GMSServices provideAPIKey:@"AIzaSyCHauzaNT7DhutAtVOw5qldV2OzD3Z3YWU"];
     // Override point for customization after application launch.
     
 //    NSLog(@"token - %@",  [[NSUserDefaults standardUserDefaults] objectForKey:@"token"]);
