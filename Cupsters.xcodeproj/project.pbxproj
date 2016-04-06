@@ -826,7 +826,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.styleru.cupstersapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.styleru.cupsterapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Cupsters/Cupsters-Bridging-Header.h";
@@ -858,7 +858,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.styleru.cupstersapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.styleru.cupsterapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Cupsters/Cupsters-Bridging-Header.h";

@@ -9,6 +9,10 @@
 //
 
 
+#import <GoogleMaps/GMSCompatabilityMacros.h>
+
+GMS_ASSUME_NONNULL_BEGIN
+
 @class GMSPlace;
 
 /**
@@ -33,3 +37,5 @@
 - (instancetype)initWithPlace:(GMSPlace *)place likelihood:(double)likelihood;
 
 @end
+
+GMS_ASSUME_NONNULL_END

@@ -13,6 +13,10 @@
 
 #import <GoogleMaps/GMSCALayer.h>
 
+#import <GoogleMaps/GMSCompatabilityMacros.h>
+
+GMS_ASSUME_NONNULL_BEGIN
+
 /**
  * The following layer properties and constants describe the camera properties
  * that may be animated on the custom model layer of a GMSMapView with Core
@@ -94,3 +98,5 @@ extern NSString *const kGMSLayerCameraViewingAngleKey;
 @property(nonatomic, assign) float cameraZoomLevel;
 @property(nonatomic, assign) double cameraViewingAngle;
 @end
+
+GMS_ASSUME_NONNULL_END

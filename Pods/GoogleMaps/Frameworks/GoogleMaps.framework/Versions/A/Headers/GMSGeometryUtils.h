@@ -15,9 +15,14 @@
 
 #import <CoreLocation/CoreLocation.h>
 
+#import <GoogleMaps/GMSCompatabilityMacros.h>
 #import <GoogleMaps/GMSPath.h>
 
 @class GMSPath;
+@class GMSStrokeStyle;
+@class GMSStyleSpan;
+
+GMS_ASSUME_NONNULL_BEGIN
 
 /** Average Earth radius in meters. */
 static const CLLocationDistance kGMSEarthRadius = 6371009.0;
@@ -61,7 +66,7 @@ FOUNDATION_EXPORT
 double GMSMapPointDistance(GMSMapPoint a, GMSMapPoint b);
 
 /**
- * Returns whether |point| lies inside of path. The path is always cosidered
+ * Returns whether |point| lies inside of path. The path is always considered
  * closed, regardless of whether the last point equals the first or not.
  * Inside is defined as not containing the South Pole -- the South Pole is
  * always outside.
@@ -204,7 +209,10 @@ CLLocationCoordinate2D GMSGeometryInterpolate(CLLocationCoordinate2D from,
  * </pre>
  */
 FOUNDATION_EXPORT
-NSArray *GMSStyleSpans(GMSPath *path, NSArray *styles, NSArray *lengths, GMSLengthKind lengthKind);
+GMS_NSArrayOf(GMSStyleSpan *) *GMSStyleSpans(GMSPath *path,
+                                             GMS_NSArrayOf(GMSStrokeStyle *) *styles,
+                                             GMS_NSArrayOf(NSNumber *) *lengths,
+                                             GMSLengthKind lengthKind);
 
 /**
  * Similar to GMSStyleSpans(path, styles, lengths, lengthKind) but additionally takes an initial
@@ -213,10 +221,12 @@ NSArray *GMSStyleSpans(GMSPath *path, NSArray *styles, NSArray *lengths, GMSLeng
  * |lengthOffset| the length (e.g. in meters) that should be skipped initially from |lengths|.
  */
 FOUNDATION_EXPORT
-NSArray *GMSStyleSpansOffset(GMSPath *path,
-                             NSArray *styles,
-                             NSArray *lengths,
-                             GMSLengthKind lengthKind,
-                             double lengthOffset);
+GMS_NSArrayOf(GMSStyleSpan *) *GMSStyleSpansOffset(GMSPath *path,
+                                                   GMS_NSArrayOf(GMSStrokeStyle *) *styles,
+                                                   GMS_NSArrayOf(NSNumber *) *lengths,
+                                                   GMSLengthKind lengthKind,
+                                                   double lengthOffset);
 
 /**@}*/
+
+GMS_ASSUME_NONNULL_END

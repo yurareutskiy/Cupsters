@@ -9,6 +9,10 @@
 //
 
 
+#import <GoogleMaps/GMSCompatabilityMacros.h>
+
+GMS_ASSUME_NONNULL_BEGIN
+
 /**
  * This class represents a matched fragment of a string. This is a contiguous range of characters
  * in a string, suitable for highlighting in an autocompletion UI.
@@ -27,3 +31,5 @@
 @property(nonatomic, readonly) NSUInteger length;
 
 @end
+
+GMS_ASSUME_NONNULL_END

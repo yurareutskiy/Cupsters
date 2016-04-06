@@ -8,7 +8,11 @@
 //  Service: https://developers.google.com/maps/terms
 //
 
+#import <GoogleMaps/GMSCompatabilityMacros.h>
+
 @class GMSMapView;
+
+GMS_ASSUME_NONNULL_BEGIN
 
 /**
  * Stub tile that is used to indicate that no tile exists for a specific tile
@@ -24,7 +28,7 @@ FOUNDATION_EXTERN UIImage *const kGMSTileLayerNoTile;
 - (void)receiveTileWithX:(NSUInteger)x
                        y:(NSUInteger)y
                     zoom:(NSUInteger)zoom
-                   image:(UIImage *)image;
+                   image:(UIImage *GMS_NULLABLE_PTR)image;
 @end
 
 /**
@@ -65,7 +69,7 @@ FOUNDATION_EXTERN UIImage *const kGMSTileLayerNoTile;
  * the layer to the map. Setting it to nil removes this layer from the map. A
  * layer may be active on at most one map at any given time.
  */
-@property(nonatomic, weak) GMSMapView *map;
+@property(nonatomic, weak) GMSMapView *GMS_NULLABLE_PTR map;
 
 /**
  * Higher |zIndex| value tile layers will be drawn on top of lower |zIndex|
@@ -101,3 +105,5 @@ FOUNDATION_EXTERN UIImage *const kGMSTileLayerNoTile;
 @property(nonatomic, assign) BOOL fadeIn;
 
 @end
+
+GMS_ASSUME_NONNULL_END

@@ -10,13 +10,18 @@
 
 #import <GoogleMaps/GMSTileLayer.h>
 
+#import <GoogleMaps/GMSCompatabilityMacros.h>
+
 @class NSURL;
+
+GMS_ASSUME_NONNULL_BEGIN
 
 /**
  * |GMSTileURLConstructor| is a block taking |x|, |y| and |zoom|
  * and returning an NSURL, or nil to indicate no tile for that location.
  */
-typedef NSURL *(^GMSTileURLConstructor)(NSUInteger x, NSUInteger y, NSUInteger zoom);
+typedef NSURL *GMS_NULLABLE_PTR (^GMSTileURLConstructor)(NSUInteger x, NSUInteger y,
+                                                         NSUInteger zoom);
 
 /**
  * GMSURLTileProvider fetches tiles based on the URLs returned from a
@@ -45,6 +50,8 @@ typedef NSURL *(^GMSTileURLConstructor)(NSUInteger x, NSUInteger y, NSUInteger z
  * Specify the user agent to describe your application. If this is nil (the
  * default), the default iOS user agent is used for HTTP requests.
  */
-@property(nonatomic, copy) NSString *userAgent;
+@property(nonatomic, copy) NSString *GMS_NULLABLE_PTR userAgent;
 
 @end
+
+GMS_ASSUME_NONNULL_END

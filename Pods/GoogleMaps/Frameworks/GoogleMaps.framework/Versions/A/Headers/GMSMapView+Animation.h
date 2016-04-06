@@ -10,6 +10,10 @@
 
 #import <GoogleMaps/GMSMapView.h>
 
+#import <GoogleMaps/GMSCompatabilityMacros.h>
+
+GMS_ASSUME_NONNULL_BEGIN
+
 /**
  * GMSMapView (Animation) offers several animation helper methods.
  *
@@ -55,3 +59,5 @@
 - (void)animateWithCameraUpdate:(GMSCameraUpdate *)cameraUpdate;
 
 @end
+
+GMS_ASSUME_NONNULL_END

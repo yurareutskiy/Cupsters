@@ -12,9 +12,10 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
 #import <VKSdk.h>
+#import <TTTAttributedLabel.h>
 
 
-@interface SignUpViewController: LoginModelViewController
+@interface SignUpViewController: LoginModelViewController <TTTAttributedLabelDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollViewOutlet;
 
@@ -24,6 +25,7 @@
 
 @property (strong, nonatomic) NSString *email;
 @property (strong, nonatomic) NSString *password;
+@property (weak, nonatomic) IBOutlet TTTAttributedLabel *textAgreeStatement;
 
 - (IBAction)editDidBeginAction:(UITextField *)sender;
 - (IBAction)editDidEndAction:(UITextField *)sender;

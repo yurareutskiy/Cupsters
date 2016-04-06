@@ -10,9 +10,13 @@
 
 #import <CoreLocation/CoreLocation.h>
 
+#import <GoogleMaps/GMSCompatabilityMacros.h>
 #import <GoogleMaps/GMSAddress.h>
 
-@class GMSPlaceUserData;
+GMS_ASSUME_NONNULL_BEGIN
+
+@class GMSAddressComponent;
+@class GMSCoordinateBounds;
 
 
 /** Describes the current open status of a place. */
@@ -52,23 +56,23 @@ typedef NS_ENUM(NSInteger, GMSPlacesPriceLevel) {
  * particular entry or exit point, but some arbitrarily chosen point within the geographic extent of
  * the Place.
  */
-@property(nonatomic, readonly) CLLocationCoordinate2D coordinate;
+@property(nonatomic, readonly, assign) CLLocationCoordinate2D coordinate;
 
 /**
  * Represents the open now status of the place at the time that the place was created.
  */
-@property(nonatomic, readonly) GMSPlacesOpenNowStatus openNowStatus;
+@property(nonatomic, readonly, assign) GMSPlacesOpenNowStatus openNowStatus;
 
 /**
  * Phone number of this place, in international format, i.e. including the country code prefixed
  * with "+".  For example, Google Sydney's phone number is "+61 2 9374 4000".
  */
-@property(nonatomic, copy, readonly) NSString *phoneNumber;
+@property(nonatomic, copy, readonly) NSString *GMS_NULLABLE_PTR phoneNumber;
 
 /**
  * Address of the place as a simple string.
  */
-@property(nonatomic, copy, readonly) NSString *formattedAddress;
+@property(nonatomic, copy, readonly) NSString *GMS_NULLABLE_PTR formattedAddress;
 
 /**
  * Five-star rating for this place based on user reviews.
@@ -76,7 +80,7 @@ typedef NS_ENUM(NSInteger, GMSPlacesPriceLevel) {
  * Ratings range from 1.0 to 5.0.  0.0 means we have no rating for this place (e.g. because not
  * enough users have reviewed this place).
  */
-@property(nonatomic, readonly) float rating;
+@property(nonatomic, readonly, assign) float rating;
 
 /**
  * Price level for this place, as integers from 0 to 4.
@@ -84,16 +88,16 @@ typedef NS_ENUM(NSInteger, GMSPlacesPriceLevel) {
  * e.g. A value of 4 means this place is "$$$$" (expensive).  A value of 0 means free (such as a
  * museum with free admission).
  */
-@property(nonatomic, readonly) GMSPlacesPriceLevel priceLevel;
+@property(nonatomic, readonly, assign) GMSPlacesPriceLevel priceLevel;
 
 /**
  * The types of this place.  Types are NSStrings, valid values are any types documented at
  * <https://developers.google.com/places/supported_types>.
  */
-@property(nonatomic, copy, readonly) NSArray *types;
+@property(nonatomic, copy, readonly) GMS_NSArrayOf(NSString *) *types;
 
 /** Website for this place. */
-@property(nonatomic, copy, readonly) NSURL *website;
+@property(nonatomic, copy, readonly) NSURL *GMS_NULLABLE_PTR website;
 
 /**
  * The data provider attribution string for this place.
@@ -104,6 +108,28 @@ typedef NS_ENUM(NSInteger, GMSPlacesPriceLevel) {
  * In general, these must be shown to the user if data from this GMSPlace is shown, as described in
  * the Places API Terms of Service.
  */
-@property(nonatomic, copy, readonly) NSAttributedString *attributions;
+@property(nonatomic, copy, readonly) NSAttributedString *GMS_NULLABLE_PTR attributions;
+
+/**
+ * The recommended viewport for this place. May be nil if the size of the place is not known.
+ *
+ * This returns a viewport of a size that is suitable for displaying this place. For example, a
+ * |GMSPlace| object representing a store may have a relatively small viewport, while a |GMSPlace|
+ * object representing a country may have a very large viewport.
+ */
+@property(nonatomic, strong, readonly) GMSCoordinateBounds *GMS_NULLABLE_PTR viewport;
+
+/**
+ * An array of |GMSAddressComponent| objects representing the components in the place's address.
+ * These components are provided for the purpose of extracting structured information about the
+ * place's address: for example, finding the city that a place is in.
+ *
+ * These components should not be used for address formatting. If a formatted address is required,
+ * use the |formattedAddress| property, which provides a localized formatted address.
+ */
+@property(nonatomic, copy, readonly)
+    GMS_NSArrayOf(GMSAddressComponent *) *GMS_NULLABLE_PTR addressComponents;
 
 @end
+
+GMS_ASSUME_NONNULL_END

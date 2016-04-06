@@ -8,12 +8,14 @@
 #import "SDKDemos/Samples/BasicMapViewController.h"
 #import "SDKDemos/Samples/CustomIndoorViewController.h"
 #import "SDKDemos/Samples/DoubleMapViewController.h"
+#import "SDKDemos/Samples/FrameRateViewController.h"
 #import "SDKDemos/Samples/GestureControlViewController.h"
 #import "SDKDemos/Samples/IndoorMuseumNavigationViewController.h"
 #import "SDKDemos/Samples/IndoorViewController.h"
 #import "SDKDemos/Samples/MapTypesViewController.h"
 #import "SDKDemos/Samples/MapZoomViewController.h"
 #import "SDKDemos/Samples/MyLocationViewController.h"
+#import "SDKDemos/Samples/SnapshotReadyViewController.h"
 #import "SDKDemos/Samples/TrafficMapViewController.h"
 #import "SDKDemos/Samples/VisibleRegionViewController.h"
 
@@ -23,6 +25,7 @@
 
 // Overlay Demos
 #import "SDKDemos/Samples/AnimatedCurrentLocationViewController.h"
+#import "SDKDemos/Samples/AnimatedUIViewMarkerViewController.h"
 #import "SDKDemos/Samples/CustomMarkersViewController.h"
 #import "SDKDemos/Samples/GradientPolylinesViewController.h"
 #import "SDKDemos/Samples/GroundOverlayViewController.h"
@@ -75,6 +78,9 @@
     [self newDemo:[GestureControlViewController class]
         withTitle:@"Gesture Control"
    andDescription:nil],
+    [self newDemo:[SnapshotReadyViewController class]
+        withTitle:@"Snapshot Ready"
+   andDescription:nil],
     [self newDemo:[DoubleMapViewController class]
         withTitle:@"Two Maps"
    andDescription:nil],
@@ -83,6 +89,9 @@
    andDescription:nil],
     [self newDemo:[MapZoomViewController class]
         withTitle:@"Min/Max Zoom"
+   andDescription:nil],
+    [self newDemo:[FrameRateViewController class]
+        withTitle:@"Frame Rate"
    andDescription:nil],
   ];
 
@@ -100,6 +109,9 @@
    andDescription:nil],
     [self newDemo:[CustomMarkersViewController class]
         withTitle:@"Custom Markers"
+   andDescription:nil],
+    [self newDemo:[AnimatedUIViewMarkerViewController class]
+        withTitle:@"UIView Markers"
    andDescription:nil],
     [self newDemo:[MarkerEventsViewController class]
         withTitle:@"Marker Events"

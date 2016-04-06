@@ -10,7 +10,10 @@
 
 #import <CoreLocation/CoreLocation.h>
 
+#import <GoogleMaps/GMSCompatabilityMacros.h>
 #import <GoogleMaps/GMSOrientation.h>
+
+GMS_ASSUME_NONNULL_BEGIN
 
 /**
  * GMSPanoramaCamera is used to control the viewing direction of a GMSPanoramaView. It does not
@@ -75,3 +78,5 @@
 @property(nonatomic, assign, readonly) GMSOrientation orientation;
 
 @end
+
+GMS_ASSUME_NONNULL_END

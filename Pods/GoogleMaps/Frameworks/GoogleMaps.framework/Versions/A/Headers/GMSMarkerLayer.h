@@ -11,6 +11,10 @@
 #import <CoreLocation/CoreLocation.h>
 #import <QuartzCore/QuartzCore.h>
 
+#import <GoogleMaps/GMSCompatabilityMacros.h>
+
+GMS_ASSUME_NONNULL_BEGIN
+
 /**
  * GMSMarkerLayer is a custom subclass of CALayer, available on a per-marker
  * basis, that allows animation of several properties of its associated
@@ -40,3 +44,5 @@ extern NSString *const kGMSMarkerLayerLatitude;
 extern NSString *const kGMSMarkerLayerLongitude;
 extern NSString *const kGMSMarkerLayerRotation;
 extern NSString *const kGMSMarkerLayerOpacity;
+
+GMS_ASSUME_NONNULL_END

@@ -7,6 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PLRSessionInfo.h"
+#import "PLRWebView.h"
+#import "PLRSessionInfo.h"
+#import "PLRPayment.h"
+#import "PaylerAPIClient.h"
 
 @interface SingleTariffViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UISlider *slider;
@@ -22,6 +27,7 @@
 
 @property (strong, nonatomic) NSString *type;
 - (IBAction)connect:(UIButton *)sender;
+- (IBAction)useCouponAction:(UIButton *)sender;
 
 
 

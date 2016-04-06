@@ -35,6 +35,9 @@
   }
 
   _manager = [[CLLocationManager alloc] init];
+  if ([_manager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+    [_manager requestWhenInUseAuthorization];
+  }
   _manager.delegate = self;
   _manager.desiredAccuracy = kCLLocationAccuracyBest;
   _manager.distanceFilter = 5.0f;
@@ -59,7 +62,7 @@
 
   if (_locationMarker == nil) {
     _locationMarker = [[GMSMarker alloc] init];
-    _locationMarker.position = CLLocationCoordinate2DMake(-33.86, 151.20);
+    _locationMarker.position = location.coordinate;
 
     // Animated walker images derived from an www.angryanimator.com tutorial.
     // See: http://www.angryanimator.com/word/2010/11/26/tutorial-2-walk-cycle/

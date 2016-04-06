@@ -13,8 +13,10 @@
 #import <NSHash/NSString+NSHash.h>
 #import "DataManager.h"
 #import <RKDropdownAlert.h>
+#import <TOWebViewController.h>
+#import "UIColor+HEX.h"
 
-@interface SignUpViewController ()
+@interface SignUpViewController () 
 
 
 @end
@@ -25,6 +27,9 @@
 
 
 - (void)viewDidLoad {
+    
+    [super viewDidLoad];
+
 
     for (UITextField *tf in self.fieldsOutlet) {
         switch (tf.tag) {
@@ -51,7 +56,20 @@
     [self.agreeButton setImage: [UIImage imageNamed:@"checkIn"] forState:UIControlStateSelected];
     
 
-    [super viewDidLoad];
+
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    
+
+    
+    self.textAgreeStatement.delegate = self;
+    self.textAgreeStatement.linkAttributes = @{NSFontAttributeName:[UIFont fontWithName:@"MyriadPro-Regular" size:15], (id)kCTForegroundColorAttributeName : (id)[UIColor lightGrayColor].CGColor};
+    self.textAgreeStatement.enabledTextCheckingTypes = NSTextCheckingTypeLink;
+    NSRange rangePersonalData = [self.textAgreeStatement.text rangeOfString:@"обработку персональных данных"];
+    NSRange rangeAgreement = [self.textAgreeStatement.text rangeOfString:@"пользовательского соглашени"];
+    [self.textAgreeStatement addLinkToURL:[NSURL URLWithString:@"http://cupsters.ru/ui/policy.pdf"] withRange:rangePersonalData];
+    [self.textAgreeStatement addLinkToURL:[NSURL URLWithString:@"http://cupsters.ru/ui/user_agreement.pdf"] withRange:rangeAgreement];
 
 }
 
@@ -258,6 +276,26 @@
 - (IBAction)dismiss:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
+#pragma mark - TTTAttributedLabelDelegate
+
+-(void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url {
+    NSLog(@"%@", url);
+    TOWebViewController *webViewController = [[TOWebViewController alloc] initWithURL:url];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:webViewController];
+    navigationController.navigationBar.barTintColor = [UIColor colorWithHEX:cBrown];
+    navigationController.navigationBar.translucent = NO;
+    webViewController.title = @"Cupsters - Agreements";
+    webViewController.showPageTitles = NO;
+    navigationController.navigationBar.titleTextAttributes = @{NSFontAttributeName: [UIFont fontWithName:cFontMyraid size:18.f],
+                                                               NSForegroundColorAttributeName: [UIColor whiteColor]};
+    navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    [self presentViewController:navigationController animated:YES completion:nil];
+}
+
+
 
 
 

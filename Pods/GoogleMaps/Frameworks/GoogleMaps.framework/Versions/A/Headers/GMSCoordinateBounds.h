@@ -9,10 +9,12 @@
 //
 
 #import <CoreLocation/CoreLocation.h>
-
+#import <GoogleMaps/GMSCompatabilityMacros.h>
 #import <GoogleMaps/GMSProjection.h>
 
 @class GMSPath;
+
+GMS_ASSUME_NONNULL_BEGIN
 
 /**
  * GMSCoordinateBounds represents a rectangular bounding box on the Earth's
@@ -49,16 +51,6 @@
               coordinate:(CLLocationCoordinate2D)coord2;
 
 /**
- * Inits with bounds that encompass |region|.
- */
-- (id)initWithRegion:(GMSVisibleRegion)region;
-
-/**
- * Inits with bounds that encompass |path|.
- */
-- (id)initWithPath:(GMSPath *)path;
-
-/**
  * Returns a GMSCoordinateBounds representing
  * the current bounds extended to include the passed-in coordinate.
  * If the current bounds is invalid, the result is a valid bounds containing
@@ -75,12 +67,6 @@
 - (GMSCoordinateBounds *)includingBounds:(GMSCoordinateBounds *)other;
 
 /**
- * Returns a GMSCoordinateBounds representing the current bounds extended to
- * include |path|.
- */
-- (GMSCoordinateBounds *)includingPath:(GMSPath *)path;
-
-/**
  * Returns YES if |coordinate| is contained within this bounds. This includes
  * points that lie exactly on the edge of the bounds.
  */
@@ -95,3 +81,26 @@
 
 @end
 
+
+
+@interface GMSCoordinateBounds (GoogleMaps)
+
+/**
+ * Inits with bounds that encompass |region|.
+ */
+- (id)initWithRegion:(GMSVisibleRegion)region;
+
+/**
+ * Inits with bounds that encompass |path|.
+ */
+- (id)initWithPath:(GMSPath *)path;
+
+/**
+ * Returns a GMSCoordinateBounds representing the current bounds extended to
+ * include |path|.
+ */
+- (GMSCoordinateBounds *)includingPath:(GMSPath *)path;
+
+@end
+
+GMS_ASSUME_NONNULL_END

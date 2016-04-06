@@ -12,6 +12,10 @@
 
 #import <Foundation/Foundation.h>
 
+#import <GoogleMaps/GMSCompatabilityMacros.h>
+
+GMS_ASSUME_NONNULL_BEGIN
+
 /**
  * A circle on the Earth's surface (spherical cap).
  */
@@ -31,13 +35,13 @@
 @property(nonatomic, assign) CGFloat strokeWidth;
 
 /** The color of this circle's outline. The default value is black. */
-@property(nonatomic, strong) UIColor *strokeColor;
+@property(nonatomic, strong) UIColor *GMS_NULLABLE_PTR strokeColor;
 
 /**
  * The interior of the circle is painted with fillColor.
  * The default value is nil, resulting in no fill.
  */
-@property(nonatomic, strong) UIColor *fillColor;
+@property(nonatomic, strong) UIColor *GMS_NULLABLE_PTR fillColor;
 
 /**
  * Convenience constructor for GMSCircle for a particular position and radius.
@@ -47,3 +51,5 @@
                             radius:(CLLocationDistance)radius;
 
 @end
+
+GMS_ASSUME_NONNULL_END

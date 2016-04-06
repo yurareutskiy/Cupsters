@@ -53,6 +53,7 @@
     [self.upView.layer setMasksToBounds:NO];
     
     [self.name setText:[self.cafe valueForKey:@"name"]];
+    [self.coffeeName setText:[self.coffee valueForKey:@"name"]];
     [self.volume setText:[NSString stringWithFormat:@"%@ мл", [self.coffee valueForKey:@"volume"]]];
     NSURL *imageURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://lk.cupsters.ru/%@", [self.cafe valueForKey:@"image"]]];
 

@@ -115,7 +115,7 @@
 - (IBAction)aboutUsAction:(id)sender {
 //    [self performSegueWithIdentifier:@"aboutUs" sender:self];
 //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://cupsters.ru"]];
-    TOWebViewController *webViewController = [[TOWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://cupsters.ru/"]];
+    TOWebViewController *webViewController = [[TOWebViewController alloc] initWithURL:[NSURL URLWithString:@"http://cupsters.ru/faq"]];
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:webViewController];
     navigationController.navigationBar.barTintColor = [UIColor colorWithHEX:cBrown];
     navigationController.navigationBar.translucent = NO;

@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "PLRSessionInfo.h"
+#import "PLRWebView.h"
+#import "PLRSessionInfo.h"
+#import "PLRPayment.h"
+#import "PaylerAPIClient.h"
 
 @interface OrderViewController : UIViewController<UITextFieldDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *code;
@@ -19,10 +24,13 @@
 @property (strong, nonatomic) IBOutlet UILabel *volume;
 @property (strong, nonatomic) IBOutlet UILabel *name;
 @property (strong, nonatomic) IBOutlet UIImageView *image;
+@property (weak, nonatomic) IBOutlet UILabel *coffeeName;
 
 @property (strong, nonatomic) NSManagedObject *cafe;
 @property (strong, nonatomic) NSManagedObject *coffee;
 
 @property (strong, nonatomic) NSString *orderID;
 @property (assign, nonatomic) BOOL isAlreadySend;
+
+
 @end

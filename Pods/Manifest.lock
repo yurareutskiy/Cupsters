@@ -14,14 +14,21 @@ PODS:
   - AFNetworking/Serialization (3.0.4)
   - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
-  - GoogleMaps (1.10.3)
+  - GoogleMaps (1.13.0)
   - HMSegmentedControl (1.5.2)
   - NSHash (1.1.0)
+  - PaylerSDK (2.1):
+    - AFNetworking/NSURLSession (~> 3.0)
+    - AFNetworking/Security (~> 3.0)
+    - AFNetworking/Serialization (~> 3.0)
   - RKDropdownAlert (0.3.0)
-  - SCLAlertView-Objective-C (0.7.7)
+  - SCLAlertView-Objective-C (1.0.2)
   - SHSPhoneComponent (2.15)
-  - SVProgressHUD (2.0-beta8)
-  - TOWebViewController (2.0.19)
+  - SVProgressHUD (2.0.2)
+  - TOWebViewController (2.2.3):
+    - TOWebViewController/Core (= 2.2.3)
+  - TOWebViewController/Core (2.2.3)
+  - TTTAttributedLabel (1.13.4)
   - VK-ios-sdk (1.3.6)
 
 DEPENDENCIES:
@@ -29,11 +36,13 @@ DEPENDENCIES:
   - GoogleMaps
   - HMSegmentedControl
   - NSHash (from `https://github.com/jerolimov/NSHash`, tag `1.1.0`)
+  - PaylerSDK
   - RKDropdownAlert
   - SCLAlertView-Objective-C
   - SHSPhoneComponent
   - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
   - TOWebViewController
+  - TTTAttributedLabel
   - VK-ios-sdk (from `https://github.com/VKCOM/vk-ios-sdk.git`, tag `1.3.6`)
 
 EXTERNAL SOURCES:
@@ -57,7 +66,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/jerolimov/NSHash
     :tag: 1.1.0
   SVProgressHUD:
-    :commit: 8d25b659df56ef86ce8b03e532c2278cfc3cb294
+    :commit: eea6ed49b56331b7413356c99230287094d81f1b
     :git: https://github.com/SVProgressHUD/SVProgressHUD.git
   VK-ios-sdk:
     :git: https://github.com/VKCOM/vk-ios-sdk.git
@@ -65,14 +74,16 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
-  GoogleMaps: 945e4ac3b74bcca3ddada51df256eb7beddb474d
+  GoogleMaps: 7a6caeb8336d7cb42982e969fc9b1b20a889fe79
   HMSegmentedControl: 83b9686022d2176fb6457d2bdb61e5d6393fed7d
   NSHash: 61d598c6d48957c5557f1eef0aeafd6ef5ec5fb7
+  PaylerSDK: 63c1ad2c355f09150b996e8d4954a118aa01e846
   RKDropdownAlert: f4b3364c251829ad439dc666836a1f2dad26f4c7
-  SCLAlertView-Objective-C: 062808b4664add2d38d44b7867267985a02267ad
+  SCLAlertView-Objective-C: 25f7ea3a3526dde177d8b8056a0b88fe4187651e
   SHSPhoneComponent: 4cec0653a150ad63cbc52b0c8b29ce2d3c9c26f0
-  SVProgressHUD: 6e48a1dda09ce3b58adc41d013baed3a8e8980ff
-  TOWebViewController: accd62ec0acc8d5c2e1e195c6f7ff7654c3c840c
+  SVProgressHUD: e4020e23badbd7cc61bc4a80d3c1da57f166a978
+  TOWebViewController: ca47b9aeefe66acb3353d197dc8270338540b116
+  TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   VK-ios-sdk: c40f2ab5045f6bf97f57cc2dfb2d5e0c0b920fe6
 
 COCOAPODS: 0.39.0

@@ -13,5 +13,7 @@ target 'Cupsters' do
     pod 'SHSPhoneComponent'
     pod 'TOWebViewController'
     pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
+    pod 'PaylerSDK'
+    pod 'TTTAttributedLabel'
 end
 

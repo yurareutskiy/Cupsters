@@ -9,6 +9,10 @@
 //
 
 
+#import <GoogleMaps/GMSCompatabilityMacros.h>
+
+GMS_ASSUME_NONNULL_BEGIN
+
 /*
  * Attribute name for match fragments in |GMSAutocompletePrediction| attributedFullText.
  */
@@ -43,17 +47,38 @@ extern NSString *const kGMSAutocompleteMatchAttribute;
  */
 @property(nonatomic, copy, readonly) NSAttributedString *attributedFullText;
 
+/**
+ * The main text of a prediction as a NSAttributedString, usually the name of the place.
+ * E.g. "Sydney Opera House".
+ *
+ * Text ranges that match user input are have a |kGMSAutocompleteMatchAttribute|,
+ * like |attributedFullText|.
+ */
+@property(nonatomic, copy, readonly) NSAttributedString *attributedPrimaryText;
+
+/**
+ * The secondary text of a prediction as a NSAttributedString, usually the location of the place.
+ * E.g. "Sydney, New South Wales, Australia".
+ *
+ * Text ranges that match user input are have a |kGMSAutocompleteMatchAttribute|, like
+ * |attributedFullText|.
+ *
+ * May be nil.
+ */
+@property(nonatomic, copy, readonly) NSAttributedString *GMS_NULLABLE_PTR attributedSecondaryText;
 
 /**
  * An optional property representing the place ID of the prediction, suitable for use in a place
  * details request.
  */
-@property(nonatomic, copy, readonly) NSString *placeID;
+@property(nonatomic, copy, readonly) NSString *GMS_NULLABLE_PTR placeID;
 
 /**
  * The types of this autocomplete result.  Types are NSStrings, valid values are any types
  * documented at <https://developers.google.com/places/supported_types>.
  */
-@property(nonatomic, copy, readonly) NSArray *types;
+@property(nonatomic, copy, readonly) GMS_NSArrayOf(NSString *) *types;
 
 @end
+
+GMS_ASSUME_NONNULL_END

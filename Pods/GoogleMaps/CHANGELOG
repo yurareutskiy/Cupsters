@@ -1,3 +1,119 @@
+Version 1.13.0 - March 2016
+===========================
+Features:
+  - UIView based markers. Marker content can now show advanced animations by
+    providing a custom view hierarchy to be displayed through the iconView property.
+  - Info windows can now have their custom views animated. Set tracksInfoWindowChanges
+    on the associated marker to YES to enable real-time updates.
+  - Map rendering now defaults to 60fps on modern iOS devices. Set the new
+    preferredFrameRate property on GMSMapView to revert to the old behavior
+    (Conservative) or a new low frame rate option to save battery (PowerSave).
+  - Added mapViewSnapshotReady: to GMSMapViewDelegate which fires when map content,
+    including markers and other overlays, has been fully rendered.
+  - Autocomplete widgets in the Places API now provide options for custom styling.
+
+Resolved Issues:
+  - GMSCoordinateBounds initWithVisibleRegion: now chooses correct bounds for large
+    viewports.
+  - Added a workaround to avoid a graphical glitch in snapshots taken using pre iOS 7
+    methods when the My Location button is disabled.
+  - GMSAutocompleteViewController now works when used in a storyboard.
+  - Added missing Place Type constants.
+
+Version 1.12.3 - February 2016
+==============================
+Resolved Issues:
+  - Fixed corruption in included bitcode that caused Xcode archive action to fail.
+  - Workaround limitation in Xcode 6.4 which was failing to compile included headers.
+
+Version 1.12.2 - February 2016
+==============================
+Features:
+  - Added place photos to the Places API.
+  - Added structured address components to GMSPlace objects.
+  - SDK method signatures have been updated with generics and nullability annotations.
+
+Resolved Issues:
+  - GMSPlace objects now contain rating and price level where available.
+  - Minor bugfixes for the autocomplete widget UI.
+  - panoramaView:didMoveCamera: is no longer raised during the panoramaView delegate
+    setter.
+  - Old unused logo files have been removed from the SDK.
+  - Tap events on polygons near the anti-meridian are more reliable.
+  - Resolved an issue resulting in unrecognized selector crashes when calling
+    class methods on categories.
+
+Version 1.12.1 - February 2016
+==============================
+
+This version is exactly the same as 1.11.1. It was released to replace the
+removed 1.12.0 release.
+
+Version 1.12.0 - February 2016
+==============================
+
+This version was removed because of errors in the framework and should not be
+used.
+
+Version 1.11.1 - December 2015
+==============================
+Resolved Issues:
+  - Modally presented Place Autocomplete widgets now correctly respect
+    UINavigationBar appearance proxy settings.
+  - Resolved minor UI issues with the Place Autocomplete widgets.
+  - Updated GoogleMaps.bundle info.plist to avoid triggering checks in
+    pre-submission verification.
+
+Version 1.11.0 - December 2015
+==============================
+Features:
+  - Bitcode is now included in the SDK binary for all device architectures.
+  - Added Place Autocomplete widget classes.
+  - New events for long press on an info window, and closing an info window, have
+    been added to GMSMapViewDelegate.
+  - GMSMapViewDelegate has new events to indicate when map tiles and labels are
+    pending and finished rendering.
+  - GMSPanoramaViewDelegate has new events to indicate when panorama tiles are
+    pending and finished rendering.
+  - GMSGroundOverlay now supports an alpha multiplier via the opacity property.
+  - Added a holes property to GMSPolygon to allow for the subtraction away from
+    the filled area in order to create more complex shapes.
+  - At zoom levels greater than 14, the maximum tilt has been increased.
+  - Added an autocomplete screen to the Place Picker.
+  - Split autocomplete predictions into primary and secondary text fields.
+  - Added a country filter option to GMSAutocompleteFilter.
+  - Added a viewport field to GMSPlace.
+
+Resolved Issues:
+  - Correct handling of taps on overlapping markers.
+  - Address a race condition dependent crash which can happen when an application
+    enters and leaves the background while showing a map.
+  - Fix blank maps which can happen when launching an app into the background.
+  - Workaround issues with core animation that caused markers to jump.
+  - Updated to avoid subtle conflicts with applications which use
+    google-toolbox-for-mac.
+  - Use the iPhone language instead of the region formatting language for
+    Places API results.
+
+Notes:
+  - Setting GMSMapView selectedMarker to a marker not on the map is now ignored,
+    always set the marker's map property before attempting to select it.
+
+Version 1.10.5 - October 2015
+=============================
+Resolved Issues:
+  - Workaround an issue in the Swift compiler's handling of umbrella header
+    module entries.
+
+Version 1.10.4 - October 2015
+=============================
+Resolved Issues:
+  - Fixed a crash on iOS 9 when dismissing the place picker without a selection.
+  - Fixed a crash when using both a GMSMapView and a UIWebView or WKWebView in the view
+    hierarchy at the same time.
+  - Recompiled with Xcode 7 to avoid raising failed to load optimized model log messages
+    on iOS 9 devices.
+
 Version 1.10.3 - September 2015
 ===============================
 Features:

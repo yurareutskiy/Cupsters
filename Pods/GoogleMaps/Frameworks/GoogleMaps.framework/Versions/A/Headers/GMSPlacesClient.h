@@ -10,84 +10,19 @@
 
 #import <CoreLocation/CoreLocation.h>
 
+#import <GoogleMaps/GMSCompatabilityMacros.h>
 #import <GoogleMaps/GMSPlace.h>
-#import <GoogleMaps/GMSPlacesMacros.h>
+#import <GoogleMaps/GMSPlacesErrors.h>
 #import <GoogleMaps/GMSUserAddedPlace.h>
 
 
 @class GMSAutocompleteFilter;
+@class GMSAutocompletePrediction;
 @class GMSPlaceLikelihoodList;
+@class GMSPlacePhotoMetadata;
+@class GMSPlacePhotoMetadataList;
 
 GMS_ASSUME_NONNULL_BEGIN
-
-/* Error domain used for Places API errors. */
-extern NSString * const kGMSPlacesErrorDomain;
-
-/* Error codes for |kGMSPlacesErrorDomain|. */
-typedef NS_ENUM(NSInteger, GMSPlacesErrorCode) {
-  /**
-   * Something went wrong with the connection to the Places API server.
-   */
-  kGMSPlacesNetworkError = -1,
-  /**
-   * The Places API server returned a response that we couldn't understand.
-   */
-  kGMSPlacesServerError = -2,
-  /**
-   * An internal error occurred in the Places API library.
-   */
-  kGMSPlacesInternalError = -3,
-  /**
-   * Operation failed due to an invalid (malformed or missing) API key.
-   * <p>
-   * See the <a href="https://developers.google.com/places/ios/start">developer's guide</a>
-   * for information on creating and using an API key.
-   */
-  kGMSPlacesKeyInvalid = -4,
-  /**
-   * Operation failed due to an expired API key.
-   * <p>
-   * See the <a href="https://developers.google.com/places/ios/start">developer's guide</a>
-   * for information on creating and using an API key.
-   */
-  kGMSPlacesKeyExpired = -5,
-  /**
-   * Operation failed due to exceeding the quota usage limit.
-   * <p>
-   * See the <a href="https://developers.google.com/places/ios/usage">developer's guide</a>
-   * for information on usage limits and how to request a higher limit.
-   */
-  kGMSPlacesUsageLimitExceeded = -6,
-  /**
-   * Operation failed due to exceeding the usage rate limit for the API key.
-   * <p>
-   * This status code shouldn't be returned during normal usage of the API. It relates to usage of
-   * the API that far exceeds normal request levels.
-   */
-  kGMSPlacesRateLimitExceeded = -7,
-  /**
-   * Operation failed due to exceeding the per-device usage rate limit.
-   * <p>
-   * This status code shouldn't be returned during normal usage of the API. It relates to usage of
-   * the API that far exceeds normal request levels.
-   */
-  kGMSPlacesDeviceRateLimitExceeded = -8,
-  /**
-   * The Places API is not enabled.
-   * <p>
-   * See the <a href="https://developers.google.com/places/ios/start">developer's guide</a> for how
-   * to enable the Google Places API for iOS.
-   */
-  kGMSPlacesAccessNotConfigured = -9,
-  /**
-   * The application's bundle identifier does not match one of the allowed iOS applications for the
-   * API key.
-   * <p>
-   * See the <a href="https://developers.google.com/places/ios/start">developer's guide</a>
-   * for how to configure bundle restrictions on API keys.
-   */
-  kGMSPlacesIncorrectBundleIdentifier = -10
-};
 
 /**
  * @relates GMSPlacesClient
@@ -118,9 +53,29 @@ typedef void (^GMSPlaceLikelihoodListCallback)(
  * @param results An array of |GMSAutocompletePrediction|s.
  * @param error The error that occured, if any.
  */
-typedef void (^GMSAutocompletePredictionsCallback)(
-    NSArray * GMS_NULLABLE_PTR results,
-    NSError * GMS_NULLABLE_PTR error);
+typedef void (^GMSAutocompletePredictionsCallback)(GMS_NSArrayOf(GMSAutocompletePrediction *) *
+                                                       GMS_NULLABLE_PTR results,
+                                                   NSError *GMS_NULLABLE_PTR error);
+
+/**
+ * @relates GMSPlacesClient
+ * Callback type for receiving place photos results. If an error occurred, |photos| will be nil and
+ * |error| will contain information about the error.
+ * @param photos The result containing |GMSPlacePhotoMetadata| objects.
+ * @param error The error that occurred, if any.
+ */
+typedef void (^GMSPlacePhotoMetadataResultCallback)(
+    GMSPlacePhotoMetadataList *GMS_NULLABLE_PTR photos, NSError *GMS_NULLABLE_PTR error);
+
+/**
+ * @relates GMSPlacesClient
+ * Callback type for receiving |UIImage| objects from a |GMSPlacePhotoMetadata| object. If an error
+ * occurred, |photo| will be nil and |error| will contain information about the error.
+ * @param photo The |UIImage| which was loaded.
+ * @param error The error that occurred, if any.
+ */
+typedef void (^GMSPlacePhotoImageResultCallback)(UIImage *GMS_NULLABLE_PTR photo,
+                                                 NSError *GMS_NULLABLE_PTR error);
 
 /**
  * Main interface to the Places API. Used for searching and getting details about places. This class
@@ -133,12 +88,11 @@ typedef void (^GMSAutocompletePredictionsCallback)(
 @interface GMSPlacesClient : NSObject
 
 /**
- * Provides the shared instance of GMSPlacesClient for the Google Maps SDK for iOS,
- * creating it if necessary.
+ * Provides the shared instance of GMSPlacesClient for the Google Maps SDK for iOS, creating it if
+ * necessary.
  *
- * If your application often uses methods of GMSPlacesClient it may want to hold
- * onto this object directly, as otherwise your connection to Google may be restarted
- * on a regular basis.
+ * If your application often uses methods of GMSPlacesClient it may want to hold onto this object
+ * directly, as otherwise your connection to Google may be restarted on a regular basis.
  */
 + (instancetype)sharedClient;
 
@@ -153,6 +107,66 @@ typedef void (^GMSAutocompletePredictionsCallback)(
  * @param callback The callback to invoke with the lookup result.
  */
 - (void)lookUpPlaceID:(NSString *)placeID callback:(GMSPlaceResultCallback)callback;
+
+/**
+ * Gets the metadata for up to 10 photos associated with a place.
+ *
+ * Photos are sourced from a variety of locations, including business owners and photos contributed
+ * by Google+ users. In most cases, these photos can be used without attribution, or will have the
+ * required attribution included as a part of the image. However, you must use the |attributions|
+ * property in the response to retrieve any additional attributions required, and display those
+ * attributions in your application wherever you display the image. A maximum of 10 photos is
+ * returned.
+ *
+ * Multiple calls of this method will probably return the same photos each time. However, this is
+ * not guaranteed because the underlying data may have changed.
+ *
+ * This method performs a network lookup.
+ *
+ * @param placeID The place ID for which to lookup photos.
+ * @param callback The callback to invoke with the lookup result.
+ */
+- (void)lookUpPhotosForPlaceID:(NSString *)placeID
+                      callback:(GMSPlacePhotoMetadataResultCallback)callback;
+
+/**
+ * Loads the image for a specific photo at its maximum size.
+ *
+ * Image data may be cached. If the requested photo does not exist in the cache then a network
+ * lookup will be performed.
+ *
+ * @param photo The photo for which to load a |UIImage|.
+ * @param callback The callback to invoke with the loaded |UIImage|.
+ */
+- (void)loadPlacePhoto:(GMSPlacePhotoMetadata *)photo
+              callback:(GMSPlacePhotoImageResultCallback)callback;
+
+/**
+ * Loads the image for a specific photo, scaled to fit the given maximum dimensions.
+ *
+ * The image will be scaled to fit within the given dimensions while maintaining the aspect ratio of
+ * the original image. This scaling is performed server-side.
+ *
+ * If the scale parameter is not 1.0 maxSize will be multiplied by this value and the returned
+ * UIImage will be set to have the specified scale. This parameter should be set to the screen scale
+ * if you are loading images for display on screen.
+ *
+ * Image data may be cached. If the requested photo does not exist in the cache then a network
+ * lookup will be performed.
+ *
+ * NOTE: After applying the scale factor the dimensions in maxSize will be rounded up to the nearest
+ * integer before use. If an image is requested which is larger than the maximum size available a
+ * smaller image may be returned.
+ *
+ * @param photo The photo for which to load a |UIImage|.
+ * @param maxSize The maximum size of the image.
+ * @param scale The scale to load the image at.
+ * @param callback The callback to invoke with the loaded |UIImage|.
+ */
+- (void)loadPlacePhoto:(GMSPlacePhotoMetadata *)photo
+     constrainedToSize:(CGSize)maxSize
+                 scale:(CGFloat)scale
+              callback:(GMSPlacePhotoImageResultCallback)callback;
 
 /**
  * Returns an estimate of the place where the device is currently known to be located.

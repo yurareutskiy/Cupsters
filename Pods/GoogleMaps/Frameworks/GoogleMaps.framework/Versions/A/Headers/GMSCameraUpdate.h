@@ -11,8 +11,12 @@
 #import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
 
+#import <GoogleMaps/GMSCompatabilityMacros.h>
+
 @class GMSCameraPosition;
 @class GMSCoordinateBounds;
+
+GMS_ASSUME_NONNULL_BEGIN
 
 /**
  * GMSCameraUpdate represents an update that may be applied to a GMSMapView.
@@ -104,3 +108,4 @@
 
 @end
 
+GMS_ASSUME_NONNULL_END

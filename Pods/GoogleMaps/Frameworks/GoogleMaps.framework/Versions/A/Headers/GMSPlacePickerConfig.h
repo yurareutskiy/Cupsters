@@ -11,6 +11,10 @@
 #import <GoogleMaps/GMSCoordinateBounds.h>
 #import <GoogleMaps/GMSPlacesClient.h>
 
+#import <GoogleMaps/GMSCompatabilityMacros.h>
+
+GMS_ASSUME_NONNULL_BEGIN
+
 
 /**
  * Configuration object used to change the behaviour of the place picker.
@@ -21,11 +25,13 @@
  * The initial viewport that the place picker map should show. If this is nil, a sensible default
  * will be chosen based on the user's location.
  */
-@property(nonatomic, strong, readonly) GMSCoordinateBounds *viewport;
+@property(nonatomic, strong, readonly) GMSCoordinateBounds *GMS_NULLABLE_PTR viewport;
 
 /**
  * Initialize the configuration.
  */
-- (instancetype)initWithViewport:(GMSCoordinateBounds *)viewport;
+- (instancetype)initWithViewport:(GMSCoordinateBounds *GMS_NULLABLE_PTR)viewport;
 
 @end
+
+GMS_ASSUME_NONNULL_END

@@ -5,6 +5,7 @@
 #import "SDKDemos/PlacesSamples/SDKDemoPlacePickerViewController.h"
 
 #import "SDKDemos/SDKDemoAPIKey.h"
+#import <GoogleMaps/GoogleMaps.h>
 
 
 @implementation SDKDemoPlacePickerViewController {
@@ -17,8 +18,7 @@
     CLLocationCoordinate2D northEastSydney = CLLocationCoordinate2DMake(-33.8645, 151.1969);
     GMSCoordinateBounds *sydneyBounds =
         [[GMSCoordinateBounds alloc] initWithCoordinate:southWestSydney coordinate:northEastSydney];
-    GMSPlacePickerConfig *config =
-        [[GMSPlacePickerConfig alloc] initWithViewport:sydneyBounds];
+    GMSPlacePickerConfig *config = [[GMSPlacePickerConfig alloc] initWithViewport:sydneyBounds];
     _placePicker = [[GMSPlacePicker alloc] initWithConfig:config];
   }
   return self;
@@ -26,27 +26,23 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  UITextView *textView = [[UITextView alloc] initWithFrame:self.view.bounds];
+  __block UITextView *textView = [[UITextView alloc] initWithFrame:self.view.bounds];
   textView.delegate = self;
   textView.editable = NO;
   [self.view addSubview:textView];
-  __weak UITextView *weakResultView = textView;
   [_placePicker pickPlaceWithCallback:^(GMSPlace *place, NSError *error) {
-    UITextView *resultView = weakResultView;
-    if (resultView == nil) {
-      return;
-    }
     if (place) {
       NSMutableAttributedString *text =
           [[NSMutableAttributedString alloc] initWithString:[place description]];
-      [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n\n"]];
-      [text appendAttributedString:place.attributions];
-      resultView.attributedText = text;
+      if (place.attributions) {
+        [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n\n"]];
+        [text appendAttributedString:place.attributions];
+      }
+      textView.attributedText = text;
     } else if (error) {
-      resultView.text =
-          [NSString stringWithFormat:@"Place picking failed with error: %@", error];
+      textView.text = [NSString stringWithFormat:@"Place picking failed with error: %@", error];
     } else {
-      resultView.text = @"Place picking cancelled.";
+      textView.text = @"Place picking cancelled.";
     }
   }];
 }
@@ -59,4 +55,5 @@
   // Make links clickable.
   return YES;
 }
+
 @end

@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "PLRSessionInfo.h"
+#import "PLRWebView.h"
+#import "PLRSessionInfo.h"
+#import "PLRPayment.h"
+#import "PaylerAPIClient.h"
 
-@interface PaymentViewController : UIViewController<UIWebViewDelegate, UITextFieldDelegate>
+
+
+@interface PaymentViewController : UIViewController <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *name;
 @property (strong, nonatomic) IBOutlet UITextField *number;

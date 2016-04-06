@@ -10,6 +10,12 @@
 
 #import <CoreLocation/CoreLocation.h>
 
+#import <GoogleMaps/GMSCompatabilityMacros.h>
+
+GMS_ASSUME_NONNULL_BEGIN
+
+@class GMSPanoramaLink;
+
 /**
  * GMSPanorama represents metadata for a specific panorama on the Earth. This class is not
  * instantiable directly and is obtained via GMSPanoramaService or GMSPanoramaView.
@@ -23,6 +29,8 @@
 @property(nonatomic, copy, readonly) NSString *panoramaID;
 
 /** An array of GMSPanoramaLink describing the neighboring panoramas. */
-@property(nonatomic, copy, readonly) NSArray *links;
+@property(nonatomic, copy, readonly) GMS_NSArrayOf(GMSPanoramaLink *) * links;
 
 @end
+
+GMS_ASSUME_NONNULL_END

@@ -8,6 +8,12 @@
 //  Service: https://developers.google.com/maps/terms
 //
 
+#import <GoogleMaps/GMSCompatabilityMacros.h>
+
+GMS_ASSUME_NONNULL_BEGIN
+
+@class GMSPlaceLikelihood;
+
 /**
  * Represents a list of places with an associated likelihood for the place being the correct place.
  * For example, the Places service may be uncertain what the true Place is, but think it 55% likely
@@ -18,7 +24,7 @@
 @interface GMSPlaceLikelihoodList : NSObject
 
 /** An array of |GMSPlaceLikelihood|s containing the likelihoods in the list. */
-@property(nonatomic, copy) NSArray *likelihoods;
+@property(nonatomic, copy) GMS_NSArrayOf(GMSPlaceLikelihood *) * likelihoods;
 
 /**
  * The data provider attribution strings for the likelihood list.
@@ -29,6 +35,8 @@
  * In general, these must be shown to the user if data from this likelihood list is shown, as
  * described in the Places API Terms of Service.
  */
-@property(nonatomic, copy, readonly) NSAttributedString *attributions;
+@property(nonatomic, copy, readonly) NSAttributedString *GMS_NULLABLE_PTR attributions;
 
 @end
+
+GMS_ASSUME_NONNULL_END

@@ -10,6 +10,10 @@
 
 #import <GoogleMaps/GMSTileLayer.h>
 
+#import <GoogleMaps/GMSCompatabilityMacros.h>
+
+GMS_ASSUME_NONNULL_BEGIN
+
 /**
  * GMSSyncTileLayer is an abstract subclass of GMSTileLayer that provides a sync
  * interface to generate image tile data.
@@ -24,6 +28,8 @@
  * Calls to this method may also be made from multiple threads so
  * implementations must be threadsafe.
  */
-- (UIImage *)tileForX:(NSUInteger)x y:(NSUInteger)y zoom:(NSUInteger)zoom;
+- (UIImage *GMS_NULLABLE_PTR)tileForX:(NSUInteger)x y:(NSUInteger)y zoom:(NSUInteger)zoom;
 
 @end
+
+GMS_ASSUME_NONNULL_END

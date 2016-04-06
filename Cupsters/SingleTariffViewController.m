@@ -18,13 +18,21 @@
 #import <SCLAlertView.h>
 #import "PaymentViewController.h"
 
-@interface SingleTariffViewController ()
+@interface SingleTariffViewController () <PLRWebViewDataSource, UIWebViewDelegate>
 
 @property (strong, nonatomic) MenuRevealViewController *menu;
 @property (strong, nonatomic) UIBarButtonItem *menuButton;
 @property (strong, nonatomic) SWRevealViewController *reveal;
 @property (strong, nonatomic) NSArray *source;
 @property (strong, nonatomic) NSString *priceValue;
+@property (strong, nonatomic) PLRWebView *webView;
+
+@property (nonatomic, strong) PLRSessionInfo *sessionInfo;
+@property (nonatomic, strong) PaylerAPIClient *client;
+@property (nonatomic, assign) PLRSessionType sessionType;
+@property (nonatomic, assign) NSInteger tariffID;
+
+
 
 @end
 
@@ -38,6 +46,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.priceValue = @"100";
+    self.sessionType = PLRSessionTypeOneStep;
+
     
     [self setNeedsStatusBarAppearanceUpdate];
     [self preferredStatusBarStyle];
@@ -190,6 +202,7 @@
 
 - (void)configureData {
     tariff = self.source[currentValue];
+    self.tariffID = ((NSNumber*)[tariff valueForKey:@"id"]).intValue;
     NSNumber *count = [tariff valueForKey:@"counter"];
     NSNumber *price = [tariff valueForKey:@"price"];
     self.priceValue = price;
@@ -200,7 +213,12 @@
     if (count.intValue < 0) {
         [self.time setText:@"Действует 1 месяц"];
         [self.amount setText:@"∞"];
-        self.avgPrice.text = @"120";
+        if ([(NSString*)[tariff valueForKey:@"type"] isEqualToString:@"standart"]) {
+            self.avgPrice.text = @"52";
+        } else {
+            self.avgPrice.text = @"63";
+        }
+        
     } else {
         [self.time setText:@"Действует 3 месяца"];
     }
@@ -224,8 +242,100 @@
     return resultString;
 }
 
-- (void)setTariffForUser {
+//- (void)setTariffForUser {
+//
+//    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+//    NSNumber *tariffID = [tariff valueForKey:@"id"];
+//    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
+//    NSNumber *userID = user.id;
+//    NSDictionary *body = @{@"user_id":userID, @"tariff_id":tariffID};
+//    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+//    Server *server = [[Server alloc] init];
+//    ServerRequest *request = [ServerRequest initRequest:ServerRequestTypePOST With:body To:SetTariffURLStrring];
+//    [server sentToServer:request OnSuccess:^(NSDictionary *result) {
+//        
+//        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//        formatter.dateFormat = @"y-M-d H:m:s";
+//        NSDateComponents *monthComponent = [[NSDateComponents alloc] init];
+//        NSCalendar *theCalendar = [NSCalendar currentCalendar];
+//        NSDate *beginDate = [formatter dateFromString:result[@"tariff"][0][@"create_date"]];
+//        
+//        if ([result[@"tariff"][0][@"counter"] isEqualToString:@"-1"]) {
+//            monthComponent.month = 1;
+//            [ud setObject:@"∞ ЧАШЕК  " forKey:@"currentCounter"];
+//            user.counter = @-1;
+//        } else if (result[@"tariff"][0][@"counter"]) {
+//            monthComponent.month = 3;
+//            NSInteger cups = ((NSString*)result[@"tariff"][0][@"counter"]).intValue;
+//            user.counter = [NSNumber numberWithInteger:cups];
+//            NSString *text;
+//            if (cups == 1) {
+//                text = @"ЧАШКА";
+//            } else if (cups == 2 || cups == 3 || cups == 4) {
+//                text = @"ЧАШКИ";
+//            } else {
+//                text = @"ЧАШЕК";
+//            }
+//            [ud setObject:[NSString stringWithFormat:@"%ld %@  ", (long)cups, text] forKey:@"currentCounter"];
+//        }
+//        NSDate *endDate = [theCalendar dateByAddingComponents:monthComponent toDate:beginDate options:0];
+//        NSMutableDictionary *mutDict = [[NSMutableDictionary alloc] initWithDictionary:result[@"tariff"][0]];
+//        [mutDict setObject:endDate forKey:@"endDate"];
+//        user.plan = mutDict;
+//        NSData *userData = [NSKeyedArchiver archivedDataWithRootObject:user];
+//        [ud setObject:userData forKey:@"user"];
+//
+//        if ([self.type isEqualToString:@"advanced"]) {
+//            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+//            [alert showSuccess:@"Успешно" subTitle:@"Вы подключили тариф 'Расширенный'" closeButtonTitle:@"Ок" duration:5.0];
+//            UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
+//            [self presentViewController:vc animated:true completion:nil];
+//        } else if ([self.type isEqualToString:@"standart"]){
+//            [alert showSuccess:@"Успешно" subTitle:@"Вы подключили тариф 'Базовый'" closeButtonTitle:@"Ок" duration:5.0];
+//            UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
+//            [self presentViewController:vc animated:true completion:nil];
+//        }
+//    } OrFailure:^(NSError *error) {
+//        [alert showSuccess:@"Ошибка" subTitle:@"Не удалось выполнить подключение" closeButtonTitle:@"Ок" duration:5.0];
+//        NSLog(@"%@", [error debugDescription]);
+//    }];
+//}
 
+
+- (IBAction)connect:(UIButton *)sender {
+    //[self setTariffForUser];
+//    [self performSegueWithIdentifier:@"toPay" sender:self];
+    CGRect rect = self.view.frame;
+    rect.origin.y = 0;
+    rect.size.height -= 0;
+    self.webView = [[PLRWebView alloc] initWithFrame:rect dataSource:self];
+    
+    [self.view addSubview:self.webView];
+    
+    [self startPayment];
+}
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"toPay"]) {
+        PaymentViewController *vc = segue.destinationViewController;
+        vc.priceValue = self.priceValue;
+        vc.tariff = tariff;
+    }
+}
+
+#pragma mark - PLRWebViewDataSource
+
+- (PLRSessionInfo *)webViewSessionInfo:(PLRWebView *)sender {
+    return self.sessionInfo;
+}
+
+- (PaylerAPIClient *)webViewClient:(PLRWebView *)sender {
+    return self.client;
+}
+
+- (void)setTariffForUser {
+    
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     NSNumber *tariffID = [tariff valueForKey:@"id"];
     User *user = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
@@ -266,13 +376,13 @@
         user.plan = mutDict;
         NSData *userData = [NSKeyedArchiver archivedDataWithRootObject:user];
         [ud setObject:userData forKey:@"user"];
-
-        if ([self.type isEqualToString:@"advanced"]) {
+        
+        if ([[tariff valueForKey:@"type"] isEqualToString:@"advanced"]) {
             SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
             [alert showSuccess:@"Успешно" subTitle:@"Вы подключили тариф 'Расширенный'" closeButtonTitle:@"Ок" duration:5.0];
             UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
             [self presentViewController:vc animated:true completion:nil];
-        } else if ([self.type isEqualToString:@"standart"]){
+        } else if ([[tariff valueForKey:@"type"] isEqualToString:@"standart"]){
             [alert showSuccess:@"Успешно" subTitle:@"Вы подключили тариф 'Базовый'" closeButtonTitle:@"Ок" duration:5.0];
             UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
             [self presentViewController:vc animated:true completion:nil];
@@ -283,18 +393,49 @@
     }];
 }
 
+#pragma mark - Private methods
 
-- (IBAction)connect:(UIButton *)sender {
-    //[self setTariffForUser];
-    [self performSegueWithIdentifier:@"toPay" sender:self];
+- (void)startPayment {
+    
+    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
+    NSNumber *userID = user.id;
+
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"ddMM";
+    NSString *formatDate = [dateFormatter stringFromDate:[NSDate date]];
+    
+    NSString *paymentId = [NSString stringWithFormat:@"%@_%ld_%@", userID, (long)self.tariffID, formatDate];
+
+    PLRPayment *payment = [[PLRPayment alloc] initWithId:paymentId amount:[self.priceValue intValue]*100 status:nil product:[NSString stringWithFormat:@"Абонемент \"%@\": %@ чашек", self.tariffName.text, self.amount.text] total:1.f];
+    
+    NSURL *callbackURL = [NSURL URLWithString:[@"http://api.cupsters.ru/check?order_id=" stringByAppendingString:paymentId]];
+//    NSURL *callbackURL = [NSURL URLWithString:[@"https://yandex.ru" stringByAppendingString:paymentId]];
+
+    
+    self.sessionInfo = [[PLRSessionInfo alloc] initWithPaymentInfo:payment callbackURL:callbackURL sessionType:self.sessionType];
+    self.client = [PaylerAPIClient testClientWithMerchantKey:@"b0fdeec9-7b5a-4b7d-bfa0-e3fb79ddb954" password:@"prbmBXvkSL"];
+    
+    [self.webView payWithCompletion:^(PLRPayment *payment, NSError *error) {
+        if (!error) {
+            [self setTariffForUser];
+            [self backAction];
+            if (self.sessionType == PLRSessionTypeTwoStep) {
+                //                self.textLabel.text = @"Средства успешно заблокированы";
+            }
+            self.webView.hidden = YES;
+        } else {
+            NSLog(@"%@", error.debugDescription);
+        }
+    }];
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"toPay"]) {
-        PaymentViewController *vc = segue.destinationViewController;
-        vc.priceValue = self.priceValue;
-        vc.tariff = tariff;
-    }
+- (void) backAction {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)useCouponAction:(UIButton *)sender {
+    
+    [self performSegueWithIdentifier:@"toTariff" sender:self];
 }
 
 

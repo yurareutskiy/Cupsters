@@ -10,6 +10,10 @@
 
 #import <GoogleMaps/GMSPlacePickerConfig.h>
 
+#import <GoogleMaps/GMSCompatabilityMacros.h>
+
+GMS_ASSUME_NONNULL_BEGIN
+
 
 /* Error domain used for Place Picker errors. */
 extern NSString * const kGMSPlacePickerErrorDomain;
@@ -70,3 +74,5 @@ typedef NS_ENUM(NSInteger, GMSPlacePickerErrorCode) {
 - (void)pickPlaceWithCallback:(GMSPlaceResultCallback)callback;
 
 @end
+
+GMS_ASSUME_NONNULL_END
