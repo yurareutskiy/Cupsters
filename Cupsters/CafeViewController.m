@@ -152,7 +152,9 @@
     
     self.scrollView.frame = CGRectMake(self.scrollView.frame.origin.x, self.scrollView.frame.origin.y, self.view.frame.size.width * 3, self.scrollView.frame.size.height);
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
-    //self.scrollView.contentSize = CGSizeMake(viewWidth * 3, self.tableView1.frame.size.height);
+    CGFloat originScroolY = self.view.frame.size.height - (self.segmentedControl.frame.origin.y + self.segmentedControl.frame.size.height);
+    NSLog(@"originScroolY %f", originScroolY);
+    self.scrollView.contentSize = CGSizeMake(viewWidth * 3, originScroolY);
     
     self.tableView1.frame = CGRectMake(0, 0, viewWidth, self.scrollView.frame.size.height);
     self.tableView2.frame = CGRectMake(viewWidth, 0, viewWidth, self.scrollView.frame.size.height);
@@ -165,13 +167,17 @@
     self.scrollView.delegate = self;
     self.scrollView.backgroundColor = [UIColor whiteColor];
     self.scrollView.pagingEnabled = YES;
+    self.scrollView.directionalLockEnabled = YES;
     self.scrollView.showsHorizontalScrollIndicator = YES;
     self.scrollView.scrollsToTop = NO;
+    
+
     
     //[self.scrollView scrollRectToVisible:CGRectMake(viewWidth, 0, viewWidth, self.scrollView.frame.size.height) animated:NO];
     
     __weak typeof(self) weakSelf = self;
     [self.segmentedControl setIndexChangeBlock:^(NSInteger index) {
+        NSLog(@"We are here");
         [weakSelf.scrollView scrollRectToVisible:CGRectMake(viewWidth * index, 0, viewWidth, self.scrollView.frame.size.height) animated:YES];
     }];
     
@@ -189,6 +195,145 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+    
+    self.infoView.hidden = true;
+    self.scrollViewAddon.delegate = self;
+    callAlert.delegate = self;
+    
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+    
+    userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    [self.name setText:[self.cafe valueForKey:@"name"]];
+    [self.address setText:[self.cafe valueForKey:@"address"]];
+    [self.distance setText:self.distanceText];
+    [self.cafeBg setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://lk.cupsters.ru/%@", [self.cafe valueForKey:@"image"]]]];
+    [self.subwayLabel setText:[self.cafe valueForKey:@"subway_station"]];
+    [userDefaults setObject:[self.cafe valueForKey:@"id"] forKey:@"id"];
+    openMap = false;
+    
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [locationManager requestWhenInUseAuthorization];
+    [locationManager startUpdatingLocation];
+    
+    [self setNeedsStatusBarAppearanceUpdate];
+    [self preferredStatusBarStyle];
+    [self configureMenu];
+    
+    volumeNum = @[@150, @300, @450];
+    
+    viewHeader = [[UIView alloc]initWithFrame:CGRectMake(0, self.cafeView.frame.size.height, self.view.frame.size.width, 40.0)];
+    [viewHeader setBackgroundColor:[UIColor whiteColor]];
+    
+    NSNumber *lat = [_cafe valueForKey:@"lattitude"];
+    NSNumber *longi = [_cafe valueForKey:@"longitude"];
+    
+    GMSCameraPosition *camera = [GMSCameraPosition
+                                 cameraWithLatitude:lat.doubleValue
+                                 longitude:longi.doubleValue
+                                 zoom:15];
+    
+    mapView = [GMSMapView mapWithFrame:CGRectMake(self.view.frame.origin.x, self.cafeView.frame.size.height, self.view.frame.size.width, 200.0) camera:camera];
+    mapView.myLocationEnabled = YES;
+    [mapView setBackgroundColor:[UIColor whiteColor]];
+    [self.infoView setFrame:CGRectMake(0, mapView.frame.origin.y + mapView.frame.size.height, self.infoView.frame.size.width, self.infoView.frame.size.height)];
+    
+    [self.view addSubview:mapView];
+    mapView.hidden = true;
+    
+    // Creates a marker in the center of the map.
+    GMSMarker *marker = [[GMSMarker alloc] init];
+    marker.position = CLLocationCoordinate2DMake(lat.doubleValue, longi.doubleValue);
+    NSLog(@"coords: lat - %f, long - %f", lat.doubleValue, longi.doubleValue);
+    marker.title = [_cafe valueForKey:@"name"];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSDate *oDate = [_cafe valueForKey:@"open"];
+    NSDate *cDate = [_cafe valueForKey:@"close"];
+    NSDate *owDate = [_cafe valueForKey:@"open_weekend"];
+    NSDate *cwDate = [_cafe valueForKey:@"close_weekend"];
+    formatter.dateFormat = @"HH:mm";
+    NSString *openDate = [formatter stringFromDate:oDate];
+    NSString *closeDate = [formatter stringFromDate:cDate];
+    NSString *opewWDate = [formatter stringFromDate:owDate];
+    NSString *closeWDate = [formatter stringFromDate:cwDate];
+    
+    [self.timeWeek setText:[NSString stringWithFormat:@"Пн-Вт %@ - %@", openDate, closeDate]];
+    [self.timeWeekend setText:[NSString stringWithFormat:@"Пн-Вт %@ - %@", opewWDate, closeWDate]];
+    [self.addons setText:[NSString stringWithFormat:@"%@", [_cafe valueForKey:@"addons"]]];
+    //
+    //    marker.snippet = [NSString stringWithFormat:@"%@ - %@", openDate, closeDate];
+    marker.map = mapView;
+    marker.icon = [UIImage imageNamed:@"brownPin"];
+    mapView.settings.myLocationButton = YES;
+    
+    self.tableView1.delegate = self;
+    self.tableView1.dataSource = self;
+    self.tableView2.delegate = self;
+    self.tableView2.dataSource = self;
+    self.tableView3.delegate = self;
+    self.tableView3.dataSource = self;
+    
+    viewWidth = self.view.frame.size.width;
+    
+    
+    
+    _segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(-0.5, self.cafeView.frame.size.height - 0.5, self.view.frame.size.width + 1.0, 40.0 + 0.5)];
+    _segmentedControl.sectionTitles = @[@"Кофе", @"Чай",@"Другое"];
+    _segmentedControl.selectedSegmentIndex = 0;
+    _segmentedControl.backgroundColor = [UIColor whiteColor];
+    _segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor grayColor]};
+    _segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:1]};
+    _segmentedControl.selectionIndicatorColor = [UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0];
+    _segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
+    _segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationUp;
+    _segmentedControl.tag = 3;
+    _segmentedControl.layer.borderColor = [UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0].CGColor;
+    _segmentedControl.layer.borderWidth = 0.5f;
+    [self.view addSubview:_segmentedControl];
+    //[viewHeader addSubview:_segmentedControl];
+    
+    self.scrollView.frame = CGRectMake(self.scrollView.frame.origin.x, self.scrollView.frame.origin.y, self.view.frame.size.width * 3, self.scrollView.frame.size.height);
+    [self.scrollView setBackgroundColor:[UIColor whiteColor]];
+    CGFloat originScroolY = self.view.frame.size.height - (self.segmentedControl.frame.origin.y + self.segmentedControl.frame.size.height);
+    NSLog(@"originScroolY %f", originScroolY);
+    self.scrollView.contentSize = CGSizeMake(viewWidth * 3, originScroolY);
+    
+    self.tableView1.frame = CGRectMake(0, 0, viewWidth, self.scrollView.frame.size.height);
+    self.tableView2.frame = CGRectMake(viewWidth, 0, viewWidth, self.scrollView.frame.size.height);
+    self.tableView3.frame = CGRectMake(viewWidth * 2, 0, viewWidth, self.scrollView.frame.size.height);
+    
+    [self.scrollView addSubview:self.tableView1];
+    [self.scrollView addSubview:self.tableView2];
+    [self.scrollView addSubview:self.tableView3];
+    
+    self.scrollView.delegate = self;
+    self.scrollView.backgroundColor = [UIColor whiteColor];
+    self.scrollView.pagingEnabled = NO;
+    self.scrollView.directionalLockEnabled = YES;
+    self.scrollView.bounces = NO;
+    self.scrollView.showsHorizontalScrollIndicator = YES;
+    self.scrollView.scrollsToTop = NO;
+    
+    [self.scrollView setContentOffset: CGPointMake(0, -self.scrollView.contentInset.top) animated:YES];
+    
+    
+    //[self.scrollView scrollRectToVisible:CGRectMake(viewWidth, 0, viewWidth, self.scrollView.frame.size.height) animated:NO];
+    
+    __weak typeof(self) weakSelf = self;
+    [self.segmentedControl setIndexChangeBlock:^(NSInteger index) {
+        NSLog(@"We are here");
+        self.scrollView.pagingEnabled = YES;
+        [weakSelf.scrollView scrollRectToVisible:CGRectMake(viewWidth * index, 0, viewWidth, self.scrollView.frame.size.height) animated:YES];
+        self.scrollView.pagingEnabled = NO;
+    }];
+    
+    coffeeRows = 0;
+    teaRows = 0;
+    othereRows = 0;
+
     
     [_distance setText:self.distanceText];
 
@@ -244,7 +389,9 @@
             }
         }
         int maxRows = MAX(MAX(coffeeRows, teaRows), othereRows);
-        self.scrollView.contentSize = CGSizeMake(viewWidth * 3, MAX(self.scrollView.frame.size.height, 100 * maxRows));
+//        self.scrollView.contentSize = CGSizeMake(viewWidth * 3, MAX(self.scrollView.frame.size.height, 100 * maxRows));
+        self.scrollView.contentSize = CGSizeMake(viewWidth * 3, self.tableView1.frame.size.height);
+        self.scrollView.contentOffset = CGPointMake(0, 0);
         NSLog(@"Content size %@", NSStringFromCGSize(self.scrollView.contentSize));
         source = [NSArray arrayWithObjects:first, second, third, nil];
         NSLog(@"%@", source);
@@ -417,6 +564,8 @@
 //    NSLog(@"yeap");
 //    NSLog(@"%f", scrollView.contentOffset.x);
 //    NSLog(@"%f", scrollView.contentOffset.y);
+    
+    NSLog(@"other");
 
     if (self.scrollView.contentOffset.x >= 0 && self.scrollView.contentOffset.x <= 106) {
         [self.segmentedControl setSelectedSegmentIndex:0 animated:YES];
@@ -428,7 +577,46 @@
              scrollView.contentOffset.x >= 616) {
         [self.segmentedControl setSelectedSegmentIndex:2 animated:YES];
     }
+    
+    self.scrollView.pagingEnabled = NO;
+
+
 }
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+    self.scrollView.pagingEnabled = YES;
+    if ([scrollView isEqual:self.scrollView]) {
+        NSLog(@"1 %f", self.scrollView.contentSize.height);
+        NSLog(@"2 %f", self.scrollView.frame.size.height);
+        //        NSLog(@"3 %f", self.tableView3.contentSize.height);
+    } else {
+        NSLog(@"other");
+    }
+}
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+
+
+}
+
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+
+}
+
+//-(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    NSLog(@"other");
+//    self.scrollView.pagingEnabled = NO;
+//}
+
+-(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    NSLog(@"other");
+    self.scrollView.pagingEnabled = NO;
+}
+
+//-(void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+//    self.scrollView.pagingEnabled = NO;
+//}
+
 
 - (void) makeOrder:(UITableViewCell*)cell {
     

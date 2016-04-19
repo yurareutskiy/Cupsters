@@ -250,7 +250,7 @@
         }
         if (field.tag == 4) {
             if ([field.text length] < 8) {
-                [RKDropdownAlert title:nil message:@"НПопробуйте придумать пароль посложнее (от 8 символов)" backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
+                [RKDropdownAlert title:nil message:@"Попробуйте придумать пароль посложнее (от 8 символов)" backgroundColor:[UIColor colorWithRed:175.0/255.0 green:138.0/255.0 blue:93.0/255.0 alpha:1.0] textColor:nil];
                 NSLog(@"Too short password");
                 return NO;
             }

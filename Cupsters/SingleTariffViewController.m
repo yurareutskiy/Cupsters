@@ -182,15 +182,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)sliderValue:(UISlider *)sender {
         
@@ -210,8 +201,15 @@
     [self.amount setText:[NSString stringWithFormat:@"%@", [count stringValue]]];
     int avr = [price intValue] / [count intValue];
     [self.avgPrice setText:[NSString stringWithFormat:@"%d", avr]];
-    if (count.intValue < 0) {
+    NSString *duration = [tariff valueForKey:@"duration"];
+    if ([duration isEqualToString:@"1"]) {
         [self.time setText:@"Действует 1 месяц"];
+    } else {
+        [self.time setText:[NSString stringWithFormat:@"Действует %@ месяца", duration]];
+
+    }
+;
+    if (count.intValue < 0) {
         [self.amount setText:@"∞"];
         if ([(NSString*)[tariff valueForKey:@"type"] isEqualToString:@"standart"]) {
             self.avgPrice.text = @"52";
@@ -220,7 +218,7 @@
         }
         
     } else {
-        [self.time setText:@"Действует 3 месяца"];
+
     }
     [self.cups setText:@"чашек"];
 }
@@ -242,64 +240,7 @@
     return resultString;
 }
 
-//- (void)setTariffForUser {
-//
-//    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-//    NSNumber *tariffID = [tariff valueForKey:@"id"];
-//    User *user = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
-//    NSNumber *userID = user.id;
-//    NSDictionary *body = @{@"user_id":userID, @"tariff_id":tariffID};
-//    SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-//    Server *server = [[Server alloc] init];
-//    ServerRequest *request = [ServerRequest initRequest:ServerRequestTypePOST With:body To:SetTariffURLStrring];
-//    [server sentToServer:request OnSuccess:^(NSDictionary *result) {
-//        
-//        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//        formatter.dateFormat = @"y-M-d H:m:s";
-//        NSDateComponents *monthComponent = [[NSDateComponents alloc] init];
-//        NSCalendar *theCalendar = [NSCalendar currentCalendar];
-//        NSDate *beginDate = [formatter dateFromString:result[@"tariff"][0][@"create_date"]];
-//        
-//        if ([result[@"tariff"][0][@"counter"] isEqualToString:@"-1"]) {
-//            monthComponent.month = 1;
-//            [ud setObject:@"∞ ЧАШЕК  " forKey:@"currentCounter"];
-//            user.counter = @-1;
-//        } else if (result[@"tariff"][0][@"counter"]) {
-//            monthComponent.month = 3;
-//            NSInteger cups = ((NSString*)result[@"tariff"][0][@"counter"]).intValue;
-//            user.counter = [NSNumber numberWithInteger:cups];
-//            NSString *text;
-//            if (cups == 1) {
-//                text = @"ЧАШКА";
-//            } else if (cups == 2 || cups == 3 || cups == 4) {
-//                text = @"ЧАШКИ";
-//            } else {
-//                text = @"ЧАШЕК";
-//            }
-//            [ud setObject:[NSString stringWithFormat:@"%ld %@  ", (long)cups, text] forKey:@"currentCounter"];
-//        }
-//        NSDate *endDate = [theCalendar dateByAddingComponents:monthComponent toDate:beginDate options:0];
-//        NSMutableDictionary *mutDict = [[NSMutableDictionary alloc] initWithDictionary:result[@"tariff"][0]];
-//        [mutDict setObject:endDate forKey:@"endDate"];
-//        user.plan = mutDict;
-//        NSData *userData = [NSKeyedArchiver archivedDataWithRootObject:user];
-//        [ud setObject:userData forKey:@"user"];
-//
-//        if ([self.type isEqualToString:@"advanced"]) {
-//            SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-//            [alert showSuccess:@"Успешно" subTitle:@"Вы подключили тариф 'Расширенный'" closeButtonTitle:@"Ок" duration:5.0];
-//            UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
-//            [self presentViewController:vc animated:true completion:nil];
-//        } else if ([self.type isEqualToString:@"standart"]){
-//            [alert showSuccess:@"Успешно" subTitle:@"Вы подключили тариф 'Базовый'" closeButtonTitle:@"Ок" duration:5.0];
-//            UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
-//            [self presentViewController:vc animated:true completion:nil];
-//        }
-//    } OrFailure:^(NSError *error) {
-//        [alert showSuccess:@"Ошибка" subTitle:@"Не удалось выполнить подключение" closeButtonTitle:@"Ок" duration:5.0];
-//        NSLog(@"%@", [error debugDescription]);
-//    }];
-//}
+
 
 
 - (IBAction)connect:(UIButton *)sender {
@@ -353,11 +294,11 @@
         NSDate *beginDate = [formatter dateFromString:result[@"tariff"][0][@"create_date"]];
         
         if ([result[@"tariff"][0][@"counter"] isEqualToString:@"-1"]) {
-            monthComponent.month = 1;
+            monthComponent.month = ((NSString*)result[@"tariff"][0][@"duration"]).integerValue;
             [ud setObject:@"∞ ЧАШЕК  " forKey:@"currentCounter"];
             user.counter = @-1;
         } else if (result[@"tariff"][0][@"counter"]) {
-            monthComponent.month = 3;
+            monthComponent.month = ((NSString*)result[@"tariff"][0][@"duration"]).integerValue;
             NSInteger cups = ((NSString*)result[@"tariff"][0][@"counter"]).intValue;
             user.counter = [NSNumber numberWithInteger:cups];
             NSString *text;
@@ -404,7 +345,9 @@
     dateFormatter.dateFormat = @"ddMM";
     NSString *formatDate = [dateFormatter stringFromDate:[NSDate date]];
     
-    NSString *paymentId = [NSString stringWithFormat:@"%@_%ld_%@", userID, (long)self.tariffID, formatDate];
+    NSInteger random = arc4random() % 1000000;
+    
+    NSString *paymentId = [NSString stringWithFormat:@"%@_%ld_%@_%d", userID, (long)self.tariffID, formatDate, random];
 
     PLRPayment *payment = [[PLRPayment alloc] initWithId:paymentId amount:[self.priceValue intValue]*100 status:nil product:[NSString stringWithFormat:@"Абонемент \"%@\": %@ чашек", self.tariffName.text, self.amount.text] total:1.f];
     

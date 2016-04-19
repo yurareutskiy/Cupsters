@@ -415,8 +415,6 @@
     // Define how we want our entities to be sorted
     NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc]
                                         initWithKey:@"name" ascending:YES];
-    NSArray* sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-//    [fetchRequest setSortDescriptors:sortDescriptors];
     
     // If we are searching for anything...
     if(text.length != 0) {

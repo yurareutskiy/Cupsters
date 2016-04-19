@@ -54,10 +54,10 @@
         NSDate *beginDate = [formatter dateFromString:result[@"plan"][@"create_date"]];
         
         if ([result[@"plan"][@"counter"] isEqualToString:@"-1"]) {
-            monthComponent.month = 1;
+            monthComponent.month = ((NSString*)result[@"plan"][@"duration"]).intValue;
             [ud setObject:@"∞ ЧАШЕК  " forKey:@"currentCounter"];
         } else if (result[@"plan"][@"counter"]) {
-            monthComponent.month = 3;
+            monthComponent.month = ((NSString*)result[@"plan"][@"duration"]).intValue;
             NSInteger cups = ((NSString*)result[@"plan"][@"counter"]).intValue;
             User *user = [User sharedUser];
             user.counter = [NSNumber numberWithInteger:cups];
