@@ -1,3 +1,10 @@
+Version 1.13.1 - May 2016
+=========================
+Resolved Issues:
+  - Fixed an application hang when using a UIView with autolayout enabled as an info
+    window or as a marker iconView.
+  - Changed lookUpPlaceID to not call its callback twice in error scenarios.
+
 Version 1.13.0 - March 2016
 ===========================
 Features:

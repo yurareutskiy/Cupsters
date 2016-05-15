@@ -320,11 +320,11 @@
         
         if ([[tariff valueForKey:@"type"] isEqualToString:@"advanced"]) {
             SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-            [alert showSuccess:@"Успешно" subTitle:@"Вы подключили тариф 'Расширенный'" closeButtonTitle:@"Ок" duration:5.0];
+            [alert showSuccess:@"Успешно" subTitle:@"Вы подключили тариф 'Любитель'" closeButtonTitle:@"Ок" duration:5.0];
             UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
             [self presentViewController:vc animated:true completion:nil];
         } else if ([[tariff valueForKey:@"type"] isEqualToString:@"standart"]){
-            [alert showSuccess:@"Успешно" subTitle:@"Вы подключили тариф 'Базовый'" closeButtonTitle:@"Ок" duration:5.0];
+            [alert showSuccess:@"Успешно" subTitle:@"Вы подключили тариф 'Кофеман'" closeButtonTitle:@"Ок" duration:5.0];
             UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:cSBMenu];
             [self presentViewController:vc animated:true completion:nil];
         }
@@ -352,18 +352,17 @@
     PLRPayment *payment = [[PLRPayment alloc] initWithId:paymentId amount:[self.priceValue intValue]*100 status:nil product:[NSString stringWithFormat:@"Абонемент \"%@\": %@ чашек", self.tariffName.text, self.amount.text] total:1.f];
     
     NSURL *callbackURL = [NSURL URLWithString:[@"http://api.cupsters.ru/check?order_id=" stringByAppendingString:paymentId]];
-//    NSURL *callbackURL = [NSURL URLWithString:[@"https://yandex.ru" stringByAppendingString:paymentId]];
 
     
     self.sessionInfo = [[PLRSessionInfo alloc] initWithPaymentInfo:payment callbackURL:callbackURL sessionType:self.sessionType];
-    self.client = [PaylerAPIClient testClientWithMerchantKey:@"b0fdeec9-7b5a-4b7d-bfa0-e3fb79ddb954" password:@"prbmBXvkSL"];
+    self.client = [PaylerAPIClient clientWithMerchantKey:@"68d15999-e88d-45ce-ab86-2706e6aeabe3" password:@"Sp4hmcUU7M"];
     
     [self.webView payWithCompletion:^(PLRPayment *payment, NSError *error) {
         if (!error) {
             [self setTariffForUser];
             [self backAction];
             if (self.sessionType == PLRSessionTypeTwoStep) {
-                //                self.textLabel.text = @"Средства успешно заблокированы";
+
             }
             self.webView.hidden = YES;
         } else {

@@ -18,6 +18,9 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
 //    manager.responseSerializer = [AFJSONResponseSerializer serializerWithReadingOptions:NSJSONReadingAllowFragments];
     manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    
+
+    
     NSLog(@"%@", request.objectRequest);
     
     NSString *url = [NSString stringWithFormat:@"%@%@", BaseURLString, request.objectRequest];
